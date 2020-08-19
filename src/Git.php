@@ -146,6 +146,30 @@ class Git
     }
 
     /**
+     * equals: git stash
+     * @param string $message
+     * @return bool
+     */
+    public function stash(string $message = null): bool
+    {
+        $sh = $this->executeCommand($this->newCommand()
+            ->addParameter('stash')
+            ->when(!empty($message), function (ShellCommand $command) use ($message) {
+                $command
+                    ->addParameter('save')
+                    ->addParameter('"'. $message .'"');
+            }));
+
+        if (Str::contains($sh, 'Saved working directory and index') ||
+            Str::contains($sh, 'No local changes to save')
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @return string
      */
     public function getDir(): string

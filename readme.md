@@ -94,6 +94,16 @@ $git = new Git('/var/web/project');
 var_dump($git->add('file_name'));
 ```
 
+#### git stash:
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+$git->stash();
+$git->stash('message');
+```
+
 #### create folder in repository:
 
 ```php

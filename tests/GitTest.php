@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests;
 
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
@@ -127,6 +127,28 @@ Changes to be committed:
 
         $this->mock("fatal: destination path '{$folder}' already exists " .
             "and is not an empty directory.", $dir)->clone($url);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::stash
+     */
+    public function testStash(): void
+    {
+        $git = $this->mock('');
+
+        self::assertFalse($git->stash());
+
+        //
+
+        $git = $this->mock('Saved working directory and index state WIP on master: b68fd9d test');
+
+        self::assertTrue($git->stash());
+
+        //
+
+        $git = $this->mock('No local changes to save');
+
+        self::assertTrue($git->stash());
     }
 
     /**
