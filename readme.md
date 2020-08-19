@@ -93,3 +93,26 @@ use ArtARTs36\GitHandler\Git;
 $git = new Git('/var/web/project');
 var_dump($git->add('file_name'));
 ```
+
+#### create folder in repository:
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+$action = new \ArtARTs36\GitHandler\Action($git);
+
+$action->createFolder('folder_name');
+```
+
+#### create file in repository:
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+$action = new \ArtARTs36\GitHandler\Action($git);
+
+$action->createFile('file.php', 'echo hello world');
+$action->createFile('file.php', 'echo hello world', 'folder_name');
+```
