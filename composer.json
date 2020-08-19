@@ -1,0 +1,39 @@
+{
+    "name": "artarts36/git-handler",
+    "description": "Git Handler",
+    "type": "library",
+    "require": {
+        "php": ">=7.3",
+        "artarts36/shell-command": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.3",
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ArtARTs36",
+            "email": "temicska99@mail.ru"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ArtARTs36\\GitHandler\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ArtARTs36\\GitHandler\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "lint": [
+            "./vendor/bin/phpcs --standard=PSR2 src/",
+            "./vendor/bin/phpcs --standard=PSR2 tests/"
+        ],
+        "test": [
+            "./vendor/bin/phpunit -v --coverage-text --colors=always --configuration phpunit.xml"
+        ]
+    }
+}
