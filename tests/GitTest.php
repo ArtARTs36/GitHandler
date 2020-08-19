@@ -130,6 +130,21 @@ Changes to be committed:
     }
 
     /**
+     * @covers \ArtARTs36\GitHandler\Git::clone
+     */
+    public function testCloneBranch(): void
+    {
+        $folder = 'project';
+        $dir = '/var/web/'. $folder;
+        $url = 'http://url.git';
+        $branch = 'dev';
+
+        $git = $this->mock("Cloning into '{$folder}' ...", $dir);
+
+        self::assertTrue($git->clone($url, $branch));
+    }
+
+    /**
      * @covers \ArtARTs36\GitHandler\Git::stash
      */
     public function testStash(): void

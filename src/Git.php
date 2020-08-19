@@ -127,14 +127,26 @@ class Git
     /**
      * equals: git clone <url> <folder>
      * @param string $url
+     * @param string|null $branch
      * @return bool
      */
-    public function clone(string $url): bool
+    public function clone(string $url, string $branch = null): bool
     {
-        $sh = $this->executeCommand($this->newCommand(FileSystem::belowPath($this->dir))
+        $command = $this->newCommand(FileSystem::belowPath($this->dir))
             ->addParameter('clone')
+            ->when(!empty($branch), function (ShellCommand $command) use ($branch) {
+                $command
+                    ->addCutOption('b')
+                    ->addParameter($branch);
+            })
             ->addParameter($url)
-            ->addParameter($folder = FileSystem::endFolder($this->dir)));
+            ->addParameter($folder = FileSystem::endFolder($this->dir));
+
+        //
+
+        $sh = $this->executeCommand($command);
+
+        //
 
         if (Str::contains($sh, "Cloning into '{$folder}'")) {
             return true;
