@@ -58,6 +58,22 @@ class ActionTest extends TestCase
         );
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Action::delete
+     */
+    public function testDelete(): void
+    {
+        $action = $this->mock();
+
+        self::assertFileExists($this->getTmpDir());
+
+        //
+
+        $action->delete();
+
+        self::assertFileDoesNotExist($this->getTmpDir());
+    }
+
     private function mock(): Action
     {
         $dir = $this->getTmpDir();

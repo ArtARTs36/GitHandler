@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler;
 
+use ArtARTs36\GitHandler\Support\FileSystem;
+
 /**
  * Class Action
  * @package ArtARTs36\GitHandler
@@ -56,5 +58,13 @@ class Action
         file_put_contents($path, $content);
 
         return $path;
+    }
+
+    /**
+     * @return bool
+     */
+    public function delete(): bool
+    {
+        return FileSystem::removeDir($this->git->getDir());
     }
 }

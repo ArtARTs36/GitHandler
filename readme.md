@@ -126,3 +126,14 @@ $action = new \ArtARTs36\GitHandler\Action($git);
 $action->createFile('file.php', 'echo hello world');
 $action->createFile('file.php', 'echo hello world', 'folder_name');
 ```
+
+#### delete repository:
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+$action = new \ArtARTs36\GitHandler\Action($git);
+
+$action->delete();
+```
