@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\HostReviewerCore\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests;
 
 use ArtARTs36\GitHandler\Support\Str;
 use PHPUnit\Framework\TestCase;

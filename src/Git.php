@@ -4,6 +4,8 @@ namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
+use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\GitHandler\Support\Str;
 use ArtARTs36\ShellCommand\ShellCommand;
 
@@ -123,6 +125,27 @@ class Git
     }
 
     /**
+     * equals: git clone <url> <folder>
+     * @param string $url
+     * @return bool
+     */
+    public function clone(string $url): bool
+    {
+        $sh = $this->executeCommand($this->newCommand(FileSystem::belowPath($this->dir))
+            ->addParameter('clone')
+            ->addParameter($url)
+            ->addParameter($folder = FileSystem::endFolder($this->dir)));
+
+        if (Str::contains($sh, "Cloning into '{$folder}'")) {
+            return true;
+        }
+
+        PathAlreadyExists::handleIfSo($folder, $sh);
+
+        return false;
+    }
+
+    /**
      * @return string
      */
     public function getDir(): string
@@ -140,10 +163,11 @@ class Git
     }
 
     /**
+     * @param null $dir
      * @return ShellCommand
      */
-    protected function newCommand(): ShellCommand
+    protected function newCommand($dir = null): ShellCommand
     {
-        return ShellCommand::getInstanceWithMoveDir($this->dir, $this->executor);
+        return ShellCommand::getInstanceWithMoveDir($dir ?? $this->dir, $this->executor);
     }
 }

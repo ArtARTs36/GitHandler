@@ -1,9 +1,10 @@
 <?php
 
-namespace ArtARTs36\HostReviewerCore\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Git;
 use ArtARTs36\ShellCommand\ShellCommand;
 use PHPUnit\Framework\TestCase;
@@ -106,12 +107,38 @@ Changes to be committed:
     }
 
     /**
+     * @covers \ArtARTs36\GitHandler\Git::clone
+     */
+    public function testClone(): void
+    {
+        $folder = 'project';
+        $dir = '/var/web/'. $folder;
+        $url = 'http://url.git';
+
+        //
+
+        $git = $this->mock("Cloning into '{$folder}' ...", $dir);
+
+        self::assertTrue($git->clone($url));
+
+        //
+
+        self::expectException(PathAlreadyExists::class);
+
+        $this->mock("fatal: destination path '{$folder}' already exists " .
+            "and is not an empty directory.", $dir)->clone($url);
+    }
+
+    /**
      * @param string $shellResult
+     * @param string|null $dir
      * @return Git
      */
-    protected function mock(string $shellResult): Git
+    protected function mock(string $shellResult, string $dir = null): Git
     {
-        return new class(__DIR__ . '/../../', $shellResult, 'git') extends Git {
+        $dir = $dir ?? __DIR__ . '/../../';
+
+        return new class($dir, $shellResult, 'git') extends Git {
             private $shellResult;
 
             public function __construct(string $dir, string $shellResult, string $executor = 'git')
