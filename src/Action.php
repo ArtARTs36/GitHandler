@@ -35,4 +35,26 @@ class Action
 
         return $this;
     }
+
+    /**
+     * @param string $name
+     * @param string $content
+     * @param string|null $folder
+     * @return string - absolute path to file
+     */
+    public function createFile(string $name, string $content, string $folder = null): string
+    {
+        $path = $this->git->getDir();
+        if (!empty($folder)) {
+            $path .= DIRECTORY_SEPARATOR . $folder;
+
+            $this->createFolder($folder);
+        }
+
+        $path .= DIRECTORY_SEPARATOR . $name;
+
+        file_put_contents($path, $content);
+
+        return $path;
+    }
 }
