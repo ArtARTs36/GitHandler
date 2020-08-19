@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
+use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Support\Str;
 use ArtARTs36\ShellCommand\ShellCommand;
 
@@ -41,8 +42,7 @@ class Git
             ->addParameter('pull')
             ->when(!empty($branch), function (ShellCommand $command) use ($branch) {
                 $command->addParameter($branch);
-            })
-        );
+            }));
 
         if (Str::contains($sh, 'Already up to date')) {
             return true;
@@ -101,6 +101,25 @@ class Git
                     $command->addCutOption('s');
                 })
         );
+    }
+
+    /**
+     * @param string $file
+     * @return bool
+     */
+    public function add(string $file): bool
+    {
+        $sh = $this->executeCommand($this->newCommand()
+            ->addParameter('add')
+            ->addParameter($file));
+
+        if (empty($sh)) {
+            return true;
+        }
+
+        FileNotFound::handleIfSo($file, $sh);
+
+        return false;
     }
 
     /**

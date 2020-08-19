@@ -3,6 +3,7 @@
 namespace ArtARTs36\HostReviewerCore\Tests\Unit;
 
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
+use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Git;
 use ArtARTs36\ShellCommand\ShellCommand;
 use PHPUnit\Framework\TestCase;
@@ -84,6 +85,24 @@ Changes to be committed:
         //
 
         self::assertEquals($expected, $git->status());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::add
+     */
+    public function testAdd(): void
+    {
+        $git = $this->mock('');
+
+        self::assertTrue($git->add('README.MD'));
+
+        //
+
+        self::expectException(FileNotFound::class);
+
+        $git = $this->mock("pathspec 'random.file' did not match any files");
+
+        $git->add('random.file');
     }
 
     /**
