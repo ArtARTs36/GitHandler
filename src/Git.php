@@ -123,6 +123,14 @@ class Git
     }
 
     /**
+     * @return string
+     */
+    public function getDir(): string
+    {
+        return $this->dir;
+    }
+
+    /**
      * @param ShellCommand $command
      * @return string|null
      */
