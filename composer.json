@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "php": ">=7.3",
-        "artarts36/shell-command": "^1.2"
+        "artarts36/shell-command": "^1.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.3",
