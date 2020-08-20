@@ -182,6 +182,48 @@ class Git
     }
 
     /**
+     * equals: git remote show origin
+     * @return array
+     */
+    public function showRemote(): ?array
+    {
+        $sh = $this->executeShowRemote();
+
+        if (!Str::contains($sh, 'Fetch(\s*)URL') || !Str::contains($sh, 'Push(\s*)URL:')) {
+            return [];
+        }
+
+        //
+
+        $getUrl = function (string $regular) use ($sh) {
+            $matches = [];
+
+            preg_match($regular, $sh, $matches);
+
+            return end($matches);
+        };
+
+        //
+
+        return [
+            'fetch' => $getUrl('/Fetch(\s*)URL: (.*)\n/'),
+            'push' => $getUrl('/Push(\s*)URL: (.*)\n/'),
+        ];
+    }
+
+    /**
+     * equals: git remote show origin
+     * @return string
+     */
+    protected function executeShowRemote(): string
+    {
+        return $this->executeCommand($this->newCommand()
+            ->addParameter('remote')
+            ->addParameter('show')
+            ->addParameter('origin'));
+    }
+
+    /**
      * @return string
      */
     public function getDir(): string

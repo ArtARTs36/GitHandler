@@ -104,6 +104,15 @@ $git->stash();
 $git->stash('message');
 ```
 
+#### git remote show origin:
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+var_dump($git->showRemote());
+```
+
 #### create folder in repository:
 
 ```php
