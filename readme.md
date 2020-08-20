@@ -148,3 +148,14 @@ $action = new \ArtARTs36\GitHandler\Action($git);
 
 $action->delete();
 ```
+
+#### reinstall repository (Delete local repository and fetch from origin):
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+$action = new \ArtARTs36\GitHandler\Action($git);
+
+$action->reinstall();
+```

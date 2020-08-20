@@ -61,6 +61,18 @@ class Action
     }
 
     /**
+     * Delete local repository and fetch from origin
+     */
+    public function reinstall(): void
+    {
+        $remote = $this->git->showFetchRemote();
+
+        $this->delete();
+
+        $this->git->clone($remote);
+    }
+
+    /**
      * @return bool
      */
     public function delete(): bool
