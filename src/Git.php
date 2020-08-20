@@ -182,6 +182,22 @@ class Git
     }
 
     /**
+     * @return string
+     */
+    public function showFetchRemote(): string
+    {
+        return $this->showUrlOfAllRemotes('fetch');
+    }
+
+    /**
+     * @return string
+     */
+    public function showPushRemote(): string
+    {
+        return $this->showUrlOfAllRemotes('push');
+    }
+
+    /**
      * equals: git remote show origin
      * @return array
      */
@@ -209,6 +225,20 @@ class Git
             'fetch' => $getUrl('/Fetch(\s*)URL: (.*)\n/'),
             'push' => $getUrl('/Push(\s*)URL: (.*)\n/'),
         ];
+    }
+
+    /**
+     * @param string $type
+     * @return string|null
+     */
+    protected function showUrlOfAllRemotes(string $type): ?string
+    {
+        $all = $this->showRemote();
+        if (empty($all)) {
+            return null;
+        }
+
+        return $all[$type];
     }
 
     /**

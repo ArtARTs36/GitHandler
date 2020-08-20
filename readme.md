@@ -111,6 +111,8 @@ use ArtARTs36\GitHandler\Git;
 
 $git = new Git('/var/web/project');
 var_dump($git->showRemote());
+var_dump($git->showPushRemote());
+var_dump($git->showFetchRemote());
 ```
 
 #### create folder in repository:
