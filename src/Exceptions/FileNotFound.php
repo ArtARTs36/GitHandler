@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-use ArtARTs36\GitHandler\Support\Str;
+use ArtARTs36\Str\Facade\Str;
 use Throwable;
 
 /**

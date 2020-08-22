@@ -6,8 +6,8 @@ use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Support\FileSystem;
-use ArtARTs36\GitHandler\Support\Str;
 use ArtARTs36\ShellCommand\ShellCommand;
+use ArtARTs36\Str\Facade\Str;
 
 /**
  * Class Git
