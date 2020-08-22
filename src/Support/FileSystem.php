@@ -65,7 +65,17 @@ class FileSystem
         if (!file_exists($path)) {
             $array = explode(DIRECTORY_SEPARATOR, $path);
 
-            return end($array);
+            $end = end($array);
+
+            if (!static::isPseudoFile($end)) {
+                return $end;
+            }
+
+            if (count($array) > 1) {
+                return $array[array_key_last($array) - 1];
+            }
+
+            return '';
         }
 
         // For exists Path
@@ -88,6 +98,6 @@ class FileSystem
     {
         $array = explode('.', $file);
 
-        return count($array) === 2;
+        return count($array) > 1;
     }
 }

@@ -28,6 +28,10 @@ class FileSystemTest extends TestCase
     {
         self::assertEquals('tests', FileSystem::endFolder(__DIR__));
         self::assertEquals('tests', FileSystem::endFolder(__FILE__));
+
+        self::assertEquals('tests', FileSystem::endFolder('/path/to/tests'));
+        self::assertEquals('tests', FileSystem::endFolder('/path/to/tests/image.jpeg'));
+        self::assertEquals('', FileSystem::endFolder('image.jpeg'));
     }
 
     /**
@@ -37,5 +41,6 @@ class FileSystemTest extends TestCase
     {
         self::assertFalse(FileSystem::isPseudoFile('image'));
         self::assertTrue(FileSystem::isPseudoFile('image.jpeg'));
+        self::assertTrue(FileSystem::isPseudoFile('super.image.jpeg'));
     }
 }
