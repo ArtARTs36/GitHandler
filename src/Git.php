@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
@@ -147,23 +148,23 @@ class Git implements GitHandler
 
     public function showFetchRemote(): string
     {
-        return $this->showUrlOfAllRemotes('fetch');
+        return $this->showRemote()->fetch;
     }
 
     public function showPushRemote(): string
     {
-        return $this->showUrlOfAllRemotes('push');
+        return $this->showRemote()->push;
     }
 
     /**
      * equals: git remote show origin
      */
-    public function showRemote(): array
+    public function showRemote(): Remotes
     {
         $sh = $this->executeShowRemote();
 
         if (! Str::contains($sh, 'Fetch(\s*)URL') || ! Str::contains($sh, 'Push(\s*)URL:')) {
-            return [];
+            return Remotes::createEmpty();
         }
 
         //
@@ -178,10 +179,7 @@ class Git implements GitHandler
 
         //
 
-        return [
-            'fetch' => $getUrl('/Fetch(\s*)URL: (.*)\n/'),
-            'push' => $getUrl('/Push(\s*)URL: (.*)\n/'),
-        ];
+        return new Remotes($getUrl('/Fetch(\s*)URL: (.*)\n/'), $getUrl('/Push(\s*)URL: (.*)\n/'));
     }
 
     public function getTags(?string $pattern = null): array
@@ -223,17 +221,6 @@ class Git implements GitHandler
     public function isTagExists(string $tag): bool
     {
         return in_array($tag, $this->getTags());
-    }
-
-    protected function showUrlOfAllRemotes(string $type): ?string
-    {
-        $all = $this->showRemote();
-
-        if (empty($all)) {
-            return null;
-        }
-
-        return $all[$type];
     }
 
     /**

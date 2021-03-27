@@ -190,7 +190,7 @@ Changes to be committed:
             'push' => 'https://github.com/ArtARTs36/GitHandler.git',
         ];
 
-        self::assertEquals($expected, $git->showRemote());
+        self::assertEquals($expected, $git->showRemote()->toArray());
 
         //
 

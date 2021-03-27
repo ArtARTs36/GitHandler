@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Contracts;
 
+use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 
 interface GitHandler extends Taggable
@@ -45,5 +46,5 @@ interface GitHandler extends Taggable
      */
     public function stash(?string $message = null): bool;
 
-    public function showRemote(): array;
+    public function showRemote(): Remotes;
 }
