@@ -143,6 +143,8 @@ class Git implements GitHandler
             }));
 
         var_dump($sh);
+        var_dump(Str::contains($sh, 'Saved working directory and index'));
+        var_dump(Str::contains($sh, 'No local changes to save'));
 
         return Str::contains($sh, 'Saved working directory and index') ||
             Str::contains($sh, 'No local changes to save');
