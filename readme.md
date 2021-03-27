@@ -115,6 +115,43 @@ var_dump($git->showPushRemote());
 var_dump($git->showFetchRemote());
 ```
 
+#### git tag:
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+var_dump($git->getTags());
+```
+
+#### git tag -l 1.0.*:
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+var_dump($git->getTags('1.0.*'));
+```
+
+### git tag -a 1.0.0 -m Version 1.0.0
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+var_dump($git->performTag('1.0.0', 'Version 1.0.0'));
+var_dump($git->performTag('1.0.0'));
+```
+
+### check exists tag
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+var_dump($git->isTagExists('1.0.0'));
+```
+
 #### create folder in repository:
 
 ```php

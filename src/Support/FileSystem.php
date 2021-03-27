@@ -62,7 +62,7 @@ class FileSystem
     public static function endFolder(string $path)
     {
         // For not exists Path
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             $array = explode(DIRECTORY_SEPARATOR, $path);
 
             $end = end($array);
@@ -99,5 +99,12 @@ class FileSystem
         $array = explode('.', $file);
 
         return count($array) > 1;
+    }
+
+    public static function createDir(string $path): void
+    {
+        if (! file_exists($path)) {
+            mkdir($path, 0755, true);
+        }
     }
 }

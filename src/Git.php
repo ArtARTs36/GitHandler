@@ -2,81 +2,45 @@
 
 namespace ArtARTs36\GitHandler;
 
+use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\TagAlreadyExist;
 use ArtARTs36\GitHandler\Support\FileSystem;
-use ArtARTs36\GitHandler\Support\Str;
 use ArtARTs36\ShellCommand\ShellCommand;
+use ArtARTs36\Str\Facade\Str;
 
-/**
- * Class Git
- * @package ArtARTs36\HostReviewerCore\Git
- */
-class Git
+class Git extends AbstractGitHandler implements GitHandler
 {
-    /** @var string */
-    protected $dir;
-
-    /** @var string */
-    protected $executor;
-
     /**
-     * Git constructor.
-     * @param string $dir
-     * @param string $executor
+     * @inheritDoc
      */
-    public function __construct(string $dir, string $executor = 'git')
-    {
-        $this->dir = $dir;
-        $this->executor = $executor;
-    }
-
-    /**
-     * equals: git pull
-     * equals: git pull <branch>
-     * @param string|null $branch
-     * @return bool
-     */
-    public function pull(string $branch = null): bool
+    public function pull(?string $branch = null): bool
     {
         $sh = $this->executeCommand($this->newCommand()
             ->addParameter('pull')
-            ->when(!empty($branch), function (ShellCommand $command) use ($branch) {
+            ->when($branch !== null, function (ShellCommand $command) use ($branch) {
                 $command->addParameter($branch);
             }));
 
-        if (Str::contains($sh, 'Already up to date')) {
-            return true;
-        }
-
-        if (Str::contains($sh, 'Receiving objects') && Str::contains($sh, 'Resolving deltas')) {
-            return true;
-        }
-
-        return false;
+        return Str::contains($sh, 'Already up to date') ||
+            (Str::contains($sh, 'Receiving objects') && Str::contains($sh, 'Resolving deltas'));
     }
 
     /**
-     * equals: git init
-     * @return bool
+     * @inheritDoc
      */
     public function init(): bool
     {
-        $sh = $this->executeCommand($this->newCommand()
-            ->addParameter('init'));
-
-        if (Str::contains($sh, 'Initialized empty Git repository')) {
-            return true;
-        }
-
-        return false;
+        return Str::contains($this
+            ->executeCommand($this->newCommand()
+            ->addParameter('init')), 'Initialized empty Git repository');
     }
 
     /**
-     * equals: git checkout <branch>
-     * @param string $branch
-     * @return bool
+     * @inheritDoc
      */
     public function checkout(string $branch): bool
     {
@@ -90,9 +54,7 @@ class Git
     }
 
     /**
-     * equals: git status
-     * @param bool $short
-     * @return string
+     * @inheritDoc
      */
     public function status(bool $short = false): string
     {
@@ -106,8 +68,7 @@ class Git
     }
 
     /**
-     * @param string $file
-     * @return bool
+     * @inheritDoc
      */
     public function add(string $file): bool
     {
@@ -125,22 +86,19 @@ class Git
     }
 
     /**
-     * equals: git clone <url> <folder>
-     * @param string $url
-     * @param string|null $branch
-     * @return bool
+     * @inheritDoc
      */
-    public function clone(string $url, string $branch = null): bool
+    public function clone(string $url, ?string $branch = null): bool
     {
-        $command = $this->newCommand(FileSystem::belowPath($this->dir))
+        $command = $this->newCommand(FileSystem::belowPath($this->getDir()))
             ->addParameter('clone')
-            ->when(!empty($branch), function (ShellCommand $command) use ($branch) {
+            ->when($branch !== null, function (ShellCommand $command) use ($branch) {
                 $command
                     ->addCutOption('b')
                     ->addParameter($branch);
             })
             ->addParameter($url)
-            ->addParameter($folder = FileSystem::endFolder($this->dir));
+            ->addParameter($folder = FileSystem::endFolder($this->getDir()));
 
         //
 
@@ -158,55 +116,31 @@ class Git
     }
 
     /**
-     * equals: git stash
-     * @param string $message
-     * @return bool
+     * @inheritDoc
      */
-    public function stash(string $message = null): bool
+    public function stash(?string $message = null): bool
     {
         $sh = $this->executeCommand($this->newCommand()
             ->addParameter('stash')
-            ->when(!empty($message), function (ShellCommand $command) use ($message) {
+            ->when($message !== null, function (ShellCommand $command) use ($message) {
                 $command
                     ->addParameter('save')
                     ->addParameter('"'. $message .'"');
             }));
 
-        if (Str::contains($sh, 'Saved working directory and index') ||
-            Str::contains($sh, 'No local changes to save')
-        ) {
-            return true;
-        }
-
-        return false;
+        return Str::contains($sh, 'Saved working directory and index') ||
+            Str::contains($sh, 'No local changes to save');
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    public function showFetchRemote(): string
-    {
-        return $this->showUrlOfAllRemotes('fetch');
-    }
-
-    /**
-     * @return string
-     */
-    public function showPushRemote(): string
-    {
-        return $this->showUrlOfAllRemotes('push');
-    }
-
-    /**
-     * equals: git remote show origin
-     * @return array
-     */
-    public function showRemote(): ?array
+    public function showRemote(): Remotes
     {
         $sh = $this->executeShowRemote();
 
-        if (!Str::contains($sh, 'Fetch(\s*)URL') || !Str::contains($sh, 'Push(\s*)URL:')) {
-            return [];
+        if (! Str::contains($sh, 'Fetch(\s*)URL') || ! Str::contains($sh, 'Push(\s*)URL:')) {
+            return Remotes::createEmpty();
         }
 
         //
@@ -221,61 +155,84 @@ class Git
 
         //
 
-        return [
-            'fetch' => $getUrl('/Fetch(\s*)URL: (.*)\n/'),
-            'push' => $getUrl('/Push(\s*)URL: (.*)\n/'),
-        ];
+        return new Remotes($getUrl('/Fetch(\s*)URL: (.*)\n/'), $getUrl('/Push(\s*)URL: (.*)\n/'));
+    }
+
+    public function getTags(?string $pattern = null): array
+    {
+        $raw = $this->newCommand()
+            ->addParameter('tag')
+            ->when($pattern !== null, function (ShellCommand $command) use ($pattern) {
+                $command
+                    ->addCutOption('l')
+                    ->addParameter($pattern, true);
+            })
+            ->getShellResult();
+
+        if (empty($raw)) {
+            return [];
+        }
+
+        return explode("\n", trim($raw));
     }
 
     /**
-     * @param string $type
-     * @return string|null
+     * @throws TagAlreadyExist
      */
-    protected function showUrlOfAllRemotes(string $type): ?string
+    public function performTag(string $tag, ?string $message = null): bool
     {
-        $all = $this->showRemote();
-        if (empty($all)) {
-            return null;
+        if ($this->isTagExists($tag)) {
+            throw new TagAlreadyExist($tag);
         }
 
-        return $all[$type];
+        return $this->newCommand()
+            ->addParameter('tag')
+            ->addCutOption('a')
+            ->addParameter($tag)
+            ->addCutOption('m')
+            ->addParameter($message ?? "Version {$tag}", true)
+            ->getShellResult() === null;
+    }
+
+    public function isTagExists(string $tag): bool
+    {
+        return in_array($tag, $this->getTags());
+    }
+
+    public function addRemote(string $shortName, string $url): bool
+    {
+        return $this
+                ->executeCommand(
+                    $this->newCommand()
+                    ->addParameter('remote')
+                    ->addParameter('add')
+                    ->addParameter($shortName)
+                    ->addParameter($url)
+                ) === null;
+    }
+
+    public function push(): bool
+    {
+        $result = $this->executeCommand($this->newCommand()->addParameter('push'));
+
+        if ($result === null) {
+            return false;
+        }
+
+        return Str::contains($result, 'Everything up-to-date')
+            || Str::contains($result, '->')
+            || Str::contains($result, 'Enumerating objects:');
     }
 
     /**
      * equals: git remote show origin
-     * @return string
      */
     protected function executeShowRemote(): string
     {
-        return $this->executeCommand($this->newCommand()
+        return $this
+            ->executeCommand($this->newCommand()
             ->addParameter('remote')
             ->addParameter('show')
             ->addParameter('origin'));
-    }
-
-    /**
-     * @return string
-     */
-    public function getDir(): string
-    {
-        return $this->dir;
-    }
-
-    /**
-     * @param ShellCommand $command
-     * @return string|null
-     */
-    protected function executeCommand(ShellCommand $command)
-    {
-        return $command->getShellResult();
-    }
-
-    /**
-     * @param null $dir
-     * @return ShellCommand
-     */
-    protected function newCommand($dir = null): ShellCommand
-    {
-        return ShellCommand::getInstanceWithMoveDir($dir ?? $this->dir, $this->executor);
     }
 }
