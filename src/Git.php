@@ -10,22 +10,15 @@ use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Facade\Str;
 
-/**
- * Class Git
- * @package ArtARTs36\HostReviewerCore\Git
- */
 class Git
 {
-    /** @var string */
     protected $dir;
 
-    /** @var string */
     protected $executor;
 
     /**
-     * Git constructor.
-     * @param string $dir
-     * @param string $executor
+     * @param string $dir - directory to project .git
+     * @param string $executor - git bin
      */
     public function __construct(string $dir, string $executor = 'git')
     {
@@ -36,48 +29,32 @@ class Git
     /**
      * equals: git pull
      * equals: git pull <branch>
-     * @param string|null $branch
-     * @return bool
      */
-    public function pull(string $branch = null): bool
+    public function pull(?string $branch = null): bool
     {
         $sh = $this->executeCommand($this->newCommand()
             ->addParameter('pull')
-            ->when(!empty($branch), function (ShellCommand $command) use ($branch) {
+            ->when($branch !== null, function (ShellCommand $command) use ($branch) {
                 $command->addParameter($branch);
             }));
 
-        if (Str::contains($sh, 'Already up to date')) {
-            return true;
-        }
-
-        if (Str::contains($sh, 'Receiving objects') && Str::contains($sh, 'Resolving deltas')) {
-            return true;
-        }
-
-        return false;
+        return Str::contains($sh, 'Already up to date') ||
+            (Str::contains($sh, 'Receiving objects') && Str::contains($sh, 'Resolving deltas'));
     }
 
     /**
      * equals: git init
-     * @return bool
      */
     public function init(): bool
     {
-        $sh = $this->executeCommand($this->newCommand()
-            ->addParameter('init'));
-
-        if (Str::contains($sh, 'Initialized empty Git repository')) {
-            return true;
-        }
-
-        return false;
+        return Str::contains($this
+            ->executeCommand($this->newCommand()
+            ->addParameter('init')), 'Initialized empty Git repository');
     }
 
     /**
      * equals: git checkout <branch>
-     * @param string $branch
-     * @return bool
+     * @throws BranchNotFound
      */
     public function checkout(string $branch): bool
     {
@@ -92,8 +69,6 @@ class Git
 
     /**
      * equals: git status
-     * @param bool $short
-     * @return string
      */
     public function status(bool $short = false): string
     {
@@ -107,8 +82,7 @@ class Git
     }
 
     /**
-     * @param string $file
-     * @return bool
+     * @param string $file - file name to git added
      */
     public function add(string $file): bool
     {
@@ -127,15 +101,12 @@ class Git
 
     /**
      * equals: git clone <url> <folder>
-     * @param string $url
-     * @param string|null $branch
-     * @return bool
      */
-    public function clone(string $url, string $branch = null): bool
+    public function clone(string $url, ?string $branch = null): bool
     {
         $command = $this->newCommand(FileSystem::belowPath($this->dir))
             ->addParameter('clone')
-            ->when(!empty($branch), function (ShellCommand $command) use ($branch) {
+            ->when($branch !== null, function (ShellCommand $command) use ($branch) {
                 $command
                     ->addCutOption('b')
                     ->addParameter($branch);
@@ -160,39 +131,26 @@ class Git
 
     /**
      * equals: git stash
-     * @param string $message
-     * @return bool
      */
-    public function stash(string $message = null): bool
+    public function stash(?string $message = null): bool
     {
         $sh = $this->executeCommand($this->newCommand()
             ->addParameter('stash')
-            ->when(!empty($message), function (ShellCommand $command) use ($message) {
+            ->when($message !== null, function (ShellCommand $command) use ($message) {
                 $command
                     ->addParameter('save')
                     ->addParameter('"'. $message .'"');
             }));
 
-        if (Str::contains($sh, 'Saved working directory and index') ||
-            Str::contains($sh, 'No local changes to save')
-        ) {
-            return true;
-        }
-
-        return false;
+        return Str::contains($sh, 'Saved working directory and index') ||
+            Str::contains($sh, 'No local changes to save');
     }
 
-    /**
-     * @return string
-     */
     public function showFetchRemote(): string
     {
         return $this->showUrlOfAllRemotes('fetch');
     }
 
-    /**
-     * @return string
-     */
     public function showPushRemote(): string
     {
         return $this->showUrlOfAllRemotes('push');
@@ -200,13 +158,12 @@ class Git
 
     /**
      * equals: git remote show origin
-     * @return array
      */
-    public function showRemote(): ?array
+    public function showRemote(): array
     {
         $sh = $this->executeShowRemote();
 
-        if (!Str::contains($sh, 'Fetch(\s*)URL') || !Str::contains($sh, 'Push(\s*)URL:')) {
+        if (! Str::contains($sh, 'Fetch(\s*)URL') || ! Str::contains($sh, 'Push(\s*)URL:')) {
             return [];
         }
 
@@ -228,11 +185,11 @@ class Git
         ];
     }
 
-    public function getTags(string $pattern = null): array
+    public function getTags(?string $pattern = null): array
     {
         $raw = $this->newCommand()
             ->addParameter('tag')
-            ->when(! empty($pattern), function (ShellCommand $command) use ($pattern) {
+            ->when($pattern !== null, function (ShellCommand $command) use ($pattern) {
                 $command
                     ->addCutOption('l')
                     ->addParameter($pattern, true);
@@ -249,7 +206,7 @@ class Git
     /**
      * @throws TagAlreadyExist
      */
-    public function performTag(string $tag, string $message = null): bool
+    public function performTag(string $tag, ?string $message = null): bool
     {
         if ($this->isTagExists($tag)) {
             throw new TagAlreadyExist($tag);
@@ -269,13 +226,10 @@ class Git
         return in_array($tag, $this->getTags());
     }
 
-    /**
-     * @param string $type
-     * @return string|null
-     */
     protected function showUrlOfAllRemotes(string $type): ?string
     {
         $all = $this->showRemote();
+
         if (empty($all)) {
             return null;
         }
@@ -285,37 +239,26 @@ class Git
 
     /**
      * equals: git remote show origin
-     * @return string
      */
     protected function executeShowRemote(): string
     {
-        return $this->executeCommand($this->newCommand()
+        return $this
+            ->executeCommand($this->newCommand()
             ->addParameter('remote')
             ->addParameter('show')
             ->addParameter('origin'));
     }
 
-    /**
-     * @return string
-     */
     public function getDir(): string
     {
         return $this->dir;
     }
 
-    /**
-     * @param ShellCommand $command
-     * @return string|null
-     */
     protected function executeCommand(ShellCommand $command)
     {
         return $command->getShellResult();
     }
 
-    /**
-     * @param null $dir
-     * @return ShellCommand
-     */
     protected function newCommand($dir = null): ShellCommand
     {
         return ShellCommand::getInstanceWithMoveDir($dir ?? $this->dir, $this->executor);
