@@ -132,16 +132,6 @@ class Git extends AbstractGitHandler implements GitHandler
             Str::contains($sh, 'No local changes to save');
     }
 
-    public function showFetchRemote(): string
-    {
-        return $this->showRemote()->fetch;
-    }
-
-    public function showPushRemote(): string
-    {
-        return $this->showRemote()->push;
-    }
-
     /**
      * equals: git remote show origin
      */

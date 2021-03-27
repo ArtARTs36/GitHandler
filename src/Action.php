@@ -16,10 +16,7 @@ class Action
 
     public function createFolder(string $name): self
     {
-        $path = $this->git->getDir() . DIRECTORY_SEPARATOR . $name;
-        if (!file_exists($path)) {
-            mkdir($path);
-        }
+        FileSystem::createDir($this->git->getDir() . DIRECTORY_SEPARATOR . $name);
 
         return $this;
     }
@@ -47,13 +44,13 @@ class Action
     /**
      * Delete local repository and fetch from origin
      */
-    public function reinstall(): void
+    public function reinstall(?string $branch = null): void
     {
-        $remote = $this->git->showFetchRemote();
+        $remote = $this->git->showRemote()->fetch;
 
         $this->delete();
 
-        $this->git->clone($remote);
+        $this->git->clone($remote, $branch);
     }
 
     public function delete(): bool

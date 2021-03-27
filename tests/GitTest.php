@@ -168,12 +168,10 @@ Changes to be committed:
 
     /**
      * @covers \ArtARTs36\GitHandler\Git::showRemote
-     * @covers \ArtARTs36\GitHandler\Git::showFetchRemote
-     * @covers \ArtARTs36\GitHandler\Git::showPushRemote
      */
     public function testShowRemote(): void
     {
-        $git = $this->mock($sh = '* remote origin
+        $git = $this->mock('* remote origin
   Fetch URL: https://github.com/ArtARTs36/GitHandler.git
   Push  URL: https://github.com/ArtARTs36/GitHandler.git
   HEAD branch: master
@@ -191,11 +189,6 @@ Changes to be committed:
         ];
 
         self::assertEquals($expected, $git->showRemote()->toArray());
-
-        //
-
-        self::assertEquals('https://github.com/ArtARTs36/GitHandler.git', $git->showFetchRemote());
-        self::assertEquals('https://github.com/ArtARTs36/GitHandler.git', $git->showPushRemote());
     }
 
     /**

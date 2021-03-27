@@ -100,4 +100,11 @@ class FileSystem
 
         return count($array) > 1;
     }
+
+    public static function createDir(string $path): void
+    {
+        if (! file_exists($path)) {
+            mkdir($path, 0755, true);
+        }
+    }
 }
