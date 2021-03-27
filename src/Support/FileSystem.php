@@ -62,7 +62,7 @@ class FileSystem
     public static function endFolder(string $path)
     {
         // For not exists Path
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             $array = explode(DIRECTORY_SEPARATOR, $path);
 
             $end = end($array);
