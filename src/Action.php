@@ -2,32 +2,18 @@
 
 namespace ArtARTs36\GitHandler;
 
+use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Support\FileSystem;
 
-/**
- * Class Action
- * @package ArtARTs36\GitHandler
- */
 class Action
 {
-    /**
-     * @var Git
-     */
     protected $git;
 
-    /**
-     * Action constructor.
-     * @param Git $git
-     */
-    public function __construct(Git $git)
+    public function __construct(GitHandler $git)
     {
         $this->git = $git;
     }
 
-    /**
-     * @param string $name
-     * @return $this
-     */
     public function createFolder(string $name): self
     {
         $path = $this->git->getDir() . DIRECTORY_SEPARATOR . $name;
@@ -39,15 +25,13 @@ class Action
     }
 
     /**
-     * @param string $name
-     * @param string $content
-     * @param string|null $folder
      * @return string - absolute path to file
      */
     public function createFile(string $name, string $content, string $folder = null): string
     {
         $path = $this->git->getDir();
-        if (!empty($folder)) {
+
+        if (! empty($folder)) {
             $path .= DIRECTORY_SEPARATOR . $folder;
 
             $this->createFolder($folder);
@@ -72,9 +56,6 @@ class Action
         $this->git->clone($remote);
     }
 
-    /**
-     * @return bool
-     */
     public function delete(): bool
     {
         return FileSystem::removeDir($this->git->getDir());
