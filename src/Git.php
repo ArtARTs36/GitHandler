@@ -199,6 +199,17 @@ class Git extends AbstractGitHandler implements GitHandler
         return in_array($tag, $this->getTags());
     }
 
+    public function addRemote(string $shortName, string $url): bool
+    {
+        return $this
+            ->newCommand()
+            ->addParameter('remote')
+            ->addParameter('add')
+            ->addParameter($shortName)
+            ->addParameter($url)
+            ->getShellResult() === null;
+    }
+
     /**
      * equals: git remote show origin
      */
