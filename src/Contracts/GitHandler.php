@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Contracts;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 
-interface GitHandler extends Taggable
+interface GitHandler extends Taggable, Addable
 {
     /**
      * equals: git pull
@@ -28,11 +28,6 @@ interface GitHandler extends Taggable
      * equals: git status
      */
     public function status(bool $short = false): string;
-
-    /**
-     * @param string $file - file name to git added
-     */
-    public function add(string $file): bool;
 
     public function getDir(): string;
 

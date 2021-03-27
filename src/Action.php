@@ -24,7 +24,7 @@ class Action
     /**
      * @return string - absolute path to file
      */
-    public function createFile(string $name, string $content, string $folder = null): string
+    public function createFile(string $name, string $content, ?string $folder = null): string
     {
         $path = $this->git->getDir();
 
