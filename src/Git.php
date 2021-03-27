@@ -133,7 +133,7 @@ class Git extends AbstractGitHandler implements GitHandler
     }
 
     /**
-     * equals: git remote show origin
+     * @inheritDoc
      */
     public function showRemote(): Remotes
     {
@@ -202,12 +202,26 @@ class Git extends AbstractGitHandler implements GitHandler
     public function addRemote(string $shortName, string $url): bool
     {
         return $this
-            ->newCommand()
-            ->addParameter('remote')
-            ->addParameter('add')
-            ->addParameter($shortName)
-            ->addParameter($url)
-            ->getShellResult() === null;
+                ->executeCommand(
+                    $this->newCommand()
+                    ->addParameter('remote')
+                    ->addParameter('add')
+                    ->addParameter($shortName)
+                    ->addParameter($url)
+                ) === null;
+    }
+
+    public function push(): bool
+    {
+        $result = $this->executeCommand($this->newCommand()->addParameter('push'));
+
+        if ($result === null) {
+            return false;
+        }
+
+        return Str::contains($result, 'Everything up-to-date')
+            || Str::contains($result, '->')
+            || Str::contains($result, 'Enumerating objects:');
     }
 
     /**
