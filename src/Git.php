@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler;
 
+use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
@@ -10,7 +11,7 @@ use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Facade\Str;
 
-class Git
+class Git implements GitHandler
 {
     protected $dir;
 
@@ -27,8 +28,7 @@ class Git
     }
 
     /**
-     * equals: git pull
-     * equals: git pull <branch>
+     * @inheritDoc
      */
     public function pull(?string $branch = null): bool
     {
@@ -43,7 +43,7 @@ class Git
     }
 
     /**
-     * equals: git init
+     * @inheritDoc
      */
     public function init(): bool
     {
@@ -53,8 +53,7 @@ class Git
     }
 
     /**
-     * equals: git checkout <branch>
-     * @throws BranchNotFound
+     * @inheritDoc
      */
     public function checkout(string $branch): bool
     {
@@ -68,7 +67,7 @@ class Git
     }
 
     /**
-     * equals: git status
+     * @inheritDoc
      */
     public function status(bool $short = false): string
     {
@@ -82,7 +81,7 @@ class Git
     }
 
     /**
-     * @param string $file - file name to git added
+     * @inheritDoc
      */
     public function add(string $file): bool
     {
@@ -100,7 +99,7 @@ class Git
     }
 
     /**
-     * equals: git clone <url> <folder>
+     * @inheritDoc
      */
     public function clone(string $url, ?string $branch = null): bool
     {
@@ -130,7 +129,7 @@ class Git
     }
 
     /**
-     * equals: git stash
+     * @inheritDoc
      */
     public function stash(?string $message = null): bool
     {
