@@ -142,6 +142,8 @@ class Git implements GitHandler
                     ->addParameter('"'. $message .'"');
             }));
 
+        var_dump($sh);
+
         return Str::contains($sh, 'Saved working directory and index') ||
             Str::contains($sh, 'No local changes to save');
     }
