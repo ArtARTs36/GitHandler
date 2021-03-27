@@ -128,12 +128,6 @@ class Git extends AbstractGitHandler implements GitHandler
                     ->addParameter('"'. $message .'"');
             }));
 
-        var_dump($sh);
-        var_dump(Str::contains($sh, 'Saved working directory and index'));
-        var_dump(Str::contains($sh, 'No local changes to save'));
-        var_dump(preg_match("/Saved working directory and index/i", $sh));
-        var_dump((bool) preg_match("/Saved working directory and index/i", $sh));
-
         return Str::contains($sh, 'Saved working directory and index') ||
             Str::contains($sh, 'No local changes to save');
     }
