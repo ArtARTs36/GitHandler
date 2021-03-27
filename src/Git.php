@@ -12,22 +12,8 @@ use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Facade\Str;
 
-class Git implements GitHandler
+class Git extends AbstractGitHandler implements GitHandler
 {
-    protected $dir;
-
-    protected $executor;
-
-    /**
-     * @param string $dir - directory to project .git
-     * @param string $executor - git bin
-     */
-    public function __construct(string $dir, string $executor = 'git')
-    {
-        $this->dir = $dir;
-        $this->executor = $executor;
-    }
-
     /**
      * @inheritDoc
      */
@@ -104,7 +90,7 @@ class Git implements GitHandler
      */
     public function clone(string $url, ?string $branch = null): bool
     {
-        $command = $this->newCommand(FileSystem::belowPath($this->dir))
+        $command = $this->newCommand(FileSystem::belowPath($this->getDir()))
             ->addParameter('clone')
             ->when($branch !== null, function (ShellCommand $command) use ($branch) {
                 $command
@@ -112,7 +98,7 @@ class Git implements GitHandler
                     ->addParameter($branch);
             })
             ->addParameter($url)
-            ->addParameter($folder = FileSystem::endFolder($this->dir));
+            ->addParameter($folder = FileSystem::endFolder($this->getDir()));
 
         //
 
@@ -145,6 +131,8 @@ class Git implements GitHandler
         var_dump($sh);
         var_dump(Str::contains($sh, 'Saved working directory and index'));
         var_dump(Str::contains($sh, 'No local changes to save'));
+        var_dump(preg_match("/Saved working directory and index/i", $sh));
+        var_dump((bool) preg_match("/Saved working directory and index/i", $sh));
 
         return Str::contains($sh, 'Saved working directory and index') ||
             Str::contains($sh, 'No local changes to save');
@@ -237,20 +225,5 @@ class Git implements GitHandler
             ->addParameter('remote')
             ->addParameter('show')
             ->addParameter('origin'));
-    }
-
-    public function getDir(): string
-    {
-        return $this->dir;
-    }
-
-    protected function executeCommand(ShellCommand $command)
-    {
-        return $command->getShellResult();
-    }
-
-    protected function newCommand($dir = null): ShellCommand
-    {
-        return ShellCommand::getInstanceWithMoveDir($dir ?? $this->dir, $this->executor);
     }
 }
