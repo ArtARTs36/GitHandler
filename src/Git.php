@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExist;
@@ -234,6 +235,23 @@ class Git extends AbstractGitHandler implements GitHandler
         return Str::contains($result, 'Everything up-to-date')
             || Str::contains($result, '->')
             || Str::contains($result, 'Enumerating objects:');
+    }
+
+    public function commit(string $message): bool
+    {
+        $result = \ArtARTs36\Str\Str::make($this
+            ->executeCommand(
+                $this->newCommand()
+                ->addParameter('commit')
+                ->addCutOption('m')
+                ->addParameter($message, true)
+            ));
+
+        if ($result->contains('nothing to commit')) {
+            throw new NothingToCommit();
+        }
+
+        return $result->contains('file changed');
     }
 
     /**

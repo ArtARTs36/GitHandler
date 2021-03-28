@@ -34,4 +34,6 @@ interface GitHandler extends Taggable, Addable, HasRemotes, Pushable, Initable
      * equals: git stash
      */
     public function stash(?string $message = null): bool;
+
+    public function commit(string $message): bool;
 }
