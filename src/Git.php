@@ -7,6 +7,7 @@ use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExist;
 use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\ShellCommand\ShellCommand;
@@ -34,9 +35,20 @@ class Git extends AbstractGitHandler implements GitHandler
      */
     public function init(): bool
     {
+        if ($this->isInit()) {
+            throw new RepositoryAlreadyExists($this->getDir());
+        } elseif (! file_exists($this->getDir())) {
+            FileSystem::createDir($this->getDir());
+        }
+
         return Str::contains($this
             ->executeCommand($this->newCommand()
             ->addParameter('init')), 'Initialized empty Git repository');
+    }
+
+    public function isInit(): bool
+    {
+        return file_exists($this->getDir() . DIRECTORY_SEPARATOR . '.git');
     }
 
     /**
