@@ -38,7 +38,7 @@ interface GitHandler extends Taggable, Addable, HasRemotes, Pushable, Initable, 
     /**
      * equals: git commit -m=$message
      */
-    public function commit(string $message): bool;
+    public function commit(string $message, bool $amend = false): bool;
 
     /**
      * equals: git fetch

@@ -13,6 +13,7 @@ use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExist;
 use ArtARTs36\GitHandler\Support\FileSystem;
+use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Facade\Str;
 
@@ -248,14 +249,18 @@ class Git extends AbstractGitHandler implements GitHandler
             || Str::contains($result, 'Enumerating objects:');
     }
 
-    public function commit(string $message): bool
+    public function commit(string $message, bool $amend = false): bool
     {
         $result = \ArtARTs36\Str\Str::make($this
             ->executeCommand(
-                $this->newCommand()
-                ->addParameter('commit')
-                ->addCutOption('m')
-                ->addParameter($message, true)
+                $this
+                    ->newCommand()
+                    ->addParameter('commit')
+                    ->addCutOption('m')
+                    ->addParameter($message, true)
+                    ->when($amend === true, function (ShellCommandInterface $command) {
+                        $command->addOption('amend');
+                    })
             ));
 
         if ($result->contains('nothing to commit')) {
