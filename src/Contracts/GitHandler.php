@@ -4,7 +4,7 @@ namespace ArtARTs36\GitHandler\Contracts;
 
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 
-interface GitHandler extends Taggable, Addable, HasRemotes, Pushable, Initable
+interface GitHandler extends Taggable, Addable, HasRemotes, Pushable, Initable, Logable
 {
     /**
      * equals: git pull

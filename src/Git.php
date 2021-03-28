@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\GitHandler\Data\LogCollection;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
@@ -16,6 +17,15 @@ use ArtARTs36\Str\Facade\Str;
 
 class Git extends AbstractGitHandler implements GitHandler
 {
+    protected $logger;
+
+    public function __construct(string $dir, string $executor = 'git', Logger $logger = null)
+    {
+        parent::__construct($dir, $executor);
+
+        $this->logger = $logger ?? new Logger();
+    }
+
     /**
      * @inheritDoc
      */
@@ -264,5 +274,28 @@ class Git extends AbstractGitHandler implements GitHandler
             ->addParameter('remote')
             ->addParameter('show')
             ->addParameter('origin'));
+    }
+
+    public function log(): ?LogCollection
+    {
+        $result = $this
+            ->executeCommand(
+                $this->newCommand()
+                ->addParameter('log')
+                ->addOption('oneline')
+                ->addOption('decorate')
+                ->addOption('graph')
+                ->addOptionWithValue('pretty', "format:'%H|%ad|%an|%ae|%Creset%s'")
+                ->addOptionWithValue('date', 'iso')
+                ->addParameter('|')
+                ->addParameter('less')
+                ->addCutOption('r')
+            );
+
+        if ($result === null) {
+            throw new \UnexpectedValueException();
+        }
+
+        return $this->logger->parse($result);
     }
 }
