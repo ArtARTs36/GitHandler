@@ -26,12 +26,12 @@ abstract class AbstractGitHandler implements GitHandler
         return $this->dir;
     }
 
-    protected function executeCommand(ShellCommand $command)
+    protected function executeCommand(ShellCommand $command): ?string
     {
         return $command->getShellResult();
     }
 
-    protected function newCommand($dir = null): ShellCommand
+    protected function newCommand(?string $dir = null): ShellCommand
     {
         return ShellCommand::getInstanceWithMoveDir($dir ?? $this->getDir(), $this->executor);
     }

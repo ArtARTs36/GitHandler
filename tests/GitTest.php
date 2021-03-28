@@ -210,7 +210,7 @@ Changes to be committed:
                 $this->shellResult = $shellResult;
             }
 
-            protected function executeCommand(ShellCommand $command)
+            protected function executeCommand(ShellCommand $command): ?string
             {
                 return $this->shellResult;
             }
