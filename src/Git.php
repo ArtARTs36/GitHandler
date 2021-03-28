@@ -265,18 +265,6 @@ class Git extends AbstractGitHandler implements GitHandler
         return $result->contains('file changed');
     }
 
-    /**
-     * equals: git remote show origin
-     */
-    protected function executeShowRemote(): string
-    {
-        return $this
-            ->executeCommand($this->newCommand()
-            ->addParameter('remote')
-            ->addParameter('show')
-            ->addParameter('origin'));
-    }
-
     public function log(): ?LogCollection
     {
         $result = $this
@@ -298,5 +286,27 @@ class Git extends AbstractGitHandler implements GitHandler
         }
 
         return $this->logger->parse($result);
+    }
+
+    public function fetch(): void
+    {
+        $this
+            ->executeCommand(
+                $this
+                    ->newCommand()
+                    ->addParameter('fetch')
+            );
+    }
+
+    /**
+     * equals: git remote show origin
+     */
+    protected function executeShowRemote(): string
+    {
+        return $this
+            ->executeCommand($this->newCommand()
+                ->addParameter('remote')
+                ->addParameter('show')
+                ->addParameter('origin'));
     }
 }
