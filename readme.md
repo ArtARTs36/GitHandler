@@ -115,6 +115,52 @@ var_dump($git->showPushRemote());
 var_dump($git->showFetchRemote());
 ```
 
+#### git fetch:
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+$git->fetch();
+```
+
+#### git log:
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+
+foreach ($git->log() as $log) {
+    var_dump($log->author->name);
+    var_dump($log->author->email);
+    var_dump($log->commit);
+    var_dump($log->getAbbreviatedCommitHash());
+    var_dump($log->date);
+    var_dump($log->message);
+}
+```
+
+#### git commit -m="Hello":
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+
+$git->commit('Hello');
+```
+
+#### git commit -m="Hello" --amend:
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+
+$git->commit('Hello', true);
+```
+
 #### git tag:
 
 ```php
