@@ -3,10 +3,13 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\GitHandler\Data\LogCollection;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExist;
 use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\ShellCommand\ShellCommand;
@@ -14,6 +17,15 @@ use ArtARTs36\Str\Facade\Str;
 
 class Git extends AbstractGitHandler implements GitHandler
 {
+    protected $logger;
+
+    public function __construct(string $dir, string $executor = 'git', Logger $logger = null)
+    {
+        parent::__construct($dir, $executor);
+
+        $this->logger = $logger ?? new Logger();
+    }
+
     /**
      * @inheritDoc
      */
@@ -34,9 +46,20 @@ class Git extends AbstractGitHandler implements GitHandler
      */
     public function init(): bool
     {
+        if ($this->isInit()) {
+            throw new RepositoryAlreadyExists($this->getDir());
+        } elseif (! file_exists($this->getDir())) {
+            FileSystem::createDir($this->getDir());
+        }
+
         return Str::contains($this
             ->executeCommand($this->newCommand()
             ->addParameter('init')), 'Initialized empty Git repository');
+    }
+
+    public function isInit(): bool
+    {
+        return file_exists($this->getDir() . DIRECTORY_SEPARATOR . '.git');
     }
 
     /**
@@ -224,6 +247,23 @@ class Git extends AbstractGitHandler implements GitHandler
             || Str::contains($result, 'Enumerating objects:');
     }
 
+    public function commit(string $message): bool
+    {
+        $result = \ArtARTs36\Str\Str::make($this
+            ->executeCommand(
+                $this->newCommand()
+                ->addParameter('commit')
+                ->addCutOption('m')
+                ->addParameter($message, true)
+            ));
+
+        if ($result->contains('nothing to commit')) {
+            throw new NothingToCommit();
+        }
+
+        return $result->contains('file changed');
+    }
+
     /**
      * equals: git remote show origin
      */
@@ -234,5 +274,28 @@ class Git extends AbstractGitHandler implements GitHandler
             ->addParameter('remote')
             ->addParameter('show')
             ->addParameter('origin'));
+    }
+
+    public function log(): ?LogCollection
+    {
+        $result = $this
+            ->executeCommand(
+                $this->newCommand()
+                ->addParameter('log')
+                ->addOption('oneline')
+                ->addOption('decorate')
+                ->addOption('graph')
+                ->addOptionWithValue('pretty', "format:'%H|%ad|%an|%ae|%Creset%s'")
+                ->addOptionWithValue('date', 'iso')
+                ->addParameter('|')
+                ->addParameter('less')
+                ->addCutOption('r')
+            );
+
+        if ($result === null) {
+            throw new \UnexpectedValueException();
+        }
+
+        return $this->logger->parse($result);
     }
 }
