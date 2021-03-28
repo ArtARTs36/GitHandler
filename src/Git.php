@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\LogCollection;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
@@ -19,7 +20,7 @@ class Git extends AbstractGitHandler implements GitHandler
 {
     protected $logger;
 
-    public function __construct(string $dir, string $executor = 'git', Logger $logger = null)
+    public function __construct(string $dir, string $executor = 'git', LogParser $logger = null)
     {
         parent::__construct($dir, $executor);
 

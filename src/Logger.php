@@ -2,11 +2,12 @@
 
 namespace ArtARTs36\GitHandler;
 
+use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\Author;
 use ArtARTs36\GitHandler\Data\Log;
 use ArtARTs36\GitHandler\Data\LogCollection;
 
-class Logger
+class Logger implements LogParser
 {
     protected $regex = '/\* (.*)\|(.*)\|(.*)\|(.*)\|(.*)/m';
 
