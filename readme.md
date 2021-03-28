@@ -31,6 +31,15 @@ $git = new Git('/var/web/project');
 $git->init();
 ```
 
+#### check if the repository is initialized :
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+var_dump($git->isInit());
+```
+
 #### git clone:
 
 ```php
