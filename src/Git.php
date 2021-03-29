@@ -55,17 +55,20 @@ class Git extends AbstractGitHandler implements GitHandler
      */
     public function pull(?string $branch = null): bool
     {
-        $sh = $this->executeCommand($this->newCommand()
-            ->addParameter('pull')
-            ->when($branch !== null, function (ShellCommand $command) use ($branch) {
-                $command->addParameter($branch);
-            }));
-
-        return Str::containsAny($sh, [
-            'Already up to date',
-            'Receiving objects',
-            'Resolving deltas',
-        ]);
+        return $this
+                ->executeCommand(
+                    $this
+                        ->newCommand()
+                        ->addParameter('pull')
+                        ->when($branch !== null, function (ShellCommand $command) use ($branch) {
+                            $command->addParameter($branch);
+                        })
+                )
+                        ->containsAny([
+                            'Already up to date',
+                            'Receiving objects',
+                            'Resolving deltas',
+                        ]);
     }
 
     /**
@@ -136,9 +139,11 @@ class Git extends AbstractGitHandler implements GitHandler
 
         //
 
-        if (Str::contains($sh, "Cloning into '{$folder}'")) {
+        if ($sh->contains("Cloning into '{$folder}'")) {
             return true;
         }
+
+        //
 
         PathAlreadyExists::handleIfSo($folder, $sh);
 
@@ -150,23 +155,24 @@ class Git extends AbstractGitHandler implements GitHandler
      */
     public function stash(?string $message = null): bool
     {
-        $sh = $this->executeCommand($this->newCommand()
-            ->addParameter('stash')
-            ->when($message !== null, function (ShellCommand $command) use ($message) {
-                $command
-                    ->addParameter('save')
-                    ->addParameter('"'. $message .'"');
-            }));
-
-        return Str::containsAny($sh, [
-            'Saved working directory and index',
-            'No local changes to save',
-        ]);
+        return
+            $this
+                ->executeCommand($this->newCommand()
+                    ->addParameter('stash')
+                    ->when($message !== null, function (ShellCommand $command) use ($message) {
+                        $command
+                            ->addParameter('save')
+                            ->addParameter('"'. $message .'"');
+                    }))
+                ->containsAny([
+                    'Saved working directory and index',
+                    'No local changes to save',
+                ]);
     }
 
     public function commit(string $message, bool $amend = false): bool
     {
-        $result = \ArtARTs36\Str\Str::make($this
+        $result = $this
             ->executeCommand(
                 $this
                     ->newCommand()
@@ -176,7 +182,7 @@ class Git extends AbstractGitHandler implements GitHandler
                     ->when($amend === true, function (ShellCommandInterface $command) {
                         $command->addOption('amend');
                     })
-            ));
+            );
 
         if ($result->contains('nothing to commit')) {
             throw new NothingToCommit();

@@ -15,7 +15,7 @@ trait PushOperations
 
     public function push(): bool
     {
-        $result = Str::make($this->executeCommand($this->newCommand()->addParameter('push')));
+        $result = $this->executeCommand($this->newCommand()->addParameter('push'));
 
         if ($result === null) {
             return false;
