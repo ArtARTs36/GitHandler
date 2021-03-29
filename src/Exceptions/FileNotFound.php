@@ -9,7 +9,7 @@ use Throwable;
  * Class FileNotFound
  * @package ArtARTs36\GitHandler\Exceptions
  */
-class FileNotFound extends \LogicException
+class FileNotFound extends GitHandlerException
 {
     /**
      * BranchNotFound constructor.

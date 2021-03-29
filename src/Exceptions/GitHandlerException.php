@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-class NothingToCommit extends GitHandlerException
+abstract class GitHandlerException extends \LogicException
 {
     //
 }
