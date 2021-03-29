@@ -6,8 +6,9 @@ use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Git;
+use ArtARTs36\GitHandler\GitSimpleFactory;
+use ArtARTs36\GitHandler\Logger;
 use ArtARTs36\ShellCommand\ShellCommand;
-use PHPUnit\Framework\TestCase;
 
 final class GitTest extends TestCase
 {
@@ -16,14 +17,14 @@ final class GitTest extends TestCase
      */
     public function testInit(): void
     {
-        $response = $this->mock('error')
+        $response = $this->mockGit('error')
             ->init();
 
         self::assertFalse($response);
 
         //
 
-        $response = $this->mock('Initialized empty Git repository in ')
+        $response = $this->mockGit('Initialized empty Git repository in ')
             ->init();
 
         self::assertTrue($response);
@@ -34,7 +35,7 @@ final class GitTest extends TestCase
      */
     public function testCheckout(): void
     {
-        $response = $this->mock("Already on 'master'")
+        $response = $this->mockGit("Already on 'master'")
             ->checkout('master');
 
         self::assertTrue($response);
@@ -43,7 +44,7 @@ final class GitTest extends TestCase
 
         self::expectException(BranchNotFound::class);
 
-        $this->mock("pathspec 'random' did not match any")
+        $this->mockGit("pathspec 'random' did not match any")
             ->checkout('random');
     }
 
@@ -52,19 +53,19 @@ final class GitTest extends TestCase
      */
     public function testPull(): void
     {
-        $git = $this->mock('Already up to date');
+        $git = $this->mockGit('Already up to date');
 
         self::assertTrue($git->pull());
 
         //
 
-        $git = $this->mock("Receiving objects: 100% \n Resolving deltas: 100%");
+        $git = $this->mockGit("Receiving objects: 100% \n Resolving deltas: 100%");
 
         self::assertTrue($git->pull());
 
         //
 
-        $git = $this->mock('');
+        $git = $this->mockGit('');
 
         self::assertFalse($git->pull());
     }
@@ -81,7 +82,7 @@ No commits yet
 Changes to be committed:
 ';
 
-        $git = $this->mock($shellResult);
+        $git = $this->mockGit($shellResult);
 
         //
 
@@ -93,7 +94,7 @@ Changes to be committed:
      */
     public function testAdd(): void
     {
-        $git = $this->mock('');
+        $git = $this->mockGit('');
 
         self::assertTrue($git->add('README.MD'));
 
@@ -101,7 +102,7 @@ Changes to be committed:
 
         self::expectException(FileNotFound::class);
 
-        $git = $this->mock("pathspec 'random.file' did not match any files");
+        $git = $this->mockGit("pathspec 'random.file' did not match any files");
 
         $git->add('random.file');
     }
@@ -117,7 +118,7 @@ Changes to be committed:
 
         //
 
-        $git = $this->mock("Cloning into '{$folder}' ...", $dir);
+        $git = $this->mockGit("Cloning into '{$folder}' ...", $dir);
 
         self::assertTrue($git->clone($url));
 
@@ -125,7 +126,7 @@ Changes to be committed:
 
         self::expectException(PathAlreadyExists::class);
 
-        $this->mock("fatal: destination path '{$folder}' already exists " .
+        $this->mockGit("fatal: destination path '{$folder}' already exists " .
             "and is not an empty directory.", $dir)->clone($url);
     }
 
@@ -139,7 +140,7 @@ Changes to be committed:
         $url = 'http://url.git';
         $branch = 'dev';
 
-        $git = $this->mock("Cloning into '{$folder}' ...", $dir);
+        $git = $this->mockGit("Cloning into '{$folder}' ...", $dir);
 
         self::assertTrue($git->clone($url, $branch));
     }
@@ -149,19 +150,19 @@ Changes to be committed:
      */
     public function testStash(): void
     {
-        $git = $this->mock('');
+        $git = $this->mockGit('');
 
         self::assertFalse($git->stash());
 
         //
 
-        $git = $this->mock('Saved working directory and index state WIP on master: b68fd9d test');
+        $git = $this->mockGit('Saved working directory and index state WIP on master: b68fd9d test');
 
         self::assertTrue($git->stash());
 
         //
 
-        $git = $this->mock('No local changes to save');
+        $git = $this->mockGit('No local changes to save');
 
         self::assertTrue($git->stash());
     }
@@ -171,7 +172,7 @@ Changes to be committed:
      */
     public function testShowRemote(): void
     {
-        $git = $this->mock('* remote origin
+        $git = $this->mockGit('* remote origin
   Fetch URL: https://github.com/ArtARTs36/GitHandler.git
   Push  URL: https://github.com/ArtARTs36/GitHandler.git
   HEAD branch: master
@@ -189,31 +190,5 @@ Changes to be committed:
         ];
 
         self::assertEquals($expected, $git->showRemote()->toArray());
-    }
-
-    /**
-     * @param string $shellResult
-     * @param string|null $dir
-     * @return Git
-     */
-    protected function mock(string $shellResult, string $dir = null): Git
-    {
-        $dir = $dir ?? __DIR__ . '/../../';
-
-        return new class($dir, $shellResult, 'git') extends Git {
-            private $shellResult;
-
-            public function __construct(string $dir, string $shellResult, string $executor = 'git')
-            {
-                parent::__construct($dir, $executor);
-
-                $this->shellResult = $shellResult;
-            }
-
-            protected function executeCommand(ShellCommand $command): ?string
-            {
-                return $this->shellResult;
-            }
-        };
     }
 }

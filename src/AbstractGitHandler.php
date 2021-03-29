@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 
 abstract class AbstractGitHandler implements GitHandler
@@ -31,7 +32,7 @@ abstract class AbstractGitHandler implements GitHandler
         return $command->getShellResult();
     }
 
-    protected function newCommand(?string $dir = null): ShellCommand
+    protected function newCommand(?string $dir = null): ShellCommandInterface
     {
         return ShellCommand::getInstanceWithMoveDir($dir ?? $this->getDir(), $this->executor);
     }

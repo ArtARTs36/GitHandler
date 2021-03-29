@@ -2,16 +2,18 @@
 
 namespace ArtARTs36\GitHandler;
 
+use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
-use ArtARTs36\GitHandler\Data\LogCollection;
-use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
-use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
-use ArtARTs36\GitHandler\Exceptions\TagAlreadyExist;
+use ArtARTs36\GitHandler\Operations\ConfigOperations;
+use ArtARTs36\GitHandler\Operations\InitOperations;
+use ArtARTs36\GitHandler\Operations\LogOperations;
+use ArtARTs36\GitHandler\Operations\RemoteOperations;
+use ArtARTs36\GitHandler\Operations\TagOperations;
 use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
@@ -19,13 +21,22 @@ use ArtARTs36\Str\Facade\Str;
 
 class Git extends AbstractGitHandler implements GitHandler
 {
+    use ConfigOperations;
+    use InitOperations;
+    use TagOperations;
+    use LogOperations;
+    use RemoteOperations;
+
     protected $logger;
 
-    public function __construct(string $dir, string $executor = 'git', LogParser $logger = null)
+    private $config;
+
+    public function __construct(string $dir, LogParser $logger, ConfigResultParser $config, string $executor = 'git')
     {
         parent::__construct($dir, $executor);
 
-        $this->logger = $logger ?? new Logger();
+        $this->logger = $logger;
+        $this->config = $config;
     }
 
     /**
@@ -41,27 +52,6 @@ class Git extends AbstractGitHandler implements GitHandler
 
         return Str::contains($sh, 'Already up to date') ||
             (Str::contains($sh, 'Receiving objects') && Str::contains($sh, 'Resolving deltas'));
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function init(): bool
-    {
-        if ($this->isInit()) {
-            throw new RepositoryAlreadyExists($this->getDir());
-        } elseif (! file_exists($this->getDir())) {
-            FileSystem::createDir($this->getDir());
-        }
-
-        return Str::contains($this
-            ->executeCommand($this->newCommand()
-            ->addParameter('init')), 'Initialized empty Git repository');
-    }
-
-    public function isInit(): bool
-    {
-        return file_exists($this->getDir() . DIRECTORY_SEPARATOR . '.git');
     }
 
     /**
@@ -157,85 +147,6 @@ class Git extends AbstractGitHandler implements GitHandler
             Str::contains($sh, 'No local changes to save');
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function showRemote(): Remotes
-    {
-        $sh = $this->executeShowRemote();
-
-        if (! Str::contains($sh, 'Fetch(\s*)URL') || ! Str::contains($sh, 'Push(\s*)URL:')) {
-            return Remotes::createEmpty();
-        }
-
-        //
-
-        $getUrl = function (string $regular) use ($sh) {
-            $matches = [];
-
-            preg_match($regular, $sh, $matches);
-
-            return end($matches);
-        };
-
-        //
-
-        return new Remotes($getUrl('/Fetch(\s*)URL: (.*)\n/'), $getUrl('/Push(\s*)URL: (.*)\n/'));
-    }
-
-    public function getTags(?string $pattern = null): array
-    {
-        $raw = $this->newCommand()
-            ->addParameter('tag')
-            ->when($pattern !== null, function (ShellCommand $command) use ($pattern) {
-                $command
-                    ->addCutOption('l')
-                    ->addParameter($pattern, true);
-            })
-            ->getShellResult();
-
-        if (empty($raw)) {
-            return [];
-        }
-
-        return explode("\n", trim($raw));
-    }
-
-    /**
-     * @throws TagAlreadyExist
-     */
-    public function performTag(string $tag, ?string $message = null): bool
-    {
-        if ($this->isTagExists($tag)) {
-            throw new TagAlreadyExist($tag);
-        }
-
-        return $this->newCommand()
-            ->addParameter('tag')
-            ->addCutOption('a')
-            ->addParameter($tag)
-            ->addCutOption('m')
-            ->addParameter($message ?? "Version {$tag}", true)
-            ->getShellResult() === null;
-    }
-
-    public function isTagExists(string $tag): bool
-    {
-        return in_array($tag, $this->getTags());
-    }
-
-    public function addRemote(string $shortName, string $url): bool
-    {
-        return $this
-                ->executeCommand(
-                    $this->newCommand()
-                    ->addParameter('remote')
-                    ->addParameter('add')
-                    ->addParameter($shortName)
-                    ->addParameter($url)
-                ) === null;
-    }
-
     public function push(): bool
     {
         $result = $this->executeCommand($this->newCommand()->addParameter('push'));
@@ -270,29 +181,6 @@ class Git extends AbstractGitHandler implements GitHandler
         return $result->contains('file changed');
     }
 
-    public function log(): ?LogCollection
-    {
-        $result = $this
-            ->executeCommand(
-                $this->newCommand()
-                ->addParameter('log')
-                ->addOption('oneline')
-                ->addOption('decorate')
-                ->addOption('graph')
-                ->addOptionWithValue('pretty', "format:'%H|%ad|%an|%ae|%Creset%s'")
-                ->addOptionWithValue('date', 'iso')
-                ->addParameter('|')
-                ->addParameter('less')
-                ->addCutOption('r')
-            );
-
-        if ($result === null) {
-            throw new \UnexpectedValueException();
-        }
-
-        return $this->logger->parse($result);
-    }
-
     public function fetch(): void
     {
         $this
@@ -303,15 +191,13 @@ class Git extends AbstractGitHandler implements GitHandler
             );
     }
 
-    /**
-     * equals: git remote show origin
-     */
-    protected function executeShowRemote(): string
+    protected function getConfigReader(): ConfigResultParser
     {
-        return $this
-            ->executeCommand($this->newCommand()
-                ->addParameter('remote')
-                ->addParameter('show')
-                ->addParameter('origin'));
+        return $this->config;
+    }
+
+    protected function getLogger(): LogParser
+    {
+        return $this->logger;
     }
 }
