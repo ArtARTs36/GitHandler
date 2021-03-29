@@ -22,11 +22,11 @@ class ConfigReader
         $data = [];
 
         foreach ($grouped as $scope => $item) {
-            try {
-                $data[] = $this->configurators->get($scope)->parse($item);
-            } catch (\Exception $e) {
+            if (! $this->configurators->has($scope)) {
                 continue;
             }
+
+            $data[] = $this->configurators->getOrFail($scope)->parse($item);
         }
 
         return $data;

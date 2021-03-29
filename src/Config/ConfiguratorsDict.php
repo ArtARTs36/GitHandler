@@ -34,12 +34,22 @@ class ConfiguratorsDict
     /**
      * @throws SubjectConfiguratorNotFound
      */
-    public function get(string $prefix): SubjectConfigurator
+    public function getOrFail(string $prefix): SubjectConfigurator
     {
-        if (! array_key_exists($prefix, $this->configurators)) {
+        if (! $this->has($prefix)) {
             throw new SubjectConfiguratorNotFound($prefix);
         }
 
         return $this->configurators[$prefix];
+    }
+
+    public function get(string $prefix): ?SubjectConfigurator
+    {
+        return $this->configurators[$prefix] ?? null;
+    }
+
+    public function has(string $prefix): bool
+    {
+        return array_key_exists($prefix, $this->configurators);
     }
 }
