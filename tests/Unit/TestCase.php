@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests;
+namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Git;
 use ArtARTs36\GitHandler\GitSimpleFactory;
@@ -12,7 +12,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     protected function mockGit(string $shellResult, string $dir = null): Git
     {
-        $dir = $dir ?? __DIR__ . '/../../';
+        $dir = $dir ?? __DIR__ . '/../libraries/';
 
         return new class($dir, $shellResult, 'git') extends Git {
             private $shellResult;

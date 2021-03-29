@@ -1,14 +1,10 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests;
+namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
-use ArtARTs36\GitHandler\Git;
-use ArtARTs36\GitHandler\GitSimpleFactory;
-use ArtARTs36\GitHandler\Logger;
-use ArtARTs36\ShellCommand\ShellCommand;
 
 final class GitTest extends TestCase
 {

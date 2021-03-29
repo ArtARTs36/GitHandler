@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests;
+namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Action;
 use ArtARTs36\GitHandler\GitSimpleFactory;
@@ -16,7 +16,7 @@ class ActionTest extends TestCase
 
         $this->fileSystem = new LocalFileSystem();
 
-        mkdir($this->getTmpDir());
+        $this->fileSystem->createDir($this->getTmpDir());
     }
 
     public function tearDown(): void
@@ -88,6 +88,6 @@ class ActionTest extends TestCase
 
     private function getTmpDir(): string
     {
-        return __DIR__ . '/../' . '__tmp';
+        return __DIR__ . '/git/' . '__tmp';
     }
 }

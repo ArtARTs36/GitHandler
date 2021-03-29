@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests;
+namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
 
@@ -13,7 +13,7 @@ class FileSystemTest extends TestCase
     {
         $fileSystem = new LocalFileSystem();
 
-        $expected = realpath(__DIR__ . '/..');
+        $expected = realpath(__DIR__ . '/../');
 
         self::assertEquals($expected, $fileSystem->belowPath(__DIR__));
     }
@@ -25,8 +25,8 @@ class FileSystemTest extends TestCase
     {
         $fileSystem = new LocalFileSystem();
 
-        self::assertEquals('tests', $fileSystem->endFolder(__DIR__));
-        self::assertEquals('tests', $fileSystem->endFolder(__FILE__));
+        self::assertEquals('Unit', $fileSystem->endFolder(__DIR__));
+        self::assertEquals('Unit', $fileSystem->endFolder(__FILE__));
 
         self::assertEquals('tests', $fileSystem->endFolder('/path/to/tests'));
         self::assertEquals('tests', $fileSystem->endFolder('/path/to/tests/image.jpeg'));
