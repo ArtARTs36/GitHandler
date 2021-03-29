@@ -21,4 +21,12 @@ To push the current branch and set the remote as upstream, use
 
         $git->push();
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::push
+     */
+    public function testPushGood(): void
+    {
+        self::assertTrue($this->mockGit('Everything up-to-date')->push());
+    }
 }

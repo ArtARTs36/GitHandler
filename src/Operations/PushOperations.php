@@ -17,6 +17,8 @@ trait PushOperations
     {
         $result = Str::make($this->executeCommand($this->newCommand()->addParameter('push')));
 
+        echo $result;
+
         if ($result === null) {
             return false;
         }
