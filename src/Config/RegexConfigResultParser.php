@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Config;
 
+use ArtARTs36\GitHandler\Config\Subjects\SubjectsCollection;
 use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\ConfigSubject;
 use ArtARTs36\GitHandler\Exceptions\ConfigDataNotFound;
@@ -22,7 +23,7 @@ class RegexConfigResultParser implements ConfigResultParser
      * @return array<ConfigSubject>
      * @throws \ArtARTs36\GitHandler\Exceptions\SubjectConfiguratorNotFound
      */
-    public function parse(string $raw): array
+    public function parse(string $raw): SubjectsCollection
     {
         $grouped = $this->grouped($this->splitRaw($raw));
 
@@ -38,7 +39,7 @@ class RegexConfigResultParser implements ConfigResultParser
             $data[] = $this->configurators->getOrFail($scope)->parse($item);
         }
 
-        return $data;
+        return new SubjectsCollection($data);
     }
 
     public function parseByPrefix(string $raw, string $prefix): ConfigSubject

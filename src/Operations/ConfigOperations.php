@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Operations;
 
+use ArtARTs36\GitHandler\Config\Subjects\SubjectsCollection;
 use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\ConfigSubject;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
@@ -15,7 +16,7 @@ trait ConfigOperations
 
     abstract protected function getConfigReader(): ConfigResultParser;
 
-    public function getConfigList(): array
+    public function getConfigList(): SubjectsCollection
     {
         return $this->getConfigReader()->parse($this->executeConfigList());
     }

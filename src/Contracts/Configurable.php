@@ -2,14 +2,12 @@
 
 namespace ArtARTs36\GitHandler\Contracts;
 
+use ArtARTs36\GitHandler\Config\Subjects\SubjectsCollection;
 use ArtARTs36\GitHandler\Exceptions\SubjectConfiguratorNotFound;
 
 interface Configurable
 {
-    /**
-     * @return array<ConfigSubject>
-     */
-    public function getConfigList(): array;
+    public function getConfigList(): SubjectsCollection;
 
     /**
      * @throws SubjectConfiguratorNotFound
