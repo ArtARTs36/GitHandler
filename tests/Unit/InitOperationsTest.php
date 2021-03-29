@@ -32,4 +32,24 @@ class InitOperationsTest extends TestCase
 
         $git->init();
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::isInit
+     */
+    public function testIsInit(): void
+    {
+        $this->fileSystem->reset();
+
+        $git = $this->mockGit('');
+
+        //
+
+        self::assertFalse($git->isInit());
+
+        //
+
+        $this->fileSystem->createFile($git->pathToGitFolder(), '');
+
+        self::assertTrue($git->isInit());
+    }
 }

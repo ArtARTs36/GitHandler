@@ -36,4 +36,12 @@ class ArrayFileSystem extends LocalFileSystem implements FileSystem
 
         return true;
     }
+
+    public function reset(): self
+    {
+        $this->dirs = [];
+        $this->files = [];
+
+        return $this;
+    }
 }

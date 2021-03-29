@@ -4,8 +4,6 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Action;
 use ArtARTs36\GitHandler\GitSimpleFactory;
-use ArtARTs36\GitHandler\Support\LocalFileSystem;
-use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
 
 class ActionTest extends TestCase
 {
