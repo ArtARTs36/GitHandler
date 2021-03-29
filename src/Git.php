@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler;
 use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
+use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
@@ -12,6 +13,7 @@ use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\InitOperations;
 use ArtARTs36\GitHandler\Operations\LogOperations;
+use ArtARTs36\GitHandler\Operations\PushOperations;
 use ArtARTs36\GitHandler\Operations\RemoteOperations;
 use ArtARTs36\GitHandler\Operations\TagOperations;
 use ArtARTs36\GitHandler\Support\FileSystem;
@@ -26,6 +28,7 @@ class Git extends AbstractGitHandler implements GitHandler
     use TagOperations;
     use LogOperations;
     use RemoteOperations;
+    use PushOperations;
 
     protected $logger;
 
@@ -149,21 +152,6 @@ class Git extends AbstractGitHandler implements GitHandler
         return Str::containsAny($sh, [
             'Saved working directory and index',
             'No local changes to save',
-        ]);
-    }
-
-    public function push(): bool
-    {
-        $result = $this->executeCommand($this->newCommand()->addParameter('push'));
-
-        if ($result === null) {
-            return false;
-        }
-
-        return Str::containsAny($result, [
-            'Everything up-to-date',
-            '->',
-            'Enumerating objects:',
         ]);
     }
 
