@@ -43,11 +43,6 @@ class ConfiguratorsDict
         return $this->configurators[$prefix];
     }
 
-    public function get(string $prefix): ?SubjectConfigurator
-    {
-        return $this->configurators[$prefix] ?? null;
-    }
-
     public function has(string $prefix): bool
     {
         return array_key_exists($prefix, $this->configurators);
