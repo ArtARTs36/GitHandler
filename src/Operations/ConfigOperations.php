@@ -21,6 +21,9 @@ trait ConfigOperations
         return $this->getConfigReader()->parse($this->executeConfigList());
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getConfigSubject(string $prefix): ConfigSubject
     {
         return $this->getConfigReader()->parseByPrefix($this->executeConfigList(), $prefix);
