@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
+use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
@@ -16,7 +17,6 @@ use ArtARTs36\GitHandler\Operations\LogOperations;
 use ArtARTs36\GitHandler\Operations\PushOperations;
 use ArtARTs36\GitHandler\Operations\RemoteOperations;
 use ArtARTs36\GitHandler\Operations\TagOperations;
-use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Facade\Str;
@@ -34,12 +34,20 @@ class Git extends AbstractGitHandler implements GitHandler
 
     private $config;
 
-    public function __construct(string $dir, LogParser $logger, ConfigResultParser $config, string $executor = 'git')
-    {
+    private $fileSystem;
+
+    public function __construct(
+        string $dir,
+        LogParser $logger,
+        ConfigResultParser $config,
+        FileSystem $fileSystem,
+        string $executor = 'git'
+    ) {
         parent::__construct($dir, $executor);
 
         $this->logger = $logger;
         $this->config = $config;
+        $this->fileSystem = $fileSystem;
     }
 
     /**
@@ -111,7 +119,7 @@ class Git extends AbstractGitHandler implements GitHandler
      */
     public function clone(string $url, ?string $branch = null): bool
     {
-        $command = $this->newCommand(FileSystem::belowPath($this->getDir()))
+        $command = $this->newCommand($this->getFileSystem()->belowPath($this->getDir()))
             ->addParameter('clone')
             ->when($branch !== null, function (ShellCommand $command) use ($branch) {
                 $command
@@ -119,7 +127,7 @@ class Git extends AbstractGitHandler implements GitHandler
                     ->addParameter($branch);
             })
             ->addParameter($url)
-            ->addParameter($folder = FileSystem::endFolder($this->getDir()));
+            ->addParameter($folder = $this->fileSystem->endFolder($this->getDir()));
 
         //
 
@@ -194,5 +202,10 @@ class Git extends AbstractGitHandler implements GitHandler
     protected function getLogger(): LogParser
     {
         return $this->logger;
+    }
+
+    protected function getFileSystem(): FileSystem
+    {
+        return $this->fileSystem;
     }
 }

@@ -2,21 +2,24 @@
 
 namespace ArtARTs36\GitHandler;
 
+use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
-use ArtARTs36\GitHandler\Support\FileSystem;
 
 class Action
 {
     protected $git;
 
-    public function __construct(GitHandler $git)
+    protected $fileSystem;
+
+    public function __construct(GitHandler $git, FileSystem $fileSystem)
     {
         $this->git = $git;
+        $this->fileSystem = $fileSystem;
     }
 
     public function createFolder(string $name): self
     {
-        FileSystem::createDir($this->git->getDir() . DIRECTORY_SEPARATOR . $name);
+        $this->fileSystem->createDir($this->git->getDir() . DIRECTORY_SEPARATOR . $name);
 
         return $this;
     }
@@ -55,6 +58,6 @@ class Action
 
     public function delete(): bool
     {
-        return FileSystem::removeDir($this->git->getDir());
+        return $this->fileSystem->removeDir($this->git->getDir());
     }
 }

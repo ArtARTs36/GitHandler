@@ -2,19 +2,12 @@
 
 namespace ArtARTs36\GitHandler\Support;
 
+use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\PathIncorrect;
 
-/**
- * Class FileSystem
- * @package ArtARTs36\GitHandler\Support
- */
-class FileSystem
+class LocalFileSystem implements FileSystem
 {
-    /**
-     * @param string $path
-     * @return bool
-     */
-    public static function removeDir(string $path): bool
+    public function removeDir(string $path): bool
     {
         if (is_file($path)) {
             return unlink($path);
@@ -35,10 +28,10 @@ class FileSystem
      * @param string $path
      * @return string
      */
-    public static function belowPath(string $path): string
+    public function belowPath(string $path): string
     {
         // For not exists Path
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             $array = explode(DIRECTORY_SEPARATOR, $path);
 
             if (count($array) < 2) {
@@ -55,11 +48,7 @@ class FileSystem
         return realpath($path . '/../');
     }
 
-    /**
-     * @param string $path
-     * @return mixed
-     */
-    public static function endFolder(string $path)
+    public function endFolder(string $path): string
     {
         // For not exists Path
         if (! file_exists($path)) {
@@ -90,21 +79,19 @@ class FileSystem
         return end($array);
     }
 
-    /**
-     * @param string $file
-     * @return bool
-     */
-    public static function isPseudoFile(string $file): bool
+    public function isPseudoFile(string $file): bool
     {
         $array = explode('.', $file);
 
         return count($array) > 1;
     }
 
-    public static function createDir(string $path): void
+    public function createDir(string $path, int $permissions = 0755): bool
     {
         if (! file_exists($path)) {
-            mkdir($path, 0755, true);
+            return mkdir($path, $permissions, true);
         }
+
+        return true;
     }
 }

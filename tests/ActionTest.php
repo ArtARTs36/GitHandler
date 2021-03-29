@@ -4,13 +4,17 @@ namespace ArtARTs36\GitHandler\Tests;
 
 use ArtARTs36\GitHandler\Action;
 use ArtARTs36\GitHandler\GitSimpleFactory;
-use ArtARTs36\GitHandler\Support\FileSystem;
+use ArtARTs36\GitHandler\Support\LocalFileSystem;
 
 class ActionTest extends TestCase
 {
+    protected $fileSystem;
+
     public function setUp(): void
     {
         parent::setUp();
+
+        $this->fileSystem = new LocalFileSystem();
 
         mkdir($this->getTmpDir());
     }
@@ -19,7 +23,7 @@ class ActionTest extends TestCase
     {
         parent::tearDown();
 
-        FileSystem::removeDir($this->getTmpDir());
+        $this->fileSystem->removeDir($this->getTmpDir());
     }
 
     public function testCreateFolder(): void
@@ -28,7 +32,7 @@ class ActionTest extends TestCase
 
         $git = GitSimpleFactory::factory($dir);
 
-        $action = new Action($git);
+        $action = new Action($git, $this->fileSystem);
 
         $action->createFolder('test');
 
@@ -79,7 +83,7 @@ class ActionTest extends TestCase
 
         $git = GitSimpleFactory::factory($dir);
 
-        return new Action($git);
+        return new Action($git, $this->fileSystem);
     }
 
     private function getTmpDir(): string
