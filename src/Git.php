@@ -11,9 +11,9 @@ use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
-use ArtARTs36\GitHandler\Exceptions\TagAlreadyExist;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\InitOperations;
+use ArtARTs36\GitHandler\Operations\TagOperations;
 use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
@@ -23,6 +23,7 @@ class Git extends AbstractGitHandler implements GitHandler
 {
     use ConfigOperations;
     use InitOperations;
+    use TagOperations;
 
     protected $logger;
 
@@ -168,47 +169,6 @@ class Git extends AbstractGitHandler implements GitHandler
         //
 
         return new Remotes($getUrl('/Fetch(\s*)URL: (.*)\n/'), $getUrl('/Push(\s*)URL: (.*)\n/'));
-    }
-
-    public function getTags(?string $pattern = null): array
-    {
-        $raw = $this->newCommand()
-            ->addParameter('tag')
-            ->when($pattern !== null, function (ShellCommand $command) use ($pattern) {
-                $command
-                    ->addCutOption('l')
-                    ->addParameter($pattern, true);
-            })
-            ->getShellResult();
-
-        if (empty($raw)) {
-            return [];
-        }
-
-        return explode("\n", trim($raw));
-    }
-
-    /**
-     * @throws TagAlreadyExist
-     */
-    public function performTag(string $tag, ?string $message = null): bool
-    {
-        if ($this->isTagExists($tag)) {
-            throw new TagAlreadyExist($tag);
-        }
-
-        return $this->newCommand()
-            ->addParameter('tag')
-            ->addCutOption('a')
-            ->addParameter($tag)
-            ->addCutOption('m')
-            ->addParameter($message ?? "Version {$tag}", true)
-            ->getShellResult() === null;
-    }
-
-    public function isTagExists(string $tag): bool
-    {
-        return in_array($tag, $this->getTags());
     }
 
     public function addRemote(string $shortName, string $url): bool
