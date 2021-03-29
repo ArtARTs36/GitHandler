@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler;
 
-use ArtARTs36\GitHandler\Config\ConfigReader;
+use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Config\Configurators\CoreConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\CredentialConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\PackConfigurator;
@@ -22,9 +22,9 @@ class GitSimpleFactory
         );
     }
 
-    public static function factoryConfigReader(): ConfigReader
+    public static function factoryConfigReader(): RegexConfigResultParser
     {
-        return new ConfigReader(
+        return new RegexConfigResultParser(
             ConfiguratorsDict::make([
                 new UserConfigurator(),
                 new CoreConfigurator(),

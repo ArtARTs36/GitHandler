@@ -2,10 +2,11 @@
 
 namespace ArtARTs36\GitHandler\Config;
 
+use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\ConfigSubject;
 use ArtARTs36\GitHandler\Exceptions\ConfigDataNotFound;
 
-class ConfigReader
+class RegexConfigResultParser implements ConfigResultParser
 {
     protected $configurators;
 
@@ -16,6 +17,11 @@ class ConfigReader
         $this->configurators = $configurators;
     }
 
+    /**
+     * @param string $raw - raw response from git
+     * @return array<ConfigSubject>
+     * @throws \ArtARTs36\GitHandler\Exceptions\SubjectConfiguratorNotFound
+     */
     public function parse(string $raw): array
     {
         $grouped = $this->grouped($this->splitRaw($raw));

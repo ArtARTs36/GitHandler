@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Operations;
 
-use ArtARTs36\GitHandler\Config\ConfigReader;
+use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\ConfigSubject;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
@@ -13,7 +13,7 @@ trait ConfigOperations
 
     abstract protected function executeCommand(ShellCommand $command): ?string;
 
-    abstract protected function getConfigReader(): ConfigReader;
+    abstract protected function getConfigReader(): ConfigResultParser;
 
     public function getConfigList(): array
     {

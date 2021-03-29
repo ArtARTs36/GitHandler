@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler;
 
-use ArtARTs36\GitHandler\Config\ConfigReader;
+use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
@@ -31,7 +31,7 @@ class Git extends AbstractGitHandler implements GitHandler
 
     private $config;
 
-    public function __construct(string $dir, LogParser $logger, ConfigReader $config, string $executor = 'git')
+    public function __construct(string $dir, LogParser $logger, ConfigResultParser $config, string $executor = 'git')
     {
         parent::__construct($dir, $executor);
 
@@ -191,7 +191,7 @@ class Git extends AbstractGitHandler implements GitHandler
             );
     }
 
-    protected function getConfigReader(): ConfigReader
+    protected function getConfigReader(): ConfigResultParser
     {
         return $this->config;
     }
