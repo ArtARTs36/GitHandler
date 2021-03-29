@@ -4,7 +4,7 @@ namespace ArtARTs36\GitHandler\Exceptions;
 
 use Throwable;
 
-class SubjectConfiguratorNotFound extends \Exception
+class SubjectConfiguratorNotFound extends GitHandlerException
 {
     public function __construct(string $prefix, $code = 0, Throwable $previous = null)
     {
