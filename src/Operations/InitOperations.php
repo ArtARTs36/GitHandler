@@ -10,6 +10,8 @@ use ArtARTs36\Str\Facade\Str;
 
 trait InitOperations
 {
+    abstract public function pathToGitFolder(): string;
+
     abstract protected function getFileSystem(): FileSystem;
 
     abstract protected function newCommand(?string $dir = null): ShellCommandInterface;
@@ -36,6 +38,6 @@ trait InitOperations
 
     public function isInit(): bool
     {
-        return file_exists($this->getDir() . DIRECTORY_SEPARATOR . '.git');
+        return $this->getFileSystem()->exists($this->pathToGitFolder());
     }
 }

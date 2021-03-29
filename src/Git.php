@@ -194,6 +194,11 @@ class Git extends AbstractGitHandler implements GitHandler
             );
     }
 
+    public function pathToGitFolder(): string
+    {
+        return $this->getDir() . DIRECTORY_SEPARATOR . '.git';
+    }
+
     protected function getConfigReader(): ConfigResultParser
     {
         return $this->config;

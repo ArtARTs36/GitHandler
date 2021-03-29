@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
+use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
+
 class InitOperationsTest extends TestCase
 {
     /**
@@ -16,9 +18,18 @@ class InitOperationsTest extends TestCase
 
         //
 
-        $response = $this->mockGit('Initialized empty Git repository in ')
+        $response = ($git = $this->mockGit('Initialized empty Git repository in '))
             ->init();
 
         self::assertTrue($response);
+        self::assertTrue($this->fileSystem->exists($git->getDir()));
+
+        $this->fileSystem->createFile($git->pathToGitFolder(), '');
+
+        //
+
+        self::expectException(RepositoryAlreadyExists::class);
+
+        $git->init();
     }
 }
