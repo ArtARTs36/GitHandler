@@ -18,16 +18,6 @@ class ArrayFileSystem extends LocalFileSystem implements FileSystem
         return true;
     }
 
-    public function belowPath(string $path): string
-    {
-        // TODO: Implement belowPath() method.
-    }
-
-    public function endFolder(string $path): string
-    {
-        // TODO: Implement endFolder() method.
-    }
-
     public function createDir(string $path, int $permissions = 0755): bool
     {
         $this->dirs[$path] = $permissions;
