@@ -13,6 +13,7 @@ use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExist;
+use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
@@ -20,9 +21,11 @@ use ArtARTs36\Str\Facade\Str;
 
 class Git extends AbstractGitHandler implements GitHandler
 {
+    use ConfigOperations;
+
     protected $logger;
 
-    protected $config;
+    private $config;
 
     public function __construct(string $dir, LogParser $logger, ConfigReader $config, string $executor = 'git')
     {
@@ -307,24 +310,6 @@ class Git extends AbstractGitHandler implements GitHandler
             );
     }
 
-    public function getConfigList(): array
-    {
-        return $this->config->parse(
-            $this->executeCommand($this->newCommand()->addParameter('config')->addOption('list'))
-        );
-    }
-
-    public function setConfig(string $scope, string $field, string $value): bool
-    {
-        return $this->executeCommand(
-            $this->newCommand()
-            ->addParameter('config')
-            ->addParameter("$scope.$field")
-            ->addParameter('=')
-            ->addParameter($value, true)
-        ) !== null;
-    }
-
     /**
      * equals: git remote show origin
      */
@@ -335,5 +320,10 @@ class Git extends AbstractGitHandler implements GitHandler
                 ->addParameter('remote')
                 ->addParameter('show')
                 ->addParameter('origin'));
+    }
+
+    protected function getConfigReader(): ConfigReader
+    {
+        return $this->config;
     }
 }

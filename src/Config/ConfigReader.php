@@ -2,6 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Config;
 
+use ArtARTs36\GitHandler\Contracts\ConfigSubject;
+use ArtARTs36\GitHandler\Exceptions\ConfigDataNotFound;
+
 class ConfigReader
 {
     protected $configurators;
@@ -30,6 +33,19 @@ class ConfigReader
         }
 
         return $data;
+    }
+
+    public function parseByPrefix(string $raw, string $prefix): ConfigSubject
+    {
+        $grouped = $this->grouped($this->splitRaw($raw));
+
+        //
+
+        if (! array_key_exists($prefix, $grouped)) {
+            throw new ConfigDataNotFound($prefix);
+        }
+
+        return $this->configurators->getOrFail($prefix)->parse($grouped[$prefix]);
     }
 
     protected function splitRaw(string $raw): array

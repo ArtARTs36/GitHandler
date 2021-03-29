@@ -205,6 +205,24 @@ var_dump($git->performTag('1.0.0', 'Version 1.0.0'));
 var_dump($git->performTag('1.0.0'));
 ```
 
+### git config --list
+
+```php
+use ArtARTs36\GitHandler\GitSimpleFactory;
+
+$git = GitSimpleFactory::factory('/var/web/project');
+
+/** @var \ArtARTs36\GitHandler\Config\Subjects\Pack $pack */
+$pack = $git->getConfigSubject('pack');
+
+var_dump($pack->deltaCacheSize);
+var_dump($pack->packSizeLimit);
+var_dump($pack->sizeLimit);
+var_dump($pack->threads);
+var_dump($pack->window);
+var_dump($pack->windowMemory);
+```
+
 ### git remote add <alias> <url>
 
 ```php
