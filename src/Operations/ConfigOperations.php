@@ -25,7 +25,7 @@ trait ConfigOperations
         return $this->getConfigReader()->parseByPrefix($this->executeConfigList(), $prefix);
     }
 
-    public function setConfig(string $scope, string $field, string $value): bool
+    public function setConfig(string $scope, string $field, string $value, bool $replaceAll = false): bool
     {
         return $this->executeCommand(
             $this->newCommand()
@@ -33,6 +33,9 @@ trait ConfigOperations
                     ->addParameter("$scope.$field")
                     ->addParameter('=')
                     ->addParameter($value, true)
+                    ->when($replaceAll === true, function (ShellCommandInterface $command) {
+                        $command->addOption('replace-all');
+                    })
         ) !== null;
     }
 

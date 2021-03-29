@@ -16,5 +16,5 @@ interface Configurable
      */
     public function getConfigSubject(string $prefix): ConfigSubject;
 
-    public function setConfig(string $scope, string $field, string $value): bool;
+    public function setConfig(string $scope, string $field, string $value, bool $replaceAll = false): bool;
 }
