@@ -11,9 +11,9 @@ use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
-use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExist;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
+use ArtARTs36\GitHandler\Operations\InitOperations;
 use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
@@ -22,6 +22,7 @@ use ArtARTs36\Str\Facade\Str;
 class Git extends AbstractGitHandler implements GitHandler
 {
     use ConfigOperations;
+    use InitOperations;
 
     protected $logger;
 
@@ -48,27 +49,6 @@ class Git extends AbstractGitHandler implements GitHandler
 
         return Str::contains($sh, 'Already up to date') ||
             (Str::contains($sh, 'Receiving objects') && Str::contains($sh, 'Resolving deltas'));
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function init(): bool
-    {
-        if ($this->isInit()) {
-            throw new RepositoryAlreadyExists($this->getDir());
-        } elseif (! file_exists($this->getDir())) {
-            FileSystem::createDir($this->getDir());
-        }
-
-        return Str::contains($this
-            ->executeCommand($this->newCommand()
-            ->addParameter('init')), 'Initialized empty Git repository');
-    }
-
-    public function isInit(): bool
-    {
-        return file_exists($this->getDir() . DIRECTORY_SEPARATOR . '.git');
     }
 
     /**
