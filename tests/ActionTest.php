@@ -3,7 +3,6 @@
 namespace ArtARTs36\GitHandler\Tests;
 
 use ArtARTs36\GitHandler\Action;
-use ArtARTs36\GitHandler\Git;
 use ArtARTs36\GitHandler\GitSimpleFactory;
 use ArtARTs36\GitHandler\Support\FileSystem;
 use PHPUnit\Framework\TestCase;
