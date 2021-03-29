@@ -6,6 +6,8 @@ use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Git;
+use ArtARTs36\GitHandler\GitSimpleFactory;
+use ArtARTs36\GitHandler\Logger;
 use ArtARTs36\ShellCommand\ShellCommand;
 use PHPUnit\Framework\TestCase;
 
@@ -205,7 +207,7 @@ Changes to be committed:
 
             public function __construct(string $dir, string $shellResult, string $executor = 'git')
             {
-                parent::__construct($dir, $executor);
+                parent::__construct($dir, new Logger(), GitSimpleFactory::factoryConfigReader(), $executor);
 
                 $this->shellResult = $shellResult;
             }

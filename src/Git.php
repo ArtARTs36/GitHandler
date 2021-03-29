@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler;
 
+use ArtARTs36\GitHandler\Config\ConfigReader;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\LogCollection;
@@ -21,11 +22,14 @@ class Git extends AbstractGitHandler implements GitHandler
 {
     protected $logger;
 
-    public function __construct(string $dir, string $executor = 'git', LogParser $logger = null)
+    protected $config;
+
+    public function __construct(string $dir, LogParser $logger, ConfigReader $config, string $executor = 'git')
     {
         parent::__construct($dir, $executor);
 
-        $this->logger = $logger ?? new Logger();
+        $this->logger = $logger;
+        $this->config = $config;
     }
 
     /**
@@ -301,6 +305,13 @@ class Git extends AbstractGitHandler implements GitHandler
                     ->newCommand()
                     ->addParameter('fetch')
             );
+    }
+
+    public function getConfigList(): array
+    {
+        return $this->config->parse(
+            $this->executeCommand($this->newCommand()->addParameter('config')->addOption('list'))
+        );
     }
 
     /**
