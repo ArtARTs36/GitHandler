@@ -11,7 +11,7 @@ trait RemoteOperations
 {
     abstract protected function newCommand(?string $dir = null): ShellCommandInterface;
 
-    abstract protected function executeCommand(ShellCommand $command): ?string;
+    abstract protected function executeCommand(ShellCommand $command): ?\ArtARTs36\Str\Str;
 
     /**
      * @inheritDoc
@@ -20,7 +20,7 @@ trait RemoteOperations
     {
         $sh = $this->executeShowRemote();
 
-        if (! Str::containsAny($sh, ['Fetch(\s*)URL', 'Push(\s*)URL:'])) {
+        if ($sh === null || ($sh && ! $sh->containsAny(['Fetch(\s*)URL', 'Push(\s*)URL:']))) {
             return Remotes::createEmpty();
         }
 
@@ -54,7 +54,7 @@ trait RemoteOperations
     /**
      * equals: git remote show origin
      */
-    protected function executeShowRemote(): string
+    protected function executeShowRemote(): \ArtARTs36\Str\Str
     {
         return $this
             ->executeCommand($this->newCommand()

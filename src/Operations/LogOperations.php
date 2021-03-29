@@ -6,12 +6,13 @@ use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\LogCollection;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
+use ArtARTs36\Str\Str;
 
 trait LogOperations
 {
     abstract protected function newCommand(?string $dir = null): ShellCommandInterface;
 
-    abstract protected function executeCommand(ShellCommand $command): ?string;
+    abstract protected function executeCommand(ShellCommand $command): ?Str;
 
     abstract protected function getLogger(): LogParser;
 

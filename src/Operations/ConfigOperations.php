@@ -7,12 +7,13 @@ use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\ConfigSubject;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
+use ArtARTs36\Str\Str;
 
 trait ConfigOperations
 {
     abstract protected function newCommand(?string $dir = null): ShellCommandInterface;
 
-    abstract protected function executeCommand(ShellCommand $command): ?string;
+    abstract protected function executeCommand(ShellCommand $command): ?Str;
 
     abstract protected function getConfigReader(): ConfigResultParser;
 

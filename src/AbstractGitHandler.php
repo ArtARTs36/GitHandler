@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
+use ArtARTs36\Str\Str;
 
 abstract class AbstractGitHandler implements GitHandler
 {
@@ -27,9 +28,9 @@ abstract class AbstractGitHandler implements GitHandler
         return $this->dir;
     }
 
-    protected function executeCommand(ShellCommand $command): ?string
+    protected function executeCommand(ShellCommand $command): ?Str
     {
-        return $command->getShellResult();
+        return ($result = $command->getShellResult()) ? Str::make($result) : null;
     }
 
     protected function newCommand(?string $dir = null): ShellCommandInterface

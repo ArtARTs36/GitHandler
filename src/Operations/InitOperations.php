@@ -16,7 +16,7 @@ trait InitOperations
 
     abstract protected function newCommand(?string $dir = null): ShellCommandInterface;
 
-    abstract protected function executeCommand(ShellCommand $command): ?string;
+    abstract protected function executeCommand(ShellCommand $command): ?\ArtARTs36\Str\Str;
 
     abstract public function getDir(): string;
 
@@ -31,9 +31,9 @@ trait InitOperations
             $this->getFileSystem()->createDir($this->getDir());
         }
 
-        return Str::contains($this
-            ->executeCommand($this->newCommand()
-                ->addParameter('init')), 'Initialized empty Git repository');
+        return $this
+            ->executeCommand($this->newCommand()->addParameter('init'))
+            ->contains('Initialized empty Git repository');
     }
 
     public function isInit(): bool

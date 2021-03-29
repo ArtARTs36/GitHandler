@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Config;
 use ArtARTs36\GitHandler\Contracts\SubjectConfigurator;
 use ArtARTs36\GitHandler\Exceptions\SubjectConfiguratorNotFound;
 
-class ConfiguratorsDict
+class ConfiguratorsDict implements \IteratorAggregate
 {
     protected $configurators;
 
@@ -46,5 +46,13 @@ class ConfiguratorsDict
     public function has(string $prefix): bool
     {
         return array_key_exists($prefix, $this->configurators);
+    }
+
+    /**
+     * @return \ArrayIterator|iterable<SubjectConfigurator>
+     */
+    public function getIterator(): \ArrayIterator
+    {
+        return new \ArrayIterator($this->configurators);
     }
 }

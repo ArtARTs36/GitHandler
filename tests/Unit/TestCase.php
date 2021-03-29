@@ -8,6 +8,7 @@ use ArtARTs36\GitHandler\GitSimpleFactory;
 use ArtARTs36\GitHandler\Logger;
 use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
 use ArtARTs36\ShellCommand\ShellCommand;
+use ArtARTs36\Str\Str;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -44,9 +45,13 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
                 $this->shellResult = $shellResult;
             }
 
-            protected function executeCommand(ShellCommand $command): ?string
+            protected function executeCommand(ShellCommand $command): ?Str
             {
-                return $this->shellResult;
+                if ($this->shellResult === null) {
+                    return null;
+                }
+
+                return Str::make($this->shellResult);
             }
         };
     }

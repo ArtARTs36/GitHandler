@@ -2,21 +2,11 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-use ArtARTs36\Str\Facade\Str;
+use ArtARTs36\Str\Str;
 use Throwable;
 
-/**
- * Class FileNotFound
- * @package ArtARTs36\GitHandler\Exceptions
- */
 class FileNotFound extends GitHandlerException
 {
-    /**
-     * BranchNotFound constructor.
-     * @param string $file
-     * @param int $code
-     * @param Throwable|null $previous
-     */
     public function __construct(string $file, $code = 0, Throwable $previous = null)
     {
         $message = "File '{$file}' Not Found";
@@ -24,22 +14,14 @@ class FileNotFound extends GitHandlerException
         parent::__construct($message, $code, $previous);
     }
 
-    /**
-     * @param string $file
-     * @return string
-     */
     public static function patternStdError(string $file): string
     {
         return "pathspec '{$file}' did not match any";
     }
 
-    /**
-     * @param string $file
-     * @param string $stdout
-     */
-    public static function handleIfSo(string $file, string $stdout): void
+    public static function handleIfSo(string $file, Str $stdout): void
     {
-        if (Str::contains($stdout, static::patternStdError($file))) {
+        if ($stdout->contains(static::patternStdError($file))) {
             throw new static($file);
         }
     }

@@ -11,11 +11,11 @@ trait PushOperations
 {
     abstract protected function newCommand(?string $dir = null): ShellCommandInterface;
 
-    abstract protected function executeCommand(ShellCommand $command): ?string;
+    abstract protected function executeCommand(ShellCommand $command): ?Str;
 
     public function push(): bool
     {
-        $result = Str::make($this->executeCommand($this->newCommand()->addParameter('push')));
+        $result = $this->executeCommand($this->newCommand()->addParameter('push'));
 
         if ($result === null) {
             return false;
