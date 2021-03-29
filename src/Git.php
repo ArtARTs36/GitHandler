@@ -5,7 +5,6 @@ namespace ArtARTs36\GitHandler;
 use ArtARTs36\GitHandler\Config\ConfigReader;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
-use ArtARTs36\GitHandler\Data\LogCollection;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
@@ -13,6 +12,7 @@ use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\InitOperations;
+use ArtARTs36\GitHandler\Operations\LogOperations;
 use ArtARTs36\GitHandler\Operations\TagOperations;
 use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
@@ -24,6 +24,7 @@ class Git extends AbstractGitHandler implements GitHandler
     use ConfigOperations;
     use InitOperations;
     use TagOperations;
+    use LogOperations;
 
     protected $logger;
 
@@ -217,29 +218,6 @@ class Git extends AbstractGitHandler implements GitHandler
         return $result->contains('file changed');
     }
 
-    public function log(): ?LogCollection
-    {
-        $result = $this
-            ->executeCommand(
-                $this->newCommand()
-                ->addParameter('log')
-                ->addOption('oneline')
-                ->addOption('decorate')
-                ->addOption('graph')
-                ->addOptionWithValue('pretty', "format:'%H|%ad|%an|%ae|%Creset%s'")
-                ->addOptionWithValue('date', 'iso')
-                ->addParameter('|')
-                ->addParameter('less')
-                ->addCutOption('r')
-            );
-
-        if ($result === null) {
-            throw new \UnexpectedValueException();
-        }
-
-        return $this->logger->parse($result);
-    }
-
     public function fetch(): void
     {
         $this
@@ -265,5 +243,10 @@ class Git extends AbstractGitHandler implements GitHandler
     protected function getConfigReader(): ConfigReader
     {
         return $this->config;
+    }
+
+    protected function getLogger(): LogParser
+    {
+        return $this->logger;
     }
 }
