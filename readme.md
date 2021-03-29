@@ -120,8 +120,6 @@ use ArtARTs36\GitHandler\Git;
 
 $git = new Git('/var/web/project');
 var_dump($git->showRemote());
-var_dump($git->showPushRemote());
-var_dump($git->showFetchRemote());
 ```
 
 #### git fetch:
@@ -131,6 +129,15 @@ use ArtARTs36\GitHandler\Git;
 
 $git = new Git('/var/web/project');
 $git->fetch();
+```
+
+#### git push:
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+$git->push();
 ```
 
 #### git log:
@@ -196,6 +203,15 @@ use ArtARTs36\GitHandler\Git;
 $git = new Git('/var/web/project');
 var_dump($git->performTag('1.0.0', 'Version 1.0.0'));
 var_dump($git->performTag('1.0.0'));
+```
+
+### git remote add <alias> <url>
+
+```php
+use ArtARTs36\GitHandler\Git;
+
+$git = new Git('/var/web/project');
+var_dump($git->addRemote());
 ```
 
 ### check exists tag
