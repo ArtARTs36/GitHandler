@@ -35,7 +35,6 @@ trait ConfigOperations
             $this->newCommand()
                     ->addParameter('config')
                     ->addParameter("$scope.$field")
-                    ->addParameter('=')
                     ->addParameter($value, true)
                     ->when($replaceAll === true, function (ShellCommandInterface $command) {
                         $command->addOption('replace-all');
