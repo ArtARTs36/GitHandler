@@ -1,14 +1,9 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests;
 
 use ArtARTs36\GitHandler\Support\FileSystem;
-use PHPUnit\Framework\TestCase;
 
-/**
- * Class FileSystemTest
- * @package ArtARTs36\HostReviewerCore\Tests\Unit
- */
 class FileSystemTest extends TestCase
 {
     /**

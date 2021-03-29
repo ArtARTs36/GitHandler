@@ -17,6 +17,7 @@ user.email=artem@artem.ru
 core.autocrlf=input
 ");
 
+        /** @var User $subject */
         $subject = $git->getConfigSubject('user');
 
         self::assertInstanceOf(User::class, $subject);
