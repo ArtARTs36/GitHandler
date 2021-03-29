@@ -314,6 +314,17 @@ class Git extends AbstractGitHandler implements GitHandler
         );
     }
 
+    public function setConfig(string $scope, string $field, string $value): bool
+    {
+        return $this->executeCommand(
+            $this->newCommand()
+            ->addParameter('config')
+            ->addParameter("$scope.$field")
+            ->addParameter('=')
+            ->addParameter($value, true)
+        ) !== null;
+    }
+
     /**
      * equals: git remote show origin
      */
