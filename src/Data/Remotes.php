@@ -2,8 +2,12 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use ArtARTs36\GitHandler\Support\ToArray;
+
 class Remotes
 {
+    use ToArray;
+
     public $fetch;
 
     public $push;
@@ -17,10 +21,5 @@ class Remotes
     public static function createEmpty(): self
     {
         return new static('', '');
-    }
-
-    public function toArray(): array
-    {
-        return get_object_vars($this);
     }
 }
