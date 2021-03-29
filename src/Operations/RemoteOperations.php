@@ -20,7 +20,7 @@ trait RemoteOperations
     {
         $sh = $this->executeShowRemote();
 
-        if (! Str::contains($sh, 'Fetch(\s*)URL') || ! Str::contains($sh, 'Push(\s*)URL:')) {
+        if (! Str::containsAny($sh, ['Fetch(\s*)URL', 'Push(\s*)URL:'])) {
             return Remotes::createEmpty();
         }
 

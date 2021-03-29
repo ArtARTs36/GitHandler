@@ -50,8 +50,11 @@ class Git extends AbstractGitHandler implements GitHandler
                 $command->addParameter($branch);
             }));
 
-        return Str::contains($sh, 'Already up to date') ||
-            (Str::contains($sh, 'Receiving objects') && Str::contains($sh, 'Resolving deltas'));
+        return Str::containsAny($sh, [
+            'Already up to date',
+            'Receiving objects',
+            'Resolving deltas',
+        ]);
     }
 
     /**
@@ -143,8 +146,10 @@ class Git extends AbstractGitHandler implements GitHandler
                     ->addParameter('"'. $message .'"');
             }));
 
-        return Str::contains($sh, 'Saved working directory and index') ||
-            Str::contains($sh, 'No local changes to save');
+        return Str::containsAny($sh, [
+            'Saved working directory and index',
+            'No local changes to save',
+        ]);
     }
 
     public function push(): bool
@@ -155,9 +160,11 @@ class Git extends AbstractGitHandler implements GitHandler
             return false;
         }
 
-        return Str::contains($result, 'Everything up-to-date')
-            || Str::contains($result, '->')
-            || Str::contains($result, 'Enumerating objects:');
+        return Str::containsAny($result, [
+            'Everything up-to-date',
+            '->',
+            'Enumerating objects:',
+        ]);
     }
 
     public function commit(string $message, bool $amend = false): bool
