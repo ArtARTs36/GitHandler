@@ -5,7 +5,6 @@ namespace ArtARTs36\GitHandler;
 use ArtARTs36\GitHandler\Config\ConfigReader;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
-use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
@@ -13,6 +12,7 @@ use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\InitOperations;
 use ArtARTs36\GitHandler\Operations\LogOperations;
+use ArtARTs36\GitHandler\Operations\RemoteOperations;
 use ArtARTs36\GitHandler\Operations\TagOperations;
 use ArtARTs36\GitHandler\Support\FileSystem;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
@@ -25,6 +25,7 @@ class Git extends AbstractGitHandler implements GitHandler
     use InitOperations;
     use TagOperations;
     use LogOperations;
+    use RemoteOperations;
 
     protected $logger;
 
@@ -146,44 +147,6 @@ class Git extends AbstractGitHandler implements GitHandler
             Str::contains($sh, 'No local changes to save');
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function showRemote(): Remotes
-    {
-        $sh = $this->executeShowRemote();
-
-        if (! Str::contains($sh, 'Fetch(\s*)URL') || ! Str::contains($sh, 'Push(\s*)URL:')) {
-            return Remotes::createEmpty();
-        }
-
-        //
-
-        $getUrl = function (string $regular) use ($sh) {
-            $matches = [];
-
-            preg_match($regular, $sh, $matches);
-
-            return end($matches);
-        };
-
-        //
-
-        return new Remotes($getUrl('/Fetch(\s*)URL: (.*)\n/'), $getUrl('/Push(\s*)URL: (.*)\n/'));
-    }
-
-    public function addRemote(string $shortName, string $url): bool
-    {
-        return $this
-                ->executeCommand(
-                    $this->newCommand()
-                    ->addParameter('remote')
-                    ->addParameter('add')
-                    ->addParameter($shortName)
-                    ->addParameter($url)
-                ) === null;
-    }
-
     public function push(): bool
     {
         $result = $this->executeCommand($this->newCommand()->addParameter('push'));
@@ -226,18 +189,6 @@ class Git extends AbstractGitHandler implements GitHandler
                     ->newCommand()
                     ->addParameter('fetch')
             );
-    }
-
-    /**
-     * equals: git remote show origin
-     */
-    protected function executeShowRemote(): string
-    {
-        return $this
-            ->executeCommand($this->newCommand()
-                ->addParameter('remote')
-                ->addParameter('show')
-                ->addParameter('origin'));
     }
 
     protected function getConfigReader(): ConfigReader
