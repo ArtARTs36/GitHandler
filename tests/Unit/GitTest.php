@@ -9,24 +9,6 @@ use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 final class GitTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Git::init
-     */
-    public function testInit(): void
-    {
-        $response = $this->mockGit('error')
-            ->init();
-
-        self::assertFalse($response);
-
-        //
-
-        $response = $this->mockGit('Initialized empty Git repository in ')
-            ->init();
-
-        self::assertTrue($response);
-    }
-
-    /**
      * @covers \ArtARTs36\GitHandler\Git::checkout
      */
     public function testCheckout(): void

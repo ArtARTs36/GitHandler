@@ -9,13 +9,9 @@ use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
 
 class ActionTest extends TestCase
 {
-    protected $fileSystem;
-
     public function setUp(): void
     {
         parent::setUp();
-
-        $this->fileSystem = new ArrayFileSystem();
 
         $this->fileSystem->createDir($this->getTmpDir());
     }
