@@ -169,4 +169,15 @@ Changes to be committed:
 
         self::assertEquals($expected, $git->showRemote()->toArray());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::version
+     */
+    public function testVersion(): void
+    {
+        $git = $this->mockGit('git version 2.24.3 (Apple Git-128)
+');
+
+        self::assertEquals('git version 2.24.3 (Apple Git-128)', $git->version());
+    }
 }

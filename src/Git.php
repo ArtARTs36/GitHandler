@@ -6,7 +6,6 @@ use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
-use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
@@ -199,6 +198,11 @@ class Git extends AbstractGitHandler implements GitHandler
                     ->newCommand()
                     ->addParameter('fetch')
             );
+    }
+
+    public function version(): string
+    {
+        return $this->executeCommand($this->newCommand()->addOption('version'))->trim();
     }
 
     public function pathToGitFolder(): string

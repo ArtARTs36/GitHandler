@@ -210,6 +210,13 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->addRemote('alias', 'url'));
 ```
 
+### git version
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->version());
+```
+
 ### check exists tag
 
 ```php
