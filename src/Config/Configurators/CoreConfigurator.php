@@ -16,7 +16,9 @@ class CoreConfigurator implements SubjectConfigurator
             TypeCaster::boolean($raw['ignorecase'] ?? ''),
             $raw['repositoryformatversion'] ?? 0,
             TypeCaster::boolean($raw['bare'] ?? ''),
-            TypeCaster::boolean($raw['logallrefupdates'] ?? '')
+            TypeCaster::boolean($raw['logallrefupdates'] ?? ''),
+            TypeCaster::boolean($raw['precomposeunicode'] ?? ''),
+            TypeCaster::boolean($raw['filemode'] ?? '')
         );
     }
 
