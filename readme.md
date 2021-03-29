@@ -20,6 +20,13 @@ Tool for work with git
 
 ----
 
+### Simple create an Instance
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+```
+
+
 ### Examples:
 
 #### git init:
