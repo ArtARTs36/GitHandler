@@ -19,9 +19,7 @@ class RegexConfigResultParser implements ConfigResultParser
     }
 
     /**
-     * @param string $raw - raw response from git
-     * @return array<ConfigSubject>
-     * @throws \ArtARTs36\GitHandler\Exceptions\SubjectConfiguratorNotFound
+     * @inheritDoc
      */
     public function parse(string $raw): SubjectsCollection
     {
@@ -42,6 +40,9 @@ class RegexConfigResultParser implements ConfigResultParser
         return new SubjectsCollection($data);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function parseByPrefix(string $raw, string $prefix): ConfigSubject
     {
         $grouped = $this->grouped($this->splitRaw($raw));

@@ -10,10 +10,12 @@ class LogCollection implements \IteratorAggregate, \Countable
 
     /**
      * @param array<Log> $logs
+     * @throws \InvalidArgumentException
      */
     public function __construct(array $logs)
     {
         Assert::notEmpty($logs);
+        Assert::allIsInstanceOf($logs, Log::class);
 
         $this->logs = $logs;
     }
