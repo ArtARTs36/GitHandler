@@ -101,11 +101,12 @@ class Git extends AbstractGitHandler implements GitHandler
      */
     public function add(string $file): bool
     {
-        $sh = $this->executeCommand($this->newCommand()
+        $sh = $this
+            ->executeCommand($this->newCommand()
             ->addParameter('add')
             ->addParameter($file));
 
-        if (empty($sh)) {
+        if ($sh === null || $sh->isEmpty()) {
             return true;
         }
 

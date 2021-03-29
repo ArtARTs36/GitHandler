@@ -11,7 +11,7 @@ trait RemoteOperations
 {
     abstract protected function newCommand(?string $dir = null): ShellCommandInterface;
 
-    abstract protected function executeCommand(ShellCommand $command): ?string;
+    abstract protected function executeCommand(ShellCommand $command): ?\ArtARTs36\Str\Str;
 
     /**
      * @inheritDoc
