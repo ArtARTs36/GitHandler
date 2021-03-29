@@ -56,7 +56,7 @@ class LocalFileSystem implements FileSystem
 
             $end = end($array);
 
-            if (!static::isPseudoFile($end)) {
+            if (! static::isPseudoFile($end)) {
                 return $end;
             }
 
@@ -93,5 +93,15 @@ class LocalFileSystem implements FileSystem
         }
 
         return true;
+    }
+
+    public function exists(string $path): bool
+    {
+        return file_exists($path);
+    }
+
+    public function createFile(string $path, string $content): bool
+    {
+        return file_put_contents($path, $content) !== false;
     }
 }

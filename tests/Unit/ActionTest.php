@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 use ArtARTs36\GitHandler\Action;
 use ArtARTs36\GitHandler\GitSimpleFactory;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
+use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
 
 class ActionTest extends TestCase
 {
@@ -14,7 +15,7 @@ class ActionTest extends TestCase
     {
         parent::setUp();
 
-        $this->fileSystem = new LocalFileSystem();
+        $this->fileSystem = new ArrayFileSystem();
 
         $this->fileSystem->createDir($this->getTmpDir());
     }
@@ -26,6 +27,9 @@ class ActionTest extends TestCase
         $this->fileSystem->removeDir($this->getTmpDir());
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Action::createFolder
+     */
     public function testCreateFolder(): void
     {
         $dir = $this->getTmpDir();
@@ -36,9 +40,9 @@ class ActionTest extends TestCase
 
         $action->createFolder('test');
 
-        //
+        //);
 
-        self::assertFileExists($dir . DIRECTORY_SEPARATOR . 'test');
+        self::assertTrue($this->fileSystem->exists($dir . DIRECTORY_SEPARATOR . 'test'));
     }
 
     /**
@@ -50,15 +54,15 @@ class ActionTest extends TestCase
 
         $action->createFile('test.php', 'echo hello world');
 
-        self::assertFileExists($this->getTmpDir() . DIRECTORY_SEPARATOR . 'test.php');
+        self::assertTrue($this->fileSystem->exists($this->getTmpDir() . DIRECTORY_SEPARATOR . 'test.php'));
 
         //
 
         $action->createFile('test.php', 'echo hello world', 'test');
 
-        self::assertFileExists(
+        self::assertTrue($this->fileSystem->exists(
             $this->getTmpDir() . DIRECTORY_SEPARATOR . 'test' . DIRECTORY_SEPARATOR . 'test.php'
-        );
+        ));
     }
 
     /**
@@ -68,20 +72,20 @@ class ActionTest extends TestCase
     {
         $action = $this->mock();
 
-        self::assertFileExists($this->getTmpDir());
+        self::assertTrue($this->fileSystem->exists($this->getTmpDir()));
 
         //
 
         $action->delete();
 
-        self::assertFileDoesNotExist($this->getTmpDir());
+        self::assertFalse($this->fileSystem->exists($this->getTmpDir()));
     }
 
     private function mock(): Action
     {
         $dir = $this->getTmpDir();
 
-        $git = GitSimpleFactory::factory($dir);
+        $git = GitSimpleFactory::factory($dir, $this->fileSystem);
 
         return new Action($git, $this->fileSystem);
     }

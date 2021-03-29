@@ -39,7 +39,7 @@ class Action
 
         $path .= DIRECTORY_SEPARATOR . $name;
 
-        file_put_contents($path, $content);
+        $this->fileSystem->createFile($path, $content);
 
         return $path;
     }
