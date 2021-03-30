@@ -16,6 +16,7 @@ use ArtARTs36\GitHandler\Operations\LogOperations;
 use ArtARTs36\GitHandler\Operations\PathOperations;
 use ArtARTs36\GitHandler\Operations\PushOperations;
 use ArtARTs36\GitHandler\Operations\RemoteOperations;
+use ArtARTs36\GitHandler\Operations\StatusOperations;
 use ArtARTs36\GitHandler\Operations\TagOperations;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
@@ -29,6 +30,7 @@ class Git extends AbstractGitHandler implements GitHandler
     use RemoteOperations;
     use PushOperations;
     use PathOperations;
+    use StatusOperations;
 
     protected $logger;
 
@@ -83,20 +85,6 @@ class Git extends AbstractGitHandler implements GitHandler
         BranchNotFound::handleIfSo($branch, $sh);
 
         return true;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function status(bool $short = false): string
-    {
-        return $this->executeCommand(
-            $this->newCommand()
-                ->addParameter('status')
-                ->when($short, function (ShellCommand $command) {
-                    $command->addCutOption('s');
-                })
-        );
     }
 
     /**

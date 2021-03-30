@@ -13,7 +13,8 @@ interface GitHandler extends
     Logable,
     Configurable,
     Versionable,
-    HasPaths
+    HasPaths,
+    Statusable
 {
     /**
      * equals: git pull
@@ -26,11 +27,6 @@ interface GitHandler extends
      * @throws BranchNotFound
      */
     public function checkout(string $branch): bool;
-
-    /**
-     * equals: git status
-     */
-    public function status(bool $short = false): string;
 
     public function getDir(): string;
 
