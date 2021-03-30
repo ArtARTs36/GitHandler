@@ -43,7 +43,7 @@ trait ConfigOperations
         ) !== null;
     }
 
-    protected function executeConfigList(): string
+    protected function executeConfigList(): Str
     {
         return $this->executeCommand($this->newCommand()->addParameter('config')->addOption('list'));
     }
