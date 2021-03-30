@@ -4,7 +4,16 @@ namespace ArtARTs36\GitHandler\Contracts;
 
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 
-interface GitHandler extends Taggable, Addable, HasRemotes, Pushable, Initable, Logable, Configurable, Versionable
+interface GitHandler extends
+    Taggable,
+    Addable,
+    HasRemotes,
+    Pushable,
+    Initable,
+    Logable,
+    Configurable,
+    Versionable,
+    HasPaths
 {
     /**
      * equals: git pull
@@ -46,10 +55,6 @@ interface GitHandler extends Taggable, Addable, HasRemotes, Pushable, Initable, 
     public function fetch(): void;
 
     public function pathToGitFolder(): string;
-
-    public function getInfoPath(): string;
-
-    public function getHtmlPath(): string;
 
     public function help(): string;
 }
