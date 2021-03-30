@@ -25,6 +25,39 @@ trait StatusOperations
 
     public function hasChanges(): bool
     {
-        return ! empty(trim($this->status(true)));
+        $status = $this->status(true)->trim();
+        $groups = $this->getGroupsByStatusResult($status);
+
+        return $status->isEmpty() ||
+                ! array_key_exists('M', $groups) ||
+                ! array_key_exists('AM', $groups);
+    }
+
+    public function getUntrackedFiles(): array
+    {
+        return $this->getGroupsByStatusResult($this->status(true)->trim())['??'] ?? [];
+    }
+
+    public function getModifiedFiles(): array
+    {
+        return $this->getGroupsByStatusResult($this->status(true)->trim())['M'] ?? [];
+    }
+
+    public function getAddedFiles(): array
+    {
+        return $this->getGroupsByStatusResult($this->status(true)->trim())['AM'] ?? [];
+    }
+
+    protected function getGroupsByStatusResult(Str $result): array
+    {
+        $groups = [];
+
+        foreach ($result->lines() as $line) {
+            [$group, $file] = $line->trim()->explode(' ');
+
+            $groups[$group->__toString()][] = $file->__toString();
+        }
+
+        return $groups;
     }
 }
