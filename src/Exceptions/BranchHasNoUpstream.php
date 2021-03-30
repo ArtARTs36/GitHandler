@@ -12,9 +12,7 @@ class BranchHasNoUpstream extends GitHandlerException
     {
         $this->errorBranch = $branch;
 
-        $message = "The current branch $branch has no upstream branch";
-
-        parent::__construct($message, $code, $previous);
+        parent::__construct($this->prepareMessage(), $code, $previous);
     }
 
     public static function patternStdError(): string

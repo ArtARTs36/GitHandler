@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\Author;
 use ArtARTs36\GitHandler\Data\Log;
 use ArtARTs36\GitHandler\Data\LogCollection;
+use ArtARTs36\Str\Str;
 
 class Logger implements LogParser
 {
@@ -14,14 +15,11 @@ class Logger implements LogParser
     /** @var array<string, Author> $authors */
     protected $authors = [];
 
-    public function parse(string $raw): ?LogCollection
+    public function parse(Str $raw): ?LogCollection
     {
         $logs = [];
-        $matches = [];
 
-        preg_match_all($this->regex, $raw, $matches, PREG_SET_ORDER, 0);
-
-        foreach ($matches as $match) {
+        foreach ($raw->globalMatch($this->regex) as $match) {
             if (count($match) !== 6) {
                 continue;
             }

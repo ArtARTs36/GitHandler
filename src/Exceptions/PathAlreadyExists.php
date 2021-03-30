@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-use ArtARTs36\Str\Facade\Str;
+use ArtARTs36\Str\Str;
 use Throwable;
 
 class PathAlreadyExists extends GitHandlerException
@@ -23,13 +23,9 @@ class PathAlreadyExists extends GitHandlerException
         return "destination path '{$path}' already exists";
     }
 
-    /**
-     * @param string $path
-     * @param string $stdout
-     */
-    public static function handleIfSo(string $path, string $stdout): void
+    public static function handleIfSo(string $path, Str $stdout): void
     {
-        if (Str::contains($stdout, static::patternStdError($path))) {
+        if ($stdout->contains(static::patternStdError($path))) {
             throw new static($path);
         }
     }

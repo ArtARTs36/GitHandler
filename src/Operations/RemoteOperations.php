@@ -24,19 +24,10 @@ trait RemoteOperations
             return Remotes::createEmpty();
         }
 
-        //
-
-        $getUrl = function (string $regular) use ($sh) {
-            $matches = [];
-
-            preg_match($regular, $sh, $matches);
-
-            return end($matches);
-        };
-
-        //
-
-        return new Remotes($getUrl('/Fetch(\s*)URL: (.*)\n/'), $getUrl('/Push(\s*)URL: (.*)\n/'));
+        return new Remotes(
+            $sh->match('/Fetch(\s*)URL: (.*)\n/'),
+            $sh->match('/Push(\s*)URL: (.*)\n/')
+        );
     }
 
     public function addRemote(string $shortName, string $url): bool

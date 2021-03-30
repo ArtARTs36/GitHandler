@@ -38,11 +38,7 @@ trait PushOperations
     protected function handleErrorBranchHasNoUpstream(Str $result): void
     {
         if ($result->contains($errPattern = BranchHasNoUpstream::patternStdError())) {
-            $matches = [];
-
-            preg_match('/'. $errPattern . '/i', $result, $matches);
-
-            throw new BranchHasNoUpstream(end($matches));
+            throw new BranchHasNoUpstream($result->match('/'. $errPattern . '/i'));
         }
     }
 }

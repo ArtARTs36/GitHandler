@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Config\Subjects\SubjectsCollection;
 use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\ConfigSubject;
 use ArtARTs36\GitHandler\Exceptions\ConfigDataNotFound;
+use ArtARTs36\Str\Str;
 
 class RegexConfigResultParser implements ConfigResultParser
 {
@@ -21,9 +22,9 @@ class RegexConfigResultParser implements ConfigResultParser
     /**
      * @inheritDoc
      */
-    public function parse(string $raw): SubjectsCollection
+    public function parse(Str $raw): SubjectsCollection
     {
-        $grouped = $this->grouped($this->splitRaw($raw));
+        $grouped = $this->grouped($raw->globalMatch($this->regex));
 
         //
 
@@ -43,9 +44,9 @@ class RegexConfigResultParser implements ConfigResultParser
     /**
      * @inheritDoc
      */
-    public function parseByPrefix(string $raw, string $prefix): ConfigSubject
+    public function parseByPrefix(Str $raw, string $prefix): ConfigSubject
     {
-        $grouped = $this->grouped($this->splitRaw($raw));
+        $grouped = $this->grouped($raw->globalMatch($this->regex));
 
         //
 
@@ -54,15 +55,6 @@ class RegexConfigResultParser implements ConfigResultParser
         }
 
         return $this->configurators->getOrFail($prefix)->parse($grouped[$prefix]);
-    }
-
-    protected function splitRaw(string $raw): array
-    {
-        $matches = [];
-
-        preg_match_all($this->regex, $raw, $matches, PREG_SET_ORDER, 0);
-
-        return $matches;
     }
 
     /**
