@@ -231,6 +231,13 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->getHtmlPath());
 ```
 
+### git --help
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->help());
+```
+
 ### check exists tag
 
 ```php
