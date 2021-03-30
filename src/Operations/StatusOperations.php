@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Operations;
 
+use ArtARTs36\GitHandler\Support\StatusResult;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -29,23 +30,24 @@ trait StatusOperations
         $groups = $this->getGroupsByStatusResult($status);
 
         return $status->isEmpty() ||
-                ! array_key_exists('M', $groups) ||
-                ! array_key_exists('AM', $groups);
+                ! array_key_exists(StatusResult::GROUP_MODIFIED, $groups) ||
+                ! array_key_exists(StatusResult::GROUP_ADDED, $groups);
     }
 
     public function getUntrackedFiles(): array
     {
-        return $this->getGroupsByStatusResult($this->status(true)->trim())['??'] ?? [];
+        return $this
+                ->getGroupsByStatusResult($this->status(true)->trim())[StatusResult::GROUP_UNTRACKED] ?? [];
     }
 
     public function getModifiedFiles(): array
     {
-        return $this->getGroupsByStatusResult($this->status(true)->trim())['M'] ?? [];
+        return $this->getGroupsByStatusResult($this->status(true)->trim())[StatusResult::GROUP_MODIFIED] ?? [];
     }
 
     public function getAddedFiles(): array
     {
-        return $this->getGroupsByStatusResult($this->status(true)->trim())['AM'] ?? [];
+        return $this->getGroupsByStatusResult($this->status(true)->trim())[StatusResult::GROUP_ADDED] ?? [];
     }
 
     protected function getGroupsByStatusResult(Str $result): array
