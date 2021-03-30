@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
-use ArtARTs36\Str\Facade\Str;
+use ArtARTs36\Str\Str;
 
 trait InitOperations
 {
@@ -16,7 +16,7 @@ trait InitOperations
 
     abstract protected function newCommand(?string $dir = null): ShellCommandInterface;
 
-    abstract protected function executeCommand(ShellCommand $command): ?\ArtARTs36\Str\Str;
+    abstract protected function executeCommand(ShellCommand $command): ?Str;
 
     abstract public function getDir(): string;
 

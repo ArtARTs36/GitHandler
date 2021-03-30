@@ -5,13 +5,13 @@ namespace ArtARTs36\GitHandler\Operations;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
-use ArtARTs36\Str\Facade\Str;
+use ArtARTs36\Str\Str;
 
 trait RemoteOperations
 {
     abstract protected function newCommand(?string $dir = null): ShellCommandInterface;
 
-    abstract protected function executeCommand(ShellCommand $command): ?\ArtARTs36\Str\Str;
+    abstract protected function executeCommand(ShellCommand $command): ?Str;
 
     /**
      * @inheritDoc
@@ -54,7 +54,7 @@ trait RemoteOperations
     /**
      * equals: git remote show origin
      */
-    protected function executeShowRemote(): \ArtARTs36\Str\Str
+    protected function executeShowRemote(): Str
     {
         return $this
             ->executeCommand($this->newCommand()

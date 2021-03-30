@@ -13,12 +13,14 @@ use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\InitOperations;
 use ArtARTs36\GitHandler\Operations\LogOperations;
+use ArtARTs36\GitHandler\Operations\PathOperations;
 use ArtARTs36\GitHandler\Operations\PushOperations;
 use ArtARTs36\GitHandler\Operations\RemoteOperations;
+use ArtARTs36\GitHandler\Operations\StashOperations;
+use ArtARTs36\GitHandler\Operations\StatusOperations;
 use ArtARTs36\GitHandler\Operations\TagOperations;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
-use ArtARTs36\Str\Facade\Str;
 
 class Git extends AbstractGitHandler implements GitHandler
 {
@@ -28,6 +30,9 @@ class Git extends AbstractGitHandler implements GitHandler
     use LogOperations;
     use RemoteOperations;
     use PushOperations;
+    use PathOperations;
+    use StatusOperations;
+    use StashOperations;
 
     protected $logger;
 
@@ -87,20 +92,6 @@ class Git extends AbstractGitHandler implements GitHandler
     /**
      * @inheritDoc
      */
-    public function status(bool $short = false): string
-    {
-        return $this->executeCommand(
-            $this->newCommand()
-                ->addParameter('status')
-                ->when($short, function (ShellCommand $command) {
-                    $command->addCutOption('s');
-                })
-        );
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function add(string $file): bool
     {
         $sh = $this
@@ -149,26 +140,6 @@ class Git extends AbstractGitHandler implements GitHandler
         return false;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function stash(?string $message = null): bool
-    {
-        return
-            $this
-                ->executeCommand($this->newCommand()
-                    ->addParameter('stash')
-                    ->when($message !== null, function (ShellCommand $command) use ($message) {
-                        $command
-                            ->addParameter('save')
-                            ->addParameter('"'. $message .'"');
-                    }))
-                ->containsAny([
-                    'Saved working directory and index',
-                    'No local changes to save',
-                ]);
-    }
-
     public function commit(string $message, bool $amend = false): bool
     {
         $result = $this
@@ -203,16 +174,6 @@ class Git extends AbstractGitHandler implements GitHandler
     public function version(): string
     {
         return $this->executeCommand($this->newCommand()->addOption('version'))->trim();
-    }
-
-    public function getInfoPath(): string
-    {
-        return $this->executeCommand($this->newCommand()->addOption('info-path'))->trim();
-    }
-
-    public function getHtmlPath(): string
-    {
-        return $this->executeCommand($this->newCommand()->addOption('info-path'))->trim();
     }
 
     public function help(): string

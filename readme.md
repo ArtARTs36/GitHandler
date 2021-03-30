@@ -92,12 +92,19 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->add('file_name'));
 ```
 
-#### git stash:
+#### git stash save:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->stash();
 $git->stash('message');
+```
+
+#### git stash pop:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->unStash();
 ```
 
 #### git remote show origin:
@@ -229,6 +236,13 @@ var_dump($git->getInfoPath());
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->getHtmlPath());
+```
+
+### git --man-path
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getManPath());
 ```
 
 ### git --help
