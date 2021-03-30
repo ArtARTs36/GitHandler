@@ -210,6 +210,11 @@ class Git extends AbstractGitHandler implements GitHandler
         return $this->executeCommand($this->newCommand()->addOption('info-path'))->trim();
     }
 
+    public function getHtmlPath(): string
+    {
+        return $this->executeCommand($this->newCommand()->addOption('info-path'))->trim();
+    }
+
     public function pathToGitFolder(): string
     {
         return $this->getDir() . DIRECTORY_SEPARATOR . '.git';
