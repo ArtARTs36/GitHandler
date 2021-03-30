@@ -14,7 +14,8 @@ interface GitHandler extends
     Configurable,
     Versionable,
     HasPaths,
-    Statusable
+    Statusable,
+    Stashable
 {
     /**
      * equals: git pull
@@ -34,11 +35,6 @@ interface GitHandler extends
      * equals: git clone <url> <folder>
      */
     public function clone(string $url, ?string $branch = null): bool;
-
-    /**
-     * equals: git stash
-     */
-    public function stash(?string $message = null): bool;
 
     /**
      * equals: git commit -m=$message

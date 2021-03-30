@@ -12,9 +12,6 @@ trait StashOperations
 
     abstract protected function executeCommand(ShellCommand $command): ?Str;
 
-    /**
-     * @inheritDoc
-     */
     public function stash(?string $message = null): bool
     {
         return
@@ -34,11 +31,11 @@ trait StashOperations
 
     public function unStash(): bool
     {
-        $res = $this->executeCommand($this->newCommand()
-            ->addParameter('stash')
-        ->addParameter('pop'));
-
         return
-            $res->contains('');
+            $this->executeCommand(
+                $this->newCommand()
+                ->addParameter('stash')
+                ->addParameter('pop')
+            )->contains('Changes not staged for commit:');
     }
 }
