@@ -16,6 +16,7 @@ use ArtARTs36\GitHandler\Operations\LogOperations;
 use ArtARTs36\GitHandler\Operations\PathOperations;
 use ArtARTs36\GitHandler\Operations\PushOperations;
 use ArtARTs36\GitHandler\Operations\RemoteOperations;
+use ArtARTs36\GitHandler\Operations\StashOperations;
 use ArtARTs36\GitHandler\Operations\StatusOperations;
 use ArtARTs36\GitHandler\Operations\TagOperations;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
@@ -31,6 +32,7 @@ class Git extends AbstractGitHandler implements GitHandler
     use PushOperations;
     use PathOperations;
     use StatusOperations;
+    use StashOperations;
 
     protected $logger;
 
@@ -136,26 +138,6 @@ class Git extends AbstractGitHandler implements GitHandler
         PathAlreadyExists::handleIfSo($folder, $sh);
 
         return false;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function stash(?string $message = null): bool
-    {
-        return
-            $this
-                ->executeCommand($this->newCommand()
-                    ->addParameter('stash')
-                    ->when($message !== null, function (ShellCommand $command) use ($message) {
-                        $command
-                            ->addParameter('save')
-                            ->addParameter('"'. $message .'"');
-                    }))
-                ->containsAny([
-                    'Saved working directory and index',
-                    'No local changes to save',
-                ]);
     }
 
     public function commit(string $message, bool $amend = false): bool
