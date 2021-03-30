@@ -180,4 +180,15 @@ Changes to be committed:
 
         self::assertEquals('git version 2.24.3 (Apple Git-128)', $git->version());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getInfoPath
+     */
+    public function testGetInfoPath(): void
+    {
+        $git = $this->mockGit('/Applications/Xcode.app/Contents/Developer/usr/share/info
+');
+
+        self::assertEquals('/Applications/Xcode.app/Contents/Developer/usr/share/info', $git->getInfoPath());
+    }
 }

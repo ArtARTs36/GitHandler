@@ -46,4 +46,6 @@ interface GitHandler extends Taggable, Addable, HasRemotes, Pushable, Initable, 
     public function fetch(): void;
 
     public function pathToGitFolder(): string;
+
+    public function getInfoPath(): string;
 }
