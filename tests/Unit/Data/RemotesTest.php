@@ -14,7 +14,7 @@ class RemotesTest extends TestCase
     {
         $remotes = Remotes::createEmpty();
 
-        self::assertEquals('', $remotes->push);
-        self::assertEquals('', $remotes->fetch);
+        self::assertTrue($remotes->push->equals(''));
+        self::assertTrue($remotes->fetch->equals(''));
     }
 }
