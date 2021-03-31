@@ -27,27 +27,7 @@ class GithubOriginUrlTest extends TestCase
      */
     public function testToCommit(string $fetch, string $commit, string $expected): void
     {
-        $git = new class($fetch) implements HasRemotes {
-            private $fetch;
-
-            public function __construct(string $fetch)
-            {
-                $this->fetch = $fetch;
-            }
-
-            public function showRemote(): Remotes
-            {
-                return new Remotes(new Str($this->fetch), new Str(''));
-            }
-
-            public function addRemote(string $shortName, string $url): bool
-            {
-                //
-            }
-        };
-
-        //
-
+        $git = $this->mockHasRemotes($fetch);
         $url = new GithubOriginUrl();
 
         //
