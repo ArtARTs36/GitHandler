@@ -2,7 +2,6 @@
 
 namespace ArtARTs36\GitHandler;
 
-use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\HasRemotes;
 use ArtARTs36\GitHandler\Origin\Url\OriginUrlFactory;
 
@@ -15,8 +14,13 @@ class RepositoryDownloader
         $this->url = $url;
     }
 
-    public function download(HasRemotes $git, string $pathToSave)
+    public function origin(HasRemotes $git, string $pathToSave): bool
     {
-        $remotes = $git->showRemote()->fetch;
+        return file_put_contents($pathToSave, $this->download($git)) !== false;
+    }
+
+    protected function download(HasRemotes $git): string
+    {
+        return file_get_contents($this->url->factory($git)->toArchive($git));
     }
 }
