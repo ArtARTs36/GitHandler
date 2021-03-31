@@ -4,7 +4,7 @@ namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\HasRemotes;
-use ArtARTs36\GitHandler\Origin\Url\OriginUrlFactory;
+use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Client\ClientInterface;
 
@@ -16,7 +16,7 @@ class RepositoryDownloader
 
     protected $fileSystem;
 
-    public function __construct(OriginUrlFactory $url, ClientInterface $client, FileSystem $fileSystem)
+    public function __construct(OriginUrlSelector $url, ClientInterface $client, FileSystem $fileSystem)
     {
         $this->url = $url;
         $this->client = $client;
@@ -37,7 +37,7 @@ class RepositoryDownloader
     protected function fetch(HasRemotes $git): string
     {
         return $this->client->sendRequest(
-            new Request('GET', $this->url->factory($git)->toArchive($git))
+            new Request('GET', $this->url->select($git)->toArchive($git))
         )->getBody()->getContents();
     }
 }

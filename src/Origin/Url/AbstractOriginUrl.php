@@ -8,6 +8,13 @@ use ArtARTs36\Str\Str;
 
 abstract class AbstractOriginUrl implements OriginUrl
 {
+    protected $domains = [];
+
+    public function __construct(array $domains = [])
+    {
+        $this->domains = array_merge($this->domains, $domains);
+    }
+
     public function toCommit(HasRemotes $git, string $hash): string
     {
         return $this->toCommitFromFetchUrl($git->showRemote()->fetch, $hash);
@@ -16,6 +23,11 @@ abstract class AbstractOriginUrl implements OriginUrl
     public function toArchive(HasRemotes $git, string $branch = 'master'): string
     {
         return $this->toArchiveFromFetchUrl($git->showRemote()->fetch, $branch);
+    }
+
+    public function getAvailableDomains(): array
+    {
+        return $this->domains;
     }
 
     /**

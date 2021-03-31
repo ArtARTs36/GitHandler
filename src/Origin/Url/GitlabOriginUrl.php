@@ -6,6 +6,10 @@ use ArtARTs36\GitHandler\Contracts\OriginUrl;
 
 class GitlabOriginUrl extends AbstractOriginUrl implements OriginUrl
 {
+    protected $domains = [
+        'gitlab.com',
+    ];
+
     public function toCommitFromFetchUrl(string $fetchUrl, string $hash): string
     {
         return $this->toGitFolder($fetchUrl)->append('/-/commit/'. $hash);

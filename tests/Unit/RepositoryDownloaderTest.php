@@ -2,7 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
-use ArtARTs36\GitHandler\Origin\Url\OriginUrlFactory;
+use ArtARTs36\GitHandler\GitSimpleFactory;
+use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use ArtARTs36\GitHandler\RepositoryDownloader;
 use ArtARTs36\GitHandler\Support\SimpleHttpClient;
 use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
@@ -18,7 +19,7 @@ class RepositoryDownloaderTest extends TestCase
     public function testDownload(): void
     {
         $downloader = new RepositoryDownloader(
-            new OriginUrlFactory(),
+            GitSimpleFactory::factoryOriginUrlSelector(),
             MockHttpClient::good('test-file'),
             $fileSystem = new ArrayFileSystem()
         );

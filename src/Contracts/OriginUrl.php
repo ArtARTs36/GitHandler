@@ -11,4 +11,9 @@ interface OriginUrl
     public function toCommitFromFetchUrl(string $fetchUrl, string $hash): string;
 
     public function toArchiveFromFetchUrl(string $fetchUrl, string $branch = 'master'): string;
+
+    /**
+     * @return array<string>
+     */
+    public function getAvailableDomains(): array;
 }

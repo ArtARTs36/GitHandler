@@ -8,6 +8,10 @@ class GithubOriginUrl extends AbstractOriginUrl implements OriginUrl
 {
     protected $subdomain = 'codeload';
 
+    protected $domains = [
+        'github.com',
+    ];
+
     public function toCommitFromFetchUrl(string $fetchUrl, string $hash): string
     {
         return $this->toGitFolder($fetchUrl)->append('/commit/'. $hash);
