@@ -295,3 +295,12 @@ $action = new \ArtARTs36\GitHandler\Action($git);
 
 $action->reinstall();
 ```
+
+#### download repository
+
+```php
+$downloader = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepositoryDownloader();
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory(__DIR__);
+
+$downloader->download($git, '/path/to/save');
+```
