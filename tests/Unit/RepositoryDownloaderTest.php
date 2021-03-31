@@ -1,0 +1,32 @@
+<?php
+
+namespace ArtARTs36\GitHandler\Tests\Unit;
+
+use ArtARTs36\GitHandler\Origin\Url\OriginUrlFactory;
+use ArtARTs36\GitHandler\RepositoryDownloader;
+use ArtARTs36\GitHandler\Support\SimpleHttpClient;
+use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
+use ArtARTs36\GitHandler\Tests\Support\MockHttpClient;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+class RepositoryDownloaderTest extends TestCase
+{
+    /**
+     * @covers \ArtARTs36\GitHandler\RepositoryDownloader::download
+     */
+    public function testDownload(): void
+    {
+        $downloader = new RepositoryDownloader(
+            new OriginUrlFactory(),
+            MockHttpClient::good('test-file'),
+            $fileSystem = new ArrayFileSystem()
+        );
+
+        $pathToSave = __DIR__ . '/archive.zip';
+
+        $downloader->download($this->mockHasRemotes('https://github.com/ArtARTs36/GitHandler.git'), $pathToSave);
+
+        self::assertTrue($fileSystem->exists($pathToSave));
+    }
+}
