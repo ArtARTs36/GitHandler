@@ -22,6 +22,10 @@ class CoreConfigurator implements SubjectConfigurator
         );
     }
 
+    /**
+     * @inheritDoc
+     * @codeCoverageIgnore
+     */
     public function getPrefix(): string
     {
         return 'core';

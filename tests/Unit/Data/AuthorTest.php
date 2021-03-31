@@ -24,4 +24,24 @@ class AuthorTest extends TestCase
         self::assertFalse($author->equals(new Author('test', '')));
         self::assertFalse($author->equals(new Author('', 'test@mail.ru')));
     }
+
+    public function toStringDataProvider(): array
+    {
+        return [
+            [
+                'test',
+                'test@mail.ru',
+                'test <test@mail.ru>',
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider toStringDataProvider
+     * @covers \ArtARTs36\GitHandler\Data\Author::__toString()
+     */
+    public function testToString(string $name, string $email, string $result): void
+    {
+        self::assertEquals($result, (new Author($name, $email))->__toString());
+    }
 }

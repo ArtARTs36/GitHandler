@@ -20,6 +20,10 @@ class PackConfigurator implements SubjectConfigurator
         );
     }
 
+    /**
+     * @inheritDoc
+     * @codeCoverageIgnore
+     */
     public function getPrefix(): string
     {
         return 'pack';

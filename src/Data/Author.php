@@ -8,6 +8,9 @@ class Author
 
     public $email;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(string $name, string $email)
     {
         $this->name = $name;
