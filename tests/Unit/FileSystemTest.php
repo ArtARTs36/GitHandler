@@ -44,4 +44,15 @@ class FileSystemTest extends TestCase
         self::assertTrue($fileSystem->isPseudoFile('image.jpeg'));
         self::assertTrue($fileSystem->isPseudoFile('super.image.jpeg'));
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::exists
+     */
+    public function testExists(): void
+    {
+        $fileSystem = new LocalFileSystem();
+
+        self::assertTrue($fileSystem->exists(__FILE__));
+        self::assertFalse($fileSystem->exists('random-file'));
+    }
 }
