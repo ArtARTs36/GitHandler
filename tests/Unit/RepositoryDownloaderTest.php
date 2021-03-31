@@ -3,13 +3,9 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\GitSimpleFactory;
-use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use ArtARTs36\GitHandler\RepositoryDownloader;
-use ArtARTs36\GitHandler\Support\SimpleHttpClient;
 use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
 use ArtARTs36\GitHandler\Tests\Support\MockHttpClient;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 
 class RepositoryDownloaderTest extends TestCase
 {
