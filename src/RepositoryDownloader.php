@@ -8,18 +8,15 @@ use ArtARTs36\GitHandler\Origin\Url\OriginUrlFactory;
 
 class RepositoryDownloader
 {
-    protected $git;
-
     protected $url;
 
-    public function __construct(HasRemotes $git, OriginUrlFactory $url)
+    public function __construct(OriginUrlFactory $url)
     {
-        $this->git = $git;
         $this->url = $url;
     }
 
-    public function download(string $pathToSave)
+    public function download(HasRemotes $git, string $pathToSave)
     {
-        $remotes = $this->git->showRemote()->fetch;
+        $remotes = $git->showRemote()->fetch;
     }
 }
