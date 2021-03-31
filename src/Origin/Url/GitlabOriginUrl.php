@@ -2,19 +2,18 @@
 
 namespace ArtARTs36\GitHandler\Origin\Url;
 
-use ArtARTs36\GitHandler\Contracts\HasRemotes;
 use ArtARTs36\GitHandler\Contracts\OriginUrl;
 
 class GitlabOriginUrl extends AbstractOriginUrl implements OriginUrl
 {
-    public function toCommit(HasRemotes $git, string $hash): string
+    public function toCommitFromFetchUrl(string $fetchUrl, string $hash): string
     {
-        return $this->toGitFolder($git)->append('/-/commit/'. $hash);
+        return $this->toGitFolder($fetchUrl)->append('/-/commit/'. $hash);
     }
 
-    public function toArchive(HasRemotes $git, string $branch = 'master'): string
+    public function toArchiveFromFetchUrl(string $fetchUrl, string $branch = 'master'): string
     {
-        $folder = $this->toGitFolder($git);
+        $folder = $this->toGitFolder($fetchUrl);
         $repoName = pathinfo($folder, PATHINFO_BASENAME);
 
         return $folder->append("/-/archive/$branch/$repoName-$branch.zip");
