@@ -10,7 +10,9 @@ use ArtARTs36\GitHandler\Config\Configurators\UserConfigurator;
 use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\GitHandler\Origin\Url\OriginUrlFactory;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
+use ArtARTs36\GitHandler\Support\SimpleHttpClient;
 
 class GitSimpleFactory
 {
@@ -34,6 +36,15 @@ class GitSimpleFactory
                 new PackConfigurator(),
                 new CredentialConfigurator(),
             ])
+        );
+    }
+
+    public static function factoryRepositoryDownloader(): RepositoryDownloader
+    {
+        return new RepositoryDownloader(
+            new OriginUrlFactory(),
+            new SimpleHttpClient(),
+            new LocalFileSystem()
         );
     }
 }

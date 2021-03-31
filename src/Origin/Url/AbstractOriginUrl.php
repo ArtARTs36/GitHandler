@@ -18,6 +18,9 @@ abstract class AbstractOriginUrl implements OriginUrl
         return $this->toArchiveFromFetchUrl($git->showRemote()->fetch, $branch);
     }
 
+    /**
+     * @param Str|string $fetchUrl
+     */
     protected function toGitFolder($fetchUrl): Str
     {
         if (! $fetchUrl instanceof Str) {
