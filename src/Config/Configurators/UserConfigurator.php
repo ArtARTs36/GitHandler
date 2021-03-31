@@ -13,6 +13,10 @@ class UserConfigurator implements SubjectConfigurator
         return new User($raw['name'] ?? '', $raw['email'] ?? '');
     }
 
+    /**
+     * @inheritDoc
+     * @codeCoverageIgnore
+     */
     public function getPrefix(): string
     {
         return 'user';

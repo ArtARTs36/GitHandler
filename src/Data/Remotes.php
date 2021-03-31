@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Data;
 
 use ArtARTs36\GitHandler\Support\ToArray;
+use ArtARTs36\Str\Str;
 
 class Remotes
 {
@@ -12,7 +13,10 @@ class Remotes
 
     public $push;
 
-    public function __construct(string $fetch, string $push)
+    /**
+     * @codeCoverageIgnore
+     */
+    public function __construct(Str $fetch, Str $push)
     {
         $this->fetch = $fetch;
         $this->push = $push;
@@ -20,6 +24,6 @@ class Remotes
 
     public static function createEmpty(): self
     {
-        return new static('', '');
+        return new static(new Str(''), new Str(''));
     }
 }

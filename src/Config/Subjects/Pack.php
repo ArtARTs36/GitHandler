@@ -16,6 +16,9 @@ class Pack extends AbstractSubject
 
     public $window;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(
         string $windowMemory,
         string $packSizeLimit,

@@ -18,6 +18,9 @@ class Core extends AbstractSubject
 
     public $fileMode;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(
         string $autocrlf,
         bool $ignoreCase,

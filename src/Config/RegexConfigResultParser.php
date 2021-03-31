@@ -14,6 +14,9 @@ class RegexConfigResultParser implements ConfigResultParser
 
     protected $regex = "/^(.*?)\.(.*)=(.*)/m";
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(ConfiguratorsDict $configurators)
     {
         $this->configurators = $configurators;

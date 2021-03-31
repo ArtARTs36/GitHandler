@@ -13,6 +13,10 @@ class CredentialConfigurator implements SubjectConfigurator
         return new Credential($raw['helper'] ?? '');
     }
 
+    /**
+     * @inheritDoc
+     * @codeCoverageIgnore
+     */
     public function getPrefix(): string
     {
         return 'credential';

@@ -10,7 +10,11 @@ use ArtARTs36\GitHandler\Config\Configurators\UserConfigurator;
 use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl;
+use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl;
+use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
+use ArtARTs36\GitHandler\Support\SimpleHttpClient;
 
 class GitSimpleFactory
 {
@@ -35,5 +39,22 @@ class GitSimpleFactory
                 new CredentialConfigurator(),
             ])
         );
+    }
+
+    public static function factoryRepositoryDownloader(): RepositoryDownloader
+    {
+        return new RepositoryDownloader(
+            static::factoryOriginUrlSelector(),
+            new SimpleHttpClient(),
+            new LocalFileSystem()
+        );
+    }
+
+    public static function factoryOriginUrlSelector(): OriginUrlSelector
+    {
+        return OriginUrlSelector::make([
+            new GithubOriginUrl(),
+            new GitlabOriginUrl(),
+        ]);
     }
 }
