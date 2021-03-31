@@ -24,7 +24,7 @@ class GithubOriginUrlTest extends TestCase
             [
                 'https://github.com/ArtARTs36/GitHandler.git',
                 'master',
-                'https://github.com/ArtARTs36/GitHandler/archive/refs/heads/master.zip',
+                'https://codeload.github.com/ArtARTs36/GitHandler/zip/refs/heads/master',
             ],
         ];
     }
