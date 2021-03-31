@@ -2,30 +2,30 @@
 
 namespace ArtARTs36\GitHandler\Tests\Origin;
 
-use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl;
+use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class GithubOriginUrlTest extends TestCase
+class GitlabOriginUrlTest extends TestCase
 {
     public function toCommitDataProvider(): array
     {
         return [
             [
-                'https://github.com/ArtARTs36/GitHandler.git',
-                'a35d40a7226e8bc941fbabaf7534c33ca88380a7',
-                'https://github.com/ArtARTs36/GitHandler/commit/a35d40a7226e8bc941fbabaf7534c33ca88380a7',
+                'https://gitlab.com/artem_ukrainsky/testing-laravel.git',
+                'e62ef13e5676e0ceb4a829679a33f530e2ecc788',
+                'https://gitlab.com/artem_ukrainsky/testing-laravel/-/commit/e62ef13e5676e0ceb4a829679a33f530e2ecc788',
             ],
         ];
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toCommit
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl::toCommit
      * @dataProvider toCommitDataProvider
      */
     public function testToCommit(string $fetch, string $commit, string $expected): void
     {
         $git = $this->mockHasRemotes($fetch);
-        $url = new GithubOriginUrl();
+        $url = new GitlabOriginUrl();
 
         //
 
