@@ -6,6 +6,8 @@ use ArtARTs36\GitHandler\Contracts\OriginUrl;
 
 class GithubOriginUrl extends AbstractOriginUrl implements OriginUrl
 {
+    protected $subdomain = 'codeload';
+
     public function toCommitFromFetchUrl(string $fetchUrl, string $hash): string
     {
         return $this->toGitFolder($fetchUrl)->append('/commit/'. $hash);
@@ -13,6 +15,18 @@ class GithubOriginUrl extends AbstractOriginUrl implements OriginUrl
 
     public function toArchiveFromFetchUrl(string $fetchUrl, string $branch = 'master'): string
     {
-        return $this->toGitFolder($fetchUrl)->append("/archive/refs/heads/$branch.zip");
+        $host = parse_url($fetchUrl, PHP_URL_HOST);
+
+        return $this
+            ->toGitFolder($fetchUrl)
+            ->replace([
+                $host => $this->buildDomain($host),
+            ])
+            ->append("/zip/refs/heads/$branch");
+    }
+
+    protected function buildDomain(string $host): string
+    {
+        return $this->subdomain . '.' . $host;
     }
 }
