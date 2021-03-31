@@ -18,6 +18,17 @@ class GitlabOriginUrlTest extends TestCase
         ];
     }
 
+    public function toArchiveDataProvider(): array
+    {
+        return [
+            [
+                'https://gitlab.com/artem_ukrainsky/testing-laravel.git',
+                'master',
+                'https://gitlab.com/artem_ukrainsky/testing-laravel/-/archive/master/testing-laravel-master.zip',
+            ],
+        ];
+    }
+
     /**
      * @covers \ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl::toCommit
      * @dataProvider toCommitDataProvider
@@ -30,5 +41,17 @@ class GitlabOriginUrlTest extends TestCase
         //
 
         self::assertEquals($expected, $url->toCommit($git, $commit));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toArchive
+     * @dataProvider toArchiveDataProvider
+     */
+    public function testToArchive(string $fetch, string $branch, string $expected): void
+    {
+        $git = $this->mockHasRemotes($fetch);
+        $url = new GitlabOriginUrl();
+
+        self::assertEquals($expected, $url->toArchive($git, $branch));
     }
 }

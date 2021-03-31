@@ -11,4 +11,9 @@ class GithubOriginUrl extends AbstractOriginUrl implements OriginUrl
     {
         return $this->toGitFolder($git)->append('/commit/'. $hash);
     }
+
+    public function toArchive(HasRemotes $git, string $branch = 'master'): string
+    {
+        return $this->toGitFolder($git)->append("/archive/refs/heads/$branch.zip");
+    }
 }

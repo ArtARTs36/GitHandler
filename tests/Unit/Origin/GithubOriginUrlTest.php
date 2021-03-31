@@ -18,6 +18,17 @@ class GithubOriginUrlTest extends TestCase
         ];
     }
 
+    public function toArchiveDataProvider(): array
+    {
+        return [
+            [
+                'https://github.com/ArtARTs36/GitHandler.git',
+                'master',
+                'https://github.com/ArtARTs36/GitHandler/archive/refs/heads/master.zip',
+            ],
+        ];
+    }
+
     /**
      * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toCommit
      * @dataProvider toCommitDataProvider
@@ -30,5 +41,17 @@ class GithubOriginUrlTest extends TestCase
         //
 
         self::assertEquals($expected, $url->toCommit($git, $commit));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toArchive
+     * @dataProvider toArchiveDataProvider
+     */
+    public function testToArchive(string $fetch, string $branch, string $expected): void
+    {
+        $git = $this->mockHasRemotes($fetch);
+        $url = new GithubOriginUrl();
+
+        self::assertEquals($expected, $url->toArchive($git, $branch));
     }
 }
