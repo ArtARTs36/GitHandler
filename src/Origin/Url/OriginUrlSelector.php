@@ -45,9 +45,7 @@ class OriginUrlSelector
             throw new OriginUrlNotFound();
         }
 
-        $class = $this->map[$domain];
-
-        return new $class;
+        return $this->map[$domain];
     }
 
     public function has(string $domain): bool
