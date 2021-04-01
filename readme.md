@@ -114,6 +114,13 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->showRemote());
 ```
 
+#### git remote remove origin:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->removeRemote('origin'));
+```
+
 #### git fetch:
 
 ```php

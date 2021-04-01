@@ -3,6 +3,8 @@
 namespace ArtARTs36\GitHandler\Operations;
 
 use ArtARTs36\GitHandler\Data\Remotes;
+use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\RemoteNotFound;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -30,16 +32,52 @@ trait RemoteOperations
         );
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function removeRemote(string $shortName): bool
+    {
+        $result = $this->executeCommand(
+            $this
+                ->newCommand()
+                ->addParameter('remote')
+                ->addParameter('remove')
+                ->addParameter($shortName)
+        );
+
+        if ($result === null || $result->isEmpty()) {
+            return true;
+        }
+
+        if (($notFound = $result->match("/No such remote: '(.*)'/i")) && ! $notFound->isEmpty()) {
+            throw new RemoteNotFound($notFound);
+        }
+
+        return true;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function addRemote(string $shortName, string $url): bool
     {
-        return $this
-                ->executeCommand(
-                    $this->newCommand()
-                        ->addParameter('remote')
-                        ->addParameter('add')
-                        ->addParameter($shortName)
-                        ->addParameter($url)
-                ) === null;
+        $result = $this->executeCommand(
+            $this->newCommand()
+                ->addParameter('remote')
+                ->addParameter('add')
+                ->addParameter($shortName)
+                ->addParameter($url)
+        );
+
+        if ($result === null || $result->isEmpty()) {
+            return true;
+        }
+
+        if (($alreadyExists = $result->match('/remote (.*) already exists/i')) && ! $alreadyExists->isEmpty()) {
+            throw new RemoteAlreadyExists($alreadyExists);
+        }
+
+        return true;
     }
 
     /**

@@ -82,6 +82,11 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             {
                 //
             }
+
+            public function removeRemote(string $shortName): bool
+            {
+                // TODO: Implement removeRemote() method.
+            }
         };
     }
 }
