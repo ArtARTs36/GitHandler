@@ -262,25 +262,27 @@ var_dump($git->isInit());
 
 ## Status Operations
 
-#### git status:
+Use the interface: \ArtARTs36\GitHandler\Contracts\Statusable
+
+### Check has changes:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->hasChanges()); // boolean
+```
+
+### `git status`:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->status());
 ```
 
-#### git status --short:
+### `git status --short`:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->status(true));
-```
-
-#### Check has changes:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->hasChanges()); // boolean
 ```
 
 ### Get untracked files:
