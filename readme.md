@@ -35,20 +35,6 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->clone('https://github.com/ArtARTs36/GitHandler');
 ```
 
-#### -> git pull:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$git->pull();
-```
-
-#### -> git pull 'branch':
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$git->pull('branch-name');
-```
-
 #### -> git checkout:
 
 ```php
@@ -141,6 +127,24 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $action = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepository($git)
 
 $action->reinstall();
+```
+
+---
+
+## Pull Operations
+
+#### -> git pull:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->pull();
+```
+
+#### -> git pull 'branch':
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->pull('branch-name');
 ```
 
 ---
