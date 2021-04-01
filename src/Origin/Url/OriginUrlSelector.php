@@ -34,11 +34,17 @@ class OriginUrlSelector
         return new static($map);
     }
 
+    /**
+     * @throws OriginUrlNotFound
+     */
     public function select(HasRemotes $git): OriginUrl
     {
         return $this->selectByDomain(parse_url($git->showRemote()->fetch, PHP_URL_HOST));
     }
 
+    /**
+     * @throws OriginUrlNotFound
+     */
     public function selectByDomain(string $domain): OriginUrl
     {
         if (! $this->has($domain)) {
