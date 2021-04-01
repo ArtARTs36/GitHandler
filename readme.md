@@ -92,22 +92,6 @@ foreach ($git->log() as $log) {
 }
 ```
 
-#### -> git commit -m="Hello":
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-
-$git->commit('Hello');
-```
-
-#### -> git commit -m="Hello" --amend:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-
-$git->commit('Hello', true);
-```
-
 #### -> git version
 
 ```php
@@ -266,7 +250,7 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->getAddedFiles()); // array<string>
 ```
 
-### * Check has changes:
+#### * Check has changes:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -364,6 +348,26 @@ var_dump($pack->sizeLimit);
 var_dump($pack->threads);
 var_dump($pack->window);
 var_dump($pack->windowMemory);
+```
+
+----
+
+## Commit operations
+
+#### -> git commit -m="Hello":
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+$git->commit('Hello');
+```
+
+#### -> git commit -m="Hello" --amend:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+$git->commit('Hello', true);
 ```
 
 ---
