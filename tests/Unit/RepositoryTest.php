@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 use ArtARTs36\GitHandler\Repository;
 use ArtARTs36\GitHandler\GitSimpleFactory;
 
-class ActionTest extends TestCase
+class RepositoryTest extends TestCase
 {
     public function setUp(): void
     {
@@ -34,7 +34,7 @@ class ActionTest extends TestCase
 
         $action->createFolder('test');
 
-        //);
+        //
 
         self::assertTrue($this->fileSystem->exists($dir . DIRECTORY_SEPARATOR . 'test'));
     }

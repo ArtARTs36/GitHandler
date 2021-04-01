@@ -20,7 +20,7 @@ class Ignore
 
     public function add(string $path): bool
     {
-        $gitIgnore = $this->getPathToIgnoreFile();
+        $gitIgnore = $this->getPathToFile();
 
         $content = $this->fileSystem->exists($gitIgnore) ? $this->fileSystem->getFileContent($gitIgnore) : '';
         $content = new Str($content);
@@ -34,22 +34,15 @@ class Ignore
 
     public function has(string $path): bool
     {
-        if (! $this->fileSystem->exists($this->getPathToIgnoreFile())) {
+        if (! $this->fileSystem->exists($this->getPathToFile())) {
             return false;
         }
 
-        $content = new Str($this->fileSystem->getFileContent($this->getPathToIgnoreFile()));
-
-        foreach ($content->lines() as $line) {
-            if ($line->trim()->equals($path)) {
-                return true;
-            }
-        }
-
-        return false;
+        return (new Str($this->fileSystem->getFileContent($this->getPathToFile())))
+            ->hasLine($path);
     }
 
-    protected function getPathToIgnoreFile(): string
+    public function getPathToFile(): string
     {
         return $this->git->getDir() . '/.gitignore';
     }
