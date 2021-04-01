@@ -4,13 +4,14 @@ namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
-use ArtARTs36\Str\Str;
 
 class Repository
 {
     protected $git;
 
     protected $fileSystem;
+
+    protected $ignore = null;
 
     /**
      * @codeCoverageIgnore
@@ -67,6 +68,10 @@ class Repository
 
     public function ignore(): Ignore
     {
-        return new Ignore($this->git, $this->fileSystem);
+        if ($this->ignore === null) {
+            $this->ignore = new Ignore($this->git, $this->fileSystem);
+        }
+
+        return $this->ignore;
     }
 }
