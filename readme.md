@@ -122,28 +122,6 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->commit('Hello', true);
 ```
 
-#### git tag:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->getTags());
-```
-
-#### git tag -l 1.0.*:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->getTags('1.0.*'));
-```
-
-### git tag -a 1.0.0 -m Version 1.0.0
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->performTag('1.0.0', 'Version 1.0.0'));
-var_dump($git->performTag('1.0.0'));
-```
-
 ### git config user.name test@mail.ru
 
 ```php
@@ -194,13 +172,6 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->help());
 ```
 
-### check exists tag
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->isTagExists('1.0.0'));
-```
-
 #### create folder in repository:
 
 ```php
@@ -240,22 +211,57 @@ $action->reinstall();
 
 ---
 
+## Tag Operations
+
+Use the interface: \ArtARTs36\GitHandler\Contracts\Taggable
+
+### * check exists tag
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->isTagExists('1.0.0'));
+```
+
+### -> git tag:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getTags());
+```
+
+### -> git tag -l 1.0.*:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getTags('1.0.*'));
+```
+
+### -> git tag -a 1.0.0 -m Version 1.0.0
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->performTag('1.0.0', 'Version 1.0.0'));
+var_dump($git->performTag('1.0.0'));
+```
+
+---
+
 ## Init Operations
 
 Use the Interface: \ArtARTs36\GitHandler\Contracts\Initable
 
-#### git init:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$git->init();
-```
-
-#### check if the repository is initialized :
+### * Check if the repository is initialized :
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->isInit());
+```
+
+### -> git init:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->init();
 ```
 
 ---
@@ -264,21 +270,21 @@ var_dump($git->isInit());
 
 Use the interface: \ArtARTs36\GitHandler\Contracts\Statusable
 
-### Check has changes:
+### * Check has changes:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->hasChanges()); // boolean
 ```
 
-### `git status`:
+### -> git status:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->status());
 ```
 
-### `git status --short`:
+### -> git status --short:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
