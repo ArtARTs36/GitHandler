@@ -28,56 +28,56 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 
 ### Examples:
 
-#### git clone:
+#### -> git clone:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->clone('https://github.com/ArtARTs36/GitHandler');
 ```
 
-#### git pull:
+#### -> git pull:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->pull();
 ```
 
-#### git pull 'branch':
+#### -> git pull 'branch':
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->pull('branch-name');
 ```
 
-#### git checkout:
+#### -> git checkout:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->checkout('branch-name');
 ```
 
-#### git add:
+#### -> git add:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->add('file_name'));
 ```
 
-#### git fetch:
+#### -> git fetch:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->fetch();
 ```
 
-#### git push:
+#### -> git push:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->push();
 ```
 
-#### git log:
+#### -> git log:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -92,7 +92,7 @@ foreach ($git->log() as $log) {
 }
 ```
 
-#### git commit -m="Hello":
+#### -> git commit -m="Hello":
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -100,7 +100,7 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->commit('Hello');
 ```
 
-#### git commit -m="Hello" --amend:
+#### -> git commit -m="Hello" --amend:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -108,14 +108,14 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->commit('Hello', true);
 ```
 
-### git version
+#### -> git version
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->version());
 ```
 
-### git --help
+#### -> git --help
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -190,28 +190,28 @@ var_dump($git->addRemote('alias', 'url'));
 
 Use the interface: \ArtARTs36\GitHandler\Contracts\Taggable
 
-### * check exists tag
+#### * check exists tag
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->isTagExists('1.0.0'));
 ```
 
-### -> git tag:
+#### -> git tag:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->getTags());
 ```
 
-### -> git tag -l 1.0.*:
+#### -> git tag -l 1.0.*:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->getTags('1.0.*'));
 ```
 
-### -> git tag -a 1.0.0 -m Version 1.0.0
+#### -> git tag -a 1.0.0 -m Version 1.0.0
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -225,14 +225,14 @@ var_dump($git->performTag('1.0.0'));
 
 Use the Interface: \ArtARTs36\GitHandler\Contracts\Initable
 
-### * Check if the repository is initialized :
+#### * Check if the repository is initialized :
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->isInit());
 ```
 
-### -> git init:
+#### -> git init:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -245,21 +245,21 @@ $git->init();
 
 Use the interface: \ArtARTs36\GitHandler\Contracts\Statusable
 
-### * Get untracked files:
+#### * Get untracked files:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->getUntrackedFiles()); // array<string>
 ```
 
-### * Get modified files:
+#### * Get modified files:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->getModifiedFiles()); // array<string>
 ```
 
-### * Get addded files:
+#### * Get added files:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -273,14 +273,14 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->hasChanges()); // boolean
 ```
 
-### -> git status:
+#### -> git status:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->status());
 ```
 
-### -> git status --short:
+#### -> git status --short:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -291,21 +291,21 @@ var_dump($git->status(true));
 
 ## Get Paths:
 
-### git --info-path
+#### -> git --info-path
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->getInfoPath());
 ```
 
-### git --html-path
+#### -> git --html-path
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->getHtmlPath());
 ```
 
-### git --man-path
+#### -> git --man-path
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -318,7 +318,7 @@ var_dump($git->getManPath());
 
 Use the interface: \ArtARTs36\GitHandler\Contracts\Stashable
 
-#### 1. git stash save:
+#### -> git stash save:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -326,7 +326,7 @@ $git->stash();
 $git->stash('message');
 ```
 
-#### 2. git stash pop:
+#### -> git stash pop:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -337,7 +337,7 @@ $git->unStash();
 
 ## Config Operations
 
-### -> git config user.name test@mail.ru
+#### -> git config user.name test@mail.ru
 
 ```php
 use \ArtARTs36\GitHandler\GitSimpleFactory;
@@ -346,7 +346,7 @@ $git = GitSimpleFactory::factory('/var/web/project');
 var_dump($git->setConfig('user', 'name', 'test@mail.ru'));
 ```
 
-### -> git config --list
+#### -> git config --list
 
 ```php
 use ArtARTs36\GitHandler\GitSimpleFactory;
@@ -372,7 +372,7 @@ var_dump($pack->windowMemory);
 
 Use \ArtARTs36\GitHandler\Repository
 
-### * Add to .gitignore
+#### * Add to .gitignore
 
 ```php
 use ArtARTs36\GitHandler\GitSimpleFactory;
@@ -384,7 +384,7 @@ $repository->ignore()->add('/vendor/');
 
 ```
 
-### * Has file in .gitignore
+#### * Has file in .gitignore
 
 ```php
 use ArtARTs36\GitHandler\GitSimpleFactory;
@@ -396,7 +396,7 @@ $repository->ignore()->has('/vendor/');
 
 ``````
 
-### * Get files paths from .gitignore
+#### * Get files paths from .gitignore
 
 ```php
 use ArtARTs36\GitHandler\GitSimpleFactory;
