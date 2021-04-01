@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
-use ArtARTs36\GitHandler\Action;
+use ArtARTs36\GitHandler\Repository;
 use ArtARTs36\GitHandler\GitSimpleFactory;
 
 class ActionTest extends TestCase
@@ -22,7 +22,7 @@ class ActionTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Action::createFolder
+     * @covers \ArtARTs36\GitHandler\Repository::createFolder
      */
     public function testCreateFolder(): void
     {
@@ -30,7 +30,7 @@ class ActionTest extends TestCase
 
         $git = GitSimpleFactory::factory($dir);
 
-        $action = new Action($git, $this->fileSystem);
+        $action = new Repository($git, $this->fileSystem);
 
         $action->createFolder('test');
 
@@ -40,7 +40,7 @@ class ActionTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Action::createFile
+     * @covers \ArtARTs36\GitHandler\Repository::createFile
      */
     public function testCreateFile(): void
     {
@@ -60,7 +60,7 @@ class ActionTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Action::delete
+     * @covers \ArtARTs36\GitHandler\Repository::delete
      */
     public function testDelete(): void
     {
@@ -75,13 +75,13 @@ class ActionTest extends TestCase
         self::assertFalse($this->fileSystem->exists($this->getTmpDir()));
     }
 
-    private function mock(): Action
+    private function mock(): Repository
     {
         $dir = $this->getTmpDir();
 
         $git = GitSimpleFactory::factory($dir, $this->fileSystem);
 
-        return new Action($git, $this->fileSystem);
+        return new Repository($git, $this->fileSystem);
     }
 
     private function getTmpDir(): string

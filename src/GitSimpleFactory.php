@@ -59,4 +59,9 @@ class GitSimpleFactory
             new BitbucketOriginUrl(),
         ]);
     }
+
+    public static function factoryRepository(GitHandler $git): Repository
+    {
+        return new Repository($git, new LocalFileSystem());
+    }
 }

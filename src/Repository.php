@@ -4,8 +4,9 @@ namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\Str\Str;
 
-class Action
+class Repository
 {
     protected $git;
 
@@ -62,5 +63,24 @@ class Action
     public function delete(): bool
     {
         return $this->fileSystem->removeDir($this->git->getDir());
+    }
+
+    public function ignore(string $path): bool
+    {
+        $gitIgnore = $this->getPathToIgnoreFile();
+
+        $content = $this->fileSystem->exists($gitIgnore) ? $this->fileSystem->getFileContent($gitIgnore) : '';
+        $content = new Str($content);
+
+        if (! $content->isEmpty()) {
+            $content = $content->append("\n");
+        }
+
+        return $this->fileSystem->createFile($gitIgnore, $content->append($path));
+    }
+
+    protected function getPathToIgnoreFile(): string
+    {
+        return $this->git->getDir() . '/.gitignore';
     }
 }

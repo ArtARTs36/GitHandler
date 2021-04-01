@@ -126,7 +126,7 @@ var_dump($git->help());
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$action = new \ArtARTs36\GitHandler\Action($git);
+$action = new \ArtARTs36\GitHandler\Repository($git);
 
 $action->createFolder('folder_name');
 ```
@@ -135,7 +135,7 @@ $action->createFolder('folder_name');
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$action = new \ArtARTs36\GitHandler\Action($git);
+$action = new \ArtARTs36\GitHandler\Repository($git);
 
 $action->createFile('file.php', 'echo hello world');
 $action->createFile('file.php', 'echo hello world', 'folder_name');
@@ -145,7 +145,7 @@ $action->createFile('file.php', 'echo hello world', 'folder_name');
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$action = new \ArtARTs36\GitHandler\Action($git);
+$action = new \ArtARTs36\GitHandler\Repository($git);
 
 $action->delete();
 ```
@@ -154,7 +154,7 @@ $action->delete();
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$action = new \ArtARTs36\GitHandler\Action($git);
+$action = new \ArtARTs36\GitHandler\Repository($git);
 
 $action->reinstall();
 ```
@@ -364,6 +364,24 @@ var_dump($pack->sizeLimit);
 var_dump($pack->threads);
 var_dump($pack->window);
 var_dump($pack->windowMemory);
+```
+
+---
+
+## Operations with .gitignore
+
+Use \ArtARTs36\GitHandler\Repository
+
+### * Add to .gitignore
+
+```php
+use ArtARTs36\GitHandler\GitSimpleFactory;
+
+$git = GitSimpleFactory::factory('/var/web/project');
+$repository = GitSimpleFactory::factoryRepository($git);
+
+$repository->ignore('/vendor/');
+
 ```
 
 ---
