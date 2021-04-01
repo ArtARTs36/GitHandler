@@ -245,6 +245,27 @@ $git->init();
 
 Use the interface: \ArtARTs36\GitHandler\Contracts\Statusable
 
+### * Get untracked files:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getUntrackedFiles()); // array<string>
+```
+
+### * Get modified files:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getModifiedFiles()); // array<string>
+```
+
+### * Get addded files:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getAddedFiles()); // array<string>
+```
+
 ### * Check has changes:
 
 ```php
@@ -264,27 +285,6 @@ var_dump($git->status());
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->status(true));
-```
-
-### Get untracked files:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->getUntrackedFiles()); // array<string>
-```
-
-### Get modified files:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->getModifiedFiles()); // array<string>
-```
-
-### Get addded files:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->getAddedFiles()); // array<string>
 ```
 
 ---
