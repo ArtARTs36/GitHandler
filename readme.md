@@ -63,20 +63,6 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->add('file_name'));
 ```
 
-#### git remote show origin:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->showRemote());
-```
-
-#### git remote remove origin:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->removeRemote('origin'));
-```
-
 #### git fetch:
 
 ```php
@@ -120,42 +106,6 @@ $git->commit('Hello');
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 
 $git->commit('Hello', true);
-```
-
-### git config user.name test@mail.ru
-
-```php
-use \ArtARTs36\GitHandler\GitSimpleFactory;
-
-$git = GitSimpleFactory::factory('/var/web/project');
-var_dump($git->setConfig('user', 'name', 'test@mail.ru'));
-```
-
-### git config --list
-
-```php
-use ArtARTs36\GitHandler\GitSimpleFactory;
-
-$git = GitSimpleFactory::factory('/var/web/project');
-
-var_dump($git->getConfigList());
-
-/** @var \ArtARTs36\GitHandler\Config\Subjects\Pack $pack */
-$pack = $git->getConfigSubject('pack');
-
-var_dump($pack->deltaCacheSize);
-var_dump($pack->packSizeLimit);
-var_dump($pack->sizeLimit);
-var_dump($pack->threads);
-var_dump($pack->window);
-var_dump($pack->windowMemory);
-```
-
-### git remote add <alias> <url>
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->addRemote('alias', 'url'));
 ```
 
 ### git version
@@ -210,6 +160,31 @@ $action->reinstall();
 ```
 
 ---
+
+## Remote Operations
+
+Use the interface: \ArtARTs36\GitHandler\Contracts\HasRemotes
+
+### -> git remote show origin:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->showRemote());
+```
+
+### -> git remote remove origin:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->removeRemote('origin'));
+```
+
+### -> git remote add <alias> <url>
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->addRemote('alias', 'url'));
+```
 
 ## Tag Operations
 
@@ -356,6 +331,39 @@ $git->stash('message');
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->unStash();
+```
+
+---
+
+## Config Operations
+
+### -> git config user.name test@mail.ru
+
+```php
+use \ArtARTs36\GitHandler\GitSimpleFactory;
+
+$git = GitSimpleFactory::factory('/var/web/project');
+var_dump($git->setConfig('user', 'name', 'test@mail.ru'));
+```
+
+### -> git config --list
+
+```php
+use ArtARTs36\GitHandler\GitSimpleFactory;
+
+$git = GitSimpleFactory::factory('/var/web/project');
+
+var_dump($git->getConfigList());
+
+/** @var \ArtARTs36\GitHandler\Config\Subjects\Pack $pack */
+$pack = $git->getConfigSubject('pack');
+
+var_dump($pack->deltaCacheSize);
+var_dump($pack->packSizeLimit);
+var_dump($pack->sizeLimit);
+var_dump($pack->threads);
+var_dump($pack->window);
+var_dump($pack->windowMemory);
 ```
 
 ---
