@@ -296,7 +296,16 @@ $action = new \ArtARTs36\GitHandler\Action($git);
 $action->reinstall();
 ```
 
-#### download repository
+---
+
+## Download repository
+
+Support download from:
+* bitbucket.org
+* gitlab.com
+* github.com
+
+Example code:
 
 ```php
 $downloader = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepositoryDownloader();
