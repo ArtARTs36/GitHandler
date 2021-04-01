@@ -26,22 +26,7 @@ Tool for work with git
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 ```
 
-
 ### Examples:
-
-#### git init:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$git->init();
-```
-
-#### check if the repository is initialized :
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->isInit());
-```
 
 #### git clone:
 
@@ -90,21 +75,6 @@ var_dump($git->status(true));
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->add('file_name'));
-```
-
-#### git stash save:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$git->stash();
-$git->stash('message');
-```
-
-#### git stash pop:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$git->unStash();
 ```
 
 #### git remote show origin:
@@ -231,27 +201,6 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->version());
 ```
 
-### git --info-path
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->getInfoPath());
-```
-
-### git --html-path
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->getHtmlPath());
-```
-
-### git --man-path
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->getManPath());
-```
-
 ### git --help
 
 ```php
@@ -301,6 +250,72 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $action = new \ArtARTs36\GitHandler\Action($git);
 
 $action->reinstall();
+```
+
+---
+
+## Init Operations
+
+Use the Interface: \ArtARTs36\GitHandler\Contracts\Initable
+
+#### git init:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->init();
+```
+
+#### check if the repository is initialized :
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->isInit());
+```
+
+---
+
+## Get Paths:
+
+### git --info-path
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getInfoPath());
+```
+
+### git --html-path
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getHtmlPath());
+```
+
+### git --man-path
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getManPath());
+```
+
+---
+
+## Stash Operations
+
+Use the interface: \ArtARTs36\GitHandler\Contracts\Stashable
+
+#### 1. git stash save:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->stash();
+$git->stash('message');
+```
+
+#### 2. git stash pop:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->unStash();
 ```
 
 ---
