@@ -18,6 +18,20 @@ class Ignore
         $this->fileSystem = $fileSystem;
     }
 
+    /**
+     * @return array<string>
+     */
+    public function files(): array
+    {
+        $path = $this->getPathToFile();
+
+        if (! $this->fileSystem->exists($path)) {
+            return [];
+        }
+
+        return array_map('trim', (new Str($this->fileSystem->getFileContent($this->getPathToFile())))->lines());
+    }
+
     public function add(string $path): bool
     {
         $gitIgnore = $this->getPathToFile();

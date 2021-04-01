@@ -11,6 +11,7 @@ class IgnoreTest extends TestCase
     /**
      * @covers \ArtARTs36\GitHandler\Ignore::add
      * @covers \ArtARTs36\GitHandler\Ignore::has
+     * @covers \ArtARTs36\GitHandler\Ignore::files
      */
     public function testAdd(): void
     {
@@ -20,11 +21,13 @@ class IgnoreTest extends TestCase
         $ignore = $repository->ignore();
 
         self::assertFalse($ignore->has('test.txt'));
+        self::assertEquals([], $ignore->files());
 
         $ignore->add('test.txt');
 
         self::assertTrue($fileSystem->exists($ignore->getPathToFile()));
         self::assertEquals('test.txt', $fileSystem->getFileContent($ignore->getPathToFile()));
         self::assertTrue($ignore->has('test.txt'));
+        self::assertEquals(['test.txt'], $ignore->files());
     }
 }

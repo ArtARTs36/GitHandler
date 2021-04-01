@@ -394,6 +394,18 @@ $repository = GitSimpleFactory::factoryRepository($git);
 
 $repository->ignore()->has('/vendor/');
 
+``````
+
+### * Get files paths from .gitignore
+
+```php
+use ArtARTs36\GitHandler\GitSimpleFactory;
+
+$git = GitSimpleFactory::factory('/var/web/project');
+$repository = GitSimpleFactory::factoryRepository($git);
+
+var_dump($repository->ignore()->files());
+
 ```
 
 ---
