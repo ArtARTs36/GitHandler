@@ -14,29 +14,9 @@ class ConfiguratorsDictTest extends TestCase
     {
         return [
             [
-                $dict = ConfiguratorsDict::make([
-                    $one = new class implements SubjectConfigurator {
-                        public function parse(array $raw): ConfigSubject
-                        {
-                            //
-                        }
-
-                        public function getPrefix(): string
-                        {
-                            return 'test1';
-                        }
-                    },
-                    $two = new class implements SubjectConfigurator {
-                        public function parse(array $raw): ConfigSubject
-                        {
-                            //
-                        }
-
-                        public function getPrefix(): string
-                        {
-                            return 'test2';
-                        }
-                    },
+                ConfiguratorsDict::make([
+                    $one = $this->mockConfigurator('test1'),
+                    $two = $this->mockConfigurator('test2'),
                 ]),
                 $one,
                 $two,
@@ -45,10 +25,10 @@ class ConfiguratorsDictTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Config\ConfiguratorsDict::make
+     * @covers \ArtARTs36\GitHandler\Config\ConfiguratorsDict::getIterator
      * @dataProvider mockDataProvider
      */
-    public function testMake(ConfiguratorsDict $dict, SubjectConfigurator $one, SubjectConfigurator $two): void
+    public function testGetIterator(ConfiguratorsDict $dict, SubjectConfigurator $one, SubjectConfigurator $two): void
     {
         $given = $dict->getIterator()->getArrayCopy();
 
@@ -80,5 +60,45 @@ class ConfiguratorsDictTest extends TestCase
 
         self::expectException(SubjectConfiguratorNotFound::class);
         $dict->getOrFail('random');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Config\ConfiguratorsDict::make
+     */
+    public function testMake(): void
+    {
+        $data = [
+            $a = $this->mockConfigurator('a'),
+            $b = $this->mockConfigurator('b'),
+        ];
+
+        $dict = ConfiguratorsDict::make($data);
+
+        self::assertEquals(
+            compact('a', 'b'),
+            $this->getPropertyValueOfObject($dict, 'configurators')
+        );
+    }
+
+    protected function mockConfigurator(string $prefix): SubjectConfigurator
+    {
+        return new class($prefix) implements SubjectConfigurator {
+            private $prefix;
+
+            public function __construct(string $prefix)
+            {
+                $this->prefix = $prefix;
+            }
+
+            public function parse(array $raw): ConfigSubject
+            {
+                //
+            }
+
+            public function getPrefix(): string
+            {
+                return $this->prefix;
+            }
+        };
     }
 }

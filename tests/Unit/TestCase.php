@@ -89,4 +89,13 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             }
         };
     }
+
+    protected function getPropertyValueOfObject($object, string $property)
+    {
+        $getter = function () use ($property) {
+            return $this->$property;
+        };
+
+        return $getter->call($object);
+    }
 }
