@@ -56,20 +56,6 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->checkout('branch-name');
 ```
 
-#### git status:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->status());
-```
-
-#### git status --short:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->status(true));
-```
-
 #### git add:
 
 ```php
@@ -270,6 +256,52 @@ $git->init();
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->isInit());
+```
+
+---
+
+## Status Operations
+
+#### git status:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->status());
+```
+
+#### git status --short:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->status(true));
+```
+
+#### Check has changes:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->hasChanges()); // boolean
+```
+
+### Get untracked files:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getUntrackedFiles()); // array<string>
+```
+
+### Get modified files:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getModifiedFiles()); // array<string>
+```
+
+### Get addded files:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getAddedFiles()); // array<string>
 ```
 
 ---
