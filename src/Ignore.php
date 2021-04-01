@@ -1,0 +1,56 @@
+<?php
+
+namespace ArtARTs36\GitHandler;
+
+use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\Str\Str;
+
+class Ignore
+{
+    protected $git;
+
+    protected $fileSystem;
+
+    public function __construct(GitHandler $git, FileSystem $fileSystem)
+    {
+        $this->git = $git;
+        $this->fileSystem = $fileSystem;
+    }
+
+    public function add(string $path): bool
+    {
+        $gitIgnore = $this->getPathToIgnoreFile();
+
+        $content = $this->fileSystem->exists($gitIgnore) ? $this->fileSystem->getFileContent($gitIgnore) : '';
+        $content = new Str($content);
+
+        if (! $content->isEmpty()) {
+            $content = $content->append("\n");
+        }
+
+        return $this->fileSystem->createFile($gitIgnore, $content->append($path));
+    }
+
+    public function has(string $path): bool
+    {
+        if (! $this->fileSystem->exists($this->getPathToIgnoreFile())) {
+            return false;
+        }
+
+        $content = new Str($this->fileSystem->getFileContent($this->getPathToIgnoreFile()));
+
+        foreach ($content->lines() as $line) {
+            if ($line->trim()->equals($path)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    protected function getPathToIgnoreFile(): string
+    {
+        return $this->git->getDir() . '/.gitignore';
+    }
+}

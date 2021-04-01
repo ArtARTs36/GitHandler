@@ -380,7 +380,19 @@ use ArtARTs36\GitHandler\GitSimpleFactory;
 $git = GitSimpleFactory::factory('/var/web/project');
 $repository = GitSimpleFactory::factoryRepository($git);
 
-$repository->ignore('/vendor/');
+$repository->ignore()->add('/vendor/');
+
+```
+
+### * Has file in .gitignore
+
+```php
+use ArtARTs36\GitHandler\GitSimpleFactory;
+
+$git = GitSimpleFactory::factory('/var/web/project');
+$repository = GitSimpleFactory::factoryRepository($git);
+
+$repository->ignore()->has('/vendor/');
 
 ```
 

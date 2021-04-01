@@ -65,22 +65,8 @@ class Repository
         return $this->fileSystem->removeDir($this->git->getDir());
     }
 
-    public function ignore(string $path): bool
+    public function ignore(): Ignore
     {
-        $gitIgnore = $this->getPathToIgnoreFile();
-
-        $content = $this->fileSystem->exists($gitIgnore) ? $this->fileSystem->getFileContent($gitIgnore) : '';
-        $content = new Str($content);
-
-        if (! $content->isEmpty()) {
-            $content = $content->append("\n");
-        }
-
-        return $this->fileSystem->createFile($gitIgnore, $content->append($path));
-    }
-
-    protected function getPathToIgnoreFile(): string
-    {
-        return $this->git->getDir() . '/.gitignore';
+        return new Ignore($this->git, $this->fileSystem);
     }
 }
