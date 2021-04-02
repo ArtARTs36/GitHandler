@@ -29,5 +29,11 @@ class IgnoreTest extends TestCase
         self::assertEquals('test.txt', $fileSystem->getFileContent($ignore->getPathToFile()));
         self::assertTrue($ignore->has('test.txt'));
         self::assertEquals(['test.txt'], $ignore->files());
+
+        // test if .gitignore - non-empty
+
+        $ignore->add('file.txt');
+
+        self::assertEquals("test.txt\nfile.txt", $fileSystem->getFileContent($ignore->getPathToFile()));
     }
 }

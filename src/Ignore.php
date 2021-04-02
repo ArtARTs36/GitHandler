@@ -59,6 +59,9 @@ class Ignore
             ->hasLine($path);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getPathToFile(): string
     {
         return $this->git->getDir() . '/.gitignore';
