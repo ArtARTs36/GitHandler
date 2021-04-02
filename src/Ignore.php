@@ -12,6 +12,9 @@ class Ignore
 
     protected $fileSystem;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(GitHandler $git, FileSystem $fileSystem)
     {
         $this->git = $git;
