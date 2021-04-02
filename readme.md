@@ -42,13 +42,6 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->fetch();
 ```
 
-#### -> git push:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$git->push();
-```
-
 #### -> git log:
 
 ```php
@@ -117,6 +110,24 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $action = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepository($git)
 
 $action->reinstall();
+```
+
+---
+
+## Push Operations
+
+#### -> git push
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->push();
+```
+
+#### -> git push --force
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->push(true);
 ```
 
 ---

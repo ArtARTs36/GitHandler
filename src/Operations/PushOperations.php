@@ -13,9 +13,16 @@ trait PushOperations
 
     abstract protected function executeCommand(ShellCommand $command): ?Str;
 
-    public function push(): bool
+    public function push(bool $force = false): bool
     {
-        $result = $this->executeCommand($this->newCommand()->addParameter('push'));
+        $result = $this->executeCommand(
+            $this
+                ->newCommand()
+                ->addParameter('push')
+                ->when($force, function (ShellCommandInterface $command) {
+                    $command->addOption('force');
+                })
+        );
 
         if ($result === null) {
             return false;

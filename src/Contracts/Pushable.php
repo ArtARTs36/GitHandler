@@ -10,5 +10,5 @@ interface Pushable
      * @return bool
      * @throws BranchHasNoUpstream
      */
-    public function push(): bool;
+    public function push(bool $force = false): bool;
 }
