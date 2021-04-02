@@ -2,8 +2,6 @@
 
 namespace ArtARTs36\GitHandler\Contracts;
 
-use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
-
 interface GitHandler extends
     Taggable,
     Addable,
@@ -16,19 +14,14 @@ interface GitHandler extends
     HasPaths,
     Statusable,
     Stashable,
-    Fetchable
+    Fetchable,
+    Checkoutable
 {
     /**
      * equals: git pull
      * equals: git pull <branch>
      */
     public function pull(?string $branch = null): bool;
-
-    /**
-     * equals: git checkout <branch>
-     * @throws BranchNotFound
-     */
-    public function checkout(string $branch): bool;
 
     public function getDir(): string;
 
@@ -41,11 +34,6 @@ interface GitHandler extends
      * equals: git commit -m=$message
      */
     public function commit(string $message, bool $amend = false): bool;
-
-    /**
-     * equals: git fetch
-     */
-    public function fetch(): void;
 
     public function pathToGitFolder(): string;
 

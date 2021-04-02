@@ -30,13 +30,6 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 
 ### Examples:
 
-#### -> git checkout:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$git->checkout('branch-name');
-```
-
 #### -> git version
 
 ```php
@@ -90,6 +83,26 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $action = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepository($git)
 
 $action->reinstall();
+```
+
+---
+
+## Checkout Operations
+
+Use the interface: \ArtARTs36\GitHandler\Contracts\Checkoutable
+
+#### -> git checkout <branch-name>:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->checkout('branch-name');
+```
+
+#### -> git checkout <branch-name> --merge:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->checkout('branch-name', true);
 ```
 
 ---

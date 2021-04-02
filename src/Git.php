@@ -10,6 +10,7 @@ use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
+use ArtARTs36\GitHandler\Operations\CheckoutOperations;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\FetchOperations;
 use ArtARTs36\GitHandler\Operations\InitOperations;
@@ -35,6 +36,7 @@ class Git extends AbstractGitHandler implements GitHandler
     use StatusOperations;
     use StashOperations;
     use FetchOperations;
+    use CheckoutOperations;
 
     protected $logger;
 
@@ -75,20 +77,6 @@ class Git extends AbstractGitHandler implements GitHandler
                             'Receiving objects',
                             'Resolving deltas',
                         ]);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function checkout(string $branch): bool
-    {
-        $sh = $this->executeCommand($this->newCommand()
-            ->addParameter('checkout')
-            ->addParameter($branch));
-
-        BranchNotFound::handleIfSo($branch, $sh);
-
-        return true;
     }
 
     /**
