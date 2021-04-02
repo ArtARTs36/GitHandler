@@ -26,6 +26,8 @@ Tool for work with git
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 ```
 
+----
+
 ### Examples:
 
 #### -> git checkout:
@@ -115,6 +117,8 @@ $action->reinstall();
 ---
 
 ## Push Operations
+
+Use the interface: \ArtARTs36\GitHandler\Contracts\Pushable
 
 #### -> git push
 
