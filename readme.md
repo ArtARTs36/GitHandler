@@ -232,6 +232,13 @@ $git->pull('branch-name');
 
 Use the interface: \ArtARTs36\GitHandler\Contracts\HasRemotes
 
+#### * Has push or fetch remote url
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->hasAnyRemoteUrl('url'));
+```
+
 #### -> git remote show origin:
 
 ```php
