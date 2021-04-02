@@ -92,7 +92,11 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->help());
 ```
 
-#### create folder in repository:
+---
+
+## Repository actions
+
+#### * Create folder in repository:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -101,7 +105,7 @@ $action = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepository($git)
 $action->createFolder('folder_name');
 ```
 
-#### create file in repository:
+#### * Create file in repository:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -111,7 +115,7 @@ $action->createFile('file.php', 'echo hello world');
 $action->createFile('file.php', 'echo hello world', 'folder_name');
 ```
 
-#### delete repository:
+#### * Delete repository:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -120,7 +124,7 @@ $action = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepository($git)
 $action->delete();
 ```
 
-#### reinstall repository (Delete local repository and fetch from origin):
+#### * Reinstall repository (Delete local repository and fetch from origin):
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
