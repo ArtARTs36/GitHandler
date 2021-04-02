@@ -32,9 +32,9 @@ interface GitHandler extends
     public function getDir(): string;
 
     /**
-     * equals: git clone <url> <folder>
+     * equals: git clone <url> -b <branch>
      */
-    public function clone(string $url, ?string $branch = null): bool;
+    public function clone(string $url, ?string $branch = null, ?string $folder = null): bool;
 
     /**
      * equals: git commit -m=$message

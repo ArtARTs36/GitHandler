@@ -117,7 +117,7 @@ class Git extends AbstractGitHandler implements GitHandler
     /**
      * @inheritDoc
      */
-    public function clone(string $url, ?string $branch = null): bool
+    public function clone(string $url, ?string $branch = null, ?string $folder = null): bool
     {
         $command = $this->newCommand($this->getFileSystem()->belowPath($this->getDir()))
             ->addParameter('clone')
@@ -127,7 +127,7 @@ class Git extends AbstractGitHandler implements GitHandler
                     ->addParameter($branch);
             })
             ->addParameter($url)
-            ->addParameter($folder = $this->fileSystem->endFolder($this->getDir()));
+            ->addParameter($folder = $folder ?? $this->fileSystem->endFolder($this->getDir()));
 
         //
 

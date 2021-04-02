@@ -28,13 +28,6 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 
 ### Examples:
 
-#### -> git clone:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$git->clone('https://github.com/ArtARTs36/GitHandler');
-```
-
 #### -> git checkout:
 
 ```php
@@ -128,6 +121,29 @@ $action->reinstall();
 
 ---
 
+## Clone Operations
+
+#### -> git clone:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->clone('https://github.com/ArtARTs36/GitHandler');
+```
+
+#### -> git clone \<branch\>:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->clone('https://github.com/ArtARTs36/GitHandler', 'branch');
+```
+
+#### -> git clone \<branch\> \<folder\>:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->clone('https://github.com/ArtARTs36/GitHandler', 'branch', 'folder');
+```
+
 ## Add Operations
 
 Use the interface: \ArtARTs36\GitHandler\Contracts\Addable
@@ -190,6 +206,8 @@ var_dump($git->removeRemote('origin'));
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->addRemote('alias', 'url'));
 ```
+
+---
 
 ## Tag Operations
 
