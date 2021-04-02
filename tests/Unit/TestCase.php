@@ -87,6 +87,11 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             {
                 // TODO: Implement removeRemote() method.
             }
+
+            public function hasAnyRemoteUrl(string $url): bool
+            {
+                // TODO: Implement hasAnyRemoteUrl() method.
+            }
         };
     }
 
