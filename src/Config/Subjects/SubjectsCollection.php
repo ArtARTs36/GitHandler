@@ -10,6 +10,7 @@ class SubjectsCollection implements \IteratorAggregate, \Countable
 
     /**
      * @param array<ConfigSubject> $subjects
+     * @codeCoverageIgnore
      */
     public function __construct(array $subjects)
     {
