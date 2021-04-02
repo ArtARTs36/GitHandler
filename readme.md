@@ -28,20 +28,24 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 
 ----
 
-### Examples:
-
-#### -> git version
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->version());
-```
+## Get Help Information:
 
 #### -> git --help
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->help());
+```
+
+---
+
+## Get Git Version
+
+#### -> git version
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->version());
 ```
 
 ---
