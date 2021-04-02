@@ -37,13 +37,6 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->checkout('branch-name');
 ```
 
-#### -> git fetch:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$git->fetch();
-```
-
 #### -> git version
 
 ```php
@@ -117,6 +110,26 @@ $git->push();
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->push(true);
+```
+
+---
+
+## Fetch Operations
+
+Use the interface: \ArtARTs36\GitHandler\Contracts\Fetchable
+
+#### -> git fetch:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->fetch();
+```
+
+#### -> git fetch --all:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->fetchAll();
 ```
 
 ---

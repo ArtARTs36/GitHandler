@@ -11,6 +11,7 @@ use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
+use ArtARTs36\GitHandler\Operations\FetchOperations;
 use ArtARTs36\GitHandler\Operations\InitOperations;
 use ArtARTs36\GitHandler\Operations\LogOperations;
 use ArtARTs36\GitHandler\Operations\PathOperations;
@@ -33,6 +34,7 @@ class Git extends AbstractGitHandler implements GitHandler
     use PathOperations;
     use StatusOperations;
     use StashOperations;
+    use FetchOperations;
 
     protected $logger;
 
@@ -135,7 +137,7 @@ class Git extends AbstractGitHandler implements GitHandler
 
         //
 
-        if ($sh->contains("Cloning into '{$folder}'")) {
+        if ($sh && $sh->contains("Cloning into '{$folder}'")) {
             return true;
         }
 
@@ -160,21 +162,11 @@ class Git extends AbstractGitHandler implements GitHandler
                     })
             );
 
-        if ($result->contains('nothing to commit')) {
+        if ($result && $result->contains('nothing to commit')) {
             throw new NothingToCommit();
         }
 
         return $result->contains('file changed');
-    }
-
-    public function fetch(): void
-    {
-        $this
-            ->executeCommand(
-                $this
-                    ->newCommand()
-                    ->addParameter('fetch')
-            );
     }
 
     public function version(): string
