@@ -186,21 +186,21 @@ $git->pull('branch-name');
 
 Use the interface: \ArtARTs36\GitHandler\Contracts\HasRemotes
 
-### -> git remote show origin:
+#### -> git remote show origin:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->showRemote());
 ```
 
-### -> git remote remove origin:
+#### -> git remote remove origin:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->removeRemote('origin'));
 ```
 
-### -> git remote add <alias> <url>
+#### -> git remote add <alias> <url>
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
