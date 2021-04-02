@@ -50,6 +50,26 @@ var_dump($git->version());
 
 ---
 
+## Init Operations
+
+Use the Interface: \ArtARTs36\GitHandler\Contracts\Initable
+
+#### * Check if the repository is initialized :
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->isInit());
+```
+
+#### -> git init:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->init();
+```
+
+---
+
 ## Repository actions
 
 #### * Create folder in repository:
@@ -310,26 +330,6 @@ var_dump($git->getTags('1.0.*'));
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->performTag('1.0.0', 'Version 1.0.0'));
 var_dump($git->performTag('1.0.0'));
-```
-
----
-
-## Init Operations
-
-Use the Interface: \ArtARTs36\GitHandler\Contracts\Initable
-
-#### * Check if the repository is initialized :
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->isInit());
-```
-
-#### -> git init:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$git->init();
 ```
 
 ---
