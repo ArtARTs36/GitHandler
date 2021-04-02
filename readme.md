@@ -144,6 +144,8 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->clone('https://github.com/ArtARTs36/GitHandler', 'branch', 'folder');
 ```
 
+---
+
 ## Add Operations
 
 Use the interface: \ArtARTs36\GitHandler\Contracts\Addable
