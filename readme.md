@@ -42,13 +42,6 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->checkout('branch-name');
 ```
 
-#### -> git add:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->add('file_name'));
-```
-
 #### -> git fetch:
 
 ```php
@@ -131,6 +124,26 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $action = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepository($git)
 
 $action->reinstall();
+```
+
+---
+
+## Add Operations
+
+Use the interface: \ArtARTs36\GitHandler\Contracts\Addable
+
+#### -> git add <file_name>:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->add('file_name'));
+```
+
+#### -> git add <file_name> --force:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->add('file_name', true));
 ```
 
 ---
