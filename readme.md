@@ -44,21 +44,6 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->fetch();
 ```
 
-#### -> git log:
-
-```php
-$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-
-foreach ($git->log() as $log) {
-    var_dump($log->author->name);
-    var_dump($log->author->email);
-    var_dump($log->commit);
-    var_dump($log->getAbbreviatedCommitHash());
-    var_dump($log->date);
-    var_dump($log->message);
-}
-```
-
 #### -> git version
 
 ```php
@@ -175,6 +160,37 @@ var_dump($git->add('file_name'));
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->add('file_name', true));
+```
+
+---
+
+## Logging
+
+Use the interface: \ArtARTs36\GitHandler\Contracts\Logable::log
+
+---
+
+Data Objects:
+
+* \ArtARTs36\GitHandler\Data\Author
+* \ArtARTs36\GitHandler\Data\Log
+* \ArtARTs36\GitHandler\Data\LogCollection\<Log\>
+
+---
+
+#### -> git log:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+foreach ($git->log() as $log) {
+    var_dump($log->author->name);
+    var_dump($log->author->email);
+    var_dump($log->commit);
+    var_dump($log->getAbbreviatedCommitHash());
+    var_dump($log->date);
+    var_dump($log->message);
+}
 ```
 
 ---
