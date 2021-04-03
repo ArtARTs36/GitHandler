@@ -111,9 +111,9 @@ $action->reinstall();
 
 ---
 
-## Checkout Operations
+## Branch Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Checkoutable
+Use the interface: \ArtARTs36\GitHandler\Contracts\HasBranches
 
 #### -> git checkout <branch-name>:
 
@@ -127,6 +127,15 @@ $git->checkout('branch-name');
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->checkout('branch-name', true);
+```
+
+---
+
+#### -> git branch -d <branch-name>:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->deleteBranch('branch-name');
 ```
 
 ---

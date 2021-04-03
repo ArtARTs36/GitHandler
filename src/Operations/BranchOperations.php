@@ -7,7 +7,7 @@ use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
 
-trait CheckoutOperations
+trait BranchOperations
 {
     abstract protected function newCommand(?string $dir = null): ShellCommandInterface;
 
@@ -32,5 +32,30 @@ trait CheckoutOperations
         BranchNotFound::handleIfSo($branch, $sh);
 
         return true;
+    }
+
+    public function deleteBranch(string $branch): bool
+    {
+        $result = $this->executeCommand(
+            $this
+                ->newCommand()
+                ->addParameter('branch')
+                ->addCutOption('d')
+                ->addParameter($branch)
+        );
+
+        if ($result === null) {
+            return false;
+        }
+
+        if ($result->contains("Deleted branch $branch")) {
+            return true;
+        }
+
+        if ($result->contains("error: branch '$branch' not found")) {
+            throw new BranchNotFound($branch);
+        }
+
+        return false;
     }
 }
