@@ -2,9 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
+use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
 
-class FileSystemTest extends TestCase
+class LocalFileSystemTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::belowPath
@@ -54,5 +55,19 @@ class FileSystemTest extends TestCase
 
         self::assertTrue($fileSystem->exists(__FILE__));
         self::assertFalse($fileSystem->exists('random-file'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getFileContent
+     */
+    public function testGetFileContent(): void
+    {
+        $fileSystem = new LocalFileSystem();
+
+        //
+
+        self::expectException(FileNotFound::class);
+
+        $fileSystem->getFileContent('random-file');
     }
 }

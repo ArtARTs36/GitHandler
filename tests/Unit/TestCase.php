@@ -23,7 +23,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $this->fileSystem = new ArrayFileSystem();
     }
 
-    protected function mockGit(string $shellResult, string $dir = null): Git
+    protected function mockGit(?string $shellResult, string $dir = null): Git
     {
         $dir = $dir ?? __DIR__ . '/../libraries/';
 
@@ -32,7 +32,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
             public function __construct(
                 string $dir,
-                string $shellResult,
+                ?string $shellResult,
                 FileSystem $fileSystem,
                 string $executor = 'git'
             ) {

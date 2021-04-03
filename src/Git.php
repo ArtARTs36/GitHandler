@@ -44,6 +44,9 @@ class Git extends AbstractGitHandler implements GitHandler
 
     private $fileSystem;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(
         string $dir,
         LogParser $logger,

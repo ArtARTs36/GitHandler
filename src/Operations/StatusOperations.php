@@ -15,13 +15,15 @@ trait StatusOperations
 
     public function status(bool $short = false): Str
     {
-        return $this->executeCommand(
+        $result = $this->executeCommand(
             $this->newCommand()
                 ->addParameter('status')
                 ->when($short, function (ShellCommand $command) {
                     $command->addCutOption('s');
                 })
         );
+
+        return $result === null ? Str::make('') : $result;
     }
 
     public function hasChanges(): bool
@@ -29,9 +31,9 @@ trait StatusOperations
         $status = $this->status(true)->trim();
         $groups = $this->getGroupsByStatusResult($status);
 
-        return $status->isEmpty() ||
+        return $status->isNotEmpty() && (
                 ! array_key_exists(StatusResult::GROUP_MODIFIED, $groups) ||
-                ! array_key_exists(StatusResult::GROUP_ADDED, $groups);
+                ! array_key_exists(StatusResult::GROUP_ADDED, $groups));
     }
 
     public function getUntrackedFiles(): array
@@ -53,6 +55,10 @@ trait StatusOperations
     protected function getGroupsByStatusResult(Str $result): array
     {
         $groups = [];
+
+        if ($result->isEmpty()) {
+            return [];
+        }
 
         foreach ($result->lines() as $line) {
             [$group, $file] = $line->trim()->explode(' ');
