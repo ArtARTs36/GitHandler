@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Contracts\OriginUrl;
 
 class GithubOriginUrl extends AbstractOriginUrl implements OriginUrl
 {
-    protected $subdomain = 'codeload';
+    protected $archiveSubdomain = 'codeload';
 
     protected $domains = [
         'github.com',
@@ -24,13 +24,13 @@ class GithubOriginUrl extends AbstractOriginUrl implements OriginUrl
         return $this
             ->toGitFolder($fetchUrl)
             ->replace([
-                $host => $this->buildDomain($host),
+                $host => $this->buildArchiveDomain($host),
             ])
             ->append("/zip/refs/heads/$branch");
     }
 
-    protected function buildDomain(string $host): string
+    protected function buildArchiveDomain(string $host): string
     {
-        return $this->subdomain . '.' . $host;
+        return $this->archiveSubdomain . '.' . $host;
     }
 }

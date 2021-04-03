@@ -56,4 +56,17 @@ class GithubOriginUrlTest extends TestCase
 
         self::assertEquals($expected, $url->toArchive($git, $branch));
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::buildArchiveDomain
+     */
+    public function testBuildArchiveDomain(): void
+    {
+        $url = new GithubOriginUrl();
+
+        self::assertEquals(
+            'codeload.github.com',
+            $this->callMethodFromObject($url, 'buildArchiveDomain', 'github.com')
+        );
+    }
 }
