@@ -5,11 +5,13 @@ namespace ArtARTs36\GitHandler;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 
-class Action
+class Repository
 {
     protected $git;
 
     protected $fileSystem;
+
+    protected $ignore = null;
 
     /**
      * @codeCoverageIgnore
@@ -62,5 +64,14 @@ class Action
     public function delete(): bool
     {
         return $this->fileSystem->removeDir($this->git->getDir());
+    }
+
+    public function ignore(): Ignore
+    {
+        if ($this->ignore === null) {
+            $this->ignore = new Ignore($this->git, $this->fileSystem);
+        }
+
+        return $this->ignore;
     }
 }

@@ -10,7 +10,9 @@ use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
+use ArtARTs36\GitHandler\Operations\CheckoutOperations;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
+use ArtARTs36\GitHandler\Operations\FetchOperations;
 use ArtARTs36\GitHandler\Operations\InitOperations;
 use ArtARTs36\GitHandler\Operations\LogOperations;
 use ArtARTs36\GitHandler\Operations\PathOperations;
@@ -33,6 +35,8 @@ class Git extends AbstractGitHandler implements GitHandler
     use PathOperations;
     use StatusOperations;
     use StashOperations;
+    use FetchOperations;
+    use CheckoutOperations;
 
     protected $logger;
 
@@ -78,26 +82,18 @@ class Git extends AbstractGitHandler implements GitHandler
     /**
      * @inheritDoc
      */
-    public function checkout(string $branch): bool
-    {
-        $sh = $this->executeCommand($this->newCommand()
-            ->addParameter('checkout')
-            ->addParameter($branch));
-
-        BranchNotFound::handleIfSo($branch, $sh);
-
-        return true;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function add(string $file): bool
+    public function add(string $file, bool $force = false): bool
     {
         $sh = $this
-            ->executeCommand($this->newCommand()
-            ->addParameter('add')
-            ->addParameter($file));
+            ->executeCommand(
+                $this
+                    ->newCommand()
+                    ->addParameter('add')
+                    ->addParameter($file)
+                    ->when($force, function (ShellCommandInterface $command) {
+                        $command->addOption('force');
+                    })
+            );
 
         if ($sh === null || $sh->isEmpty()) {
             return true;
@@ -111,7 +107,7 @@ class Git extends AbstractGitHandler implements GitHandler
     /**
      * @inheritDoc
      */
-    public function clone(string $url, ?string $branch = null): bool
+    public function clone(string $url, ?string $branch = null, ?string $folder = null): bool
     {
         $command = $this->newCommand($this->getFileSystem()->belowPath($this->getDir()))
             ->addParameter('clone')
@@ -121,7 +117,7 @@ class Git extends AbstractGitHandler implements GitHandler
                     ->addParameter($branch);
             })
             ->addParameter($url)
-            ->addParameter($folder = $this->fileSystem->endFolder($this->getDir()));
+            ->addParameter($folder = $folder ?? $this->fileSystem->endFolder($this->getDir()));
 
         //
 
@@ -129,7 +125,7 @@ class Git extends AbstractGitHandler implements GitHandler
 
         //
 
-        if ($sh->contains("Cloning into '{$folder}'")) {
+        if ($sh && $sh->contains("Cloning into '{$folder}'")) {
             return true;
         }
 
@@ -154,21 +150,11 @@ class Git extends AbstractGitHandler implements GitHandler
                     })
             );
 
-        if ($result->contains('nothing to commit')) {
+        if ($result && $result->contains('nothing to commit')) {
             throw new NothingToCommit();
         }
 
         return $result->contains('file changed');
-    }
-
-    public function fetch(): void
-    {
-        $this
-            ->executeCommand(
-                $this
-                    ->newCommand()
-                    ->addParameter('fetch')
-            );
     }
 
     public function version(): string

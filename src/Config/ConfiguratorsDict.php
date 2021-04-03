@@ -11,6 +11,7 @@ class ConfiguratorsDict implements \IteratorAggregate
 
     /**
      * @param array<string, SubjectConfigurator> $configurators
+     * @codeCoverageIgnore
      */
     public function __construct(array $configurators)
     {

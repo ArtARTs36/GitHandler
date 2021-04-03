@@ -8,4 +8,9 @@ use ArtARTs36\GitHandler\Support\ToArray;
 abstract class AbstractSubject implements ConfigSubject
 {
     use ToArray;
+
+    public function isEmpty(): bool
+    {
+        return count(array_filter($this->toArray())) === 0;
+    }
 }

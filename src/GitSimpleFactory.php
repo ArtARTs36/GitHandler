@@ -17,6 +17,9 @@ use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
 use ArtARTs36\GitHandler\Support\SimpleHttpClient;
 
+/**
+ * @codeCoverageIgnore
+ */
 class GitSimpleFactory
 {
     public static function factory(string $dir, ?FileSystem $fileSystem = null, string $executor = 'git'): GitHandler
@@ -58,5 +61,10 @@ class GitSimpleFactory
             new GitlabOriginUrl(),
             new BitbucketOriginUrl(),
         ]);
+    }
+
+    public static function factoryRepository(GitHandler $git): Repository
+    {
+        return new Repository($git, new LocalFileSystem());
     }
 }

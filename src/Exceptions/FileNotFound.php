@@ -14,6 +14,9 @@ class FileNotFound extends GitHandlerException
         parent::__construct($message, $code, $previous);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public static function patternStdError(string $file): string
     {
         return "pathspec '{$file}' did not match any";

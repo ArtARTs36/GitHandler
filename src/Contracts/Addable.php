@@ -7,5 +7,5 @@ interface Addable
     /**
      * @param string $file - file name to git added
      */
-    public function add(string $file): bool;
+    public function add(string $file, bool $force = false): bool;
 }

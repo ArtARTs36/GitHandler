@@ -32,6 +32,11 @@ trait RemoteOperations
         );
     }
 
+    public function hasAnyRemoteUrl(string $url): bool
+    {
+        return ($remotes = $this->showRemote()) && ($remotes->fetch->equals($url) || $remotes->push->equals($url));
+    }
+
     /**
      * @inheritDoc
      */

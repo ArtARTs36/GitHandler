@@ -78,6 +78,12 @@ Changes to be committed:
 
         //
 
+        $git = $this->mockGit('undefined');
+
+        self::assertFalse($git->add('doc.txt'));
+
+        //
+
         self::expectException(FileNotFound::class);
 
         $git = $this->mockGit("pathspec 'random.file' did not match any files");

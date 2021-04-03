@@ -17,6 +17,9 @@ class RepositoryDownloader
 
     protected $fileSystem;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(OriginUrlSelector $url, ClientInterface $client, FileSystem $fileSystem)
     {
         $this->url = $url;

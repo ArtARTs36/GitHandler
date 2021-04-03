@@ -22,4 +22,9 @@ interface HasRemotes
      * @throws RemoteNotFound
      */
     public function removeRemote(string $shortName): bool;
+
+    /**
+     * Has push or fetch remote url
+     */
+    public function hasAnyRemoteUrl(string $url): bool;
 }
