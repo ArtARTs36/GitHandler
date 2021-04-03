@@ -20,10 +20,6 @@ class Logger implements LogParser
         $logs = [];
 
         foreach ($raw->globalMatch($this->regex) as $match) {
-            if (count($match) !== 6) {
-                continue;
-            }
-
             $logs[] = new Log(
                 $match[1],
                 new \DateTime($match[2]),
