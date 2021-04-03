@@ -15,6 +15,9 @@ class BranchHasNoUpstream extends GitHandlerException
         parent::__construct($this->prepareMessage(), $code, $previous);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public static function patternStdError(): string
     {
         return "The current branch (.*) has no upstream branch";

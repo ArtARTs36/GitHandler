@@ -75,6 +75,16 @@ class RepositoryTest extends TestCase
         self::assertFalse($this->fileSystem->exists($this->getTmpDir()));
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Repository::ignore
+     */
+    public function testIgnore(): void
+    {
+        $repo = $this->mock();
+
+        self::assertSame($repo->ignore(), $repo->ignore());
+    }
+
     private function mock(): Repository
     {
         $dir = $this->getTmpDir();
