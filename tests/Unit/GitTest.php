@@ -197,4 +197,14 @@ Changes to be committed:
 
         self::assertEquals('/Applications/Xcode.app/Contents/Developer/usr/share/info', $git->getInfoPath());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getDir
+     */
+    public function testGetDir(): void
+    {
+        $git = $this->mockGit('', $dir = '/path/to/dir');
+
+        self::assertEquals($dir, $git->getDir());
+    }
 }

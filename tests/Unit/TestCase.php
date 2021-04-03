@@ -103,4 +103,13 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
         return $getter->call($object);
     }
+
+    protected function callMethodFromObject($object, string $method, ...$args)
+    {
+        $caller = function () use ($method, $args) {
+            return $this->$method(...$args);
+        };
+
+        return $caller->call($object);
+    }
 }

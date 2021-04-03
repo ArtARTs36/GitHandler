@@ -16,6 +16,7 @@ abstract class AbstractGitHandler implements GitHandler
     /**
      * @param string $dir - directory to project .git
      * @param string $executor - git bin
+     * @codeCoverageIgnore
      */
     public function __construct(string $dir, string $executor = 'git')
     {

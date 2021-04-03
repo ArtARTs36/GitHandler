@@ -140,6 +140,15 @@ $git->deleteBranch('branch-name');
 
 ---
 
+#### -> git branch -a:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getBranches());
+```
+
+---
+
 ## Push Operations
 
 Use the interface: \ArtARTs36\GitHandler\Contracts\Pushable
