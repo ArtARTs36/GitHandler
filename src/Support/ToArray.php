@@ -8,4 +8,9 @@ trait ToArray
     {
         return get_object_vars($this);
     }
+
+    public function isEmpty(): bool
+    {
+        return count(array_filter($this->toArray())) === 0;
+    }
 }

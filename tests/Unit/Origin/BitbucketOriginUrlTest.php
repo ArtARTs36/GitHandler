@@ -32,7 +32,7 @@ class BitbucketOriginUrlTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl::toCommit
+     * @covers \ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrl::toCommitFromFetchUrl
      * @dataProvider toCommitDataProvider
      */
     public function testToCommit(string $fetch, string $commit, string $expected): void
@@ -46,7 +46,7 @@ class BitbucketOriginUrlTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toArchive
+     * @covers \ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrl::toArchiveFromFetchUrl
      * @dataProvider toArchiveDataProvider
      */
     public function testToArchive(string $fetch, string $branch, string $expected): void

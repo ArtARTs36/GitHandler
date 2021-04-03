@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Operations;
 
-use ArtARTs36\GitHandler\Exceptions\TagAlreadyExist;
+use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -35,12 +35,12 @@ trait TagOperations
     }
 
     /**
-     * @throws TagAlreadyExist
+     * @throws TagAlreadyExists
      */
     public function performTag(string $tag, ?string $message = null): bool
     {
         if ($this->isTagExists($tag)) {
-            throw new TagAlreadyExist($tag);
+            throw new TagAlreadyExists($tag);
         }
 
         return $this->newCommand()

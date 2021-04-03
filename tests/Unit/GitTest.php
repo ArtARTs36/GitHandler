@@ -130,28 +130,6 @@ Changes to be committed:
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::stash
-     */
-    public function testStash(): void
-    {
-        $git = $this->mockGit('');
-
-        self::assertFalse($git->stash());
-
-        //
-
-        $git = $this->mockGit('Saved working directory and index state WIP on master: b68fd9d test');
-
-        self::assertTrue($git->stash());
-
-        //
-
-        $git = $this->mockGit('No local changes to save');
-
-        self::assertTrue($git->stash());
-    }
-
-    /**
      * @covers \ArtARTs36\GitHandler\Git::showRemote
      */
     public function testShowRemote(): void
