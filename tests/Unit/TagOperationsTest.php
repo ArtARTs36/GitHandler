@@ -19,5 +19,11 @@ class TagOperationsTest extends TestCase
             '0.2.0',
             '0.2.1',
         ], $git->getTags());
+
+        //
+
+        $git = $this->mockGit('');
+
+        self::assertEquals([], $git->getTags());
     }
 }

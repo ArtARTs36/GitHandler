@@ -27,11 +27,11 @@ trait TagOperations
                     })
             );
 
-        if (empty($raw)) {
+        if ($raw === null || $raw->isEmpty()) {
             return [];
         }
 
-        return explode("\n", trim($raw));
+        return $raw->trim()->lines();
     }
 
     /**
