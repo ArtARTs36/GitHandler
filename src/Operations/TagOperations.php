@@ -15,14 +15,17 @@ trait TagOperations
 
     public function getTags(?string $pattern = null): array
     {
-        $raw = $this->newCommand()
-            ->addParameter('tag')
-            ->when($pattern !== null, function (ShellCommand $command) use ($pattern) {
-                $command
-                    ->addCutOption('l')
-                    ->addParameter($pattern, true);
-            })
-            ->getShellResult();
+        $raw = $this
+            ->executeCommand(
+                $this
+                    ->newCommand()
+                    ->addParameter('tag')
+                    ->when($pattern !== null, function (ShellCommand $command) use ($pattern) {
+                        $command
+                            ->addCutOption('l')
+                            ->addParameter($pattern, true);
+                    })
+            );
 
         if (empty($raw)) {
             return [];
