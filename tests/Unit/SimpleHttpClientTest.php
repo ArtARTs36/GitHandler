@@ -12,8 +12,6 @@ class SimpleHttpClientTest extends TestCase
      */
     public function testSendRequest(): void
     {
-        // php://filter/read=string.toupper/resource=data:,dGVzdA==CRAP
-
         $client = new SimpleHttpClient();
 
         //
