@@ -15,4 +15,9 @@ interface HasBranches
     public function deleteBranch(string $branch): bool;
 
     public function newBranch(string $branch): bool;
+
+    /**
+     * @return array<string>
+     */
+    public function getBranches(): array;
 }

@@ -77,4 +77,22 @@ trait BranchOperations
 
         return false;
     }
+
+    public function getBranches(): array
+    {
+        $result = $this->executeCommand(
+            $this
+                ->newCommand()
+                ->addParameter('branch')
+                ->addCutOption('a')
+        );
+
+        if ($result === null || $result->isEmpty()) {
+            return [];
+        }
+
+        return array_map('trim', $result->trim()->replace([
+            '* master' => 'master',
+        ])->lines());
+    }
 }
