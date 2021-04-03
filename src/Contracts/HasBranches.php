@@ -13,4 +13,6 @@ interface HasBranches
     public function checkout(string $branch, bool $merge = false): bool;
 
     public function deleteBranch(string $branch): bool;
+
+    public function newBranch(string $branch): bool;
 }

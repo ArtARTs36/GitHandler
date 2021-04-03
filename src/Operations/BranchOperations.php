@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Operations;
 
+use ArtARTs36\GitHandler\Exceptions\BranchAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
@@ -54,6 +55,24 @@ trait BranchOperations
 
         if ($result->contains("error: branch '$branch' not found")) {
             throw new BranchNotFound($branch);
+        }
+
+        return false;
+    }
+
+    public function newBranch(string $branch): bool
+    {
+        $result = $this->executeCommand(
+            $this->newCommand()->addParameter('branch')->addParameter($branch)
+        );
+
+        if ($result === null || $result->isEmpty()) {
+            return true;
+        }
+
+        if (($already = $result->match("/fatal: A branch named '$branch' already exists/i"))
+            && $already->isNotEmpty()) {
+            throw new BranchAlreadyExists($branch);
         }
 
         return false;
