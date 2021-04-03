@@ -12,6 +12,7 @@ class OriginUrlSelector
 
     /**
      * @param array<string, OriginUrl> $map
+     * @codeCoverageIgnore
      */
     public function __construct(array $map)
     {
