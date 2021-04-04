@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Operations;
 
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\LogCollection;
+use ArtARTs36\GitHandler\Exceptions\BranchDoesNotHaveCommits;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -27,13 +28,16 @@ trait LogOperations
                     ->addOption('graph')
                     ->addOptionWithValue('pretty', "format:'%H|%ad|%an|%ae|%Creset%s'")
                     ->addOptionWithValue('date', 'iso')
-                    ->addParameter('|')
-                    ->addParameter('less')
-                    ->addCutOption('r')
+                    ->setErrorFlow('&1')
             );
 
         if ($result === null) {
             throw new \UnexpectedValueException();
+        }
+
+        if (($branch = $result->match("/fatal: your current branch '(.*)' does not have any commits yet/i"))
+            && $branch->isNotEmpty()) {
+            throw new BranchDoesNotHaveCommits($branch);
         }
 
         return $this->getLogger()->parse($result);
