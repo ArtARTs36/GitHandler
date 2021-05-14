@@ -7,7 +7,6 @@ use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\Version;
-use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
@@ -166,11 +165,7 @@ class Git extends AbstractGitHandler implements GitHandler
     {
         $result = $this->executeCommand($this->newCommand()->addOption('version'))->trim();
 
-        $parts = $result->match('/([0-9]+.[0-9]+.[0-9]+)/i')->explode('.');
-
-        return new Version($result, ...$parts->map(function (Str $str): int {
-            return $str->toInteger();
-        })->toStrings());
+        return new Version($result, ...$result->match('/([0-9]+.[0-9]+.[0-9]+)/i')->sentences()->toIntegers());
     }
 
     public function help(): string
