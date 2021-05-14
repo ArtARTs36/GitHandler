@@ -162,7 +162,12 @@ Changes to be committed:
         $git = $this->mockGit('git version 2.24.3 (Apple Git-128)
 ');
 
-        self::assertEquals('git version 2.24.3 (Apple Git-128)', $git->version());
+        $result = $git->version();
+
+        self::assertEquals('git version 2.24.3 (Apple Git-128)', $result);
+        self::assertEquals(2, $result->major);
+        self::assertEquals(24, $result->minor);
+        self::assertEquals(3, $result->patch);
     }
 
     /**

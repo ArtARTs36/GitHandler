@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
+use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
@@ -23,6 +24,7 @@ use ArtARTs36\GitHandler\Operations\StatusOperations;
 use ArtARTs36\GitHandler\Operations\TagOperations;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
+use ArtARTs36\Str\Str;
 
 class Git extends AbstractGitHandler implements GitHandler
 {
@@ -160,9 +162,15 @@ class Git extends AbstractGitHandler implements GitHandler
         return $result->contains('file changed');
     }
 
-    public function version(): string
+    public function version(): Version
     {
-        return $this->executeCommand($this->newCommand()->addOption('version'))->trim();
+        $result = $this->executeCommand($this->newCommand()->addOption('version'))->trim();
+
+        $parts = $result->match('/([0-9]+.[0-9]+.[0-9]+)/i')->explode('.');
+
+        return new Version($result, ...$parts->map(function (Str $str): int {
+            return $str->toInteger();
+        })->toStrings());
     }
 
     public function help(): string
