@@ -7,6 +7,9 @@ use ArtARTs36\Str\Str;
 
 class Attributes extends GitFile
 {
+    /**
+     * @return array<Attribute>
+     */
     public function all(): array
     {
         if (! $this->fileExists()) {

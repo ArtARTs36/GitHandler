@@ -571,6 +571,21 @@ $repository->attributes()->addExportIgnore('composer.lock', '.phpunit.result.cac
 
 ```
 
+#### * Get all attributes
+
+```php
+use ArtARTs36\GitHandler\GitSimpleFactory;
+
+$git = GitSimpleFactory::factory('/var/web/project');
+$repository = GitSimpleFactory::factoryRepository($git);
+
+foreach ($repository->attributes()->all() as $attribute) {
+    var_dump($attribute->pattern);
+    var_dump($attribute->attrs);
+}
+
+```
+
 ---
 
 ## Download repository
