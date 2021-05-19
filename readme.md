@@ -543,6 +543,34 @@ var_dump($repository->ignore()->files());
 
 ```
 
+## Operations with .gitattributes
+
+Use \ArtARTs36\GitHandler\Repository
+
+#### * Add attribute
+
+```php
+use ArtARTs36\GitHandler\GitSimpleFactory;
+
+$git = GitSimpleFactory::factory('/var/web/project');
+$repository = GitSimpleFactory::factoryRepository($git);
+
+$repository->attributes()->add('*', ['text=auto']);
+
+```
+
+#### * Add export-ignore
+
+```php
+use ArtARTs36\GitHandler\GitSimpleFactory;
+
+$git = GitSimpleFactory::factory('/var/web/project');
+$repository = GitSimpleFactory::factoryRepository($git);
+
+$repository->attributes()->addExportIgnore('composer.lock', '.phpunit.result.cache');
+
+```
+
 ---
 
 ## Download repository
