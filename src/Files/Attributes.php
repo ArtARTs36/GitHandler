@@ -30,13 +30,18 @@ class Attributes extends GitFile
 
     public function addExportIgnore(string ...$paths): bool
     {
+        return $this->add('export-ignore', $paths);
+    }
+
+    public function add(string $attribute, array $patterns): bool
+    {
         $content = $this->fileExists() ? $this->getContent() : Str::fromEmpty();
 
         if ($content->isEmpty()) {
             $content = $content->appendLine('');
         }
 
-        return $this->createFile($content->append($this->wraps($paths, 'export-ignore')));
+        return $this->createFile($content->append($this->wraps($patterns, $attribute)));
     }
 
     /**
