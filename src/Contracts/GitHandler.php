@@ -41,4 +41,9 @@ interface GitHandler extends
     public function files(): GitFiles;
 
     public function delete(): bool;
+
+    /**
+     * Delete local repository and fetch from origin
+     */
+    public function reinstall(?string $branch = null): void;
 }

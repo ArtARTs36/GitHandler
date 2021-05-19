@@ -2,31 +2,28 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
+use ArtARTs36\GitHandler\Files\FileManager;
 use ArtARTs36\GitHandler\Repository;
 use ArtARTs36\GitHandler\GitSimpleFactory;
 
-class RepositoryTest extends TestCase
+class FileManagerTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Repository::createFolder
+     * @covers \ArtARTs36\GitHandler\Files\FileManager::createFolder
      */
     public function testCreateFolder(): void
     {
-        $dir = $this->getTmpDir();
-
-        $git = GitSimpleFactory::factory($dir);
-
-        $action = new Repository($git, $this->fileSystem);
+        $action = $this->mock();
 
         $action->createFolder('test');
 
         //
 
-        self::assertTrue($this->fileSystem->exists($dir . DIRECTORY_SEPARATOR . 'test'));
+        self::assertTrue($this->fileSystem->exists($this->getTmpDir() . DIRECTORY_SEPARATOR . 'test'));
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Repository::createFile
+     * @covers \ArtARTs36\GitHandler\Files\FileManager::createFile
      */
     public function testCreateFile(): void
     {
@@ -45,12 +42,12 @@ class RepositoryTest extends TestCase
         ));
     }
 
-    private function mock(): Repository
+    private function mock(): FileManager
     {
         $dir = $this->getTmpDir();
 
         $git = GitSimpleFactory::factory($dir, $this->fileSystem);
 
-        return new Repository($git, $this->fileSystem);
+        return $git->files()->manager();
     }
 }

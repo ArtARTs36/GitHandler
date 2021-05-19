@@ -22,4 +22,31 @@ class FileManager implements GitFileManager
     {
         return $this->files->removeFile($this->git->getDir()->append(DIRECTORY_SEPARATOR . $path));
     }
+
+    public function createFolder(string $name): self
+    {
+        $this->files->createDir($this->git->getDir()->append(DIRECTORY_SEPARATOR . $name));
+
+        return $this;
+    }
+
+    /**
+     * @return string - absolute path to file
+     */
+    public function createFile(string $name, string $content, ?string $folder = null): string
+    {
+        $path = $this->git->getDir();
+
+        if (! empty($folder)) {
+            $path = $path->append(DIRECTORY_SEPARATOR . $folder);
+
+            $this->createFolder($folder);
+        }
+
+        $path = $path->append(DIRECTORY_SEPARATOR . $name);
+
+        $this->files->createFile($path, $content);
+
+        return $path;
+    }
 }

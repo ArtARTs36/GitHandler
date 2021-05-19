@@ -80,19 +80,17 @@ $git->init();
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$action = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepository($git)
 
-$action->createFolder('folder_name');
+$git->files()->manager()->createFolder('folder_name');
 ```
 
 #### * Create file in repository:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$action = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepository($git)
 
-$action->createFile('file.php', 'echo hello world');
-$action->createFile('file.php', 'echo hello world', 'folder_name');
+$git->files()->manager()->createFile('file.php', 'echo hello world');
+$git->files()->manager()->createFile('file.php', 'echo hello world', 'folder_name');
 ```
 
 #### * Remove file in repository:
@@ -115,9 +113,8 @@ $git->delete();
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$action = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepository($git)
 
-$action->reinstall();
+$git->reinstall();
 ```
 
 ---

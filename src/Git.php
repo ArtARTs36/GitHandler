@@ -189,6 +189,18 @@ class Git extends AbstractGitHandler implements GitHandler
     }
 
     /**
+     * Delete local repository and fetch from origin
+     */
+    public function reinstall(?string $branch = null): void
+    {
+        $remote = $this->showRemote()->fetch;
+
+        $this->delete();
+
+        $this->clone($remote, $branch);
+    }
+
+    /**
      * @codeCoverageIgnore
      */
     protected function getConfigReader(): ConfigResultParser
