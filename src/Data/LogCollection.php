@@ -67,4 +67,12 @@ class LogCollection implements \IteratorAggregate, \Countable
     {
         return count($this->logs);
     }
+
+    /**
+     * @return \ArtARTs36\GitHandler\Data\Log[]
+     */
+    public function all(): array
+    {
+        return $this->logs;
+    }
 }
