@@ -12,6 +12,9 @@ class Version
 
     public $patch;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(string $full, int $major, int $minor, int $patch)
     {
         $this->full = $full;
