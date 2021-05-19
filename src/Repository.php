@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Files\Attributes;
+use ArtARTs36\GitHandler\Files\Ignore;
 
 class Repository
 {

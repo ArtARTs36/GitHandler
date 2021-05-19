@@ -9,9 +9,9 @@ use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
 class IgnoreTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Ignore::add
-     * @covers \ArtARTs36\GitHandler\Ignore::has
-     * @covers \ArtARTs36\GitHandler\Ignore::files
+     * @covers \ArtARTs36\GitHandler\Files\Ignore::add
+     * @covers \ArtARTs36\GitHandler\Files\Ignore::has
+     * @covers \ArtARTs36\GitHandler\Files\Ignore::files
      */
     public function testAdd(): void
     {
