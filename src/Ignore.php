@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\GitHandler\Contracts\HasDirectory;
 use ArtARTs36\Str\Str;
 use ArtARTs36\Str\StrCollection;
 
@@ -16,7 +17,7 @@ class Ignore
     /**
      * @codeCoverageIgnore
      */
-    public function __construct(GitHandler $git, FileSystem $fileSystem)
+    public function __construct(HasDirectory $git, FileSystem $fileSystem)
     {
         $this->git = $git;
         $this->fileSystem = $fileSystem;
