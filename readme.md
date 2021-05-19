@@ -562,9 +562,8 @@ Use \ArtARTs36\GitHandler\Repository
 use ArtARTs36\GitHandler\GitSimpleFactory;
 
 $git = GitSimpleFactory::factory('/var/web/project');
-$repository = GitSimpleFactory::factoryRepository($git);
 
-$repository->attributes()->add('*', ['text=auto']);
+$git->files()->attributes()->add('*', ['text=auto']);
 
 ```
 
@@ -574,9 +573,8 @@ $repository->attributes()->add('*', ['text=auto']);
 use ArtARTs36\GitHandler\GitSimpleFactory;
 
 $git = GitSimpleFactory::factory('/var/web/project');
-$repository = GitSimpleFactory::factoryRepository($git);
 
-$repository->attributes()->addExportIgnore('composer.lock', '.phpunit.result.cache');
+$git->files()->attributes()->addExportIgnore('composer.lock', '.phpunit.result.cache');
 
 ```
 
@@ -586,9 +584,8 @@ $repository->attributes()->addExportIgnore('composer.lock', '.phpunit.result.cac
 use ArtARTs36\GitHandler\GitSimpleFactory;
 
 $git = GitSimpleFactory::factory('/var/web/project');
-$repository = GitSimpleFactory::factoryRepository($git);
 
-foreach ($repository->attributes()->all() as $attribute) {
+foreach ($git->files()->attributes()->all() as $attribute) {
     var_dump($attribute->pattern);
     var_dump($attribute->attrs);
 }
