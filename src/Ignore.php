@@ -5,58 +5,43 @@ namespace ArtARTs36\GitHandler;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\HasDirectory;
+use ArtARTs36\GitHandler\Files\GitFile;
 use ArtARTs36\Str\Str;
 use ArtARTs36\Str\StrCollection;
 
-class Ignore
+class Ignore extends GitFile
 {
-    protected $git;
-
-    protected $fileSystem;
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function __construct(HasDirectory $git, FileSystem $fileSystem)
-    {
-        $this->git = $git;
-        $this->fileSystem = $fileSystem;
-    }
-
     public function files(): StrCollection
     {
         $path = $this->getPathToFile();
 
-        if (! $this->fileSystem->exists($path)) {
+        if (! $this->files->exists($path)) {
             return new StrCollection([]);
         }
 
-        return Str::make($this->fileSystem->getFileContent($this->getPathToFile()))->lines()->trim();
+        return Str::make($this->files->getFileContent($this->getPathToFile()))->lines()->trim();
     }
 
     public function add(string $path): bool
     {
-        $gitIgnore = $this->getPathToFile();
-
-        $content = $this->fileSystem->exists($gitIgnore) ?
-            $this->fileSystem->getFileContent($gitIgnore) :
+        $content = $this->fileExists() ?
+            $this->getContent() :
             Str::fromEmpty();
 
         if (! $content->isEmpty()) {
             $content = $content->appendLine('');
         }
 
-        return $this->fileSystem->createFile($gitIgnore, $content->append($path));
+        return $this->createFile($content->append($path));
     }
 
     public function has(string $path): bool
     {
-        if (! $this->fileSystem->exists($this->getPathToFile())) {
+        if (! $this->fileExists()) {
             return false;
         }
 
-        return (new Str($this->fileSystem->getFileContent($this->getPathToFile())))
-            ->hasLine($path);
+        return $this->getContent()->hasLine($path);
     }
 
     /**

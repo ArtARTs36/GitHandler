@@ -2,23 +2,11 @@
 
 namespace ArtARTs36\GitHandler\Files;
 
-use ArtARTs36\GitHandler\Contracts\FileSystem;
-use ArtARTs36\GitHandler\Contracts\HasDirectory;
 use ArtARTs36\GitHandler\Data\Attribute;
 use ArtARTs36\Str\Str;
 
-class Attributes
+class Attributes extends GitFile
 {
-    protected $git;
-
-    protected $files;
-
-    public function __construct(HasDirectory $git, FileSystem $files)
-    {
-        $this->git = $git;
-        $this->files = $files;
-    }
-
     public function all(): array
     {
         if (! $this->fileExists()) {
@@ -48,9 +36,7 @@ class Attributes
             $content = $content->appendLine('');
         }
 
-        $content = $content->append($this->wraps($paths, 'export-ignore'));
-
-        return $this->files->createFile($this->getPathToFile(), $content);
+        return $this->createFile($content->append($this->wraps($paths, 'export-ignore')));
     }
 
     /**
@@ -59,16 +45,6 @@ class Attributes
     public function getPathToFile(): string
     {
         return $this->git->getDir()->append('/.gitattributes');
-    }
-
-    protected function fileExists(): bool
-    {
-        return $this->files->exists($this->getPathToFile());
-    }
-
-    protected function getContent(): Str
-    {
-        return $this->files->getFileContent($this->getPathToFile());
     }
 
     protected function wraps(array $values, string $attribute): string
