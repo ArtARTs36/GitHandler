@@ -22,7 +22,6 @@ use ArtARTs36\GitHandler\Operations\StashOperations;
 use ArtARTs36\GitHandler\Operations\StatusOperations;
 use ArtARTs36\GitHandler\Operations\TagOperations;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
-use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
 
 class Git extends AbstractGitHandler implements GitHandler
@@ -72,15 +71,14 @@ class Git extends AbstractGitHandler implements GitHandler
                     $this
                         ->newCommand()
                         ->addParameter('pull')
-                        ->when($branch !== null, function (ShellCommand $command) use ($branch) {
+                        ->when($branch !== null, function (ShellCommandInterface $command) use ($branch) {
                             $command->addParameter($branch);
                         })
-                )
-                        ->containsAny([
-                            'Already up to date',
-                            'Receiving objects',
-                            'Resolving deltas',
-                        ]);
+                )->containsAny([
+                    'Already up to date',
+                    'Receiving objects',
+                    'Resolving deltas',
+                ]);
     }
 
     /**
@@ -115,7 +113,7 @@ class Git extends AbstractGitHandler implements GitHandler
     {
         $command = $this->newCommand($this->getFileSystem()->belowPath($this->getDir()))
             ->addParameter('clone')
-            ->when($branch !== null, function (ShellCommand $command) use ($branch) {
+            ->when($branch !== null, function (ShellCommandInterface $command) use ($branch) {
                 $command
                     ->addCutOption('b')
                     ->addParameter($branch);
