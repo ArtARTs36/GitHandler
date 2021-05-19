@@ -1,0 +1,30 @@
+<?php
+
+namespace ArtARTs36\GitHandler\Files;
+
+use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\GitHandler\Contracts\GitFiles;
+use ArtARTs36\GitHandler\Contracts\GitHandler;
+
+class Files implements GitFiles
+{
+    protected $ignore;
+
+    protected $attributes;
+
+    public function __construct(GitHandler $git, FileSystem $fileSystem)
+    {
+        $this->ignore = new Ignore($git, $fileSystem);
+        $this->attributes = new Attributes($git, $fileSystem);
+    }
+
+    public function ignore(): Ignore
+    {
+        return $this->ignore;
+    }
+
+    public function attributes(): Attributes
+    {
+        return $this->attributes;
+    }
+}
