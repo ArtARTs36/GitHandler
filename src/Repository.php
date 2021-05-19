@@ -31,11 +31,6 @@ class Repository
         return $this;
     }
 
-    public function deleteFile(string $path): bool
-    {
-        return $this->fileSystem->removeFile($this->git->getDir()->append(DIRECTORY_SEPARATOR . $path));
-    }
-
     /**
      * @return string - absolute path to file
      */

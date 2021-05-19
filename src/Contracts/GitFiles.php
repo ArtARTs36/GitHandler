@@ -10,4 +10,6 @@ interface GitFiles
     public function attributes(): Attributes;
 
     public function ignore(): Ignore;
+
+    public function manager(): GitFileManager;
 }

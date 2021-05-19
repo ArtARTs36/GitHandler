@@ -99,9 +99,8 @@ $action->createFile('file.php', 'echo hello world', 'folder_name');
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$action = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepository($git)
 
-$action->deleteFile('file.php');
+$git->files()->manager()->deleteFile('file.php');
 ```
 
 #### * Delete repository:
