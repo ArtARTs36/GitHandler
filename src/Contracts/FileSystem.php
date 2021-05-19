@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Contracts;
 
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+use ArtARTs36\Str\Str;
 
 interface FileSystem
 {
@@ -21,5 +22,5 @@ interface FileSystem
     /**
      * @throws FileNotFound
      */
-    public function getFileContent(string $path): string;
+    public function getFileContent(string $path): Str;
 }

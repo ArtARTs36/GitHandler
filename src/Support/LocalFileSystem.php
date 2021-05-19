@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Support;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\PathIncorrect;
+use ArtARTs36\Str\Str;
 
 class LocalFileSystem implements FileSystem
 {
@@ -106,12 +107,12 @@ class LocalFileSystem implements FileSystem
         return file_put_contents($path, $content) !== false;
     }
 
-    public function getFileContent(string $path): string
+    public function getFileContent(string $path): Str
     {
         if (! $this->exists($path)) {
             throw new FileNotFound($path);
         }
 
-        return file_get_contents($path);
+        return Str::make(file_get_contents($path));
     }
 }

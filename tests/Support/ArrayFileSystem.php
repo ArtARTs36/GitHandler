@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Support;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
+use ArtARTs36\Str\Str;
 
 class ArrayFileSystem extends LocalFileSystem implements FileSystem
 {
@@ -46,7 +47,7 @@ class ArrayFileSystem extends LocalFileSystem implements FileSystem
         return $this;
     }
 
-    public function getFileContent(string $path): string
+    public function getFileContent(string $path): Str
     {
         if (! $this->exists($path)) {
             throw new FileNotFound($path);
