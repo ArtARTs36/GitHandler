@@ -4,12 +4,14 @@ namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\GitHandler\Contracts\GitFiles;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
+use ArtARTs36\GitHandler\Files\Files;
 use ArtARTs36\GitHandler\Operations\BranchOperations;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\FetchOperations;
@@ -174,6 +176,11 @@ class Git extends AbstractGitHandler implements GitHandler
     public function pathToGitFolder(): string
     {
         return $this->getDir()->append(DIRECTORY_SEPARATOR . '.git');
+    }
+
+    public function files(): GitFiles
+    {
+        return new Files($this, $this->fileSystem);
     }
 
     /**

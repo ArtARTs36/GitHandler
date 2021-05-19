@@ -37,4 +37,6 @@ interface GitHandler extends
     public function pathToGitFolder(): string;
 
     public function help(): string;
+
+    public function files(): GitFiles;
 }
