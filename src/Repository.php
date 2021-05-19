@@ -37,12 +37,12 @@ class Repository
         $path = $this->git->getDir();
 
         if (! empty($folder)) {
-            $path .= DIRECTORY_SEPARATOR . $folder;
+            $path = $path->append(DIRECTORY_SEPARATOR . $folder);
 
             $this->createFolder($folder);
         }
 
-        $path .= DIRECTORY_SEPARATOR . $name;
+        $path = $path->append(DIRECTORY_SEPARATOR . $name);
 
         $this->fileSystem->createFile($path, $content);
 

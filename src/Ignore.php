@@ -62,6 +62,6 @@ class Ignore
      */
     public function getPathToFile(): string
     {
-        return $this->git->getDir() . '/.gitignore';
+        return $this->git->getDir()->append('/.gitignore');
     }
 }
