@@ -23,4 +23,6 @@ interface FileSystem
      * @throws FileNotFound
      */
     public function getFileContent(string $path): Str;
+
+    public function removeFile(string $path): bool;
 }

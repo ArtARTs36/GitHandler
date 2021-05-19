@@ -55,4 +55,11 @@ class ArrayFileSystem extends LocalFileSystem implements FileSystem
 
         return $this->files[$path];
     }
+
+    public function removeFile(string $path): bool
+    {
+        unset($this->files[$path]);
+
+        return true;
+    }
 }

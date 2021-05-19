@@ -95,6 +95,15 @@ $action->createFile('file.php', 'echo hello world');
 $action->createFile('file.php', 'echo hello world', 'folder_name');
 ```
 
+#### * Remove file in repository:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$action = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepository($git)
+
+$action->deleteFile('file.php');
+```
+
 #### * Delete repository:
 
 ```php

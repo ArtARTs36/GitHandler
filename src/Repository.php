@@ -28,9 +28,14 @@ class Repository
 
     public function createFolder(string $name): self
     {
-        $this->fileSystem->createDir($this->git->getDir() . DIRECTORY_SEPARATOR . $name);
+        $this->fileSystem->createDir($this->git->getDir()->append(DIRECTORY_SEPARATOR . $name));
 
         return $this;
+    }
+
+    public function deleteFile(string $path): bool
+    {
+        return $this->fileSystem->removeFile($this->git->getDir()->append(DIRECTORY_SEPARATOR . $path));
     }
 
     /**

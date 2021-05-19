@@ -115,4 +115,9 @@ class LocalFileSystem implements FileSystem
 
         return Str::make(file_get_contents($path));
     }
+
+    public function removeFile(string $path): bool
+    {
+        return @unlink($path);
+    }
 }
