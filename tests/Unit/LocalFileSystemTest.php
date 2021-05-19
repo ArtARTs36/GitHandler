@@ -3,7 +3,9 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+use ArtARTs36\GitHandler\Exceptions\PathIncorrect;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
+use ArtARTs36\Str\Str;
 
 class LocalFileSystemTest extends TestCase
 {
@@ -16,7 +18,20 @@ class LocalFileSystemTest extends TestCase
 
         $expected = realpath(__DIR__ . '/../');
 
-        self::assertEquals($expected, $fileSystem->belowPath(__DIR__));
+        self::assertEquals($expected, $fileSystem->belowPath(Str::make(__DIR__)));
+
+        //
+
+        $str = Str::make('/path/to/git');
+        $expected = '/path/to';
+
+        self::assertEquals($expected, $fileSystem->belowPath($str));
+
+        //
+
+        self::expectException(PathIncorrect::class);
+
+        $fileSystem->belowPath(Str::make('------test'));
     }
 
     /**

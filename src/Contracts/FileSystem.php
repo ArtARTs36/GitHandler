@@ -9,7 +9,7 @@ interface FileSystem
 {
     public function removeDir(string $path): bool;
 
-    public function belowPath(string $path): string;
+    public function belowPath(Str $path): string;
 
     public function endFolder(string $path): string;
 

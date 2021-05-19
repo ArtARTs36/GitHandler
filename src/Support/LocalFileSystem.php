@@ -26,23 +26,17 @@ class LocalFileSystem implements FileSystem
         return true;
     }
 
-    /**
-     * @param string $path
-     * @return string
-     */
-    public function belowPath(string $path): string
+    public function belowPath(Str $path): string
     {
         // For not exists Path
         if (! file_exists($path)) {
-            $array = explode(DIRECTORY_SEPARATOR, $path);
+            $array = $path->explode(DIRECTORY_SEPARATOR);
 
             if (count($array) < 2) {
                 throw new PathIncorrect($path);
             }
 
-            $last = array_key_last($array);
-
-            return implode(DIRECTORY_SEPARATOR, array_slice($array, 0, $last));
+            return $array->slice(0, $array->count() - 1)->implode(DIRECTORY_SEPARATOR);
         }
 
         // For exists Path
@@ -83,11 +77,12 @@ class LocalFileSystem implements FileSystem
 
     public function isPseudoFile(string $file): bool
     {
-        $array = explode('.', $file);
-
-        return count($array) > 1;
+        return ! empty(pathinfo($file, PATHINFO_EXTENSION));
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function createDir(string $path, int $permissions = 0755): bool
     {
         if (! file_exists($path)) {
@@ -102,6 +97,9 @@ class LocalFileSystem implements FileSystem
         return file_exists($path);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function createFile(string $path, string $content): bool
     {
         return file_put_contents($path, $content) !== false;
@@ -116,6 +114,9 @@ class LocalFileSystem implements FileSystem
         return Str::make(file_get_contents($path));
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function removeFile(string $path): bool
     {
         return @unlink($path);
