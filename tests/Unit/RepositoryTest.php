@@ -7,20 +7,6 @@ use ArtARTs36\GitHandler\GitSimpleFactory;
 
 class RepositoryTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->fileSystem->createDir($this->getTmpDir());
-    }
-
-    public function tearDown(): void
-    {
-        parent::tearDown();
-
-        $this->fileSystem->removeDir($this->getTmpDir());
-    }
-
     /**
      * @covers \ArtARTs36\GitHandler\Repository::createFolder
      */
@@ -59,22 +45,6 @@ class RepositoryTest extends TestCase
         ));
     }
 
-    /**
-     * @covers \ArtARTs36\GitHandler\Repository::delete
-     */
-    public function testDelete(): void
-    {
-        $action = $this->mock();
-
-        self::assertTrue($this->fileSystem->exists($this->getTmpDir()));
-
-        //
-
-        $action->delete();
-
-        self::assertFalse($this->fileSystem->exists($this->getTmpDir()));
-    }
-
     private function mock(): Repository
     {
         $dir = $this->getTmpDir();
@@ -82,10 +52,5 @@ class RepositoryTest extends TestCase
         $git = GitSimpleFactory::factory($dir, $this->fileSystem);
 
         return new Repository($git, $this->fileSystem);
-    }
-
-    private function getTmpDir(): string
-    {
-        return __DIR__ . '/git/' . '__tmp';
     }
 }

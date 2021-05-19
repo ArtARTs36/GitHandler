@@ -107,9 +107,8 @@ $git->files()->manager()->deleteFile('file.php');
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-$action = \ArtARTs36\GitHandler\GitSimpleFactory::factoryRepository($git)
 
-$action->delete();
+$git->delete();
 ```
 
 #### * Reinstall repository (Delete local repository and fetch from origin):

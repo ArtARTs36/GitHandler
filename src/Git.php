@@ -183,6 +183,11 @@ class Git extends AbstractGitHandler implements GitHandler
         return new Files($this, $this->fileSystem);
     }
 
+    public function delete(): bool
+    {
+        return $this->getFileSystem()->removeDir($this->getDir());
+    }
+
     /**
      * @codeCoverageIgnore
      */

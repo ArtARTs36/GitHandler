@@ -190,4 +190,20 @@ Changes to be committed:
 
         self::assertEquals($dir, $git->getDir());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::delete
+     */
+    public function testDelete(): void
+    {
+        $git = $this->mockGit('');
+
+        self::assertTrue($this->fileSystem->exists($this->getTmpDir()));
+
+        //
+
+        $git->delete();
+
+        self::assertFalse($this->fileSystem->exists($this->getTmpDir()));
+    }
 }

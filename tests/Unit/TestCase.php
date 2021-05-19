@@ -21,11 +21,19 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         parent::setUp();
 
         $this->fileSystem = new ArrayFileSystem();
+        $this->fileSystem->createDir($this->getTmpDir());
+    }
+
+    public function tearDown(): void
+    {
+        parent::tearDown();
+
+        $this->fileSystem->reset();
     }
 
     protected function mockGit(?string $shellResult, string $dir = null): Git
     {
-        $dir = $dir ?? __DIR__ . '/../libraries/';
+        $dir = $dir ?? $this->getTmpDir();
         $dir = Str::make($dir);
 
         return new class($dir, $shellResult, $this->fileSystem) extends Git {
@@ -112,5 +120,10 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         };
 
         return $caller->call($object);
+    }
+
+    protected function getTmpDir(): string
+    {
+        return __DIR__ . '/git/' . '__tmp';
     }
 }

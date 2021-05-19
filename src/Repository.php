@@ -50,9 +50,4 @@ class Repository
 
         return $path;
     }
-
-    public function delete(): bool
-    {
-        return $this->fileSystem->removeDir($this->git->getDir());
-    }
 }

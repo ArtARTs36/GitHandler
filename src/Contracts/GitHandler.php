@@ -39,4 +39,6 @@ interface GitHandler extends
     public function help(): string;
 
     public function files(): GitFiles;
+
+    public function delete(): bool;
 }
