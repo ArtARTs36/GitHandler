@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\GitHandler\Files\Attributes;
 
 class Repository
 {
@@ -12,6 +13,8 @@ class Repository
     protected $fileSystem;
 
     protected $ignore = null;
+
+    protected $attributes = null;
 
     /**
      * @codeCoverageIgnore
@@ -73,5 +76,14 @@ class Repository
         }
 
         return $this->ignore;
+    }
+
+    public function attributes(): Attributes
+    {
+        if ($this->attributes === null) {
+            $this->attributes = new Attributes($this->git, $this->fileSystem);
+        }
+
+        return $this->attributes;
     }
 }

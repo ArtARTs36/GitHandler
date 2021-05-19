@@ -38,11 +38,12 @@ class Ignore
     {
         $gitIgnore = $this->getPathToFile();
 
-        $content = $this->fileSystem->exists($gitIgnore) ? $this->fileSystem->getFileContent($gitIgnore) : '';
-        $content = new Str($content);
+        $content = $this->fileSystem->exists($gitIgnore) ?
+            $this->fileSystem->getFileContent($gitIgnore) :
+            Str::fromEmpty();
 
         if (! $content->isEmpty()) {
-            $content = $content->append("\n");
+            $content = $content->appendLine('');
         }
 
         return $this->fileSystem->createFile($gitIgnore, $content->append($path));
