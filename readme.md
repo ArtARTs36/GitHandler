@@ -521,9 +521,8 @@ Use \ArtARTs36\GitHandler\Repository
 use ArtARTs36\GitHandler\GitSimpleFactory;
 
 $git = GitSimpleFactory::factory('/var/web/project');
-$repository = GitSimpleFactory::factoryRepository($git);
 
-$repository->ignore()->add('/vendor/');
+$git->files()->ignore()->add('/vendor/');
 
 ```
 
@@ -533,9 +532,8 @@ $repository->ignore()->add('/vendor/');
 use ArtARTs36\GitHandler\GitSimpleFactory;
 
 $git = GitSimpleFactory::factory('/var/web/project');
-$repository = GitSimpleFactory::factoryRepository($git);
 
-$repository->ignore()->has('/vendor/');
+$git->files()->ignore()->has('/vendor/');
 
 ``````
 
@@ -545,9 +543,8 @@ $repository->ignore()->has('/vendor/');
 use ArtARTs36\GitHandler\GitSimpleFactory;
 
 $git = GitSimpleFactory::factory('/var/web/project');
-$repository = GitSimpleFactory::factoryRepository($git);
 
-var_dump($repository->ignore()->files());
+var_dump($git->files()->ignore()->files());
 
 ```
 

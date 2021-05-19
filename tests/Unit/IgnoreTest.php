@@ -15,10 +15,9 @@ class IgnoreTest extends TestCase
      */
     public function testAdd(): void
     {
-        $git = GitSimpleFactory::factory(__DIR__);
         $fileSystem = new ArrayFileSystem();
-        $repository = new Repository($git, $fileSystem);
-        $ignore = $repository->ignore();
+        $git = GitSimpleFactory::factory(__DIR__, $fileSystem);
+        $ignore = $git->files()->ignore();
 
         self::assertFalse($ignore->has('test.txt'));
         self::assertEquals([], $ignore->files()->toStrings());

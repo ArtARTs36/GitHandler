@@ -51,29 +51,8 @@ class Repository
         return $path;
     }
 
-    /**
-     * Delete local repository and fetch from origin
-     */
-    public function reinstall(?string $branch = null): void
-    {
-        $remote = $this->git->showRemote()->fetch;
-
-        $this->delete();
-
-        $this->git->clone($remote, $branch);
-    }
-
     public function delete(): bool
     {
         return $this->fileSystem->removeDir($this->git->getDir());
-    }
-
-    public function ignore(): Ignore
-    {
-        if ($this->ignore === null) {
-            $this->ignore = new Ignore($this->git, $this->fileSystem);
-        }
-
-        return $this->ignore;
     }
 }
