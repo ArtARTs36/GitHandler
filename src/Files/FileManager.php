@@ -12,6 +12,9 @@ class FileManager implements GitFileManager
 
     protected $files;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(GitHandler $git, FileSystem $files)
     {
         $this->git = $git;

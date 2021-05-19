@@ -578,8 +578,8 @@ use ArtARTs36\GitHandler\GitSimpleFactory;
 $git = GitSimpleFactory::factory('/var/web/project');
 
 foreach ($git->files()->attributes()->all() as $attribute) {
-    var_dump($attribute->pattern);
-    var_dump($attribute->attrs);
+    var_dump($attribute->pattern());
+    var_dump($attribute->all());
 }
 
 ```
