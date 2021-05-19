@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Files;
 
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\HasDirectory;
+use ArtARTs36\GitHandler\Data\Attribute;
 use ArtARTs36\Str\Str;
 
 class Attributes
@@ -16,6 +17,27 @@ class Attributes
     {
         $this->git = $git;
         $this->files = $files;
+    }
+
+    public function all(): array
+    {
+        if (! $this->fileExists()) {
+            return [];
+        }
+
+        $attributes = [];
+
+        foreach ($this->getContent()->lines() as $line) {
+            $parts = $line->deleteUnnecessarySpaces()->explode(' ');
+
+            if ($parts->isEmpty() || $parts->count() < 2) {
+                continue;
+            }
+
+            $attributes[] = new Attribute($parts->first(), $parts->slice(1)->toStrings());
+        }
+
+        return $attributes;
     }
 
     public function addExportIgnore(string ...$paths): bool
