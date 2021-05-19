@@ -45,7 +45,11 @@ var_dump($git->help());
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->version());
+$version = $git->version();
+var_dump($version->full);
+var_dump($version->major);
+var_dump($version->minor);
+var_dump($version->patch);
 ```
 
 ---
