@@ -15,8 +15,6 @@ class Repository
 
     protected $ignore = null;
 
-    protected $attributes = null;
-
     /**
      * @codeCoverageIgnore
      */
@@ -82,14 +80,5 @@ class Repository
         }
 
         return $this->ignore;
-    }
-
-    public function attributes(): Attributes
-    {
-        if ($this->attributes === null) {
-            $this->attributes = new Attributes($this->git, $this->fileSystem);
-        }
-
-        return $this->attributes;
     }
 }
