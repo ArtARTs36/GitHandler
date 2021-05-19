@@ -15,15 +15,14 @@ interface GitHandler extends
     Statusable,
     Stashable,
     Fetchable,
-    HasBranches
+    HasBranches,
+    HasDirectory
 {
     /**
      * equals: git pull
      * equals: git pull <branch>
      */
     public function pull(?string $branch = null): bool;
-
-    public function getDir(): string;
 
     /**
      * equals: git clone <url> -b <branch>

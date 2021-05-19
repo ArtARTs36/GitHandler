@@ -49,7 +49,7 @@ class Git extends AbstractGitHandler implements GitHandler
      * @codeCoverageIgnore
      */
     public function __construct(
-        string $dir,
+        Str $dir,
         LogParser $logger,
         ConfigResultParser $config,
         FileSystem $fileSystem,

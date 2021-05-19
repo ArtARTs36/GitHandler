@@ -18,7 +18,7 @@ trait InitOperations
 
     abstract protected function executeCommand(ShellCommand $command): ?Str;
 
-    abstract public function getDir(): string;
+    abstract public function getDir(): Str;
 
     /**
      * @inheritDoc

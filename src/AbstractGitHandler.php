@@ -14,17 +14,17 @@ abstract class AbstractGitHandler implements GitHandler
     protected $executor;
 
     /**
-     * @param string $dir - directory to project .git
+     * @param Str $dir - directory to project .git
      * @param string $executor - git bin
      * @codeCoverageIgnore
      */
-    public function __construct(string $dir, string $executor = 'git')
+    public function __construct(Str $dir, string $executor = 'git')
     {
         $this->dir = $dir;
         $this->executor = $executor;
     }
 
-    public function getDir(): string
+    public function getDir(): Str
     {
         return $this->dir;
     }

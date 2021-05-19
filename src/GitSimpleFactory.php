@@ -16,6 +16,7 @@ use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl;
 use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
 use ArtARTs36\GitHandler\Support\SimpleHttpClient;
+use ArtARTs36\Str\Str;
 
 /**
  * @codeCoverageIgnore
@@ -25,7 +26,7 @@ class GitSimpleFactory
     public static function factory(string $dir, ?FileSystem $fileSystem = null, string $executor = 'git'): GitHandler
     {
         return new Git(
-            $dir,
+            Str::make($dir),
             new Logger(),
             static::factoryConfigReader(),
             $fileSystem ?? new LocalFileSystem(),
