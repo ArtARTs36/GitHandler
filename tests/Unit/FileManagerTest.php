@@ -50,4 +50,18 @@ class FileManagerTest extends TestCase
 
         return $git->files()->manager();
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Files\FileManager::deleteFile
+     */
+    public function testDelete(): void
+    {
+        $manager = $this->mock();
+
+        $this->fileSystem->createFile($this->getTmpDir() . '/test', '');
+
+        $manager->deleteFile('test');
+
+        self::assertFalse($this->fileSystem->exists($this->getTmpDir(). '/test'));
+    }
 }
