@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\Str\Str;
+use ArtARTs36\Str\StrCollection;
 
 class Ignore
 {
@@ -21,18 +22,15 @@ class Ignore
         $this->fileSystem = $fileSystem;
     }
 
-    /**
-     * @return array<string>
-     */
-    public function files(): array
+    public function files(): StrCollection
     {
         $path = $this->getPathToFile();
 
         if (! $this->fileSystem->exists($path)) {
-            return [];
+            return new StrCollection([]);
         }
 
-        return array_map('trim', (new Str($this->fileSystem->getFileContent($this->getPathToFile())))->lines());
+        return Str::make($this->fileSystem->getFileContent($this->getPathToFile()))->lines()->trim();
     }
 
     public function add(string $path): bool

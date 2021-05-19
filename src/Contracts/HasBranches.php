@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Contracts;
 
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
+use ArtARTs36\Str\StrCollection;
 
 interface HasBranches
 {
@@ -16,8 +17,5 @@ interface HasBranches
 
     public function newBranch(string $branch): bool;
 
-    /**
-     * @return array<string>
-     */
-    public function getBranches(): array;
+    public function getBranches(): StrCollection;
 }

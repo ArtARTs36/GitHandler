@@ -34,7 +34,7 @@ class ArrayFileSystem extends LocalFileSystem implements FileSystem
 
     public function createFile(string $path, string $content): bool
     {
-        $this->files[$path] = $content;
+        $this->files[$path] = Str::make($content);
 
         return true;
     }

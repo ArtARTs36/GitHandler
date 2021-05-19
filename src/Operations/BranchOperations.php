@@ -7,6 +7,7 @@ use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
+use ArtARTs36\Str\StrCollection;
 
 trait BranchOperations
 {
@@ -78,7 +79,7 @@ trait BranchOperations
         return false;
     }
 
-    public function getBranches(): array
+    public function getBranches(): StrCollection
     {
         $result = $this->executeCommand(
             $this
@@ -88,11 +89,11 @@ trait BranchOperations
         );
 
         if ($result === null || $result->isEmpty()) {
-            return [];
+            return new StrCollection([]);
         }
 
-        return array_map('trim', $result->trim()->replace([
+        return $result->trim()->replace([
             '* master' => 'master',
-        ])->lines());
+        ])->lines()->trim();
     }
 }

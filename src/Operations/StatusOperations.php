@@ -61,9 +61,9 @@ trait StatusOperations
         }
 
         foreach ($result->lines() as $line) {
-            [$group, $file] = $line->trim()->explode(' ');
+            [$group, $file] = $line->trim()->explode(' ')->toStrings();
 
-            $groups[$group->__toString()][] = $file->__toString();
+            $groups[$group][] = $file;
         }
 
         return $groups;

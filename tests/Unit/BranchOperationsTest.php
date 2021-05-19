@@ -32,7 +32,7 @@ class BranchOperationsTest extends TestCase
             'repository-downloader',
             'remotes/origin/HEAD -> origin/master',
             'remotes/origin/config',
-        ], $git->getBranches());
+        ], $git->getBranches()->toStrings());
 
         //
 

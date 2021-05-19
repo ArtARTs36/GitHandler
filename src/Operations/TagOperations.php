@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
+use ArtARTs36\Str\StrCollection;
 
 trait TagOperations
 {
@@ -13,7 +14,7 @@ trait TagOperations
 
     abstract protected function executeCommand(ShellCommand $command): ?Str;
 
-    public function getTags(?string $pattern = null): array
+    public function getTags(?string $pattern = null): StrCollection
     {
         $raw = $this
             ->executeCommand(
@@ -28,7 +29,7 @@ trait TagOperations
             );
 
         if ($raw === null || $raw->isEmpty()) {
-            return [];
+            return new StrCollection([]);
         }
 
         return $raw->trim()->lines();

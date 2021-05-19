@@ -3,10 +3,11 @@
 namespace ArtARTs36\GitHandler\Contracts;
 
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
+use ArtARTs36\Str\StrCollection;
 
 interface Taggable
 {
-    public function getTags(?string $pattern = null): array;
+    public function getTags(?string $pattern = null): StrCollection;
 
     /**
      * @throws TagAlreadyExists
