@@ -18,12 +18,12 @@ trait StatusOperations
         $result = $this->executeCommand(
             $this->newCommand()
                 ->addParameter('status')
-                ->when($short, function (ShellCommand $command) {
+                ->when($short, function (ShellCommandInterface $command) {
                     $command->addCutOption('s');
                 })
         );
 
-        return $result === null ? Str::make('') : $result;
+        return $result === null ? Str::fromEmpty() : $result;
     }
 
     public function hasChanges(): bool
