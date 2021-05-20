@@ -25,7 +25,7 @@ class AttributesTest extends TestCase
     {
         $attributes = $this->mockGit('')->files()->attributes();
 
-        $expected = "\npattern1\t\tattr\npattern2\t\tattr";
+        $expected = "pattern1\t\tattr\npattern2\t\tattr";
 
         self::assertEquals($expected, $this->callMethodFromObject(
             $attributes,
@@ -33,5 +33,30 @@ class AttributesTest extends TestCase
             ['pattern1', 'pattern2'],
             'attr'
         ));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Files\Attributes::add
+     */
+    public function testAdd(): void
+    {
+        $attributes = $this->mockGit('')->files()->attributes();
+
+        // Created File
+
+        $attributes->add('export-ignore', ['path1', 'path2']);
+
+        self::assertTrue($this->fileSystem->exists($attributes->getPathToFile()));
+        self::assertEquals("path1		export-ignore
+path2		export-ignore", $this->fileSystem->getFileContent($attributes->getPathToFile()));
+
+        // Updated File
+
+        $attributes->add('text=auto', ['*']);
+
+        self::assertTrue($this->fileSystem->exists($attributes->getPathToFile()));
+        self::assertEquals("path1		export-ignore
+path2		export-ignore
+*		text=auto", $this->fileSystem->getFileContent($attributes->getPathToFile())->__toString());
     }
 }

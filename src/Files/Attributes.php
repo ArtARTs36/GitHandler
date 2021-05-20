@@ -40,7 +40,7 @@ class Attributes extends GitFile
     {
         $content = $this->fileExists() ? $this->getContent() : Str::fromEmpty();
 
-        if ($content->isEmpty()) {
+        if ($content->isNotEmpty()) {
             $content = $content->appendLine('');
         }
 
@@ -60,7 +60,7 @@ class Attributes extends GitFile
         $content = '';
 
         foreach ($patterns as $value) {
-            $content .= "\n". $this->wrap($value, $attribute);
+            $content .= (mb_strlen($content) > 0 ? "\n" : '') . $this->wrap($value, $attribute);
         }
 
         return $content;
