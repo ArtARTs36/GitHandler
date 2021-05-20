@@ -55,19 +55,19 @@ class Attributes extends GitFile
         return $this->git->getDir()->append('/.gitattributes');
     }
 
-    protected function wraps(array $values, string $attribute): string
+    protected function wraps(array $patterns, string $attribute): string
     {
         $content = '';
 
-        foreach ($values as $value) {
-            $content .= $this->wrap($value, $attribute);
+        foreach ($patterns as $value) {
+            $content .= "\n". $this->wrap($value, $attribute);
         }
 
         return $content;
     }
 
-    protected function wrap(string $value, string $attribute): string
+    protected function wrap(string $pattern, string $attribute): string
     {
-        return $value . "\t\t" . $attribute;
+        return $pattern . "\t\t" . $attribute;
     }
 }
