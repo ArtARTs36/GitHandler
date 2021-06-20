@@ -96,4 +96,31 @@ class LogCollectionTest extends TestCase
 
         self::assertEquals($expected, $collection->all());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::filter
+     */
+    public function testFilter(): void
+    {
+        $collection = new LogCollection([
+            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+            $lastLog = new Log('', new \DateTime(), new Author('artem', '@'), 'b'),
+        ]);
+
+        //
+
+        self::assertNull($collection->filter(function () {
+            return false;
+        }));
+
+        //
+
+        $filteredCollection = $collection->filter(function (Log $log) {
+            return $log->message === 'b';
+        });
+
+        self::assertNotNull($filteredCollection);
+        self::assertCount(1, $filteredCollection);
+        self::assertSame($lastLog, $filteredCollection->first());
+    }
 }
