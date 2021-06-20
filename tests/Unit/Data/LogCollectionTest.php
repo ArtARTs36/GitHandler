@@ -67,4 +67,33 @@ class LogCollectionTest extends TestCase
 
         self::assertSame($twoLog, $collection->last());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::filterByAuthorName
+     */
+    public function testFilterByAuthorName(): void
+    {
+        $expected = [
+            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+        ];
+
+        $collection = new LogCollection(array_merge($expected, [
+            new Log('', new \DateTime(), new Author('other', '@'), 'a'),
+        ]));
+
+        self::assertEquals($expected, $collection->filterByAuthorName('artem')->all());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::all
+     */
+    public function testAll(): void
+    {
+        $collection = new LogCollection($expected = [
+            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+        ]);
+
+        self::assertEquals($expected, $collection->all());
+    }
 }
