@@ -8,6 +8,9 @@ use ArtARTs36\GitHandler\Contracts\ConfigSubject;
 use ArtARTs36\GitHandler\Exceptions\ConfigDataNotFound;
 use ArtARTs36\Str\Str;
 
+/**
+ * @internal
+ */
 class RegexConfigResultParser implements ConfigResultParser
 {
     protected $configurators;

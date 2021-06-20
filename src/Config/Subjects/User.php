@@ -2,6 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
+use JetBrains\PhpStorm\Immutable;
+
+#[Immutable]
 class User extends AbstractSubject
 {
     public $name;

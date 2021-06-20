@@ -2,8 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use JetBrains\PhpStorm\Immutable;
 use Webmozart\Assert\Assert;
 
+#[Immutable]
 class LogCollection implements \IteratorAggregate, \Countable
 {
     protected $logs;
