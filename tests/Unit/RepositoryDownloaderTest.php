@@ -35,12 +35,14 @@ class RepositoryDownloaderTest extends TestCase
         $downloader = new RepositoryDownloader(
             GitSimpleFactory::factoryOriginUrlSelector(),
             MockHttpClient::good('test-file'),
-            $fileSystem = new ArrayFileSystem()
+            new ArrayFileSystem()
         );
 
-        $git = GitSimpleFactory::factory('', $fileSystem);
-
-        $result = $this->callMethodFromObject($downloader, 'fetch', $git);
+        $result = $this->callMethodFromObject(
+            $downloader,
+            'fetch',
+            $this->mockHasRemotes('https://github.com/ArtARTs36/GitHandler.git')
+        );
 
         self::assertEquals('test-file', $result);
     }
