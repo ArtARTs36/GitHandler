@@ -26,4 +26,22 @@ class RepositoryDownloaderTest extends TestCase
 
         self::assertTrue($fileSystem->exists($pathToSave));
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\RepositoryDownloader::fetch
+     */
+    public function testFetch(): void
+    {
+        $downloader = new RepositoryDownloader(
+            GitSimpleFactory::factoryOriginUrlSelector(),
+            MockHttpClient::good('test-file'),
+            $fileSystem = new ArrayFileSystem()
+        );
+
+        $git = GitSimpleFactory::factory('', $fileSystem);
+
+        $result = $this->callMethodFromObject($downloader, 'fetch', $git);
+
+        self::assertEquals('test-file', $result);
+    }
 }
