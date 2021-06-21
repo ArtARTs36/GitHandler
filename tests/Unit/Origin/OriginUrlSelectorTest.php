@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Contracts\OriginUrl;
 use ArtARTs36\GitHandler\Exceptions\OriginUrlNotFound;
 use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrl;
 use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl;
+use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl;
 use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
@@ -44,6 +45,23 @@ class OriginUrlSelectorTest extends TestCase
         self::expectException(OriginUrlNotFound::class);
 
         $selector->selectByDomain('');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector::select
+     */
+    public function testSelect(): void
+    {
+        $selector = new OriginUrlSelector([
+            'github.com' => $url = new GithubOriginUrl(),
+            'gitlab.com' => new GitlabOriginUrl(),
+        ]);
+
+        //
+
+        $git = $this->mockHasRemotes('https://github.com/repo/');
+
+        self::assertSame($url, $selector->select($git));
     }
 
     /**
