@@ -25,4 +25,16 @@ class AbstractSubjectTest extends TestCase
 
         self::assertFalse($subject->isEmpty());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Config\Subjects\AbstractSubject::name
+     */
+    public function testName(): void
+    {
+        $subject = new class extends AbstractSubject {
+            //
+        };
+
+        self::assertStringContainsString('class@anonymous', $subject->name());
+    }
 }
