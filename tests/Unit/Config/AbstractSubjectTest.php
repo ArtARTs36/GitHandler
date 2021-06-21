@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Config;
 
 use ArtARTs36\GitHandler\Config\Subjects\AbstractSubject;
+use ArtARTs36\GitHandler\Tests\Unit\Config\Prototypes\Mask;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
 class AbstractSubjectTest extends TestCase
@@ -24,5 +25,15 @@ class AbstractSubjectTest extends TestCase
         };
 
         self::assertFalse($subject->isEmpty());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Config\Subjects\AbstractSubject::name
+     */
+    public function testName(): void
+    {
+        $subject = new Mask();
+
+        self::assertEquals('mask', $subject->name());
     }
 }

@@ -43,8 +43,7 @@ class SubjectsCollection implements \IteratorAggregate, \Countable
         $array = [];
 
         foreach ($this->subjects as $subject) {
-            $classNamesParts = explode("\\", get_class($subject));
-            $array[mb_strtolower(end($classNamesParts))] = $subject->toArray();
+            $array[$subject->name()] = $subject->toArray();
         }
 
         return $array;

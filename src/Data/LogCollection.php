@@ -29,7 +29,9 @@ class LogCollection implements \IteratorAggregate, \Countable
 
     public function last(): Log
     {
-        return end($this->logs);
+        $logs = $this->logs;
+
+        return end($logs);
     }
 
     public function filterByAuthorName(string $name): ?self
@@ -68,5 +70,13 @@ class LogCollection implements \IteratorAggregate, \Countable
     public function count(): int
     {
         return count($this->logs);
+    }
+
+    /**
+     * @return Log[]
+     */
+    public function all(): array
+    {
+        return $this->logs;
     }
 }

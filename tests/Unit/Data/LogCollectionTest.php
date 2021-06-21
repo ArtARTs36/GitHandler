@@ -31,6 +31,7 @@ class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::count
      */
     public function testConstructorGood(): void
     {
@@ -66,5 +67,91 @@ class LogCollectionTest extends TestCase
         ]);
 
         self::assertSame($twoLog, $collection->last());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::filterByAuthorName
+     */
+    public function testFilterByAuthorName(): void
+    {
+        $expected = [
+            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+        ];
+
+        $collection = new LogCollection(array_merge($expected, [
+            new Log('', new \DateTime(), new Author('other', '@'), 'a'),
+        ]));
+
+        self::assertEquals($expected, $collection->filterByAuthorName('artem')->all());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::all
+     */
+    public function testAll(): void
+    {
+        $collection = new LogCollection($expected = [
+            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+        ]);
+
+        self::assertEquals($expected, $collection->all());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::filter
+     */
+    public function testFilter(): void
+    {
+        $collection = new LogCollection([
+            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+            $lastLog = new Log('', new \DateTime(), new Author('artem', '@'), 'b'),
+        ]);
+
+        //
+
+        self::assertNull($collection->filter(function () {
+            return false;
+        }));
+
+        //
+
+        $filteredCollection = $collection->filter(function (Log $log) {
+            return $log->message === 'b';
+        });
+
+        self::assertNotNull($filteredCollection);
+        self::assertCount(1, $filteredCollection);
+        self::assertSame($lastLog, $filteredCollection->first());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::getIterator
+     */
+    public function testGetIterator(): void
+    {
+        $collection = new LogCollection($expected = [
+            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+            new Log('', new \DateTime(), new Author('artem', '@'), 'b'),
+        ]);
+
+        self::assertSame($expected, $collection->getIterator()->getArrayCopy());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::filterByDate
+     */
+    public function testFilterByDate(): void
+    {
+        $expected = [
+            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+        ];
+
+        $collection = new LogCollection(array_merge($expected, [
+            new Log('', new \DateTime('7 day ago'), new Author('other', '@'), 'a'),
+        ]));
+
+        self::assertEquals($expected, $collection->filterByDate(new \DateTime())->all());
     }
 }
