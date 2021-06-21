@@ -41,7 +41,7 @@
             "./vendor/bin/phpcs --standard=PSR2 tests/"
         ],
         "test": [
-            "XDEBUG_MODE=coverage ./vendor/bin/phpunit -v --configuration phpunit.xml"
+            "XDEBUG_MODE=coverage ./vendor/bin/phpunit -v --coverage-text --configuration phpunit.xml"
         ]
     }
 }
