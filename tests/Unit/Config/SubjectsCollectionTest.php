@@ -26,4 +26,44 @@ class SubjectsCollectionTest extends TestCase
         self::assertEquals($array, $collection->all());
         self::assertEquals($array, $collection->getIterator()->getArrayCopy());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Config\Subjects\SubjectsCollection::toArray
+     */
+    public function testToArray(): void
+    {
+        $anonym2 = new class extends AbstractSubject {
+            public $var2;
+
+            public function __construct()
+            {
+                $this->var2 = 'value2';
+            }
+
+            public function name(): string
+            {
+                return 'anonym2';
+            }
+        };
+
+        $collection = new SubjectsCollection([new class($anonym2) extends AbstractSubject {
+            public $var;
+
+            public function __construct(ConfigSubject $var)
+            {
+                $this->var = $var;
+            }
+
+            public function name(): string
+            {
+                return 'anonym1';
+            }
+        }]);
+
+        self::assertSame([
+            'anonym1' => [
+                'var' => $anonym2,
+            ],
+        ], $collection->toArray());
+    }
 }
