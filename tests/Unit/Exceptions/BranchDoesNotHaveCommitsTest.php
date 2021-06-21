@@ -9,6 +9,7 @@ class BranchDoesNotHaveCommitsTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream::__construct
+     * @covers \ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream::getMessage
      */
     public function testConstructor(): void
     {
