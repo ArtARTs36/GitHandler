@@ -10,6 +10,7 @@ use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Operations\BranchOperations;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\FetchOperations;
@@ -66,20 +67,24 @@ class Git extends AbstractGitHandler implements GitHandler
      */
     public function pull(?string $branch = null): bool
     {
-        return $this
-                ->executeCommand(
-                    $this
-                        ->newCommand()
-                        ->addParameter('pull')
-                        ->when($branch !== null, function (ShellCommand $command) use ($branch) {
-                            $command->addParameter($branch);
-                        })
-                )
-                        ->containsAny([
-                            'Already up to date',
-                            'Receiving objects',
-                            'Resolving deltas',
-                        ]);
+        $command = $this
+            ->newCommand()
+            ->addParameter('pull')
+            ->when($branch !== null, function (ShellCommand $command) use ($branch) {
+                $command->addParameter($branch);
+            });
+
+        $result = $this->executeCommand($command);
+
+        if ($result->containsAny([
+            'Already up to date',
+            'Receiving objects',
+            'Resolving deltas',
+        ])) {
+            return true;
+        }
+
+        throw new UnexpectedException($command);
     }
 
     /**
@@ -89,7 +94,7 @@ class Git extends AbstractGitHandler implements GitHandler
     {
         $sh = $this
             ->executeCommand(
-                $this
+                $command = $this
                     ->newCommand()
                     ->addParameter('add')
                     ->addParameter($file)
@@ -104,7 +109,7 @@ class Git extends AbstractGitHandler implements GitHandler
 
         FileNotFound::handleIfSo($file, $sh);
 
-        return false;
+        throw new UnexpectedException($command);
     }
 
     /**
@@ -130,20 +135,18 @@ class Git extends AbstractGitHandler implements GitHandler
 
         if ($sh && $sh->contains("Cloning into '{$folder}'")) {
             return true;
+        } elseif ($sh !== null) {
+            PathAlreadyExists::handleIfSo($folder, $sh);
         }
 
-        //
-
-        PathAlreadyExists::handleIfSo($folder, $sh);
-
-        return false;
+        throw new UnexpectedException($command);
     }
 
     public function commit(string $message, bool $amend = false): bool
     {
         $result = $this
             ->executeCommand(
-                $this
+                $command = $this
                     ->newCommand()
                     ->addParameter('commit')
                     ->addCutOption('m')
@@ -152,6 +155,10 @@ class Git extends AbstractGitHandler implements GitHandler
                         $command->addOption('amend');
                     })
             );
+
+        if ($result === null) {
+            throw new UnexpectedException($command);
+        }
 
         if ($result && $result->contains('nothing to commit')) {
             throw new NothingToCommit();
@@ -170,6 +177,9 @@ class Git extends AbstractGitHandler implements GitHandler
         return $this->executeCommand($this->newCommand()->addOption('help'))->trim();
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function pathToGitFolder(): string
     {
         return $this->getDir() . DIRECTORY_SEPARATOR . '.git';

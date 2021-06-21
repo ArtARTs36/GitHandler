@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 
 final class GitTest extends TestCase
 {
@@ -43,9 +44,15 @@ final class GitTest extends TestCase
 
         //
 
-        $git = $this->mockGit('');
+        $git = $this->mockGit("Receiving objects: 100% \n Resolving deltas: 100%");
 
-        self::assertFalse($git->pull());
+        self::assertTrue($git->pull('master'));
+
+        //
+
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit('')->pull();
     }
 
     /**
@@ -78,9 +85,9 @@ Changes to be committed:
 
         //
 
-        $git = $this->mockGit('undefined');
+        $git = $this->mockGit(null);
 
-        self::assertFalse($git->add('doc.txt'));
+        self::assertTrue($git->add('README.MD', true));
 
         //
 
@@ -89,6 +96,18 @@ Changes to be committed:
         $git = $this->mockGit("pathspec 'random.file' did not match any files");
 
         $git->add('random.file');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::add
+     */
+    public function testAddOnUndefinedResult(): void
+    {
+        $git = $this->mockGit('undefined');
+
+        self::expectException(UnexpectedException::class);
+
+        $git->add('doc.txt');
     }
 
     /**
@@ -112,6 +131,18 @@ Changes to be committed:
 
         $this->mockGit("fatal: destination path '{$folder}' already exists " .
             "and is not an empty directory.", $dir)->clone($url);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::clone
+     */
+    public function testCloneUndefinedError(): void
+    {
+        $git = $this->mockGit(null);
+
+        self::expectException(UnexpectedException::class);
+
+        $git->clone('');
     }
 
     /**
