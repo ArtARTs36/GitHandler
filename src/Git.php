@@ -174,7 +174,13 @@ class Git extends AbstractGitHandler implements GitHandler
 
     public function help(): string
     {
-        return $this->executeCommand($this->newCommand()->addOption('help'))->trim();
+        $result = $this->executeCommand($cmd = $this->newCommand()->addOption('help'));
+
+        if ($result === null || $result->isEmpty()) {
+            throw new UnexpectedException($cmd);
+        }
+
+        return $result->trim();
     }
 
     /**

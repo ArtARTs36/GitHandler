@@ -255,4 +255,34 @@ Changes to be committed:
     {
         self::assertTrue($this->mockGit('file changed')->commit('', true));
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::help
+     */
+    public function testHelp(): void
+    {
+        $git = $this->mockGit($expected = 'help description');
+
+        self::assertEquals($expected, $git->help());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::help
+     */
+    public function testHelpOnNullCommand(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit(null)->help();
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::help
+     */
+    public function testHelpOnEmptyCommand(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit('')->help();
+    }
 }
