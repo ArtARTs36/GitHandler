@@ -25,14 +25,10 @@ class LocalFileSystem implements FileSystem
         return true;
     }
 
-    /**
-     * @param string $path
-     * @return string
-     */
     public function belowPath(string $path): string
     {
         // For not exists Path
-        if (! file_exists($path)) {
+        if (! $this->exists($path)) {
             $array = explode(DIRECTORY_SEPARATOR, $path);
 
             if (count($array) < 2) {
@@ -52,7 +48,7 @@ class LocalFileSystem implements FileSystem
     public function endFolder(string $path): string
     {
         // For not exists Path
-        if (! file_exists($path)) {
+        if (! $this->exists($path)) {
             $array = explode(DIRECTORY_SEPARATOR, $path);
 
             $end = end($array);
@@ -89,7 +85,7 @@ class LocalFileSystem implements FileSystem
 
     public function createDir(string $path, int $permissions = 0755): bool
     {
-        if (! file_exists($path)) {
+        if (! $this->exists($path)) {
             return mkdir($path, $permissions, true);
         }
 
