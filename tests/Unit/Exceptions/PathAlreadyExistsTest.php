@@ -10,7 +10,6 @@ class PathAlreadyExistsTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Exceptions\PathAlreadyExists::__construct
-     * @covers \ArtARTs36\GitHandler\Exceptions\PathAlreadyExists::getMessage
      */
     public function testConstructor(): void
     {
