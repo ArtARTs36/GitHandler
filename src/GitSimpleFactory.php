@@ -34,10 +34,10 @@ class GitSimpleFactory
         );
     }
 
-    public static function factoryConfigReader(): ConfigResultParser
+    public static function factoryConfigReader(?array $configurators = null): ConfigResultParser
     {
         return new RegexConfigResultParser(
-            ConfiguratorsDict::make([
+            ConfiguratorsDict::make($configurators ?? [
                 new UserConfigurator(),
                 new CoreConfigurator(),
                 new PackConfigurator(),

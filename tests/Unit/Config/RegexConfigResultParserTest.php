@@ -2,6 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Config;
 
+use ArtARTs36\GitHandler\Config\Subjects\AbstractSubject;
+use ArtARTs36\GitHandler\Contracts\ConfigSubject;
+use ArtARTs36\GitHandler\Contracts\SubjectConfigurator;
 use ArtARTs36\GitHandler\Exceptions\ConfigDataNotFound;
 use ArtARTs36\GitHandler\GitSimpleFactory;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
@@ -60,5 +63,37 @@ class RegexConfigResultParserTest extends TestCase
         self::expectException(ConfigDataNotFound::class);
 
         $parser->parseByPrefix(Str::make(''), 'test');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Config\RegexConfigResultParser::parseByPrefix
+     */
+    public function testParseByPrefix(): void
+    {
+        $parser = GitSimpleFactory::factoryConfigReader([
+            new class implements SubjectConfigurator {
+
+                public function parse(array $raw): ConfigSubject
+                {
+                    return new class($raw['option']) extends AbstractSubject {
+                        public $option;
+
+                        public function __construct(int $option)
+                        {
+                            $this->option = $option;
+                        }
+                    };
+                }
+
+                public function getPrefix(): string
+                {
+                    return 'task';
+                }
+            },
+        ]);
+
+        $task = $parser->parseByPrefix(Str::make('task.option=1'), 'task');
+
+        self::assertSame(1, $task->option);
     }
 }
