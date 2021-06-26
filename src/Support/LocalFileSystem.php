@@ -15,14 +15,22 @@ class LocalFileSystem implements FileSystem
         }
 
         if (is_dir($path)) {
-            array_map(function ($file) use ($path) {
-                $this->removeDir($path . DIRECTORY_SEPARATOR . $file);
-            }, array_diff(scandir($path), ['.', '..']));
+            foreach ($this->getFromDirectory($path) as $file) {
+                $this->removeDir($file);
+            }
 
             return rmdir($path);
         }
 
         return true;
+    }
+
+    /**
+     * @return array<string>
+     */
+    public function getFromDirectory(string $path): array
+    {
+        return glob(realpath($path) . '/*');
     }
 
     public function belowPath(string $path): string
