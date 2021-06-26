@@ -2,7 +2,6 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Config;
 
-use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Config\Subjects\AbstractSubject;
 use ArtARTs36\GitHandler\Contracts\ConfigSubject;
 use ArtARTs36\GitHandler\Contracts\SubjectConfigurator;
@@ -104,7 +103,7 @@ class RegexConfigResultParserTest extends TestCase
     public function testParse(): void
     {
         $output = Str::make(
-            "task.option=1\nab.field\ntask.option2=3"
+            "task.option=1\nab.field=2\ntask.option2=3"
         );
 
         $parser = GitSimpleFactory::factoryConfigReader([
