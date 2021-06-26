@@ -8,7 +8,7 @@ use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 class BranchDoesNotHaveCommitsTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream::__construct
+     * @covers \ArtARTs36\GitHandler\Exceptions\BranchDoesNotHaveCommits::__construct
      */
     public function testConstructor(): void
     {
