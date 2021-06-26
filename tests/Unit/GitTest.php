@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 
@@ -215,5 +216,43 @@ Changes to be committed:
         $git = $this->mockGit('', $dir = '/path/to/dir');
 
         self::assertEquals($dir, $git->getDir());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::commit
+     */
+    public function testCommitOnNullCommand(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit(null)->commit('');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::commit
+     */
+    public function testCommitOnEmptyCommand(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit('')->commit('');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::commit
+     */
+    public function testCommitOnNothingToCommit(): void
+    {
+        self::expectException(NothingToCommit::class);
+
+        $this->mockGit('nothing to commit')->commit('');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::commit
+     */
+    public function testCommitOnFileChanged(): void
+    {
+        self::assertTrue($this->mockGit('file changed')->commit('', true));
     }
 }

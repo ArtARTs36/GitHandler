@@ -156,11 +156,11 @@ class Git extends AbstractGitHandler implements GitHandler
                     })
             );
 
-        if ($result === null) {
+        if ($result === null || $result->isEmpty()) {
             throw new UnexpectedException($command);
         }
 
-        if ($result && $result->contains('nothing to commit')) {
+        if ($result->contains('nothing to commit')) {
             throw new NothingToCommit();
         }
 
