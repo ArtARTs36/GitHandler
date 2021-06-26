@@ -16,7 +16,7 @@ class LocalFileSystem implements FileSystem
 
         if (is_dir($path)) {
             array_map(function ($file) use ($path) {
-                static::removeDir($path . DIRECTORY_SEPARATOR . $file);
+                $this->removeDir($path . DIRECTORY_SEPARATOR . $file);
             }, array_diff(scandir($path), ['.', '..']));
 
             return rmdir($path);
