@@ -2,8 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Config;
 
+use ArtARTs36\GitHandler\Exceptions\ConfigDataNotFound;
 use ArtARTs36\GitHandler\GitSimpleFactory;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
+use ArtARTs36\Str\Str;
 
 class RegexConfigResultParserTest extends TestCase
 {
@@ -46,5 +48,17 @@ class RegexConfigResultParserTest extends TestCase
         ];
 
         self::assertEquals($expected, $this->callMethodFromObject($parser, 'grouped', $matches));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Config\RegexConfigResultParser::parseByPrefix
+     */
+    public function testParseByPrefixOnNotFound(): void
+    {
+        $parser = GitSimpleFactory::factoryConfigReader();
+
+        self::expectException(ConfigDataNotFound::class);
+
+        $parser->parseByPrefix(Str::make(''), 'test');
     }
 }
