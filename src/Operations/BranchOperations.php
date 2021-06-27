@@ -58,7 +58,7 @@ trait BranchOperations
             throw new BranchNotFound($branch);
         }
 
-        return false;
+        throw new UnexpectedException($cmd);
     }
 
     public function newBranch(string $branch): bool

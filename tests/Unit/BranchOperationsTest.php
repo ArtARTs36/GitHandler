@@ -31,6 +31,16 @@ class BranchOperationsTest extends TestCase
     /**
      * @covers \ArtARTs36\GitHandler\Git::deleteBranch
      */
+    public function testDeleteBranchOnOtherResult(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit('test')->deleteBranch('test');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::deleteBranch
+     */
     public function testDeleteBranchOnBranchNotFound(): void
     {
         self::expectException(BranchNotFound::class);
