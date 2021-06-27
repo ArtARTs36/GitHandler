@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Operations;
 
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -14,16 +15,27 @@ trait PathOperations
 
     public function getInfoPath(): string
     {
-        return $this->executeCommand($this->newCommand()->addOption('info-path'))->trim();
+        return $this->getPathByOption('info-path');
     }
 
     public function getHtmlPath(): string
     {
-        return $this->executeCommand($this->newCommand()->addOption('info-path'))->trim();
+        return $this->getPathByOption('html-path');
     }
 
     public function getManPath(): string
     {
-        return $this->executeCommand($this->newCommand()->addOption('man-path'))->trim();
+        return $this->getPathByOption('man-path');
+    }
+
+    protected function getPathByOption(string $option): string
+    {
+        $result = $this->executeCommand($cmd = $this->newCommand()->addOption($option));
+
+        if ($result === null || $result->isEmpty()) {
+            throw new UnexpectedException($cmd);
+        }
+
+        return $result->trim();
     }
 }

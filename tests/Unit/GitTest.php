@@ -199,6 +199,7 @@ Changes to be committed:
 
     /**
      * @covers \ArtARTs36\GitHandler\Git::getInfoPath
+     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
      */
     public function testGetInfoPath(): void
     {
@@ -206,6 +207,30 @@ Changes to be committed:
 ');
 
         self::assertEquals('/Applications/Xcode.app/Contents/Developer/usr/share/info', $git->getInfoPath());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getHtmlPath
+     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
+     */
+    public function testGetHtmPath(): void
+    {
+        $git = $this->mockGit('/Applications/Xcode.app/Contents/Developer/usr/share/doc/git-doc
+');
+
+        self::assertEquals('/Applications/Xcode.app/Contents/Developer/usr/share/doc/git-doc', $git->getHtmlPath());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getManPath
+     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
+     */
+    public function testManPath(): void
+    {
+        $git = $this->mockGit('/Applications/Xcode.app/Contents/Developer/usr/share/man
+');
+
+        self::assertEquals('/Applications/Xcode.app/Contents/Developer/usr/share/man', $git->getManPath());
     }
 
     /**
