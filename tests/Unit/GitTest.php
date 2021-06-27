@@ -244,6 +244,26 @@ Changes to be committed:
     }
 
     /**
+     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
+     */
+    public function testGetPathByOptionOnNullResult(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->callMethodFromObject($this->mockGit(null), 'getPathByOption', 't');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
+     */
+    public function testGetPathByOptionOnEmptyResult(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->callMethodFromObject($this->mockGit(''), 'getPathByOption', 't');
+    }
+
+    /**
      * @covers \ArtARTs36\GitHandler\Git::commit
      */
     public function testCommitOnNullCommand(): void
