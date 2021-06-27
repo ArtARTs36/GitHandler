@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Operations;
 
 use ArtARTs36\GitHandler\Exceptions\BranchAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -38,15 +39,15 @@ trait BranchOperations
     public function deleteBranch(string $branch): bool
     {
         $result = $this->executeCommand(
-            $this
+            $cmd = $this
                 ->newCommand()
                 ->addParameter('branch')
                 ->addCutOption('d')
                 ->addParameter($branch)
         );
 
-        if ($result === null) {
-            return false;
+        if ($result === null || $result->isEmpty()) {
+            throw new UnexpectedException($cmd);
         }
 
         if ($result->contains("Deleted branch $branch")) {

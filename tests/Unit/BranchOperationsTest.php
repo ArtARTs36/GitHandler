@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Exceptions\BranchAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 
 class BranchOperationsTest extends TestCase
 {
@@ -15,6 +16,26 @@ class BranchOperationsTest extends TestCase
         $git = $this->mockGit('Deleted branch config (was a48b10d).');
 
         self::assertTrue($git->deleteBranch('config'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::deleteBranch
+     */
+    public function testDeleteBranchOnNullResult(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit(null)->deleteBranch('test');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::deleteBranch
+     */
+    public function testDeleteBranchOnBranchNotFound(): void
+    {
+        self::expectException(BranchNotFound::class);
+
+        $this->mockGit("error: branch 'test' not found")->deleteBranch('test');
     }
 
     /**
