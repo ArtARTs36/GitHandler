@@ -58,6 +58,6 @@ class BranchOperationsTest extends TestCase
         self::expectException(BranchNotFound::class);
 
         $this->mockGit("pathspec 'random' did not match any")
-            ->checkout('random');
+            ->checkout('random', true);
     }
 }
