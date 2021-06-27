@@ -49,6 +49,16 @@ class BranchOperationsTest extends TestCase
     }
 
     /**
+     * @covers \ArtARTs36\GitHandler\Git::newBranch
+     */
+    public function testNewBranchOnOtherResult(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit("error")->newBranch('test');
+    }
+
+    /**
      * @covers \ArtARTs36\GitHandler\Git::getBranches
      */
     public function testGetBranches(): void

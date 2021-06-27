@@ -64,7 +64,7 @@ trait BranchOperations
     public function newBranch(string $branch): bool
     {
         $result = $this->executeCommand(
-            $this->newCommand()->addParameter('branch')->addParameter($branch)
+            $cmd = $this->newCommand()->addParameter('branch')->addParameter($branch)
         );
 
         if ($result === null || $result->isEmpty()) {
@@ -76,7 +76,7 @@ trait BranchOperations
             throw new BranchAlreadyExists($branch);
         }
 
-        return false;
+        throw new UnexpectedException($cmd);
     }
 
     public function getBranches(): array
