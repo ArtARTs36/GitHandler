@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
+use ArtARTs36\GitHandler\Exceptions\BranchAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 
 class BranchOperationsTest extends TestCase
@@ -59,5 +60,25 @@ class BranchOperationsTest extends TestCase
 
         $this->mockGit("pathspec 'random' did not match any")
             ->checkout('random', true);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::newBranch
+     */
+    public function testNewBranchOk(): void
+    {
+        $git = $this->mockGit(null);
+
+        self::assertTrue($git->newBranch('test'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::newBranch
+     */
+    public function testNewBranchOnAlreadyExists(): void
+    {
+        self::expectException(BranchAlreadyExists::class);
+
+        $this->mockGit("fatal: A branch named 'test' already exists")->newBranch('test');
     }
 }
