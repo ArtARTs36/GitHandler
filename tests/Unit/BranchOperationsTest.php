@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
+use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
+
 class BranchOperationsTest extends TestCase
 {
     /**
@@ -39,5 +41,23 @@ class BranchOperationsTest extends TestCase
         $git = $this->mockGit('');
 
         self::assertEmpty($git->getBranches());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::checkout
+     */
+    public function testCheckout(): void
+    {
+        $response = $this->mockGit("Already on 'master'")
+            ->checkout('master');
+
+        self::assertTrue($response);
+
+        //
+
+        self::expectException(BranchNotFound::class);
+
+        $this->mockGit("pathspec 'random' did not match any")
+            ->checkout('random');
     }
 }

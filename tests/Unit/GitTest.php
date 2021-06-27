@@ -11,24 +11,6 @@ use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 final class GitTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Git::checkout
-     */
-    public function testCheckout(): void
-    {
-        $response = $this->mockGit("Already on 'master'")
-            ->checkout('master');
-
-        self::assertTrue($response);
-
-        //
-
-        self::expectException(BranchNotFound::class);
-
-        $this->mockGit("pathspec 'random' did not match any")
-            ->checkout('random');
-    }
-
-    /**
      * @covers \ArtARTs36\GitHandler\Git::pull
      */
     public function testPull(): void
