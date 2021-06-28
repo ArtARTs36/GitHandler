@@ -32,7 +32,7 @@ class LocalFileSystem implements FileSystem
         if (! file_exists($path)) {
             $array = $path->explode(DIRECTORY_SEPARATOR);
 
-            if (count($array) < 2) {
+            if ($array->count() < 2) {
                 throw new PathIncorrect($path);
             }
 
