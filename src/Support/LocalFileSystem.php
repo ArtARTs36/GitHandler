@@ -38,17 +38,14 @@ class LocalFileSystem implements FileSystem
     {
         // For not exists Path
         if (! $this->exists($path)) {
-            $array = $path->explode(DIRECTORY_SEPARATOR);
-
-            if ($array->count() < 2) {
+            if ($path->explode(DIRECTORY_SEPARATOR)->count() < 2) {
                 throw new PathIncorrect($path);
             }
 
-            return $array->slice(0, $array->count() - 1)->implode(DIRECTORY_SEPARATOR);
+            return pathinfo($path, PATHINFO_DIRNAME);
         }
 
         // For exists Path
-
         return realpath($path . '/../');
     }
 

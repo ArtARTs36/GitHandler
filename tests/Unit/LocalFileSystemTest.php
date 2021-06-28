@@ -37,36 +37,46 @@ class LocalFileSystemTest extends TestCase
     /**
      * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::belowPath
      */
-    public function testBelowPath(): void
+    public function testBelowPathBad(): void
     {
         $fileSystem = new LocalFileSystem();
-
-        $expected = realpath(__DIR__ . '/../');
-
-        self::assertEquals($expected, $fileSystem->belowPath(Str::make(__DIR__)));
-
-        //
-
-        $str = Str::make('/path/to/git');
-        $expected = '/path/to';
-
-        self::assertEquals($expected, $fileSystem->belowPath($str));
-
-        //
 
         self::expectException(PathIncorrect::class);
 
         $fileSystem->belowPath(Str::make('------test'));
+    }
 
-        //
+    public function belowPathGoodDataProvider(): array
+    {
+        return [
+            [
+                '/path/to',
+                '/path/to/git',
+            ],
+            [
+                '/path/to',
+                '/path/to/file.php',
+            ],
+            [
+                '/path/to',
+                '/path/to/file/',
+            ],
+            [
+                realpath(__DIR__ . '/../'),
+                __DIR__,
+            ],
+        ];
+    }
 
-        self::assertEquals('/path/to', $fileSystem->belowPath('/path/to/git'));
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::belowPath
+     * @dataProvider belowPathGoodDataProvider
+     */
+    public function testBelowPathGood(string $expected, string $path): void
+    {
+        $fileSystem = new LocalFileSystem();
 
-        //
-
-        self::expectException(PathIncorrect::class);
-
-        $fileSystem->belowPath('------test');
+        self::assertEquals($expected, $fileSystem->belowPath(Str::make($path)));
     }
 
     /**
