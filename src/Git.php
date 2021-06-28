@@ -72,7 +72,7 @@ class Git extends AbstractGitHandler implements GitHandler
         $command = $this
             ->newCommand()
             ->addParameter('pull')
-            ->when($branch !== null, function (ShellCommand $command) use ($branch) {
+            ->when($branch !== null, function (ShellCommandInterface $command) use ($branch) {
                 $command->addParameter($branch);
             });
 

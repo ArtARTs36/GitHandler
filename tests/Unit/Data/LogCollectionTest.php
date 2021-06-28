@@ -154,21 +154,4 @@ class LogCollectionTest extends TestCase
 
         self::assertEquals($expected, $collection->filterByDate(new \DateTime())->all());
     }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Data\LogCollection::filterByAuthorName
-     */
-    public function testFilterByAuthorName(): void
-    {
-        $expected = [
-            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
-            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
-        ];
-
-        $collection = new LogCollection(array_merge($expected, [
-            new Log('', new \DateTime(), new Author('other', '@'), 'a'),
-        ]));
-
-        self::assertEquals($expected, $collection->filterByAuthorName('artem')->all());
-    }
 }
