@@ -10,6 +10,31 @@ use ArtARTs36\Str\Str;
 class LocalFileSystemTest extends TestCase
 {
     /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getFromDirectory
+     */
+    public function testGetFromDirectory(): void
+    {
+        $fileSystem = new LocalFileSystem();
+        $path = __DIR__ . '/../Mocks/files/local_file_system_test/get_from_directory';
+
+        $result = $fileSystem->getFromDirectory($path);
+
+        self::assertCount(2, $result);
+        self::assertStringContainsString('1.txt', $result[0]);
+        self::assertStringContainsString('2.txt', $result[1]);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::removeDir
+     */
+    public function testRemoveDir(): void
+    {
+        $fileSystem = new LocalFileSystem();
+
+        self::assertTrue($fileSystem->removeDir(random_bytes(6). '/random/path'));
+    }
+
+    /**
      * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::belowPath
      */
     public function testBelowPath(): void
@@ -32,6 +57,16 @@ class LocalFileSystemTest extends TestCase
         self::expectException(PathIncorrect::class);
 
         $fileSystem->belowPath(Str::make('------test'));
+
+        //
+
+        self::assertEquals('/path/to', $fileSystem->belowPath('/path/to/git'));
+
+        //
+
+        self::expectException(PathIncorrect::class);
+
+        $fileSystem->belowPath('------test');
     }
 
     /**

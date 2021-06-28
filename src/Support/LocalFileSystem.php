@@ -16,9 +16,9 @@ class LocalFileSystem implements FileSystem
         }
 
         if (is_dir($path)) {
-            array_map(function ($file) use ($path) {
-                static::removeDir($path . DIRECTORY_SEPARATOR . $file);
-            }, array_diff(scandir($path), ['.', '..']));
+            foreach ($this->getFromDirectory($path) as $file) {
+                $this->removeDir($file);
+            }
 
             return rmdir($path);
         }
@@ -26,10 +26,18 @@ class LocalFileSystem implements FileSystem
         return true;
     }
 
+    /**
+     * @return array<string>
+     */
+    public function getFromDirectory(string $path): array
+    {
+        return glob(realpath($path) . '/*');
+    }
+
     public function belowPath(Str $path): string
     {
         // For not exists Path
-        if (! file_exists($path)) {
+        if (! $this->exists($path)) {
             $array = $path->explode(DIRECTORY_SEPARATOR);
 
             if ($array->count() < 2) {
@@ -47,7 +55,7 @@ class LocalFileSystem implements FileSystem
     public function endFolder(string $path): string
     {
         // For not exists Path
-        if (! file_exists($path)) {
+        if (! $this->exists($path)) {
             $array = explode(DIRECTORY_SEPARATOR, $path);
 
             $end = end($array);
@@ -85,7 +93,7 @@ class LocalFileSystem implements FileSystem
      */
     public function createDir(string $path, int $permissions = 0755): bool
     {
-        if (! file_exists($path)) {
+        if (! $this->exists($path)) {
             return mkdir($path, $permissions, true);
         }
 

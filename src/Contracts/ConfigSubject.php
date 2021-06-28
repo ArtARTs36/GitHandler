@@ -10,4 +10,6 @@ interface ConfigSubject
     public function toArray(): array;
 
     public function isEmpty(): bool;
+
+    public function name(): string;
 }

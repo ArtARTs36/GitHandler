@@ -8,6 +8,7 @@ use ArtARTs36\GitHandler\Exceptions\OriginUrlNotFound;
 use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 
 class RepositoryDownloader
 {
@@ -41,8 +42,11 @@ class RepositoryDownloader
      */
     protected function fetch(HasRemotes $git): string
     {
-        return $this->client->sendRequest(
-            new Request('GET', $this->url->select($git)->toArchive($git))
-        )->getBody()->getContents();
+        return $this->client->sendRequest($this->createRequestOnFetch($git))->getBody()->getContents();
+    }
+
+    protected function createRequestOnFetch(HasRemotes $git): RequestInterface
+    {
+        return new Request('GET', $this->url->select($git)->toArchive($git));
     }
 }

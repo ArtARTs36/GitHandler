@@ -2,8 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use JetBrains\PhpStorm\Immutable;
 use Webmozart\Assert\Assert;
 
+#[Immutable]
 class LogCollection implements \IteratorAggregate, \Countable
 {
     protected $logs;
@@ -27,7 +29,9 @@ class LogCollection implements \IteratorAggregate, \Countable
 
     public function last(): Log
     {
-        return end($this->logs);
+        $logs = $this->logs;
+
+        return end($logs);
     }
 
     public function filterByAuthorName(string $name): ?self

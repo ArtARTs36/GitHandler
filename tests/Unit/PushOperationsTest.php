@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 
 class PushOperationsTest extends TestCase
 {
@@ -28,5 +29,25 @@ To push the current branch and set the remote as upstream, use
     public function testPushGood(): void
     {
         self::assertTrue($this->mockGit('Everything up-to-date')->push());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::push
+     */
+    public function testOnNullCommandResult(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit(null)->push(true);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::push
+     */
+    public function testOnEmptyCommandResult(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit('')->push();
     }
 }

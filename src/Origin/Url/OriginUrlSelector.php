@@ -20,7 +20,7 @@ class OriginUrlSelector
     }
 
     /**
-     * @param array<string, OriginUrl> $urls
+     * @param array<OriginUrl> $urls
      */
     public static function make(array $urls): self
     {
