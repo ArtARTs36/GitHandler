@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Operations;
 
 use ArtARTs36\GitHandler\Exceptions\BranchAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -38,15 +39,15 @@ trait BranchOperations
     public function deleteBranch(string $branch): bool
     {
         $result = $this->executeCommand(
-            $this
+            $cmd = $this
                 ->newCommand()
                 ->addParameter('branch')
                 ->addCutOption('d')
                 ->addParameter($branch)
         );
 
-        if ($result === null) {
-            return false;
+        if ($result === null || $result->isEmpty()) {
+            throw new UnexpectedException($cmd);
         }
 
         if ($result->contains("Deleted branch $branch")) {
@@ -57,13 +58,13 @@ trait BranchOperations
             throw new BranchNotFound($branch);
         }
 
-        return false;
+        throw new UnexpectedException($cmd);
     }
 
     public function newBranch(string $branch): bool
     {
         $result = $this->executeCommand(
-            $this->newCommand()->addParameter('branch')->addParameter($branch)
+            $cmd = $this->newCommand()->addParameter('branch')->addParameter($branch)
         );
 
         if ($result === null || $result->isEmpty()) {
@@ -75,7 +76,7 @@ trait BranchOperations
             throw new BranchAlreadyExists($branch);
         }
 
-        return false;
+        throw new UnexpectedException($cmd);
     }
 
     public function getBranches(): array

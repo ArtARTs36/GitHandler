@@ -64,7 +64,7 @@ class RegexConfigResultParser implements ConfigResultParser
     }
 
     /**
-     * @return array<string, array<string, string>
+     * @return array<string, array<string>>
      */
     protected function grouped(array $matches): array
     {
