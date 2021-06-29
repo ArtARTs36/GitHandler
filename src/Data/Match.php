@@ -19,7 +19,6 @@ class Match
         $this->content = $content;
     }
 
-
     public static function fromArray(
         #[ArrayShape(['file' => 'string', 'line' => 'integer', 'content' => 'string'])]
         array $data
