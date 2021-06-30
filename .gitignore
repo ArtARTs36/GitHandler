@@ -3,3 +3,4 @@
 /vendor/
 /.phpunit.result.cache
 /__tmp/
+/tests/reports/
