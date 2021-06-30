@@ -2,9 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
-use JetBrains\PhpStorm\ArrayShape;
-
-class Match
+class FileMatch
 {
     public $file;
 
@@ -20,7 +18,6 @@ class Match
     }
 
     public static function fromArray(
-        #[ArrayShape(['file' => 'string', 'line' => 'integer', 'content' => 'string'])]
         array $data
     ): self {
         return new static($data['file'], $data['line'], $data['content']);

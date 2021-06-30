@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Operations;
 
-use ArtARTs36\GitHandler\Data\Match;
+use ArtARTs36\GitHandler\Data\FileMatch;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -16,7 +16,7 @@ trait GrepOperations
     abstract protected function executeCommand(ShellCommand $command): ?Str;
 
     /**
-     * @return array<Match>
+     * @return array<FileMatch>
      */
     public function grep(string $term): array
     {
@@ -35,7 +35,7 @@ trait GrepOperations
         $matches = [];
 
         foreach ($result->globalMatch($this->grepRegex) as $match) {
-            $matches[] = Match::fromArray($match);
+            $matches[] = FileMatch::fromArray($match);
         }
 
         return $matches;

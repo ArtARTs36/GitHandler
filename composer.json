@@ -43,6 +43,9 @@
         ],
         "test": [
             "XDEBUG_MODE=coverage ./vendor/bin/phpunit -v --coverage-text --configuration phpunit.xml"
+        ],
+        "mutate-test": [
+            "./vendor/infection/infection/bin/infection"
         ]
     }
 }
