@@ -6,10 +6,10 @@ use Throwable;
 
 final class TagAlreadyExists extends GitHandlerException
 {
-    public function __construct($tag, $code = 0, Throwable $previous = null)
+    public function __construct($tag)
     {
         $message = "Tag \"{$tag}\" already exists!";
 
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message);
     }
 }

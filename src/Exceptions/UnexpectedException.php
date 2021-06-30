@@ -2,18 +2,16 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-use Throwable;
-
 class UnexpectedException extends GitHandlerException
 {
     public $errorCommand;
 
-    public function __construct(string $command, $code = 0, Throwable $previous = null)
+    public function __construct(string $command)
     {
         $this->errorCommand = $command;
 
         $message = "Unexpected exception after execution command: ". $command;
 
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message);
     }
 }
