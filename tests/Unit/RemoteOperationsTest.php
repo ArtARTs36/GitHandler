@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
+use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
+
 class RemoteOperationsTest extends TestCase
 {
     /**
@@ -43,5 +45,17 @@ class RemoteOperationsTest extends TestCase
         $remotes = $git->showRemote();
 
         self::assertTrue($remotes->isEmpty());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::addRemote
+     */
+    public function testAddRemoteAlreadyExists(): void
+    {
+        $git = $this->mockGit('remote master already exists');
+
+        self::expectException(RemoteAlreadyExists::class);
+
+        $git->addRemote('m', 'https://site.ru');
     }
 }
