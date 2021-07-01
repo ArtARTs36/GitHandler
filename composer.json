@@ -45,7 +45,7 @@
             "XDEBUG_MODE=coverage ./vendor/bin/phpunit -v --coverage-text --configuration phpunit.xml"
         ],
         "mutate-test": [
-            "./vendor/infection/infection/bin/infection"
+            "./vendor/infection/infection/bin/infection --min-covered-msi=75"
         ]
     }
 }
