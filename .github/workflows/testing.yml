@@ -38,3 +38,5 @@ jobs:
 
     - name: Run Mutation Testing
       run: composer mutate-test
+      env:
+        INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}

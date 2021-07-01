@@ -5,7 +5,7 @@
 <a href="https://poser.pugx.org/artarts36/git-handler/d/total.svg">
     <img src="https://poser.pugx.org/artarts36/git-handler/d/total.svg" alt="Total Downloads">
 </a>
-![Infection MSI](https://badge.stryker-mutator.io/github.com/artarts36/githandler/master)
+[![Infection MSI](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FArtARTs36%2FGitHandler%2Fmaster)](https://infection.github.io)
 
 ----
 
