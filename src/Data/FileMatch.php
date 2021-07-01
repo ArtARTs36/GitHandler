@@ -2,14 +2,21 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use ArtARTs36\GitHandler\Support\ToArray;
+
 class FileMatch
 {
+    use ToArray;
+
     public $file;
 
     public $line;
 
     public $content;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(string $file, int $line, string $content)
     {
         $this->file = $file;
