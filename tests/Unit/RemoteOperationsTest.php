@@ -6,6 +6,7 @@ class RemoteOperationsTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Git::showRemote
+     * @covers \ArtARTs36\GitHandler\Git::executeShowRemote
      */
     public function testShowRemote(): void
     {
@@ -31,6 +32,7 @@ class RemoteOperationsTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Git::showRemote
+     * @covers \ArtARTs36\GitHandler\Git::executeShowRemote
      */
     public function testShowRemoteEmpty(): void
     {
