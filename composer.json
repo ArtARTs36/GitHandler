@@ -42,10 +42,10 @@
             "./vendor/bin/phpcs --standard=PSR2 tests/"
         ],
         "test": [
-            "XDEBUG_MODE=coverage ./vendor/bin/phpunit -v --coverage-text --configuration phpunit.xml"
+            "XDEBUG_MODE=coverage ./vendor/bin/phpunit -v --coverage-text --configuration phpunit.xml --coverage-clover=tests/reports/logs/clover.xml --coverage-xml=tests/reports/logs/coverage-xml --log-junit=tests/reports/logs/junit.xml"
         ],
         "mutate-test": [
-            "./vendor/infection/infection/bin/infection --min-covered-msi=75"
+            "./vendor/infection/infection/bin/infection --threads=4 --min-covered-msi=75 --coverage=tests/reports/logs/"
         ]
     }
 }
