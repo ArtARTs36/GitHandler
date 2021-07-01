@@ -7,7 +7,10 @@
     "logs": {
         "text": "tests\/reports\/infection\/infection.log",
         "summary": "tests\/reports\/infection\/summary.log",
-        "perMutator": "tests\/reports\/infection\/per-mutator.md"
+        "perMutator": "tests\/reports\/infection\/per-mutator.md",
+        "badge": {
+            "branch": "master"
+        }
     },
     "testFramework":"phpunit",
     "mutators": {
