@@ -2,8 +2,12 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
+use ArtARTs36\GitHandler\Contracts\LogParser;
+use ArtARTs36\GitHandler\Data\LogCollection;
 use ArtARTs36\GitHandler\Exceptions\BranchDoesNotHaveCommits;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
+use ArtARTs36\GitHandler\Logger;
+use ArtARTs36\Str\Str;
 
 class LogOperationsTest extends TestCase
 {
@@ -34,12 +38,19 @@ class LogOperationsTest extends TestCase
     /**
      * @covers \ArtARTs36\GitHandler\Git::log
      */
-    public function testLogGood(): void
+    public function testLogEmpty(): void
     {
-        $git = $this->mockGit('fatal: your current branch \'master\' does not have any commits yet');
+        $git = $this->mockGit(
+            'text text text˚',
+            null,
+            new class implements LogParser {
+                public function parse(Str $raw): ?LogCollection
+                {
+                    return null;
+                }
+            }
+        );
 
-        self::expectException(BranchDoesNotHaveCommits::class);
-
-        $git->log();
+        self::assertNull($git->log());
     }
 }
