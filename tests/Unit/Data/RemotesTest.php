@@ -17,4 +17,12 @@ class RemotesTest extends TestCase
         self::assertTrue($remotes->push->equals(''));
         self::assertTrue($remotes->fetch->equals(''));
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\Remotes::isEmpty
+     */
+    public function testIsEmpty(): void
+    {
+        self::assertTrue(Remotes::createEmpty()->isEmpty());
+    }
 }

@@ -28,4 +28,9 @@ class Remotes
     {
         return new static(new Str(''), new Str(''));
     }
+
+    public function isEmpty(): bool
+    {
+        return $this->fetch->isEmpty() && $this->push->isEmpty();
+    }
 }
