@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\HasRemotes;
+use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Git;
 use ArtARTs36\GitHandler\GitSimpleFactory;
@@ -23,22 +24,23 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $this->fileSystem = new ArrayFileSystem();
     }
 
-    protected function mockGit(?string $shellResult, string $dir = null): Git
+    protected function mockGit(?string $shellResult, ?string $dir = null, ?LogParser $logger = null): Git
     {
         $dir = $dir ?? __DIR__ . '/../libraries/';
 
-        return new class($dir, $shellResult, $this->fileSystem) extends Git {
+        return new class($dir, $shellResult, $this->fileSystem, 'git', $logger) extends Git {
             private $shellResult;
 
             public function __construct(
                 string $dir,
                 ?string $shellResult,
                 FileSystem $fileSystem,
-                string $executor = 'git'
+                string $executor = 'git',
+                ?LogParser $logger = null
             ) {
                 parent::__construct(
                     $dir,
-                    new Logger(),
+                    $logger ?? new Logger(),
                     GitSimpleFactory::factoryConfigReader(),
                     $fileSystem,
                     $executor

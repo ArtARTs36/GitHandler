@@ -149,6 +149,25 @@ var_dump($git->getBranches());
 
 ---
 
+## Grep Operations
+
+Use the interface: \ArtARTs36\GitHandler\Contracts\Grepable
+
+#### -> git --no-pager grep -n <term>:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$matches = $git->grep('term');
+
+foreach ($matches as $match) {
+    var_dump($match->file);
+    var_dump($match->line);
+    var_dump($match->content);
+}
+```
+
+---
+
 ## Push Operations
 
 Use the interface: \ArtARTs36\GitHandler\Contracts\Pushable

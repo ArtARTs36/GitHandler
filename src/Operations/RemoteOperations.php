@@ -88,7 +88,7 @@ trait RemoteOperations
     /**
      * equals: git remote show origin
      */
-    protected function executeShowRemote(): Str
+    protected function executeShowRemote(): ?Str
     {
         return $this
             ->executeCommand($this->newCommand()

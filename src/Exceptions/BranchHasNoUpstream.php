@@ -2,17 +2,15 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-use Throwable;
-
 class BranchHasNoUpstream extends GitHandlerException
 {
     public $errorBranch;
 
-    public function __construct(string $branch, $code = 0, Throwable $previous = null)
+    public function __construct(string $branch)
     {
         $this->errorBranch = $branch;
 
-        parent::__construct($this->prepareMessage(), $code, $previous);
+        parent::__construct($this->prepareMessage());
     }
 
     /**

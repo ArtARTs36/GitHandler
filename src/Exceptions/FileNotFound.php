@@ -3,15 +3,14 @@
 namespace ArtARTs36\GitHandler\Exceptions;
 
 use ArtARTs36\Str\Str;
-use Throwable;
 
 class FileNotFound extends GitHandlerException
 {
-    public function __construct(string $file, $code = 0, Throwable $previous = null)
+    public function __construct(string $file)
     {
         $message = "File '{$file}' Not Found";
 
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message);
     }
 
     /**

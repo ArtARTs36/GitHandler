@@ -3,19 +3,18 @@
 namespace ArtARTs36\GitHandler\Exceptions;
 
 use ArtARTs36\Str\Str;
-use Throwable;
 
 class PathAlreadyExists extends GitHandlerException
 {
     public $errorPath;
 
-    public function __construct(string $path, $code = 0, Throwable $previous = null)
+    public function __construct(string $path)
     {
         $this->errorPath = $path;
 
         $message = "Path '$path' already exists";
 
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message);
     }
 
     /**

@@ -35,3 +35,6 @@ jobs:
 
     - name: Run Tests
       run: composer test
+
+    - name: Run Mutation Testing
+      run: composer mutate-test
