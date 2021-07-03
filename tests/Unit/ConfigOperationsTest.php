@@ -9,6 +9,7 @@ final class ConfigOperationsTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Git::getConfigList
+     * @covers \ArtARTs36\GitHandler\Git::executeConfigList
      */
     public function testGetConfigList(): void
     {
@@ -23,7 +24,7 @@ core.autocrlf=input
 
     /**
      * @covers \ArtARTs36\GitHandler\Git::getConfigSubject
-     * @covers \ArtARTs36\GitHandler\Git::executeShowRemote
+     * @covers \ArtARTs36\GitHandler\Git::executeConfigList
      */
     public function testGetConfigSubject(): void
     {
