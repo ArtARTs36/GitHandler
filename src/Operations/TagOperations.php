@@ -43,13 +43,12 @@ trait TagOperations
             throw new TagAlreadyExists($tag);
         }
 
-        return $this->newCommand()
+        return $this->executeCommand($this->newCommand()
                 ->addParameter('tag')
                 ->addCutOption('a')
                 ->addParameter($tag)
                 ->addCutOption('m')
-                ->addParameter($message ?? "Version {$tag}", true)
-                ->getShellResult() === null;
+                ->addParameter($message ?? "Version {$tag}", true)) === null;
     }
 
     public function isTagExists(string $tag): bool
