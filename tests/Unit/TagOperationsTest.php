@@ -26,4 +26,22 @@ class TagOperationsTest extends TestCase
 
         self::assertEquals([], $git->getTags());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::isTagExists
+     * @covers \ArtARTs36\GitHandler\Git::getTags
+     */
+    public function testIsTagExistsOnFound(): void
+    {
+        self::assertTrue($this->mockGit('0.1.0')->isTagExists('0.1.0'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::isTagExists
+     * @covers \ArtARTs36\GitHandler\Git::getTags
+     */
+    public function testIsTagExistsOnNotFound(): void
+    {
+        self::assertFalse($this->mockGit('0.2.0')->isTagExists('0.1.0'));
+    }
 }
