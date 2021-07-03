@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Contracts;
 
+use ArtARTs36\GitHandler\Data\Repo;
+
 interface OriginUrl
 {
     public function toCommit(HasRemotes $git, string $hash): string;
@@ -16,4 +18,6 @@ interface OriginUrl
      * @return array<string>
      */
     public function getAvailableDomains(): array;
+
+    public function toRepoFromUrl(string $url): Repo;
 }
