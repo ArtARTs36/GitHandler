@@ -4,6 +4,9 @@ namespace ArtARTs36\GitHandler\Origin\Url;
 
 use ArtARTs36\GitHandler\Contracts\HasRemotes;
 use ArtARTs36\GitHandler\Contracts\OriginUrl;
+use ArtARTs36\GitHandler\Data\Repo;
+use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
+use ArtARTs36\GitHandler\Support\Uri;
 use ArtARTs36\Str\Str;
 
 abstract class AbstractOriginUrl implements OriginUrl
@@ -28,6 +31,22 @@ abstract class AbstractOriginUrl implements OriginUrl
     public function getAvailableDomains(): array
     {
         return $this->domains;
+    }
+
+    public function toRepoFromUrl(string $url): Repo
+    {
+        $urlParts = parse_url($url);
+        $pathParts = array_filter(explode(DIRECTORY_SEPARATOR, $urlParts['path']));
+
+        if (count($pathParts) < 2) {
+            throw new GivenInvalidUri($url);
+        }
+
+        [$user, $name] = array_slice($pathParts, 0, 2);
+
+        return new Repo($name, $user, Uri::unParse(array_merge($urlParts, [
+            'path' => $user . '/' . $name,
+        ])));
     }
 
     /**

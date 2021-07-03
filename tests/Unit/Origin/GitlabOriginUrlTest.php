@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Origin;
 
+use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
 use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
@@ -55,5 +56,31 @@ class GitlabOriginUrlTest extends TestCase
         $url = new GitlabOriginUrl();
 
         self::assertEquals($expected, $url->toArchive($git, $branch));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl::toRepoFromUrl
+     */
+    public function testToRepoFromUrl(): void
+    {
+        self::assertEquals([
+            'name' => 'testing-laravel',
+            'user' => 'artem_ukrainsky',
+            'url'  => 'https://gitlab.com/artem_ukrainsky/testing-laravel',
+        ], (new GitlabOriginUrl())
+            ->toRepoFromUrl(
+                'https://gitlab.com/artem_ukrainsky/testing-laravel/-/commit/e62ef13e5676e0ceb4a829679a33f530e2ecc788'
+            )
+            ->toArray());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl::toRepoFromUrl
+     */
+    public function testToRepoFromUrlOnIncorrectUri(): void
+    {
+        self::expectException(GivenInvalidUri::class);
+
+        (new GitlabOriginUrl())->toRepoFromUrl('h');
     }
 }

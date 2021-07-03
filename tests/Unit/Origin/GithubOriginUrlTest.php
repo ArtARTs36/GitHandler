@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Origin;
 
+use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
 use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
@@ -68,5 +69,29 @@ class GithubOriginUrlTest extends TestCase
             'codeload.github.com',
             $this->callMethodFromObject($url, 'buildArchiveDomain', 'github.com')
         );
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toRepoFromUrl
+     */
+    public function testToRepoFromUrl(): void
+    {
+        self::assertEquals([
+            'name' => 'GitHandler',
+            'user' => 'ArtARTs36',
+            'url'  => 'https://github.com/ArtARTs36/GitHandler',
+        ], (new GithubOriginUrl())
+            ->toRepoFromUrl('https://github.com/ArtARTs36/GitHandler/tree/master/src')
+            ->toArray());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toRepoFromUrl
+     */
+    public function testToRepoFromUrlOnIncorrectUri(): void
+    {
+        self::expectException(GivenInvalidUri::class);
+
+        (new GithubOriginUrl())->toRepoFromUrl('h');
     }
 }
