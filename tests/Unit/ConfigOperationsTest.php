@@ -8,7 +8,23 @@ use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 final class ConfigOperationsTest extends TestCase
 {
     /**
+     * @covers \ArtARTs36\GitHandler\Git::getConfigList
+     * @covers \ArtARTs36\GitHandler\Git::executeConfigList
+     */
+    public function testGetConfigList(): void
+    {
+        $git = $this->mockGit("credential.helper=osxkeychain
+user.name=artem
+user.email=artem@artem.ru
+core.autocrlf=input
+");
+
+        self::assertCount(3, $git->getConfigList());
+    }
+
+    /**
      * @covers \ArtARTs36\GitHandler\Git::getConfigSubject
+     * @covers \ArtARTs36\GitHandler\Git::executeConfigList
      */
     public function testGetConfigSubject(): void
     {

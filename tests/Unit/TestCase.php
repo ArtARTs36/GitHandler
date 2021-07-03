@@ -24,12 +24,14 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $this->fileSystem = new ArrayFileSystem();
     }
 
-    protected function mockGit(?string $shellResult, ?string $dir = null, ?LogParser $logger = null): Git
+    protected function mockGit(?string $shellResult = null, ?string $dir = null, ?LogParser $logger = null): Git
     {
         $dir = $dir ?? __DIR__ . '/../libraries/';
 
         return new class($dir, $shellResult, $this->fileSystem, 'git', $logger) extends Git {
             private $shellResult;
+
+            private $isTagExists = null;
 
             public function __construct(
                 string $dir,
@@ -56,6 +58,24 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
                 }
 
                 return Str::make($this->shellResult);
+            }
+
+            public function setIsTagExists(bool $isTagExists): self
+            {
+                $this->isTagExists = $isTagExists;
+
+                return $this;
+            }
+
+            public function isTagExists(string $tag): bool
+            {
+                if ($this->isTagExists === null) {
+                    return parent::isTagExists($tag);
+                }
+
+                [$value, $this->isTagExists] = [$this->isTagExists, null];
+
+                return $value;
             }
         };
     }

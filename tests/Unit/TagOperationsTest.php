@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
+use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
+
 class TagOperationsTest extends TestCase
 {
     /**
@@ -25,5 +27,41 @@ class TagOperationsTest extends TestCase
         $git = $this->mockGit('');
 
         self::assertEquals([], $git->getTags());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::isTagExists
+     * @covers \ArtARTs36\GitHandler\Git::getTags
+     */
+    public function testIsTagExistsOnFound(): void
+    {
+        self::assertTrue($this->mockGit('0.1.0')->isTagExists('0.1.0'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::isTagExists
+     * @covers \ArtARTs36\GitHandler\Git::getTags
+     */
+    public function testIsTagExistsOnNotFound(): void
+    {
+        self::assertFalse($this->mockGit('0.2.0')->isTagExists('0.1.0'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::performTag
+     */
+    public function testPerformTagOnAlreadyExists(): void
+    {
+        self::expectException(TagAlreadyExists::class);
+
+        $this->mockGit()->setIsTagExists(true)->performTag('tag');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::performTag
+     */
+    public function testPerformTag(): void
+    {
+        self::assertTrue($this->mockGit()->performTag('tag'));
     }
 }
