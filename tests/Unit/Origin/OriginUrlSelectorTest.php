@@ -49,6 +49,7 @@ class OriginUrlSelectorTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector::select
+     * @covers \ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector::selectByUrl
      */
     public function testSelect(): void
     {

@@ -40,7 +40,12 @@ class OriginUrlSelector
      */
     public function select(HasRemotes $git): OriginUrl
     {
-        return $this->selectByDomain(parse_url($git->showRemote()->fetch, PHP_URL_HOST));
+        return $this->selectByUrl($git->showRemote()->fetch);
+    }
+
+    public function selectByUrl(string $url): OriginUrl
+    {
+        return $this->selectByDomain(parse_url($url, PHP_URL_HOST));
     }
 
     /**
