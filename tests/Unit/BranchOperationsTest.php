@@ -2,8 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
+use ArtARTs36\GitHandler\Exceptions\AlreadySwitched;
 use ArtARTs36\GitHandler\Exceptions\BranchAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
+use ArtARTs36\GitHandler\Exceptions\ReferenceInvalid;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 
 class BranchOperationsTest extends TestCase
@@ -121,5 +123,63 @@ class BranchOperationsTest extends TestCase
         self::expectException(BranchAlreadyExists::class);
 
         $this->mockGit("fatal: A branch named 'test' already exists")->newBranch('test');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::switchBranch
+     */
+    public function testSwitchBranchOnNullResult(): void
+    {
+        $git = $this->mockGit();
+
+        self::expectException(UnexpectedException::class);
+
+        $git->switchBranch('master');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::switchBranch
+     */
+    public function testSwitchBranchOnGood(): void
+    {
+        $git = $this->mockGit('Switched to branch \'master\'');
+
+        self::assertTrue($git->switchBranch('master'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::switchBranch
+     */
+    public function testSwitchBranchOnInvalidReference(): void
+    {
+        $git = $this->mockGit('fatal: invalid reference: master');
+
+        self::expectException(ReferenceInvalid::class);
+
+        $git->switchBranch('master');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::switchBranch
+     */
+    public function testSwitchBranchOnAlreadySwitched(): void
+    {
+        $git = $this->mockGit('Already on \'master\'');
+
+        self::expectException(AlreadySwitched::class);
+
+        $git->switchBranch('master');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::switchBranch
+     */
+    public function testSwitchBranchOnUnexpectedReturnValue(): void
+    {
+        $git = $this->mockGit('random value');
+
+        self::expectException(UnexpectedException::class);
+
+        $git->switchBranch('master');
     }
 }

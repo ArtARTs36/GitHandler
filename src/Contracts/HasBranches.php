@@ -21,5 +21,5 @@ interface HasBranches
      */
     public function getBranches(): array;
 
-    public function switchBranch(string $branch): void;
+    public function switchBranch(string $branch): bool;
 }

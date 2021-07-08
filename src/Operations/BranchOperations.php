@@ -105,7 +105,7 @@ trait BranchOperations
         ])->lines());
     }
 
-    public function switchBranch(string $branch): void
+    public function switchBranch(string $branch): bool
     {
         $result = $this->executeCommand(
             $cmd = $this
@@ -119,7 +119,7 @@ trait BranchOperations
         }
 
         if ($result->contains("Switched to branch '$branch'")) {
-            return;
+            return true;
         }
 
         if ($result->contains('fatal: invalid reference: '. $branch)) {
