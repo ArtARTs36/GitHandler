@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 use ArtARTs36\GitHandler\Exceptions\AlreadySwitched;
 use ArtARTs36\GitHandler\Exceptions\BranchAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
+use ArtARTs36\GitHandler\Exceptions\ObjectNameNotValid;
 use ArtARTs36\GitHandler\Exceptions\ReferenceInvalid;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 
@@ -58,6 +59,16 @@ class BranchOperationsTest extends TestCase
         self::expectException(UnexpectedException::class);
 
         $this->mockGit("error")->newBranch('test');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::newBranch
+     */
+    public function testNewBranchOnInvalidObjectName(): void
+    {
+        self::expectException(ObjectNameNotValid::class);
+
+        $this->mockGit('fatal: Not a valid object name: \'1234\'')->newBranch('master');
     }
 
     /**
