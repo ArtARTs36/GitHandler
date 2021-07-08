@@ -3,9 +3,26 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\RemoteRepositoryNotFound;
 
 class RemoteOperationsTest extends TestCase
 {
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::showRemote
+     * @covers \ArtARTs36\GitHandler\Git::executeShowRemote
+     */
+    public function testShowRemoteOnRemoteNotFound(): void
+    {
+        $git = $this->mockGit("remote: Repository not found.
+fatal: repository 'https://github.com/ArtARTs36/test/' not found
+");
+
+        self::expectException(RemoteRepositoryNotFound::class);
+        self::expectDeprecationMessage('Remote Repository https://github.com/ArtARTs36/test/ not found');
+
+        $git->showRemote();
+    }
+
     /**
      * @covers \ArtARTs36\GitHandler\Git::showRemote
      * @covers \ArtARTs36\GitHandler\Git::executeShowRemote

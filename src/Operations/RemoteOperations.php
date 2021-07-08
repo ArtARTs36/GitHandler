@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Operations;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RemoteNotFound;
+use ArtARTs36\GitHandler\Exceptions\RemoteRepositoryNotFound;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -90,10 +91,15 @@ trait RemoteOperations
      */
     protected function executeShowRemote(): ?Str
     {
-        return $this
-            ->executeCommand($this->newCommand()
+        $result = $this->executeCommand($this->newCommand()
                 ->addParameter('remote')
                 ->addParameter('show')
                 ->addParameter('origin'));
+
+        if ($result && ($failed = $result->match("/repository '(.*)' not found/i")) && $failed->isNotEmpty()) {
+            throw new RemoteRepositoryNotFound($failed);
+        }
+
+        return $result;
     }
 }
