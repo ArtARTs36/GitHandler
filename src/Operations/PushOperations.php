@@ -16,14 +16,12 @@ trait PushOperations
 
     public function push(bool $force = false): bool
     {
-        $result = $this->executeCommand(
-            $command = $this
-                ->newCommand()
-                ->addParameter('push')
-                ->when($force, function (ShellCommandInterface $command) {
-                    $command->addOption('force');
-                })
-        );
+        return $this->executePushCommand($this->buildPushCommand($force));
+    }
+
+    protected function executePushCommand(ShellCommandInterface $command): bool
+    {
+        $result = $this->executeCommand($command);
 
         if ($result === null || $result->isEmpty()) {
             throw new UnexpectedException($command);
@@ -38,5 +36,15 @@ trait PushOperations
             '->',
             'Enumerating objects:',
         ]);
+    }
+
+    protected function buildPushCommand(bool $force): ShellCommandInterface
+    {
+        return $this
+            ->newCommand()
+            ->addParameter('push')
+            ->when($force, function (ShellCommandInterface $command) {
+                $command->addOption('force');
+            });
     }
 }

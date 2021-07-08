@@ -9,6 +9,8 @@ class PushOperationsTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Git::push
+     * @covers \ArtARTs36\GitHandler\Git::executePushCommand
+     * @covers \ArtARTs36\GitHandler\Git::buildPushCommand
      */
     public function testPushBranchHasNoUpstreamBranch(): void
     {
@@ -25,6 +27,8 @@ To push the current branch and set the remote as upstream, use
 
     /**
      * @covers \ArtARTs36\GitHandler\Git::push
+     * @covers \ArtARTs36\GitHandler\Git::executePushCommand
+     * @covers \ArtARTs36\GitHandler\Git::buildPushCommand
      */
     public function testPushGood(): void
     {
@@ -33,6 +37,8 @@ To push the current branch and set the remote as upstream, use
 
     /**
      * @covers \ArtARTs36\GitHandler\Git::push
+     * @covers \ArtARTs36\GitHandler\Git::executePushCommand
+     * @covers \ArtARTs36\GitHandler\Git::buildPushCommand
      */
     public function testOnNullCommandResult(): void
     {
@@ -43,6 +49,8 @@ To push the current branch and set the remote as upstream, use
 
     /**
      * @covers \ArtARTs36\GitHandler\Git::push
+     * @covers \ArtARTs36\GitHandler\Git::executePushCommand
+     * @covers \ArtARTs36\GitHandler\Git::buildPushCommand
      */
     public function testOnEmptyCommandResult(): void
     {
