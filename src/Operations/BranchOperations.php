@@ -96,4 +96,17 @@ trait BranchOperations
             '* master' => 'master',
         ])->lines());
     }
+
+    public function getCurrentBranch(): Str
+    {
+        $result = $this->executeCommand(
+            $cmd = $this->newCommand()->addParameter('branch')->addOption('show-current')
+        );
+
+        if ($result === null || $result->isEmpty()) {
+            throw new UnexpectedException($cmd);
+        }
+
+        return $result->trim();
+    }
 }

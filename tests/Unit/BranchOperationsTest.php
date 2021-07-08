@@ -122,4 +122,24 @@ class BranchOperationsTest extends TestCase
 
         $this->mockGit("fatal: A branch named 'test' already exists")->newBranch('test');
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getCurrentBranch
+     */
+    public function testGetCurrentBranch(): void
+    {
+        $git = $this->mockGit('dev ');
+
+        self::assertEquals('dev', $git->getCurrentBranch());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getCurrentBranch
+     */
+    public function testGetCurrentBranchOnUnexpectedException(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit()->getCurrentBranch();
+    }
 }
