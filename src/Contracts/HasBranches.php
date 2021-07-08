@@ -20,4 +20,6 @@ interface HasBranches
      * @return array<string>
      */
     public function getBranches(): array;
+
+    public function switchBranch(string $branch): void;
 }
