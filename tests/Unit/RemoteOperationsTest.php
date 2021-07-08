@@ -18,7 +18,7 @@ fatal: repository 'https://github.com/ArtARTs36/test/' not found
 ");
 
         self::expectException(RemoteRepositoryNotFound::class);
-        self::expectDeprecationMessage('Remote Repository https://github.com/ArtARTs36/test/ not found');
+        self::expectExceptionMessage('Remote Repository https://github.com/ArtARTs36/test/ not found');
 
         $git->showRemote();
     }
