@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RemoteRepositoryNotFound;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 
 class RemoteOperationsTest extends TestCase
 {
@@ -76,12 +77,21 @@ fatal: repository 'https://github.com/ArtARTs36/test/' not found
         $git->addRemote('m', 'https://site.ru');
     }
 
-
     /**
      * @covers \ArtARTs36\GitHandler\Git::addRemote
      */
     public function testAddRemoteOnGood(): void
     {
         self::assertTrue($this->mockGit()->addRemote('m', 'https://site.ru'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::addRemote
+     */
+    public function testAddRemoteOnUnexpectedException(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit('random answer')->addRemote('s', 'https://site.ru');
     }
 }

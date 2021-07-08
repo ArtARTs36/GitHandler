@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RemoteNotFound;
 use ArtARTs36\GitHandler\Exceptions\RemoteRepositoryNotFound;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -68,7 +69,7 @@ trait RemoteOperations
     public function addRemote(string $shortName, string $url): bool
     {
         $result = $this->executeCommand(
-            $this->newCommand()
+            $cmd = $this->newCommand()
                 ->addParameter('remote')
                 ->addParameter('add')
                 ->addParameter($shortName)
@@ -83,7 +84,7 @@ trait RemoteOperations
             throw new RemoteAlreadyExists($alreadyExists);
         }
 
-        return true;
+        throw new UnexpectedException($cmd);
     }
 
     /**
