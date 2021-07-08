@@ -58,4 +58,13 @@ class RemoteOperationsTest extends TestCase
 
         $git->addRemote('m', 'https://site.ru');
     }
+
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::addRemote
+     */
+    public function testAddRemoteOnGood(): void
+    {
+        self::assertTrue($this->mockGit()->addRemote('m', 'https://site.ru'));
+    }
 }
