@@ -123,4 +123,14 @@ fatal: repository 'https://github.com/ArtARTs36/test/' not found
 
         $this->mockGit('random')->removeRemote('origin');
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::hasAnyRemoteUrl
+     */
+    public function testHasAnyRemoteUrl(): void
+    {
+        self::assertTrue($this
+            ->mockGit("  Fetch URL: https://site.ru\n")
+            ->hasAnyRemoteUrl('https://site.ru'));
+    }
 }
