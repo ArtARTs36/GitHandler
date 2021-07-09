@@ -45,7 +45,7 @@ trait RemoteOperations
     public function removeRemote(string $shortName): bool
     {
         $result = $this->executeCommand(
-            $this
+            $cmd = $this
                 ->newCommand()
                 ->addParameter('remote')
                 ->addParameter('remove')
@@ -60,7 +60,7 @@ trait RemoteOperations
             throw new RemoteNotFound($notFound);
         }
 
-        return true;
+        throw new UnexpectedException($cmd);
     }
 
     /**

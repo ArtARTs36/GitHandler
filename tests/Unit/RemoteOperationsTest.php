@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\RemoteNotFound;
 use ArtARTs36\GitHandler\Exceptions\RemoteRepositoryNotFound;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 
@@ -93,5 +94,33 @@ fatal: repository 'https://github.com/ArtARTs36/test/' not found
         self::expectException(UnexpectedException::class);
 
         $this->mockGit('random answer')->addRemote('s', 'https://site.ru');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::removeRemote
+     */
+    public function testRemoveRemote(): void
+    {
+        self::assertTrue($this->mockGit()->removeRemote('origin'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::removeRemote
+     */
+    public function testRemoveRemoteOnNotFound(): void
+    {
+        self::expectException(RemoteNotFound::class);
+
+        $this->mockGit('No such remote: \'origin\'')->removeRemote('origin');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::removeRemote
+     */
+    public function testRemoveOnUnexpected(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit('random')->removeRemote('origin');
     }
 }
