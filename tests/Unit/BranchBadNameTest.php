@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Support;
+namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Support\BranchBadName;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
