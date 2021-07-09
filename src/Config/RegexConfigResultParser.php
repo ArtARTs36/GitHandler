@@ -30,7 +30,7 @@ class RegexConfigResultParser implements ConfigResultParser
      */
     public function parse(Str $raw): SubjectsCollection
     {
-        $grouped = $this->grouped($raw->globalMatch($this->regex));
+        $grouped = $this->grouped($raw->globalMatch($this->regex), 1);
 
         //
 
@@ -52,7 +52,7 @@ class RegexConfigResultParser implements ConfigResultParser
      */
     public function parseByPrefix(Str $raw, string $prefix): ConfigSubject
     {
-        $grouped = $this->grouped($raw->globalMatch($this->regex));
+        $grouped = $this->grouped($raw->globalMatch($this->regex), 1);
 
         //
 
@@ -66,12 +66,12 @@ class RegexConfigResultParser implements ConfigResultParser
     /**
      * @return array<string, array<string>>
      */
-    protected function grouped(array $matches): array
+    protected function grouped(array $matches, int $matchOffset): array
     {
         $grouped = [];
 
         foreach ($matches as $match) {
-            [$scope, $field, $value] = array_slice($match, 1);
+            [$scope, $field, $value] = array_slice($match, $matchOffset);
 
             $grouped[$scope][$field] = $value;
         }
