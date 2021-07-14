@@ -137,6 +137,26 @@ class BranchOperationsTest extends TestCase
     }
 
     /**
+     * @covers \ArtARTs36\GitHandler\Git::getCurrentBranch
+     */
+    public function testGetCurrentBranch(): void
+    {
+        $git = $this->mockGit('dev ');
+
+        self::assertEquals('dev', $git->getCurrentBranch());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getCurrentBranch
+     */
+    public function testGetCurrentBranchOnUnexpectedException(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit()->getCurrentBranch();
+    }
+
+    /**
      * @covers \ArtARTs36\GitHandler\Git::switchBranch
      */
     public function testSwitchBranchOnNullResult(): void

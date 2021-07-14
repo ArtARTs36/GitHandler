@@ -28,7 +28,7 @@ To push the current branch and set the remote as upstream, use
      */
     public function testPushGood(): void
     {
-        self::assertTrue($this->mockGit('Everything up-to-date')->push());
+        self::assertTrue($this->mockGit('Everything up-to-date')->push(false, 'push-testing'));
     }
 
     /**
@@ -49,5 +49,18 @@ To push the current branch and set the remote as upstream, use
         self::expectException(UnexpectedException::class);
 
         $this->mockGit('')->push();
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::pushOnAutoSetUpStream
+     */
+    public function testPushOnAutoSetUpStream(): void
+    {
+        $git = $this->mockGit([
+            'dev',
+            'Everything up-to-date',
+        ]);
+
+        self::assertTrue($git->pushOnAutoSetUpStream());
     }
 }

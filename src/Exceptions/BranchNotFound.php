@@ -2,8 +2,6 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-use Throwable;
-
 class BranchNotFound extends FileNotFound
 {
     public $errorBranch;

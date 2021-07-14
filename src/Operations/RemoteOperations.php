@@ -5,6 +5,8 @@ namespace ArtARTs36\GitHandler\Operations;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RemoteNotFound;
+use ArtARTs36\GitHandler\Exceptions\RemoteRepositoryNotFound;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -43,7 +45,7 @@ trait RemoteOperations
     public function removeRemote(string $shortName): bool
     {
         $result = $this->executeCommand(
-            $this
+            $cmd = $this
                 ->newCommand()
                 ->addParameter('remote')
                 ->addParameter('remove')
@@ -58,7 +60,7 @@ trait RemoteOperations
             throw new RemoteNotFound($notFound);
         }
 
-        return true;
+        throw new UnexpectedException($cmd);
     }
 
     /**
@@ -67,7 +69,7 @@ trait RemoteOperations
     public function addRemote(string $shortName, string $url): bool
     {
         $result = $this->executeCommand(
-            $this->newCommand()
+            $cmd = $this->newCommand()
                 ->addParameter('remote')
                 ->addParameter('add')
                 ->addParameter($shortName)
@@ -82,7 +84,7 @@ trait RemoteOperations
             throw new RemoteAlreadyExists($alreadyExists);
         }
 
-        return true;
+        throw new UnexpectedException($cmd);
     }
 
     /**
@@ -90,10 +92,15 @@ trait RemoteOperations
      */
     protected function executeShowRemote(): ?Str
     {
-        return $this
-            ->executeCommand($this->newCommand()
+        $result = $this->executeCommand($this->newCommand()
                 ->addParameter('remote')
                 ->addParameter('show')
                 ->addParameter('origin'));
+
+        if ($result && ($failed = $result->match("/repository '(.*)' not found/i")) && $failed->isNotEmpty()) {
+            throw new RemoteRepositoryNotFound($failed);
+        }
+
+        return $result;
     }
 }

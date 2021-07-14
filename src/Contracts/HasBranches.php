@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Contracts;
 
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
+use ArtARTs36\Str\Str;
 
 interface HasBranches
 {
@@ -22,4 +23,9 @@ interface HasBranches
     public function getBranches(): array;
 
     public function switchBranch(string $branch): bool;
+
+    /**
+     * equals: git branch --show-current
+     */
+    public function getCurrentBranch(): Str;
 }

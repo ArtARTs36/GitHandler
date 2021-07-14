@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Contracts;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RemoteNotFound;
+use ArtARTs36\GitHandler\Exceptions\RemoteRepositoryNotFound;
 
 interface HasRemotes
 {
@@ -15,6 +16,7 @@ interface HasRemotes
 
     /**
      * equals: git remote show origin
+     * @throws RemoteRepositoryNotFound
      */
     public function showRemote(): Remotes;
 
