@@ -50,7 +50,7 @@ class RegexConfigResultParserTest extends TestCase
             ],
         ];
 
-        self::assertEquals($expected, $this->callMethodFromObject($parser, 'grouped', $matches));
+        self::assertEquals($expected, $this->callMethodFromObject($parser, 'grouped', $matches, 1));
     }
 
     /**

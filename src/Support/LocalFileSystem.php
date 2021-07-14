@@ -10,6 +10,10 @@ class LocalFileSystem implements FileSystem
 {
     public function removeDir(string $path): bool
     {
+        if (! file_exists($path)) {
+            return true;
+        }
+
         if (is_file($path)) {
             return unlink($path);
         }

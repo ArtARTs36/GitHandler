@@ -150,6 +150,15 @@ var_dump($git->getBranches());
 
 ---
 
+#### -> git branch --show-current:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getCurrentBranch());
+```
+
+---
+
 ## Grep Operations
 
 Use the interface: \ArtARTs36\GitHandler\Contracts\Grepable

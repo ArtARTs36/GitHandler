@@ -2,16 +2,18 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-class BranchNotFound extends FileNotFound
+use JetBrains\PhpStorm\Immutable;
+use Throwable;
+
+class AlreadySwitched extends GitHandlerException
 {
+    #[Immutable]
     public $errorBranch;
 
     public function __construct(string $branch)
     {
         $this->errorBranch = $branch;
 
-        $message = "Git Branch '{$branch}' Not Found";
-
-        parent::__construct($message);
+        parent::__construct('Already on '. $branch);
     }
 }
