@@ -22,6 +22,8 @@ interface HasBranches
      */
     public function getBranches(): array;
 
+    public function switchBranch(string $branch): bool;
+
     /**
      * equals: git branch --show-current
      */
