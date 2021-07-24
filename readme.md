@@ -487,6 +487,13 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->unStash();
 ```
 
+#### -> git stash apply stash@{1}:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->applyStash(1);
+```
+
 ---
 
 ## Config Operations

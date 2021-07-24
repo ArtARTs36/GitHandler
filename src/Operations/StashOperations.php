@@ -3,6 +3,8 @@
 namespace ArtARTs36\GitHandler\Operations;
 
 use ArtARTs36\GitHandler\Data\Stash;
+use ArtARTs36\GitHandler\Exceptions\StashDoesNotExists;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Support\FormatPlaceholder;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
@@ -66,5 +68,30 @@ trait StashOperations
         }
 
         return $stashes;
+    }
+
+    public function applyStash(int $id): bool
+    {
+        $result = $this->executeCommand(
+            $cmd = $this->newCommand()
+                ->addParameter('stash')
+                ->addParameter('apply')
+                ->addParameter('stash@{'. $id . '}')
+        );
+
+        if ($result === null) {
+            throw new UnexpectedException($cmd);
+        }
+
+        if ($result->contains('Changes not staged for commit') ||
+            $result->contains('Changes to be committed')) {
+            return true;
+        }
+
+        if ($result->contains("fatal: Log for 'stash' only has (.*) entries")) {
+            throw new StashDoesNotExists($id);
+        }
+
+        throw new UnexpectedException($cmd);
     }
 }

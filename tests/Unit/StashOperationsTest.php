@@ -2,6 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
+use ArtARTs36\GitHandler\Exceptions\StashDoesNotExists;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
+
 class StashOperationsTest extends TestCase
 {
     /**
@@ -68,5 +71,43 @@ class StashOperationsTest extends TestCase
             'branch' => '2.x',
             'name' => 'a561440 up artarts36/str',
         ], $result[0]->toArray());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::applyStash
+     */
+    public function testApplyStashOnNullResult(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit()->applyStash(1);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::applyStash
+     */
+    public function testApplyStashGood(): void
+    {
+        self::assertTrue($this->mockGit('Changes not staged for commit')->applyStash(1));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::applyStash
+     */
+    public function testApplyStashOnDoesNotExists(): void
+    {
+        self::expectException(StashDoesNotExists::class);
+
+        $this->mockGit("fatal: Log for 'stash' only has 5 entries")->applyStash(1);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::applyStash
+     */
+    public function testApplyStashOnUnexpectedResult(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit('test')->applyStash(1);
     }
 }

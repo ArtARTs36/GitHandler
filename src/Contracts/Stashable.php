@@ -14,4 +14,6 @@ interface Stashable
      * @return array<Stash>
      */
     public function getStashList(): array;
+
+    public function applyStash(int $id): bool;
 }
