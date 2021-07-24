@@ -130,6 +130,13 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->checkout('branch-name', true);
 ```
 
+#### -> git switch <branch-name>
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->switchBranch('branch-name');
+```
+
 ---
 
 #### -> git branch -d <branch-name>:
