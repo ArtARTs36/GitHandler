@@ -14,6 +14,9 @@ class Stash
 
     public $name;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(int $id, string $branch, string $name)
     {
         $this->id = $id;
