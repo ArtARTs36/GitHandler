@@ -47,4 +47,26 @@ class StashOperationsTest extends TestCase
 
         self::assertFalse($git->unStash());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getStashList
+     */
+    public function testGetStashListOnNullResult(): void
+    {
+        self::assertSame([], $this->mockGit()->getStashList());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getStashList
+     */
+    public function testGetStashList(): void
+    {
+        $result = $this->mockGit('stash@{7}|WIP on 2.x: a561440 up artarts36/str')->getStashList();
+
+        self::assertEquals([
+            'id' => 7,
+            'branch' => '2.x',
+            'name' => 'a561440 up artarts36/str',
+        ], $result[0]->toArray());
+    }
 }

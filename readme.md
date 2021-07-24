@@ -466,6 +466,13 @@ $git->stash();
 $git->stash('message');
 ```
 
+#### -> git stash list:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getStashList());
+```
+
 #### -> git stash pop:
 
 ```php

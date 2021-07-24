@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Operations;
 
+use ArtARTs36\GitHandler\Data\Stash;
+use ArtARTs36\GitHandler\Support\FormatPlaceholder;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -37,5 +39,32 @@ trait StashOperations
                 ->addParameter('stash')
                 ->addParameter('pop')
             )->contains('Changes not staged for commit:');
+    }
+
+    /**
+     * @return array<Stash>
+     */
+    public function getStashList(): array
+    {
+        $result = $this->executeCommand($this->newCommand()
+            ->addOption('no-pager')
+            ->addParameter('stash')
+            ->addParameter('list')
+            ->addOptionWithValue('pretty', FormatPlaceholder::format([
+                FormatPlaceholder::REFLOG_SHORTENED_SELECTOR,
+                FormatPlaceholder::REFLOG_SUBJECT,
+            ])));
+
+        if ($result === null || $result->isEmpty()) {
+            return [];
+        }
+
+        $stashes = [];
+
+        foreach ($result->globalMatch('/stash@{(.*)}\|.*on (.*):(.*)/i') as $data) {
+            $stashes[] = new Stash($data[1], $data[2], trim($data[3]));
+        }
+
+        return $stashes;
     }
 }
