@@ -47,7 +47,7 @@ trait HookOperations
      */
     public function deleteHook(string $name): bool
     {
-        return $this->getFileSystem()->removeDir($this->getHookPath($name));
+        return $this->getFileSystem()->removeFile($this->getHookPath($name));
     }
 
     protected function getHookPath(string $name): string

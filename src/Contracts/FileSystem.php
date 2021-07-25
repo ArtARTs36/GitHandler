@@ -6,6 +6,8 @@ use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 
 interface FileSystem
 {
+    public function removeFile(string $path): bool;
+
     public function removeDir(string $path): bool;
 
     public function belowPath(string $path): string;

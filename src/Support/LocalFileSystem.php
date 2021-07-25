@@ -8,6 +8,11 @@ use ArtARTs36\GitHandler\Exceptions\PathIncorrect;
 
 class LocalFileSystem implements FileSystem
 {
+    public function removeFile(string $path): bool
+    {
+        return unlink($path);
+    }
+
     public function removeDir(string $path): bool
     {
         if (! file_exists($path)) {
@@ -15,7 +20,7 @@ class LocalFileSystem implements FileSystem
         }
 
         if (is_file($path)) {
-            return unlink($path);
+            return $this->removeFile($path);
         }
 
         if (is_dir($path)) {
