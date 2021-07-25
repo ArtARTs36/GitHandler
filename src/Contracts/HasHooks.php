@@ -18,11 +18,13 @@ interface HasHooks
 
     /**
      * @see HookName for $name
+     * @covers \ArtARTs36\GitHandler\Exceptions\HookNotExists
      */
     public function deleteHook(string $name): bool;
 
     /**
      * @see HookName for $name
+     * @covers \ArtARTs36\GitHandler\Exceptions\HookNotExists
      */
     public function getHook(string $name): Hook;
 }

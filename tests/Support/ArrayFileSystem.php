@@ -12,6 +12,17 @@ class ArrayFileSystem extends LocalFileSystem implements FileSystem
 
     protected $files = [];
 
+    public function removeFile(string $path): bool
+    {
+        if (! $this->exists($path)) {
+            throw new FileNotFound($path);
+        }
+
+        unset($this->files[$path]);
+
+        return true;
+    }
+
     public function removeDir(string $path): bool
     {
         unset($this->dirs[$path]);

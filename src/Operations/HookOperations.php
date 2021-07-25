@@ -62,9 +62,16 @@ trait HookOperations
      */
     public function deleteHook(string $name): bool
     {
+        if (! $this->hasHook($name)) {
+            throw new HookNotExists($name);
+        }
+
         return $this->getFileSystem()->removeFile($this->getHookPath($name));
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getHookPath(string $name): string
     {
         return $this->pathToGitFolder() . DIRECTORY_SEPARATOR . 'hooks'. DIRECTORY_SEPARATOR . $name;
