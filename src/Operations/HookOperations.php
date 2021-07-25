@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Operations;
 
+use ArtARTs36\GitHandler\Data\Hook;
+use ArtARTs36\GitHandler\Exceptions\HookNotExists;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Support\HookName;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
@@ -32,6 +34,19 @@ trait HookOperations
         }
 
         return $this->hasHook($name);
+    }
+
+    public function getHook(string $name): Hook
+    {
+        if (! $this->hasHook($name)) {
+            throw new HookNotExists($name);
+        }
+
+        return new Hook(
+            $name,
+            $this->getFileSystem()->getFileContent($path = $this->getHookPath($name)),
+            $this->getFileSystem()->getLastUpdateDate($path)
+        );
     }
 
     /**

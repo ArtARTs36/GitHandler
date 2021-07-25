@@ -127,4 +127,13 @@ class LocalFileSystem implements FileSystem
 
         return file_get_contents($path);
     }
+
+    public function getLastUpdateDate(string $path): \DateTimeInterface
+    {
+        if (! $this->exists($path)) {
+            throw new FileNotFound($path);
+        }
+
+        return (new \DateTime())->setTimestamp(filemtime($path));
+    }
 }

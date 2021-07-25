@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Contracts;
 
+use ArtARTs36\GitHandler\Data\Hook;
+
 interface HasHooks
 {
     /**
@@ -18,4 +20,9 @@ interface HasHooks
      * @see HookName for $name
      */
     public function deleteHook(string $name): bool;
+
+    /**
+     * @see HookName for $name
+     */
+    public function getHook(string $name): Hook;
 }

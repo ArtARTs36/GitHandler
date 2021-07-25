@@ -24,4 +24,9 @@ interface FileSystem
      * @throws FileNotFound
      */
     public function getFileContent(string $path): string;
+
+    /**
+     * @throws FileNotFound
+     */
+    public function getLastUpdateDate(string $path): \DateTimeInterface;
 }
