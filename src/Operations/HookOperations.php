@@ -65,7 +65,7 @@ trait HookOperations
         return $this->getFileSystem()->removeFile($this->getHookPath($name));
     }
 
-    protected function getHookPath(string $name): string
+    public function getHookPath(string $name): string
     {
         return $this->pathToGitFolder() . DIRECTORY_SEPARATOR . 'hooks'. DIRECTORY_SEPARATOR . $name;
     }
