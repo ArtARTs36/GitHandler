@@ -167,7 +167,11 @@ class Git extends AbstractGitHandler implements GitHandler
             throw new NothingToCommit();
         }
 
-        return $result->contains('file changed');
+        if ($result->contains('file changed')) {
+            return true;
+        }
+
+        throw new UnexpectedException($command);
     }
 
     public function version(): string
