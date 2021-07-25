@@ -2,8 +2,12 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use ArtARTs36\GitHandler\Support\ToArray;
+
 class Hook
 {
+    use ToArray;
+
     public $name;
 
     public $script;

@@ -65,4 +65,13 @@ class ArrayFileSystem extends LocalFileSystem implements FileSystem
 
         return $this->files[$path];
     }
+
+    public function getLastUpdateDate(string $path): \DateTimeInterface
+    {
+        if (! $this->exists($path)) {
+            throw new FileNotFound($path);
+        }
+
+        return new \DateTime();
+    }
 }

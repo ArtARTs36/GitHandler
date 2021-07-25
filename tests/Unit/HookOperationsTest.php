@@ -50,4 +50,34 @@ class HookOperationsTest extends TestCase
 
         $git->deleteHook(HookName::UPDATE);
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getHook
+     */
+    public function testGetHookGood(): void
+    {
+        $git = $this->mockGit();
+
+        $this->fileSystem->createFile($git->getHookPath(HookName::UPDATE), 'echo 1');
+
+        $result = $git->getHook(HookName::UPDATE);
+
+        self::assertEquals([
+            'name' => HookName::UPDATE,
+            'script' => 'echo 1',
+        ], [
+            'name' => $result->name,
+            'script' => $result->script,
+        ]);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getHook
+     */
+    public function testGetHookOnNotExists(): void
+    {
+        self::expectException(HookNotExists::class);
+
+        $this->mockGit()->getHook(HookName::UPDATE);
+    }
 }
