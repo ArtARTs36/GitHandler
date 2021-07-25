@@ -6,7 +6,7 @@ class HookName
 {
     use Enumerable;
 
-    public const APPLY_PATH_MSG_SAMPLE = 'applypatch-msg.sample'; // git am
-    public const POST_UPDATE_SAMPLE = 'post-update.sample'; // git push: after push
-    public const PRE_COMMIT_SAMPLE = 'pre-commit.sample'; // git commit: before commit
+    public const APPLY_PATH_MSG = 'applypatch-msg'; // git am
+    public const POST_UPDATE = 'post-update'; // git push: after push
+    public const PRE_COMMIT = 'pre-commit'; // git commit: before commit
 }

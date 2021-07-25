@@ -16,7 +16,8 @@ interface GitHandler extends
     Stashable,
     Fetchable,
     HasBranches,
-    Grepable
+    Grepable,
+    HasHooks
 {
     /**
      * equals: git pull
