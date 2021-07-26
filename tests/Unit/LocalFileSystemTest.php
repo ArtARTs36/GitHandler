@@ -96,7 +96,7 @@ class LocalFileSystemTest extends TestCase
     /**
      * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getFileContent
      */
-    public function testGetFileContent(): void
+    public function testGetFileContentOnNotFound(): void
     {
         $fileSystem = new LocalFileSystem();
 
@@ -105,6 +105,18 @@ class LocalFileSystemTest extends TestCase
         self::expectException(FileNotFound::class);
 
         $fileSystem->getFileContent('random-file');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getFileContent
+     */
+    public function testGetFileContentOnGood(): void
+    {
+        $system = new LocalFileSystem();
+
+        $path = __DIR__ . '/../Mocks/files/local_file_system_test/get_from_directory/1.txt';
+
+        self::assertEquals(1, $system->getFileContent($path));
     }
 
     /**
@@ -151,5 +163,15 @@ class LocalFileSystemTest extends TestCase
         self::expectException(FileNotFound::class);
 
         (new LocalFileSystem())->getLastUpdateDate('random-file');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::__construct
+     */
+    public function testConstructor(): void
+    {
+        $system = new LocalFileSystem();
+
+        self::assertEquals('filemtime', $this->getPropertyValueOfObject($system, 'fileDateGetter'));
     }
 }
