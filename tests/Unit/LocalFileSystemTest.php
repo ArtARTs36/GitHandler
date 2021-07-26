@@ -107,4 +107,36 @@ class LocalFileSystemTest extends TestCase
 
         $fileSystem->getFileContent('random-file');
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::removeFile
+     */
+    public function testRemoveFileOnNotExists(): void
+    {
+        self::expectException(FileNotFound::class);
+
+        (new LocalFileSystem())->removeFile('random-file');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getLastUpdateDate
+     */
+    public function testGetLastUpdateDateGood(): void
+    {
+        $system = new LocalFileSystem(function () {
+            return 1627258440;
+        });
+
+        self::assertEquals(1627258440, $system->getLastUpdateDate(__FILE__)->getTimestamp());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getLastUpdateDate
+     */
+    public function testGetLastUpdateDateOnNotExists(): void
+    {
+        self::expectException(FileNotFound::class);
+
+        (new LocalFileSystem())->getLastUpdateDate('random-file');
+    }
 }

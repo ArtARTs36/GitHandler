@@ -8,6 +8,13 @@ use ArtARTs36\GitHandler\Exceptions\PathIncorrect;
 
 class LocalFileSystem implements FileSystem
 {
+    protected $fileDateGetter;
+
+    public function __construct(?callable $fileDateGetter = null)
+    {
+        $this->fileDateGetter = $fileDateGetter ?? 'filemtime';
+    }
+
     public function removeFile(string $path): bool
     {
         if (! $this->exists($path)) {
@@ -138,6 +145,8 @@ class LocalFileSystem implements FileSystem
             throw new FileNotFound($path);
         }
 
-        return (new \DateTime())->setTimestamp(filemtime($path));
+        $dateGetter = $this->fileDateGetter;
+
+        return (new \DateTime())->setTimestamp($dateGetter($path));
     }
 }
