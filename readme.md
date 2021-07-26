@@ -9,19 +9,19 @@
 
 ----
 
-### Description:
+## Description:
 
-Tool for work with git
+Tool for work with git in php
 
 ---
 
-### Installation:
+## Installation:
 
 `composer require artarts36/git-handler`
 
 ----
 
-### Simple create an Instance
+## Simple create an Instance
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -53,7 +53,9 @@ var_dump($git->version());
 
 ## Init Operations
 
-Use the Interface: \ArtARTs36\GitHandler\Contracts\Initable
+[About git init](https://git-scm.com/docs/git-init)
+
+Use the Interface: [\ArtARTs36\GitHandler\Contracts\Initable](./src/Contracts/Initable.php)
 
 #### * Check if the repository is initialized :
 
@@ -114,7 +116,9 @@ $action->reinstall();
 
 ## Branch Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\HasBranches
+[About git branch](https://git-scm.com/docs/git-branch)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\HasBranches](./src/Contracts/HasBranches.php)
 
 #### -> git checkout <branch-name>:
 
@@ -168,7 +172,9 @@ var_dump($git->getCurrentBranch());
 
 ## Grep Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Grepable
+[About git-grep](https://git-scm.com/docs/git-grep)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\Grepable](./src/Contracts/Grepable.php)
 
 #### -> git --no-pager grep -n <term>:
 
