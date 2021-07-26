@@ -16,7 +16,8 @@ interface GitHandler extends
     Stashable,
     Fetchable,
     HasBranches,
-    Grepable
+    Grepable,
+    HasHooks
 {
     /**
      * equals: git pull
@@ -35,6 +36,8 @@ interface GitHandler extends
      * equals: git commit -m=$message
      */
     public function commit(string $message, bool $amend = false): bool;
+
+    public function autoCommit(string $message, bool $amend = false): bool;
 
     public function pathToGitFolder(): string;
 

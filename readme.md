@@ -130,6 +130,13 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->checkout('branch-name', true);
 ```
 
+#### -> git switch <branch-name>
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->switchBranch('branch-name');
+```
+
 ---
 
 #### -> git branch -d <branch-name>:
@@ -146,6 +153,15 @@ $git->deleteBranch('branch-name');
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 var_dump($git->getBranches());
+```
+
+---
+
+#### -> git branch --show-current:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getCurrentBranch());
 ```
 
 ---
@@ -185,6 +201,13 @@ $git->push();
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->push(true);
+```
+
+#### -> git push --set-upstream origin
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->pushOnAutoSetUpStream(true);
 ```
 
 ---
@@ -457,11 +480,25 @@ $git->stash();
 $git->stash('message');
 ```
 
+#### -> git stash list:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+var_dump($git->getStashList());
+```
+
 #### -> git stash pop:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->unStash();
+```
+
+#### -> git stash apply stash@{1}:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->applyStash(1);
 ```
 
 ---
@@ -515,6 +552,64 @@ $git->commit('Hello');
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 
 $git->commit('Hello', true);
+```
+
+#### -> git commit -m="Hello" --amend (with modified files):
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+$git->autoCommit('Hello', true);
+```
+
+---
+
+## Hook Management
+
+use [\ArtARTs36\GitHandler\Contracts\HasHooks](./src/Contracts/HasHooks.php)
+
+see [\ArtARTs36\GitHandler\Support\HookName](./src/Support/HookName.php)
+
+---
+
+### * Add hook
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+$git->addHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG, "echo 'hello'");
+```
+
+### * Check hook exists
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+var_dump($git->hasHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG));
+```
+
+### * Delete hook
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+$git->deleteHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG);
+```
+
+### * Get hooks
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+var_dump($git->getHooks());
+```
+
+### * Get hook by name
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+var_dump($git->getHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG));
 ```
 
 ---

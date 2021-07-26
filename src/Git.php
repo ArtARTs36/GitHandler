@@ -14,6 +14,7 @@ use ArtARTs36\GitHandler\Operations\BranchOperations;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\FetchOperations;
 use ArtARTs36\GitHandler\Operations\GrepOperations;
+use ArtARTs36\GitHandler\Operations\HookOperations;
 use ArtARTs36\GitHandler\Operations\InitOperations;
 use ArtARTs36\GitHandler\Operations\LogOperations;
 use ArtARTs36\GitHandler\Operations\PathOperations;
@@ -27,6 +28,7 @@ use ArtARTs36\ShellCommand\ShellCommand;
 
 class Git extends AbstractGitHandler implements GitHandler
 {
+    use HookOperations;
     use ConfigOperations;
     use InitOperations;
     use TagOperations;
@@ -91,7 +93,7 @@ class Git extends AbstractGitHandler implements GitHandler
     /**
      * @inheritDoc
      */
-    public function add(string $file, bool $force = false): bool
+    public function add($file, bool $force = false): bool
     {
         $sh = $this
             ->executeCommand(
@@ -165,7 +167,22 @@ class Git extends AbstractGitHandler implements GitHandler
             throw new NothingToCommit();
         }
 
-        return $result->contains('file changed');
+        if ($result->contains('file changed')) {
+            return true;
+        }
+
+        throw new UnexpectedException($command);
+    }
+
+    /**
+     * equals: git add (untracked files) && git commit -m $message
+     * @codeCoverageIgnore
+     */
+    public function autoCommit(string $message, bool $amend = false): bool
+    {
+        $this->add($this->getModifiedFiles());
+
+        return $this->commit($message, $amend);
     }
 
     public function version(): string

@@ -8,10 +8,30 @@ use ArtARTs36\GitHandler\Exceptions\PathIncorrect;
 
 class LocalFileSystem implements FileSystem
 {
+    protected $fileDateGetter;
+
+    public function __construct(?callable $fileDateGetter = null)
+    {
+        $this->fileDateGetter = $fileDateGetter ?? 'filemtime';
+    }
+
+    public function removeFile(string $path): bool
+    {
+        if (! $this->exists($path)) {
+            throw new FileNotFound($path);
+        }
+
+        return unlink($path);
+    }
+
     public function removeDir(string $path): bool
     {
+        if (! file_exists($path)) {
+            return true;
+        }
+
         if (is_file($path)) {
-            return unlink($path);
+            return $this->removeFile($path);
         }
 
         if (is_dir($path)) {
@@ -117,5 +137,16 @@ class LocalFileSystem implements FileSystem
         }
 
         return file_get_contents($path);
+    }
+
+    public function getLastUpdateDate(string $path): \DateTimeInterface
+    {
+        if (! $this->exists($path)) {
+            throw new FileNotFound($path);
+        }
+
+        $dateGetter = $this->fileDateGetter;
+
+        return (new \DateTime())->setTimestamp($dateGetter($path));
     }
 }

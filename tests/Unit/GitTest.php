@@ -259,6 +259,16 @@ Changes to be committed:
     }
 
     /**
+     * @covers \ArtARTs36\GitHandler\Git::commit
+     */
+    public function testCommitOnUnexpectedResult(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        self::assertTrue($this->mockGit('123')->commit('', true));
+    }
+
+    /**
      * @covers \ArtARTs36\GitHandler\Git::help
      */
     public function testHelp(): void
