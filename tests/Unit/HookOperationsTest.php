@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Exceptions\HookNotExists;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Support\HookName;
 
 class HookOperationsTest extends TestCase
@@ -79,5 +80,29 @@ class HookOperationsTest extends TestCase
         self::expectException(HookNotExists::class);
 
         $this->mockGit()->getHook(HookName::UPDATE);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::addHook
+     */
+    public function testAddHookOnUnexpectedError(): void
+    {
+        $git = $this->mockGit('chmod error');
+
+        self::expectException(UnexpectedException::class);
+
+        $git->addHook(HookName::UPDATE, 'ss');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::addHook
+     */
+    public function testAddHookGood(): void
+    {
+        $git = $this->mockGit();
+
+        $git->addHook(HookName::UPDATE, 'ss');
+
+        self::assertTrue($this->fileSystem->exists($git->getHookPath(HookName::UPDATE)));
     }
 }

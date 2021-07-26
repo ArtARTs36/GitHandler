@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Operations;
 use ArtARTs36\GitHandler\Data\Hook;
 use ArtARTs36\GitHandler\Exceptions\HookNotExists;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
+use ArtARTs36\GitHandler\Support\Chmod;
 use ArtARTs36\GitHandler\Support\HookName;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
@@ -25,9 +26,7 @@ trait HookOperations
             ->getFileSystem()
             ->createFile($path = $this->getHookPath($name), $script);
 
-        $res = $this->executeCommand(
-            $cmd = (new ShellCommand('chmod'))->addParameter('+x')->addParameter($path)
-        );
+        $res = $this->executeCommand($cmd = Chmod::executable($path));
 
         if ($res !== null) {
             throw new UnexpectedException($cmd);
