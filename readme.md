@@ -549,6 +549,56 @@ $git->commit('Hello', true);
 
 ---
 
+## Hook Management
+
+use [\ArtARTs36\GitHandler\Contracts\HasHooks](./src/Contracts/HasHooks.php)
+
+see [\ArtARTs36\GitHandler\Support\HookName](./src/Support/HookName.php)
+
+---
+
+### * Add hook
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+$git->addHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG, "echo 'hello'");
+```
+
+### * Check hook exists
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+var_dump($git->hasHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG));
+```
+
+### * Delete hook
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+$git->deleteHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG);
+```
+
+### * Get hooks
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+var_dump($git->getHooks());
+```
+
+### * Get hook by name
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+var_dump($git->getHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG));
+```
+
+---
+
 ## Operations with .gitignore
 
 Use \ArtARTs36\GitHandler\Repository
