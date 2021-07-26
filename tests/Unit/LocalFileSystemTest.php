@@ -174,4 +174,36 @@ class LocalFileSystemTest extends TestCase
 
         self::assertEquals('filemtime', $this->getPropertyValueOfObject($system, 'fileDateGetter'));
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::createFile
+     */
+    public function testCreateFile(): void
+    {
+        $system = new LocalFileSystem();
+
+        $path = __DIR__ . '/../Mocks/files/local_file_system_test/test_create_file.txt';
+
+        $system->createFile($path, 'ss');
+
+        self::assertFileExists($path);
+
+        $system->removeFile($path);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::createDir
+     */
+    public function testCreateDir(): void
+    {
+        $system = new LocalFileSystem();
+
+        $path = __DIR__ . '/../Mocks/files/local_file_system_test/test_create_file';
+
+        $system->createDir($path);
+
+        self::assertFileExists($path);
+
+        $system->removeDir($path);
+    }
 }
