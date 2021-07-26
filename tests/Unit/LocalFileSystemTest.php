@@ -223,4 +223,43 @@ class LocalFileSystemTest extends TestCase
 
         $system->removeDir($path);
     }
+
+    public function providerForTestRemoveDirOn2Level(): array
+    {
+        return [
+            [
+                __DIR__ . '/../Mocks/files/test_remove_dir',
+                [
+                    'folder' => [
+                        ['file1.txt', 'ss'],
+                        ['file2.txt', 'ss'],
+                        ['ignore', 'no-content'],
+                    ]
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::removeDir
+     * @dataProvider providerForTestRemoveDirOn2Level
+     */
+    public function testRemoveDirOn2Level(string $directory, array $files): void
+    {
+        $system = new LocalFileSystem();
+
+        //
+
+        foreach ($files as $folder => $names) {
+            $system->createDir($dir = $directory . DIRECTORY_SEPARATOR . $folder);
+
+            foreach ($names as [$file, $content]) {
+                file_put_contents($dir . DIRECTORY_SEPARATOR . $file, $content);
+            }
+        }
+
+        $system->removeDir($directory);
+
+        self::assertFileDoesNotExist($directory);
+    }
 }
