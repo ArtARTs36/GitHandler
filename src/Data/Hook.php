@@ -23,4 +23,9 @@ class Hook
         $this->script = $script;
         $this->lastUpdateDate = $lastUpdateDate;
     }
+
+    public function isSample(): bool
+    {
+        return pathinfo($this->name, PATHINFO_EXTENSION) === 'sample';
+    }
 }

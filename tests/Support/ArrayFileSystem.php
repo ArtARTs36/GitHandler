@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Support;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
+use ArtARTs36\Str\Facade\Str;
 
 class ArrayFileSystem extends LocalFileSystem implements FileSystem
 {
@@ -73,5 +74,22 @@ class ArrayFileSystem extends LocalFileSystem implements FileSystem
         }
 
         return new \DateTime();
+    }
+
+    public function getFromDirectory(string $path): array
+    {
+        if (! array_key_exists($path, $this->dirs)) {
+            return [];
+        }
+
+        $find = [];
+
+        foreach (array_keys($this->files) as $file) {
+            if (Str::contains($file, $path)) {
+                $find[] = $file;
+            }
+        }
+
+        return $find;
     }
 }

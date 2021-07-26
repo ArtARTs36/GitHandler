@@ -41,11 +41,7 @@ trait HookOperations
             throw new HookNotExists($name);
         }
 
-        return new Hook(
-            $name,
-            $this->getFileSystem()->getFileContent($path = $this->getHookPath($name)),
-            $this->getFileSystem()->getLastUpdateDate($path)
-        );
+        return $this->makeHookObject($name);
     }
 
     /**
@@ -69,10 +65,44 @@ trait HookOperations
     }
 
     /**
+     * @return array<string, Hook>
+     */
+    public function getHooks(bool $onlyWorked = true): array
+    {
+        $map = [];
+        $paths = $this->getFileSystem()->getFromDirectory($this->getHookPath());
+
+        if ($onlyWorked) {
+            $paths = array_filter($paths, function (string $path) {
+                return empty(pathinfo($path, PATHINFO_EXTENSION));
+            });
+        }
+
+        $existsNames = array_map(function (string $path) {
+            return pathinfo($path, PATHINFO_BASENAME);
+        }, $paths);
+
+        foreach ($existsNames as $name) {
+            $map[$name] = $this->makeHookObject($name);
+        }
+
+        return $map;
+    }
+
+    /**
      * @codeCoverageIgnore
      */
-    public function getHookPath(string $name): string
+    public function getHookPath(?string $name = null): string
     {
         return $this->pathToGitFolder() . DIRECTORY_SEPARATOR . 'hooks'. DIRECTORY_SEPARATOR . $name;
+    }
+
+    protected function makeHookObject(string $name): Hook
+    {
+        return new Hook(
+            $name,
+            $this->getFileSystem()->getFileContent($path = $this->getHookPath($name)),
+            $this->getFileSystem()->getLastUpdateDate($path)
+        );
     }
 }

@@ -54,6 +54,7 @@ class HookOperationsTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Git::getHook
+     * @covers \ArtARTs36\GitHandler\Git::makeHookObject
      */
     public function testGetHookGood(): void
     {
@@ -104,5 +105,42 @@ class HookOperationsTest extends TestCase
         $git->addHook(HookName::UPDATE, 'ss');
 
         self::assertTrue($this->fileSystem->exists($git->getHookPath(HookName::UPDATE)));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getHooks
+     */
+    public function testGetHooksOnEmpty(): void
+    {
+        self::assertEquals([], $this->mockGit()->getHooks());
+        self::assertEquals([], $this->mockGit()->getHooks(false));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getHooks
+     */
+    public function testGetHooksOnlyWorked(): void
+    {
+        $git = $this->mockGit();
+
+        $this->fileSystem->createDir($git->getHookPath());
+        $this->fileSystem->createFile($git->getHookPath(HookName::UPDATE), 'ss');
+        $this->fileSystem->createFile($git->getHookPath(HookName::UPDATE . '.sample'), 'ss');
+
+        self::assertCount(1, $git->getHooks());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getHooks
+     */
+    public function testGetHooks(): void
+    {
+        $git = $this->mockGit();
+
+        $this->fileSystem->createDir($git->getHookPath());
+        $this->fileSystem->createFile($git->getHookPath(HookName::UPDATE), 'ss');
+        $this->fileSystem->createFile($git->getHookPath(HookName::UPDATE . '.sample'), 'ss');
+
+        self::assertCount(2, $git->getHooks(false));
     }
 }

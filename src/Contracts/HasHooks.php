@@ -27,4 +27,9 @@ interface HasHooks
      * @covers \ArtARTs36\GitHandler\Exceptions\HookNotExists
      */
     public function getHook(string $name): Hook;
+
+    /**
+     * @return array<string, Hook>
+     */
+    public function getHooks(bool $onlyWorked = true): array;
 }

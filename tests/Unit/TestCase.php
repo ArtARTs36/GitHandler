@@ -26,7 +26,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function mockGit($shellResult = null, ?string $dir = null, ?LogParser $logger = null): Git
     {
-        $dir = $dir ?? __DIR__ . '/../libraries/';
+        $dir = $dir ?? __DIR__;
 
         return new class($dir, $shellResult, $this->fileSystem, 'git', $logger) extends Git {
             private $shellResults;

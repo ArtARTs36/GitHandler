@@ -10,6 +10,11 @@ interface FileSystem
 
     public function removeDir(string $path): bool;
 
+    /**
+     * @return array<string>
+     */
+    public function getFromDirectory(string $path): array;
+
     public function belowPath(string $path): string;
 
     public function endFolder(string $path): string;
