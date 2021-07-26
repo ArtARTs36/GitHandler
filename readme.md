@@ -203,6 +203,13 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->push(true);
 ```
 
+#### -> git push --set-upstream origin
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->pushOnAutoSetUpStream(true);
+```
+
 ---
 
 ## Fetch Operations
