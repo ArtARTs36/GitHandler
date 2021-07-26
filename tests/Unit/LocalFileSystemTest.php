@@ -5,7 +5,6 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\PathIncorrect;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
-use ArtARTs36\Str\Str;
 
 class LocalFileSystemTest extends TestCase
 {
@@ -116,6 +115,20 @@ class LocalFileSystemTest extends TestCase
         self::expectException(FileNotFound::class);
 
         (new LocalFileSystem())->removeFile('random-file');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::removeFile
+     */
+    public function testRemoveFileGood(): void
+    {
+        $system = new LocalFileSystem();
+
+        $path = __DIR__ . '/../Mocks/files/local_file_system_test/1.txt';
+
+        $system->createFile($path, 'ss');
+
+        self::assertTrue($system->removeFile($path));
     }
 
     /**
