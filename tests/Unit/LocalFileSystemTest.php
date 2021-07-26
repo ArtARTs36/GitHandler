@@ -206,4 +206,21 @@ class LocalFileSystemTest extends TestCase
 
         $system->removeDir($path);
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::createDir
+     */
+    public function testCreateDirOnExists(): void
+    {
+        $system = new LocalFileSystem();
+
+        $path = __DIR__ . '/../Mocks/files/local_file_system_test/test_create_file';
+
+        $system->createDir($path);
+
+        self::assertFileExists($path);
+        self::assertTrue($system->createDir($path));
+
+        $system->removeDir($path);
+    }
 }
