@@ -547,6 +547,14 @@ $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->commit('Hello', true);
 ```
 
+#### -> git commit -m="Hello" --amend (with modified files):
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+
+$git->autoCommit('Hello', true);
+```
+
 ---
 
 ## Hook Management

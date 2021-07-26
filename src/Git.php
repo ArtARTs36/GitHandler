@@ -93,7 +93,7 @@ class Git extends AbstractGitHandler implements GitHandler
     /**
      * @inheritDoc
      */
-    public function add(string $file, bool $force = false): bool
+    public function add($file, bool $force = false): bool
     {
         $sh = $this
             ->executeCommand(
@@ -172,6 +172,17 @@ class Git extends AbstractGitHandler implements GitHandler
         }
 
         throw new UnexpectedException($command);
+    }
+
+    /**
+     * equals: git add . && git commit -m $message
+     * @codeCoverageIgnore
+     */
+    public function autoCommit(string $message, bool $amend = false): bool
+    {
+        $this->add($this->getModifiedFiles());
+
+        return $this->commit($message, $amend);
     }
 
     public function version(): string
