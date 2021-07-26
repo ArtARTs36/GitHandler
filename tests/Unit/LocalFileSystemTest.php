@@ -262,4 +262,19 @@ class LocalFileSystemTest extends TestCase
 
         self::assertFileDoesNotExist($directory);
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::removeDir
+     */
+    public function testRemoveDirExistsUndefined(): void
+    {
+        $system = new class extends LocalFileSystem {
+            public function exists(string $path): bool
+            {
+                return true;
+            }
+        };
+
+        self::assertTrue($system->removeDir('random-ath'));
+    }
 }
