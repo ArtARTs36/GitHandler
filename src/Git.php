@@ -100,7 +100,7 @@ class Git extends AbstractGitHandler implements GitHandler
                 $command = $this
                     ->newCommand()
                     ->addParameter('add')
-                    ->addParameter($file)
+                    ->addParameters((array) $file)
                     ->when($force, function (ShellCommandInterface $command) {
                         $command->addOption('force');
                     })
