@@ -175,7 +175,7 @@ class Git extends AbstractGitHandler implements GitHandler
     }
 
     /**
-     * equals: git add . && git commit -m $message
+     * equals: git add (untracked files) && git commit -m $message
      * @codeCoverageIgnore
      */
     public function autoCommit(string $message, bool $amend = false): bool
