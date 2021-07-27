@@ -11,7 +11,7 @@
 
 ## Description:
 
-Tool for work with git in php
+Tool for work with Git in PHP
 
 ---
 
