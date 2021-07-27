@@ -324,9 +324,9 @@ foreach ($git->log() as $log) {
 
 ## Pull Operations
 
-#### -> git pull:
-
 [About git pull](http://git-scm.com/docs/git-pull)
+
+#### -> git pull:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
