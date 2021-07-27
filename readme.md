@@ -193,7 +193,9 @@ foreach ($matches as $match) {
 
 ## Push Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Pushable
+[About git push](https://git-scm.com/docs/git-push)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\Pushable](./src/Contracts/Pushable.php)
 
 #### -> git push
 
@@ -220,7 +222,9 @@ $git->pushOnAutoSetUpStream(true);
 
 ## Fetch Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Fetchable
+[About git fetch](https://git-scm.com/docs/git-fetch)
+
+Use the interface: [\ArtARTs36\GitHandler\Contracts\Fetchable](./src/Contracts/Fetchable.php)
 
 #### -> git fetch:
 
@@ -239,6 +243,8 @@ $git->fetchAll();
 ---
 
 ## Clone Operations
+
+[About git clone](https://git-scm.com/docs/git-clone)
 
 #### -> git clone:
 
@@ -265,7 +271,7 @@ $git->clone('https://github.com/ArtARTs36/GitHandler', 'branch', 'folder');
 
 ## Add Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Addable
+Use the interface: [\ArtARTs36\GitHandler\Contracts\Addable](./src/Contracts/Addable.php)
 
 #### -> git add <file_name>:
 
@@ -285,15 +291,17 @@ var_dump($git->add('file_name', true));
 
 ## Logging
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Logable::log
+[About git log](https://git-scm.com/docs/git-log)
+
+Use the interface: [\ArtARTs36\GitHandler\Contracts\Logable::log](./src/Contracts/Logable.php)
 
 ---
 
 Data Objects:
 
-* \ArtARTs36\GitHandler\Data\Author
-* \ArtARTs36\GitHandler\Data\Log
-* \ArtARTs36\GitHandler\Data\LogCollection\<Log\>
+* [\ArtARTs36\GitHandler\Data\Author](./src/Data/Author.php)
+* [\ArtARTs36\GitHandler\Data\Log](./src/Data/Log.php)
+* [\ArtARTs36\GitHandler\Data\LogCollection](./src/Data/LogCollection.php)<[Log](./src/Data/Log.php)>
 
 ---
 
@@ -318,6 +326,8 @@ foreach ($git->log() as $log) {
 
 #### -> git pull:
 
+[About git pull](http://git-scm.com/docs/git-pull)
+
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 $git->pull();
@@ -334,7 +344,9 @@ $git->pull('branch-name');
 
 ## Remote Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\HasRemotes
+[About git remote](https://git-scm.com/docs/git-remote)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\HasRemotes](./src/Contracts/HasRemotes.php)
 
 #### * Has push or fetch remote url
 
@@ -368,7 +380,9 @@ var_dump($git->addRemote('alias', 'url'));
 
 ## Tag Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Taggable
+[About git tag](http://git-scm.com/docs/git-tag)
+
+Use the interface: [\ArtARTs36\GitHandler\Contracts\Taggable](./src/Contracts/Taggable.php)
 
 #### * check exists tag
 
@@ -403,7 +417,9 @@ var_dump($git->performTag('1.0.0'));
 
 ## Status Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Statusable
+[About git status](http://git-scm.com/docs/git-status)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\Statusable](./src/Contracts/Statusable.php)
 
 #### * Get untracked files:
 
@@ -476,7 +492,9 @@ var_dump($git->getManPath());
 
 ## Stash Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Stashable
+[About git stash](https://git-scm.com/docs/git-stash)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\Stashable](./src/Contracts/Stashable.php)
 
 #### -> git stash save:
 
@@ -511,6 +529,10 @@ $git->applyStash(1);
 
 ## Config Operations
 
+[About git config](http://git-scm.com/docs/git-config)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\Configurable](./src/Contracts/Configurable.php)
+
 #### -> git config user.name test@mail.ru
 
 ```php
@@ -544,6 +566,8 @@ var_dump($pack->windowMemory);
 
 ## Commit operations
 
+[About git commit](https://git-scm.com/docs/git-commit)
+
 #### -> git commit -m="Hello":
 
 ```php
@@ -572,11 +596,9 @@ $git->autoCommit('Hello', true);
 
 ## Hook Management
 
-use [\ArtARTs36\GitHandler\Contracts\HasHooks](./src/Contracts/HasHooks.php)
+Use [\ArtARTs36\GitHandler\Contracts\HasHooks](./src/Contracts/HasHooks.php)
 
-see [\ArtARTs36\GitHandler\Support\HookName](./src/Support/HookName.php)
-
----
+Hook names: [\ArtARTs36\GitHandler\Support\HookName](./src/Support/HookName.php)
 
 ### * Add hook
 
