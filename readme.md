@@ -304,7 +304,7 @@ var_dump($git->add('file_name', true));
 
 [About git log](https://git-scm.com/docs/git-log)
 
-Use the interface: [\ArtARTs36\GitHandler\Contracts\Logable::log](./src/Contracts/Logable.php)
+Use the interface: [\ArtARTs36\GitHandler\Contracts\Logable](./src/Contracts/Logable.php)
 
 ---
 
