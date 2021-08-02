@@ -11,7 +11,7 @@ class LogCollection implements \IteratorAggregate, \Countable
 
     /**
      * @param non-empty-array<Log> $logs
-     * @throws \InvalidArgumentException
+     * @codeCoverageIgnore
      */
     public function __construct(array $logs)
     {

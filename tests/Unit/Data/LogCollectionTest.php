@@ -11,26 +11,6 @@ class LogCollectionTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
-     */
-    public function testConstructorEmptyFail(): void
-    {
-        self::expectException(\InvalidArgumentException::class);
-
-        new LogCollection([]);
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
-     */
-    public function testConstructorGenericTypeFail(): void
-    {
-        self::expectException(\InvalidArgumentException::class);
-
-        new LogCollection([$this]);
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::count
      */
     public function testConstructorGood(): void
