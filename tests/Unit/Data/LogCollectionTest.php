@@ -10,10 +10,9 @@ use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 class LogCollectionTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::count
      */
-    public function testConstructorGood(): void
+    public function testCount(): void
     {
         $collection = new LogCollection([
             new Log('', new \DateTime(), new Author('', ''), ''),
