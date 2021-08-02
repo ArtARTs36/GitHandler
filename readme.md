@@ -271,13 +271,24 @@ $git->clone('https://github.com/ArtARTs36/GitHandler', 'branch', 'folder');
 
 ## Add Operations
 
+[About git add](https://git-scm.com/docs/git-add)
+
 Use the interface: [\ArtARTs36\GitHandler\Contracts\Addable](./src/Contracts/Addable.php)
+
+---
 
 #### -> git add <file_name>:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->add('file_name'));
+$git->add('file_name');
+```
+
+#### -> git add <file_name_1> <file_name_2> <file_name_3>:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->add(['file_name_1', 'file_name_2', 'file_name_3']);
 ```
 
 #### -> git add <file_name> --force:
