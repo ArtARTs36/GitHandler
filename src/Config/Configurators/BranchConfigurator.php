@@ -2,8 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Config\Configurators;
 
+use ArtARTs36\GitHandler\Config\Subjects\BranchList;
 use ArtARTs36\GitHandler\Config\Subjects\Branch;
-use ArtARTs36\GitHandler\Config\Subjects\LinkBranch;
 use ArtARTs36\GitHandler\Contracts\ConfigSubject;
 use ArtARTs36\GitHandler\Contracts\SubjectConfigurator;
 
@@ -30,10 +30,10 @@ class BranchConfigurator implements SubjectConfigurator
                 }
             }
 
-            $branches[$branchName] = new LinkBranch($branchRemote, $branchMerge);
+            $branches[$branchName] = new Branch($branchName, $branchRemote, $branchMerge);
         }
 
-        return new Branch($branches);
+        return new BranchList($branches);
     }
 
     public function getPrefix(): string

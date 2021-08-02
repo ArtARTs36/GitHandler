@@ -2,20 +2,18 @@
 
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
-class Branch extends AbstractSubject
+class Branch
 {
-    public $branches;
+    public $name;
 
-    /**
-     * @param array<string, LinkBranch> $branches
-     */
-    public function __construct(array $branches)
-    {
-        $this->branches = $branches;
-    }
+    public $remote;
 
-    public function getBranch(string $name): ?LinkBranch
+    public $merge;
+
+    public function __construct(string $name, string $remote, string $merge)
     {
-        return $this->branches[$name] ?? null;
+        $this->name = $name;
+        $this->remote = $remote;
+        $this->merge = $merge;
     }
 }
