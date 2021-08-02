@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
 use ArtARTs36\GitHandler\Support\ToArray;
+use JetBrains\PhpStorm\ArrayShape;
 
 class Branch
 {
@@ -22,5 +23,13 @@ class Branch
         $this->name = $name;
         $this->remote = $remote;
         $this->merge = $merge;
+    }
+
+    public static function fromLinks(
+        string $name,
+        #[ArrayShape(['remote' => 'string', 'merge' => 'string'])]
+        array $links
+    ): self {
+        return new static($name, $links['remote'] ?? '', $links['merge'] ?? '');
     }
 }

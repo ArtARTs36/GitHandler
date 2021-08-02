@@ -15,29 +15,33 @@ class BranchConfigurator implements SubjectConfigurator
         $branches = [];
 
         foreach ($parts as $part) {
-            $branchMerge = $branchRemote = $branchName = '';
+            $branchName = '';
+            $links = [];
 
             foreach ($part as $identity => $url) {
                 $nameParts = explode('.', $identity);
-
-                $branchName = implode('.', array_slice($nameParts, 0, -1));
-                $urlType = end($nameParts); // merge | remote
-
-                if ($urlType === 'merge') {
-                    $branchMerge = $url;
-                } elseif ($urlType === 'remote') {
-                    $branchRemote = $url;
-                }
+                $branchName = strlen($branchName) ? $branchName : $this->buildBranchName($nameParts);
+                $links[end($nameParts)] = $url;
             }
 
-            $branches[$branchName] = new Branch($branchName, $branchRemote, $branchMerge);
+            $branches[$branchName] = Branch::fromLinks($branchName, $links);
         }
 
         return new BranchList($branches);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getPrefix(): string
     {
         return 'branch';
+    }
+
+    protected function buildBranchName(array $parts): string
+    {
+        $name = implode('.', array_slice($parts, 0, -1));
+
+        return mb_substr($name, strlen($this->getPrefix()) + 1);
     }
 }
