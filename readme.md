@@ -9,19 +9,19 @@
 
 ----
 
-### Description:
+## Description:
 
-Tool for work with git
+Tool for work with Git in PHP
 
 ---
 
-### Installation:
+## Installation:
 
 `composer require artarts36/git-handler`
 
 ----
 
-### Simple create an Instance
+## Simple create an Instance
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
@@ -53,7 +53,9 @@ var_dump($git->version());
 
 ## Init Operations
 
-Use the Interface: \ArtARTs36\GitHandler\Contracts\Initable
+[About git init](https://git-scm.com/docs/git-init)
+
+Use the Interface: [\ArtARTs36\GitHandler\Contracts\Initable](./src/Contracts/Initable.php)
 
 #### * Check if the repository is initialized :
 
@@ -114,7 +116,9 @@ $action->reinstall();
 
 ## Branch Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\HasBranches
+[About git branch](https://git-scm.com/docs/git-branch)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\HasBranches](./src/Contracts/HasBranches.php)
 
 #### -> git checkout <branch-name>:
 
@@ -168,7 +172,9 @@ var_dump($git->getCurrentBranch());
 
 ## Grep Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Grepable
+[About git-grep](https://git-scm.com/docs/git-grep)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\Grepable](./src/Contracts/Grepable.php)
 
 #### -> git --no-pager grep -n <term>:
 
@@ -187,7 +193,9 @@ foreach ($matches as $match) {
 
 ## Push Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Pushable
+[About git push](https://git-scm.com/docs/git-push)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\Pushable](./src/Contracts/Pushable.php)
 
 #### -> git push
 
@@ -214,7 +222,9 @@ $git->pushOnAutoSetUpStream(true);
 
 ## Fetch Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Fetchable
+[About git fetch](https://git-scm.com/docs/git-fetch)
+
+Use the interface: [\ArtARTs36\GitHandler\Contracts\Fetchable](./src/Contracts/Fetchable.php)
 
 #### -> git fetch:
 
@@ -233,6 +243,8 @@ $git->fetchAll();
 ---
 
 ## Clone Operations
+
+[About git clone](https://git-scm.com/docs/git-clone)
 
 #### -> git clone:
 
@@ -259,13 +271,24 @@ $git->clone('https://github.com/ArtARTs36/GitHandler', 'branch', 'folder');
 
 ## Add Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Addable
+[About git add](https://git-scm.com/docs/git-add)
+
+Use the interface: [\ArtARTs36\GitHandler\Contracts\Addable](./src/Contracts/Addable.php)
+
+---
 
 #### -> git add <file_name>:
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
-var_dump($git->add('file_name'));
+$git->add('file_name');
+```
+
+#### -> git add <file_name_1> <file_name_2> <file_name_3>:
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$git->add(['file_name_1', 'file_name_2', 'file_name_3']);
 ```
 
 #### -> git add <file_name> --force:
@@ -279,15 +302,17 @@ var_dump($git->add('file_name', true));
 
 ## Logging
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Logable::log
+[About git log](https://git-scm.com/docs/git-log)
+
+Use the interface: [\ArtARTs36\GitHandler\Contracts\Logable](./src/Contracts/Logable.php)
 
 ---
 
 Data Objects:
 
-* \ArtARTs36\GitHandler\Data\Author
-* \ArtARTs36\GitHandler\Data\Log
-* \ArtARTs36\GitHandler\Data\LogCollection\<Log\>
+* [\ArtARTs36\GitHandler\Data\Author](./src/Data/Author.php)
+* [\ArtARTs36\GitHandler\Data\Log](./src/Data/Log.php)
+* [\ArtARTs36\GitHandler\Data\LogCollection](./src/Data/LogCollection.php)<[Log](./src/Data/Log.php)>
 
 ---
 
@@ -310,6 +335,8 @@ foreach ($git->log() as $log) {
 
 ## Pull Operations
 
+[About git pull](http://git-scm.com/docs/git-pull)
+
 #### -> git pull:
 
 ```php
@@ -328,7 +355,9 @@ $git->pull('branch-name');
 
 ## Remote Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\HasRemotes
+[About git remote](https://git-scm.com/docs/git-remote)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\HasRemotes](./src/Contracts/HasRemotes.php)
 
 #### * Has push or fetch remote url
 
@@ -362,7 +391,9 @@ var_dump($git->addRemote('alias', 'url'));
 
 ## Tag Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Taggable
+[About git tag](http://git-scm.com/docs/git-tag)
+
+Use the interface: [\ArtARTs36\GitHandler\Contracts\Taggable](./src/Contracts/Taggable.php)
 
 #### * check exists tag
 
@@ -397,7 +428,9 @@ var_dump($git->performTag('1.0.0'));
 
 ## Status Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Statusable
+[About git status](http://git-scm.com/docs/git-status)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\Statusable](./src/Contracts/Statusable.php)
 
 #### * Get untracked files:
 
@@ -470,7 +503,9 @@ var_dump($git->getManPath());
 
 ## Stash Operations
 
-Use the interface: \ArtARTs36\GitHandler\Contracts\Stashable
+[About git stash](https://git-scm.com/docs/git-stash)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\Stashable](./src/Contracts/Stashable.php)
 
 #### -> git stash save:
 
@@ -505,6 +540,22 @@ $git->applyStash(1);
 
 ## Config Operations
 
+[About git config](http://git-scm.com/docs/git-config)
+
+Use the interface: [ArtARTs36\GitHandler\Contracts\Configurable](./src/Contracts/Configurable.php)
+
+---
+
+Data Objects:
+
+* [\ArtARTs36\GitHandler\Config\Subjects\Core](./src/Config/Subjects/Core.php)
+* [\ArtARTs36\GitHandler\Config\Subjects\Credential](./src/Config/Subjects/Credential.php)
+* [\ArtARTs36\GitHandler\Config\Subjects\User](./src/Config/Subjects/User.php)
+* [\ArtARTs36\GitHandler\Config\Subjects\Pack](./src/Config/Subjects/Pack.php)
+* [\ArtARTs36\GitHandler\Config\Subjects\BranchList](./src/Config/Subjects/BranchList.php)<[Branch](./src/Config/Subjects/Branch.php)>
+
+---
+
 #### -> git config user.name test@mail.ru
 
 ```php
@@ -538,6 +589,8 @@ var_dump($pack->windowMemory);
 
 ## Commit operations
 
+[About git commit](https://git-scm.com/docs/git-commit)
+
 #### -> git commit -m="Hello":
 
 ```php
@@ -566,11 +619,9 @@ $git->autoCommit('Hello', true);
 
 ## Hook Management
 
-use [\ArtARTs36\GitHandler\Contracts\HasHooks](./src/Contracts/HasHooks.php)
+Use [\ArtARTs36\GitHandler\Contracts\HasHooks](./src/Contracts/HasHooks.php)
 
-see [\ArtARTs36\GitHandler\Support\HookName](./src/Support/HookName.php)
-
----
+Hook names: [\ArtARTs36\GitHandler\Support\HookName](./src/Support/HookName.php)
 
 ### * Add hook
 
