@@ -533,6 +533,18 @@ $git->applyStash(1);
 
 Use the interface: [ArtARTs36\GitHandler\Contracts\Configurable](./src/Contracts/Configurable.php)
 
+---
+
+Data Objects:
+
+* [\ArtARTs36\GitHandler\Config\Subjects\Core](./src/Config/Subjects/Core.php)
+* [\ArtARTs36\GitHandler\Config\Subjects\Credential](./src/Config/Subjects/Credential.php)
+* [\ArtARTs36\GitHandler\Config\Subjects\User](./src/Config/Subjects/User.php)
+* [\ArtARTs36\GitHandler\Config\Subjects\Pack](./src/Config/Subjects/Pack.php)
+* [\ArtARTs36\GitHandler\Config\Subjects\BranchList](./src/Config/Subjects/BranchList.php)<[Branch](./src/Config/Subjects/Branch.php)>
+
+---
+
 #### -> git config user.name test@mail.ru
 
 ```php
