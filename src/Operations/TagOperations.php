@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Operations;
 use ArtARTs36\GitHandler\Data\Author;
 use ArtARTs36\GitHandler\Data\Tag;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\TagNotFound;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Support\FormatPlaceholder;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
@@ -72,7 +73,15 @@ trait TagOperations
                 ->addCutOption('s')
         );
 
-        $parts = $result ? $result->explode('|') : [];
+        if ($result === null) {
+            throw new UnexpectedException($cmd);
+        }
+
+        if ($result->contains("ambiguous argument '$tag': unknown revision or path not in the working tree")) {
+            throw new TagNotFound($tag);
+        }
+
+        $parts = $result->explode('|');
 
         if (count($parts) !== 5) {
             throw new UnexpectedException($cmd);
