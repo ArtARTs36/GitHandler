@@ -27,7 +27,10 @@ class Log
         $this->message = $message;
     }
 
-    #[Deprecated]
+    /**
+     * @deprecated
+     * @see Commit::getAbbreviatedHash()
+     */
     public function getAbbreviatedCommitHash(): string
     {
         return $this->commit->getAbbreviatedHash();
