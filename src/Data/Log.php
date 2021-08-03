@@ -2,7 +2,6 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
-use JetBrains\PhpStorm\Deprecated;
 use JetBrains\PhpStorm\Immutable;
 
 #[Immutable]
