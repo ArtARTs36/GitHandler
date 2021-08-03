@@ -21,4 +21,9 @@ class Commit
     {
         return mb_substr($this->hash, 0, 6);
     }
+
+    public function __toString(): string
+    {
+        return $this->hash;
+    }
 }
