@@ -87,7 +87,7 @@ class TagOperationsTest extends TestCase
         ], [
             'name' => $tag->author->name,
             'email' => $tag->author->email,
-            'commit' => $tag->commit,
+            'commit' => $tag->commit->hash,
             'message' => $tag->message,
         ]);
     }

@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Operations;
 
 use ArtARTs36\GitHandler\Data\Author;
+use ArtARTs36\GitHandler\Data\Commit;
 use ArtARTs36\GitHandler\Data\Tag;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\TagNotFound;
@@ -92,7 +93,7 @@ trait TagOperations
         return new Tag(
             new Author($authorName, $authorEmail),
             new \DateTime($date),
-            $commit,
+            new Commit($commit),
             $message
         );
     }

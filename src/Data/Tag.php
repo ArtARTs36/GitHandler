@@ -16,7 +16,10 @@ class Tag
 
     public $message;
 
-    public function __construct(Author $author, \DateTime $date, string $commit, string $message)
+    /**
+     * @codeCoverageIgnore
+     */
+    public function __construct(Author $author, \DateTime $date, Commit $commit, string $message)
     {
         $this->author = $author;
         $this->date = $date;
