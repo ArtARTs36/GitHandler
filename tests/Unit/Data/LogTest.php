@@ -15,13 +15,13 @@ class LogTest extends TestCase
     public function testGetAbbreviatedCommitHash(): void
     {
         $log = new Log(
-            new Commit('7bfab23737fad677905ae7ddd3ac76e2e31f30a4'),
+            $commit = new Commit('7bfab23737fad677905ae7ddd3ac76e2e31f30a4'),
             new \DateTime(),
             new Author('', ''),
             ''
         );
 
-        self::assertEquals('7bfab2', $log->getAbbreviatedCommitHash());
+        self::assertEquals($commit->getAbbreviatedHash(), $log->getAbbreviatedCommitHash());
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use JetBrains\PhpStorm\Deprecated;
 use JetBrains\PhpStorm\Immutable;
 
 #[Immutable]
@@ -26,6 +27,7 @@ class Log
         $this->message = $message;
     }
 
+    #[Deprecated]
     public function getAbbreviatedCommitHash(): string
     {
         return $this->commit->getAbbreviatedHash();

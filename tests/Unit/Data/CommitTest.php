@@ -16,4 +16,14 @@ class CommitTest extends TestCase
 
         self::assertEquals($hash, $commit);
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\Commit::getAbbreviatedHash
+     */
+    public function testGetAbbreviatedHash(): void
+    {
+        $commit = new Commit('7bfab23737fad677905ae7ddd3ac76e2e31f30a4');
+
+        self::assertEquals('7bfab2', $commit->getAbbreviatedHash());
+    }
 }

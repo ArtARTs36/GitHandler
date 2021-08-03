@@ -14,9 +14,6 @@ class Commit
         $this->hash = $hash;
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function getAbbreviatedHash(): string
     {
         return mb_substr($this->hash, 0, 6);
