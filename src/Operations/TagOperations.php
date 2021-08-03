@@ -2,7 +2,11 @@
 
 namespace ArtARTs36\GitHandler\Operations;
 
+use ArtARTs36\GitHandler\Data\Author;
+use ArtARTs36\GitHandler\Data\Tag;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
+use ArtARTs36\GitHandler\Support\FormatPlaceholder;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -49,6 +53,39 @@ trait TagOperations
                 ->addParameter($tag)
                 ->addCutOption('m')
                 ->addParameter($message ?? "Version {$tag}", true)) === null;
+    }
+
+    public function getTag(string $tag): Tag
+    {
+        $result = $this->executeCommand(
+            $cmd = $this
+                ->newCommand()
+                ->addParameter('show')
+                ->addParameter($tag)
+                ->addOptionWithValue('pretty', FormatPlaceholder::format([
+                    FormatPlaceholder::AUTHOR_NAME,
+                    FormatPlaceholder::AUTHOR_EMAIL,
+                    FormatPlaceholder::AUTHOR_DATE_RFC2822,
+                    FormatPlaceholder::COMMIT_HASH,
+                    FormatPlaceholder::SUBJECT,
+                ]))
+                ->addCutOption('s')
+        );
+
+        $parts = $result ? $result->explode('|') : [];
+
+        if (count($parts) !== 5) {
+            throw new UnexpectedException($cmd);
+        }
+
+        [$authorName, $authorEmail, $date, $commit, $message] = $parts;
+
+        return new Tag(
+            new Author($authorName, $authorEmail),
+            new \DateTime($date),
+            $commit,
+            $message
+        );
     }
 
     public function isTagExists(string $tag): bool
