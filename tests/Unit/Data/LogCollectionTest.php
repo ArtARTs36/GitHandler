@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Data;
 
 use ArtARTs36\GitHandler\Data\Author;
+use ArtARTs36\GitHandler\Data\Commit;
 use ArtARTs36\GitHandler\Data\Log;
 use ArtARTs36\GitHandler\Data\LogCollection;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
@@ -15,7 +16,7 @@ class LogCollectionTest extends TestCase
     public function testCount(): void
     {
         $collection = new LogCollection([
-            new Log('', new \DateTime(), new Author('', ''), ''),
+            new Log(new Commit(''), new \DateTime(), new Author('', ''), ''),
         ]);
 
         self::assertCount(1, $collection);
@@ -28,7 +29,7 @@ class LogCollectionTest extends TestCase
     public function testFirst(): void
     {
         $collection = new LogCollection([
-            $log = new Log('', new \DateTime(), new Author('', ''), ''),
+            $log = new Log(new Commit(''), new \DateTime(), new Author('', ''), ''),
         ]);
 
         self::assertSame($log, $collection->first());
@@ -41,8 +42,8 @@ class LogCollectionTest extends TestCase
     public function testLast(): void
     {
         $collection = new LogCollection([
-            new Log('', new \DateTime(), new Author('', ''), ''),
-            $twoLog = new Log('', new \DateTime(), new Author('', ''), ''),
+            new Log(new Commit(''), new \DateTime(), new Author('', ''), ''),
+            $twoLog = new Log(new Commit(''), new \DateTime(), new Author('', ''), ''),
         ]);
 
         self::assertSame($twoLog, $collection->last());
@@ -54,12 +55,12 @@ class LogCollectionTest extends TestCase
     public function testFilterByAuthorName(): void
     {
         $expected = [
-            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
-            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+            new Log(new Commit(''), new \DateTime(), new Author('artem', '@'), 'a'),
+            new Log(new Commit(''), new \DateTime(), new Author('artem', '@'), 'a'),
         ];
 
         $collection = new LogCollection(array_merge($expected, [
-            new Log('', new \DateTime(), new Author('other', '@'), 'a'),
+            new Log(new Commit(''), new \DateTime(), new Author('other', '@'), 'a'),
         ]));
 
         self::assertEquals($expected, $collection->filterByAuthorName('artem')->all());
@@ -71,7 +72,7 @@ class LogCollectionTest extends TestCase
     public function testAll(): void
     {
         $collection = new LogCollection($expected = [
-            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+            new Log(new Commit(''), new \DateTime(), new Author('artem', '@'), 'a'),
         ]);
 
         self::assertEquals($expected, $collection->all());
@@ -83,8 +84,8 @@ class LogCollectionTest extends TestCase
     public function testFilter(): void
     {
         $collection = new LogCollection([
-            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
-            $lastLog = new Log('', new \DateTime(), new Author('artem', '@'), 'b'),
+            new Log(new Commit(''), new \DateTime(), new Author('artem', '@'), 'a'),
+            $lastLog = new Log(new Commit(''), new \DateTime(), new Author('artem', '@'), 'b'),
         ]);
 
         //
@@ -110,8 +111,8 @@ class LogCollectionTest extends TestCase
     public function testGetIterator(): void
     {
         $collection = new LogCollection($expected = [
-            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
-            new Log('', new \DateTime(), new Author('artem', '@'), 'b'),
+            new Log(new Commit(''), new \DateTime(), new Author('artem', '@'), 'a'),
+            new Log(new Commit(''), new \DateTime(), new Author('artem', '@'), 'b'),
         ]);
 
         self::assertSame($expected, $collection->getIterator()->getArrayCopy());
@@ -123,12 +124,12 @@ class LogCollectionTest extends TestCase
     public function testFilterByDate(): void
     {
         $expected = [
-            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
-            new Log('', new \DateTime(), new Author('artem', '@'), 'a'),
+            new Log(new Commit(''), new \DateTime(), new Author('artem', '@'), 'a'),
+            new Log(new Commit(''), new \DateTime(), new Author('artem', '@'), 'a'),
         ];
 
         $collection = new LogCollection(array_merge($expected, [
-            new Log('', new \DateTime('7 day ago'), new Author('other', '@'), 'a'),
+            new Log(new Commit(''), new \DateTime('7 day ago'), new Author('other', '@'), 'a'),
         ]));
 
         self::assertEquals($expected, $collection->filterByDate(new \DateTime())->all());
