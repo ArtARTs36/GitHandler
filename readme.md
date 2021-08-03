@@ -424,6 +424,19 @@ var_dump($git->performTag('1.0.0', 'Version 1.0.0'));
 var_dump($git->performTag('1.0.0'));
 ```
 
+#### -> git show 1.0.0
+
+```php
+$git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
+$tag = $git->getTag('1.0.0');
+
+var_dump($tag->commit->hash);
+var_dump($tag->commit->getAbbreviatedHash());
+var_dump($tag->message);
+var_dump($tag->author->email . ':' . $tag->author->name);
+var_dump($tag->date);
+```
+
 ---
 
 ## Status Operations
