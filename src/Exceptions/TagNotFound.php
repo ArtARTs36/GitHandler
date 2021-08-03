@@ -2,8 +2,6 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-use Throwable;
-
 class TagNotFound extends GitHandlerException
 {
     public $errorTag;
