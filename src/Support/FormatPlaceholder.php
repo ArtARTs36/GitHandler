@@ -2,6 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Support;
 
+/**
+ * @link https://git-scm.com/docs/pretty-formats
+ */
 class FormatPlaceholder
 {
     public const COMMIT_HASH = '%H';
@@ -19,6 +22,11 @@ class FormatPlaceholder
     public const AUTHOR_EMAIL = '%ae';
 
     public const AUTHOR_DATE_RFC2822 = '%aD';
+
+    public const NEW_LINE = '%n';
+
+    public const TREE_HASH = '%T';
+    public const TREE_ABBREVIATED_HASH = '%t';
 
     /**
      * @codeCoverageIgnore
