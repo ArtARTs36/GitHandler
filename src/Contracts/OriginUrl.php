@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Contracts;
 
 use ArtARTs36\GitHandler\Data\Repo;
+use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
 
 interface OriginUrl
 {
@@ -19,5 +20,8 @@ interface OriginUrl
      */
     public function getAvailableDomains(): array;
 
+    /**
+     * @throws GivenInvalidUri
+     */
     public function toRepoFromUrl(string $url): Repo;
 }
