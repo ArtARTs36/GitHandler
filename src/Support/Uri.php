@@ -19,7 +19,7 @@ class Uri
         ]);
     }
 
-    public static function host(string $uri)
+    public static function host(string $uri): string
     {
         $host = parse_url($uri, PHP_URL_HOST);
 
