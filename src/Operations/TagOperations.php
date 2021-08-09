@@ -19,11 +19,11 @@ trait TagOperations
             ->executeCommand(
                 $this
                     ->newCommand()
-                    ->addParameter('tag')
+                    ->addArgument('tag')
                     ->when($pattern !== null, function (ShellCommand $command) use ($pattern) {
                         $command
                             ->addCutOption('l')
-                            ->addParameter($pattern, true);
+                            ->addArgument($pattern, true);
                     })
             );
 
@@ -44,11 +44,11 @@ trait TagOperations
         }
 
         return $this->executeCommand($this->newCommand()
-                ->addParameter('tag')
+                ->addArgument('tag')
                 ->addCutOption('a')
-                ->addParameter($tag)
+                ->addArgument($tag)
                 ->addCutOption('m')
-                ->addParameter($message ?? "Version {$tag}", true)) === null;
+                ->addArgument($message ?? "Version {$tag}", true)) === null;
     }
 
     public function isTagExists(string $tag): bool

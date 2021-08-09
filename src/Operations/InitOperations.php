@@ -32,7 +32,7 @@ trait InitOperations
         }
 
         return $this
-            ->executeCommand($this->newCommand()->addParameter('init'))
+            ->executeCommand($this->newCommand()->addArgument('init'))
             ->contains('Initialized empty Git repository');
     }
 

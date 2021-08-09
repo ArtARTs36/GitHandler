@@ -47,9 +47,9 @@ trait RemoteOperations
         $result = $this->executeCommand(
             $cmd = $this
                 ->newCommand()
-                ->addParameter('remote')
-                ->addParameter('remove')
-                ->addParameter($shortName)
+                ->addArgument('remote')
+                ->addArgument('remove')
+                ->addArgument($shortName)
         );
 
         if ($result === null || $result->isEmpty()) {
@@ -70,10 +70,10 @@ trait RemoteOperations
     {
         $result = $this->executeCommand(
             $cmd = $this->newCommand()
-                ->addParameter('remote')
-                ->addParameter('add')
-                ->addParameter($shortName)
-                ->addParameter($url)
+                ->addArgument('remote')
+                ->addArgument('add')
+                ->addArgument($shortName)
+                ->addArgument($url)
         );
 
         if ($result === null || $result->isEmpty()) {
@@ -93,9 +93,9 @@ trait RemoteOperations
     protected function executeShowRemote(): ?Str
     {
         $result = $this->executeCommand($this->newCommand()
-                ->addParameter('remote')
-                ->addParameter('show')
-                ->addParameter('origin'));
+                ->addArgument('remote')
+                ->addArgument('show')
+                ->addArgument('origin'));
 
         if ($result && ($failed = $result->match("/repository '(.*)' not found/i")) && $failed->isNotEmpty()) {
             throw new RemoteRepositoryNotFound($failed);

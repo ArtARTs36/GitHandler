@@ -23,9 +23,9 @@ trait GrepOperations
         $result = $this->executeCommand(
             $this->newCommand()
                 ->addOption('no-pager')
-                ->addParameter('grep')
+                ->addArgument('grep')
                 ->addCutOption('n')
-                ->addParameter($term, true)
+                ->addArgument($term, true)
         );
 
         if ($result === null || $result->isEmpty()) {

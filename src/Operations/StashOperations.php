@@ -21,11 +21,11 @@ trait StashOperations
         return
             $this
                 ->executeCommand($this->newCommand()
-                    ->addParameter('stash')
+                    ->addArgument('stash')
                     ->when($message !== null, function (ShellCommand $command) use ($message) {
                         $command
-                            ->addParameter('save')
-                            ->addParameter('"'. $message .'"');
+                            ->addArgument('save')
+                            ->addArgument('"'. $message .'"');
                     }))
                 ->containsAny([
                     'Saved working directory and index',
@@ -38,8 +38,8 @@ trait StashOperations
         return
             $this->executeCommand(
                 $this->newCommand()
-                ->addParameter('stash')
-                ->addParameter('pop')
+                ->addArgument('stash')
+                ->addArgument('pop')
             )->contains('Changes not staged for commit:');
     }
 
@@ -50,8 +50,8 @@ trait StashOperations
     {
         $result = $this->executeCommand($this->newCommand()
             ->addOption('no-pager')
-            ->addParameter('stash')
-            ->addParameter('list')
+            ->addArgument('stash')
+            ->addArgument('list')
             ->addOptionWithValue('pretty', FormatPlaceholder::format([
                 FormatPlaceholder::REFLOG_SHORTENED_SELECTOR,
                 FormatPlaceholder::REFLOG_SUBJECT,
@@ -74,9 +74,9 @@ trait StashOperations
     {
         $result = $this->executeCommand(
             $cmd = $this->newCommand()
-                ->addParameter('stash')
-                ->addParameter('apply')
-                ->addParameter('stash@{'. $id . '}')
+                ->addArgument('stash')
+                ->addArgument('apply')
+                ->addArgument('stash@{'. $id . '}')
         );
 
         if ($result === null) {

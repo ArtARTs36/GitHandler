@@ -27,8 +27,8 @@ trait BranchOperations
             ->executeCommand(
                 $this
                     ->newCommand()
-                    ->addParameter('checkout')
-                    ->addParameter($branch)
+                    ->addArgument('checkout')
+                    ->addArgument($branch)
                     ->when($merge, function (ShellCommandInterface $command) {
                         $command->addOption('merge');
                     })
@@ -44,9 +44,9 @@ trait BranchOperations
         $result = $this->executeCommand(
             $cmd = $this
                 ->newCommand()
-                ->addParameter('branch')
+                ->addArgument('branch')
                 ->addCutOption('d')
-                ->addParameter($branch)
+                ->addArgument($branch)
         );
 
         if ($result === null || $result->isEmpty()) {
@@ -67,7 +67,7 @@ trait BranchOperations
     public function newBranch(string $branch): bool
     {
         $result = $this->executeCommand(
-            $cmd = $this->newCommand()->addParameter('branch')->addParameter($branch)
+            $cmd = $this->newCommand()->addArgument('branch')->addArgument($branch)
         );
 
         if ($result === null || $result->isEmpty()) {
@@ -92,7 +92,7 @@ trait BranchOperations
         $result = $this->executeCommand(
             $this
                 ->newCommand()
-                ->addParameter('branch')
+                ->addArgument('branch')
                 ->addCutOption('a')
         );
 
@@ -108,7 +108,7 @@ trait BranchOperations
     public function getCurrentBranch(): Str
     {
         $result = $this->executeCommand(
-            $cmd = $this->newCommand()->addParameter('branch')->addOption('show-current')
+            $cmd = $this->newCommand()->addArgument('branch')->addOption('show-current')
         );
 
         if ($result === null || $result->isEmpty()) {
@@ -123,8 +123,8 @@ trait BranchOperations
         $result = $this->executeCommand(
             $cmd = $this
                 ->newCommand()
-                ->addParameter('switch')
-                ->addParameter($branch)
+                ->addArgument('switch')
+                ->addArgument($branch)
         );
 
         if ($result === null) {

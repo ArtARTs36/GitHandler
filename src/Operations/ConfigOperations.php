@@ -35,9 +35,9 @@ trait ConfigOperations
     {
         $result = $this->executeCommand(
             $cmd = $this->newCommand()
-                    ->addParameter('config')
-                    ->addParameter("$scope.$field")
-                    ->addParameter($value, true)
+                    ->addArgument('config')
+                    ->addArgument("$scope.$field")
+                    ->addArgument($value, true)
                     ->when($replaceAll === true, function (ShellCommandInterface $command) {
                         $command->addOption('replace-all');
                     })
@@ -52,6 +52,6 @@ trait ConfigOperations
 
     protected function executeConfigList(): Str
     {
-        return $this->executeCommand($this->newCommand()->addParameter('config')->addOption('list'));
+        return $this->executeCommand($this->newCommand()->addArgument('config')->addOption('list'));
     }
 }

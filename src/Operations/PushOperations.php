@@ -20,12 +20,12 @@ trait PushOperations
         $result = $this->executeCommand(
             $command = $this
                 ->newCommand()
-                ->addParameter('push')
+                ->addArgument('push')
                 ->when($force, function (ShellCommandInterface $command) {
                     $command->addOption('force');
                 })
                 ->when(! empty($upStream), function (ShellCommandInterface $command) use ($upStream) {
-                    $command->addOption('set-upstream')->addParameter($upStream);
+                    $command->addOption('set-upstream')->addArgument($upStream);
                 })
         );
 

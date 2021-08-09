@@ -36,7 +36,7 @@ abstract class AbstractGitHandler implements GitHandler
     {
         $result = $command->execute();
 
-        return $result->isNull() ? null : Str::make($result->getResult());
+        return $result->isEmpty() ? null : $result->getResult()->appendLine($result->getError());
     }
 
     /**

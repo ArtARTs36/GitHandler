@@ -23,7 +23,7 @@ trait LogOperations
         $result = $this
             ->executeCommand(
                 $cmd = $this->newCommand()
-                    ->addParameter('log')
+                    ->addArgument('log')
                     ->addOption('oneline')
                     ->addOption('decorate')
                     ->addOption('graph')

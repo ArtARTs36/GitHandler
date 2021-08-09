@@ -72,9 +72,9 @@ class Git extends AbstractGitHandler implements GitHandler
     {
         $command = $this
             ->newCommand()
-            ->addParameter('pull')
+            ->addArgument('pull')
             ->when($branch !== null, function (ShellCommand $command) use ($branch) {
-                $command->addParameter($branch);
+                $command->addArgument($branch);
             });
 
         $result = $this->executeCommand($command);
@@ -99,8 +99,8 @@ class Git extends AbstractGitHandler implements GitHandler
             ->executeCommand(
                 $command = $this
                     ->newCommand()
-                    ->addParameter('add')
-                    ->addParameters((array) $file)
+                    ->addArgument('add')
+                    ->addArguments((array) $file)
                     ->when($force, function (ShellCommandInterface $command) {
                         $command->addOption('force');
                     })
@@ -121,14 +121,14 @@ class Git extends AbstractGitHandler implements GitHandler
     public function clone(string $url, ?string $branch = null, ?string $folder = null): bool
     {
         $command = $this->newCommand($this->getFileSystem()->belowPath($this->getDir()))
-            ->addParameter('clone')
+            ->addArgument('clone')
             ->when($branch !== null, function (ShellCommand $command) use ($branch) {
                 $command
                     ->addCutOption('b')
-                    ->addParameter($branch);
+                    ->addArgument($branch);
             })
-            ->addParameter($url)
-            ->addParameter($folder = $folder ?? $this->fileSystem->endFolder($this->getDir()));
+            ->addArgument($url)
+            ->addArgument($folder = $folder ?? $this->fileSystem->endFolder($this->getDir()));
 
         //
 
@@ -151,9 +151,9 @@ class Git extends AbstractGitHandler implements GitHandler
             ->executeCommand(
                 $command = $this
                     ->newCommand()
-                    ->addParameter('commit')
+                    ->addArgument('commit')
                     ->addCutOption('m')
-                    ->addParameter($message, true)
+                    ->addArgument($message, true)
                     ->when($amend === true, function (ShellCommandInterface $command) {
                         $command->addOption('amend');
                     })

@@ -24,6 +24,6 @@ trait FetchOperations
 
     protected function buildFetchCommand(): ShellCommandInterface
     {
-        return $this->newCommand()->addParameter('fetch');
+        return $this->newCommand()->addArgument('fetch');
     }
 }

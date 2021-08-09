@@ -17,7 +17,7 @@ trait StatusOperations
     {
         $result = $this->executeCommand(
             $this->newCommand()
-                ->addParameter('status')
+                ->addArgument('status')
                 ->when($short, function (ShellCommand $command) {
                     $command->addCutOption('s');
                 })
