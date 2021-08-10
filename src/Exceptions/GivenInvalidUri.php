@@ -2,8 +2,6 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-use Throwable;
-
 class GivenInvalidUri extends GitHandlerException
 {
     public $failedUrl;
