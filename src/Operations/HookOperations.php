@@ -28,7 +28,7 @@ trait HookOperations
 
         $res = $this->executeCommand($cmd = Chmod::executable($path));
 
-        if ($res !== null) {
+        if ($res->isNotEmpty()) {
             throw new UnexpectedException($cmd);
         }
 

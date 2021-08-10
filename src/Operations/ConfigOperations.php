@@ -43,7 +43,7 @@ trait ConfigOperations
                     })
         );
 
-        if ($result === null) {
+        if ($result->isEmpty()) {
             return true;
         }
 

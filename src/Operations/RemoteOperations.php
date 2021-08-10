@@ -7,6 +7,7 @@ use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RemoteNotFound;
 use ArtARTs36\GitHandler\Exceptions\RemoteRepositoryNotFound;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
+use ArtARTs36\GitHandler\Support\FormatPlaceholder;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -24,13 +25,9 @@ trait RemoteOperations
     {
         $sh = $this->executeShowRemote();
 
-        if ($sh === null || ($sh && ! $sh->containsAny(['Fetch(\s*)URL', 'Push(\s*)URL:']))) {
-            return Remotes::createEmpty();
-        }
-
         return new Remotes(
-            $sh->match('/Fetch(\s*)URL: (.*)\n/'),
-            $sh->match('/Push(\s*)URL: (.*)\n/')
+            $sh->match('/origin\s+(.*)\(fetch\)/')->trim(),
+            $sh->match('/origin\s+(.*)\(push\)/')->trim()
         );
     }
 
@@ -88,16 +85,13 @@ trait RemoteOperations
     }
 
     /**
-     * equals: git remote show origin
+     * equals: git remote -v
      */
-    protected function executeShowRemote(): ?Str
+    protected function executeShowRemote(): Str
     {
-        $result = $this->executeCommand($this->newCommand()
-                ->addArgument('remote')
-                ->addArgument('show')
-                ->addArgument('origin'));
+        $result = $this->executeCommand($this->newCommand()->addArgument('remote')->addOption('v'));
 
-        if ($result && ($failed = $result->match("/repository '(.*)' not found/i")) && $failed->isNotEmpty()) {
+        if (($failed = $result->match("/repository '(.*)' not found/i")) && $failed->isNotEmpty()) {
             throw new RemoteRepositoryNotFound($failed);
         }
 

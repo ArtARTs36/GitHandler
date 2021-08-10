@@ -23,6 +23,8 @@ use ArtARTs36\GitHandler\Operations\RemoteOperations;
 use ArtARTs36\GitHandler\Operations\StashOperations;
 use ArtARTs36\GitHandler\Operations\StatusOperations;
 use ArtARTs36\GitHandler\Operations\TagOperations;
+use ArtARTs36\ShellCommand\Interfaces\CommandBuilder;
+use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 
@@ -56,9 +58,11 @@ class Git extends AbstractGitHandler implements GitHandler
         LogParser $logger,
         ConfigResultParser $config,
         FileSystem $fileSystem,
-        string $executor = 'git'
+        ShellCommandExecutor $executor,
+        CommandBuilder $builder,
+        string $bin = 'git'
     ) {
-        parent::__construct($dir, $executor);
+        parent::__construct($dir, $executor, $builder, $bin);
 
         $this->logger = $logger;
         $this->config = $config;

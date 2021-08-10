@@ -17,6 +17,8 @@ use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl;
 use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
 use ArtARTs36\GitHandler\Support\SimpleHttpClient;
+use ArtARTs36\ShellCommand\Executors\ProcOpenExecutor;
+use ArtARTs36\ShellCommand\ShellCommander;
 
 /**
  * @codeCoverageIgnore
@@ -30,7 +32,9 @@ class GitSimpleFactory
             new Logger(),
             static::factoryConfigReader(),
             $fileSystem ?? new LocalFileSystem(),
-            $executor,
+            new ProcOpenExecutor(),
+            new ShellCommander(),
+            $executor
         );
     }
 

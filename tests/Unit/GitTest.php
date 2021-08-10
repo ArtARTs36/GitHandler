@@ -47,14 +47,13 @@ final class GitTest extends TestCase
 
 No commits yet
 
-Changes to be committed:
-';
+Changes to be committed:';
 
         $git = $this->mockGit($shellResult);
 
         //
 
-        self::assertEquals($expected, $git->status());
+        self::assertEquals($expected, (string) $git->status());
     }
 
     /**

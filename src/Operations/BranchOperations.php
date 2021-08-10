@@ -96,7 +96,7 @@ trait BranchOperations
                 ->addCutOption('a')
         );
 
-        if ($result === null || $result->isEmpty()) {
+        if ($result->isEmpty()) {
             return [];
         }
 
@@ -126,10 +126,6 @@ trait BranchOperations
                 ->addArgument('switch')
                 ->addArgument($branch)
         );
-
-        if ($result === null) {
-            throw new UnexpectedException($cmd);
-        }
 
         if ($result->contains("Switched to branch '$branch'")) {
             return true;

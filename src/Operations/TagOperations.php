@@ -27,7 +27,7 @@ trait TagOperations
                     })
             );
 
-        if ($raw === null || $raw->isEmpty()) {
+        if ($raw->isEmpty()) {
             return [];
         }
 
@@ -48,7 +48,7 @@ trait TagOperations
                 ->addCutOption('a')
                 ->addArgument($tag)
                 ->addCutOption('m')
-                ->addArgument($message ?? "Version {$tag}", true)) === null;
+                ->addArgument($message ?? "Version {$tag}", true))->isEmpty();
     }
 
     public function isTagExists(string $tag): bool

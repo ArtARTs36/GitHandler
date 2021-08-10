@@ -79,10 +79,6 @@ trait StashOperations
                 ->addArgument('stash@{'. $id . '}')
         );
 
-        if ($result === null) {
-            throw new UnexpectedException($cmd);
-        }
-
         if ($result->contains('Changes not staged for commit') ||
             $result->contains('Changes to be committed')) {
             return true;

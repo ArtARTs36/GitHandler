@@ -54,7 +54,9 @@ class TagOperationsTest extends TestCase
     {
         self::expectException(TagAlreadyExists::class);
 
-        $this->mockGit()->setIsTagExists(true)->performTag('tag');
+        $this
+            ->mockGit(['1.0.0'])
+            ->performTag('1.0.0');
     }
 
     /**

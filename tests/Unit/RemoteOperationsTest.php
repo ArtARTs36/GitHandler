@@ -31,16 +31,8 @@ fatal: repository 'https://github.com/ArtARTs36/test/' not found
      */
     public function testShowRemote(): void
     {
-        $git = $this->mockGit('* remote origin
-  Fetch URL: https://github.com/ArtARTs36/GitHandler.git
-  Push  URL: https://github.com/ArtARTs36/GitHandler.git
-  HEAD branch: master
-  Remote branch:
-    master tracked
-  Local branch configured for \'git pull\':
-    master merges with remote master
-  Local ref configured for \'git push\':
-    master pushes to master (up to date)
+        $git = $this->mockGit('origin  https://github.com/ArtARTs36/GitHandler.git (fetch)
+origin  https://github.com/ArtARTs36/GitHandler.git (push)
 ');
 
         $expected = [
@@ -130,7 +122,7 @@ fatal: repository 'https://github.com/ArtARTs36/test/' not found
     public function testHasAnyRemoteUrl(): void
     {
         self::assertTrue($this
-            ->mockGit("  Fetch URL: https://site.ru\n")
+            ->mockGit("origin https://site.ru (push)")
             ->hasAnyRemoteUrl('https://site.ru'));
     }
 }

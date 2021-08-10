@@ -10,7 +10,9 @@ use ArtARTs36\GitHandler\Git;
 use ArtARTs36\GitHandler\GitSimpleFactory;
 use ArtARTs36\GitHandler\Logger;
 use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
+use ArtARTs36\GitHandler\Tests\Support\QueueCommandExecutor;
 use ArtARTs36\ShellCommand\ShellCommand;
+use ArtARTs36\ShellCommand\ShellCommander;
 use ArtARTs36\Str\Str;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
@@ -28,58 +30,16 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     {
         $dir = $dir ?? __DIR__;
 
-        return new class($dir, $shellResult, $this->fileSystem, 'git', $logger) extends Git {
-            private $shellResults;
+        $results = empty($shellResult) ? [''] : (array) $shellResult;
 
-            private $isTagExists = null;
-
-            public function __construct(
-                string $dir,
-                $shellResult,
-                FileSystem $fileSystem,
-                string $executor = 'git',
-                ?LogParser $logger = null
-            ) {
-                parent::__construct(
-                    $dir,
-                    $logger ?? new Logger(),
-                    GitSimpleFactory::factoryConfigReader(),
-                    $fileSystem,
-                    $executor
-                );
-
-                $this->shellResults = ! is_array($shellResult) ? [$shellResult] : $shellResult;
-            }
-
-            protected function executeCommand(ShellCommand $command): ?Str
-            {
-                $result = array_shift($this->shellResults);
-
-                if ($result === null) {
-                    return null;
-                }
-
-                return Str::make($result);
-            }
-
-            public function setIsTagExists(bool $isTagExists): self
-            {
-                $this->isTagExists = $isTagExists;
-
-                return $this;
-            }
-
-            public function isTagExists(string $tag): bool
-            {
-                if ($this->isTagExists === null) {
-                    return parent::isTagExists($tag);
-                }
-
-                [$value, $this->isTagExists] = [$this->isTagExists, null];
-
-                return $value;
-            }
-        };
+        return new Git(
+            $dir,
+            $logger ?? new Logger(),
+            GitSimpleFactory::factoryConfigReader(),
+            $this->fileSystem,
+            new QueueCommandExecutor($results),
+            new ShellCommander()
+        );
     }
 
     protected function mockHasRemotes(string $fetch, ?string $push = null): HasRemotes

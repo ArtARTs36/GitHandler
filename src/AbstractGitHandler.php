@@ -3,6 +3,8 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\ShellCommand\Interfaces\CommandBuilder;
+use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -11,17 +13,27 @@ abstract class AbstractGitHandler implements GitHandler
 {
     private $dir;
 
+    protected $bin;
+
     protected $executor;
+
+    protected $builder;
 
     /**
      * @param string $dir - directory to project .git
-     * @param string $executor - git bin
+     * @param string $bin - git bin
      * @codeCoverageIgnore
      */
-    public function __construct(string $dir, string $executor = 'git')
-    {
+    public function __construct(
+        string $dir,
+        ShellCommandExecutor $executor,
+        CommandBuilder $builder,
+        string $bin = 'git'
+    ) {
         $this->dir = $dir;
+        $this->bin = $bin;
         $this->executor = $executor;
+        $this->builder = $builder;
     }
 
     public function getDir(): string
@@ -34,9 +46,9 @@ abstract class AbstractGitHandler implements GitHandler
      */
     protected function executeCommand(ShellCommand $command): ?Str
     {
-        $result = $command->execute();
+        $result = $this->executor->execute($command);
 
-        return $result->isEmpty() ? null : $result->getResult()->appendLine($result->getError());
+        return $result->getResult()->appendLine($result->getError())->trim();
     }
 
     /**
@@ -44,6 +56,6 @@ abstract class AbstractGitHandler implements GitHandler
      */
     protected function newCommand(?string $dir = null): ShellCommandInterface
     {
-        return ShellCommand::withNavigateToDir($dir ?? $this->getDir(), $this->executor);
+        return $this->builder->makeNavigateToDir($dir ?? $this->getDir(), $this->bin);
     }
 }

@@ -9,7 +9,7 @@ use ArtARTs36\Str\Str;
 
 trait GrepOperations
 {
-    private $grepRegex = '/(?<file>.*)\:(?<line>\d+)\:(?<content>.*)\n/i';
+    private $grepRegex = '/(?<file>.*)\:(?<line>\d+)\:(?<content>.*)\n?/i';
 
     abstract protected function newCommand(?string $dir = null): ShellCommandInterface;
 

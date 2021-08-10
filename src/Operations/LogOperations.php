@@ -32,12 +32,12 @@ trait LogOperations
                     ->setErrorFlow('&1')
             );
 
-        if ($result === null) {
+        if ($result->isEmpty()) {
             throw new UnexpectedException($cmd);
         }
 
-        if (($branch = $result->match("/fatal: your current branch '(.*)' does not have any commits yet/i"))
-            && $branch->isNotEmpty()) {
+        if (($branch = $result->match("/fatal: your current branch '(.*)' does not have any commits yet/i")) &&
+            $branch->isNotEmpty()) {
             throw new BranchDoesNotHaveCommits($branch);
         }
 
