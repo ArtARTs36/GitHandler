@@ -40,6 +40,4 @@ interface GitHandler extends
     public function autoCommit(string $message, bool $amend = false): bool;
 
     public function pathToGitFolder(): string;
-
-    public function help(): string;
 }

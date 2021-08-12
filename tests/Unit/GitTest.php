@@ -166,30 +166,6 @@ Changes to be committed:';
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::getHtmlPath
-     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
-     */
-    public function testGetHtmPath(): void
-    {
-        $git = $this->mockGit('/Applications/Xcode.app/Contents/Developer/usr/share/doc/git-doc
-');
-
-        self::assertEquals('/Applications/Xcode.app/Contents/Developer/usr/share/doc/git-doc', $git->getHtmlPath());
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Git::getManPath
-     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
-     */
-    public function testManPath(): void
-    {
-        $git = $this->mockGit('/Applications/Xcode.app/Contents/Developer/usr/share/man
-');
-
-        self::assertEquals('/Applications/Xcode.app/Contents/Developer/usr/share/man', $git->getManPath());
-    }
-
-    /**
      * @covers \ArtARTs36\GitHandler\Git::getDir
      */
     public function testGetDir(): void
@@ -265,35 +241,5 @@ Changes to be committed:';
         self::expectException(UnexpectedException::class);
 
         self::assertTrue($this->mockGit('123')->commit('', true));
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Git::help
-     */
-    public function testHelp(): void
-    {
-        $git = $this->mockGit($expected = 'help description');
-
-        self::assertEquals($expected, $git->help());
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Git::help
-     */
-    public function testHelpOnNullCommand(): void
-    {
-        self::expectException(UnexpectedException::class);
-
-        $this->mockGit(null)->help();
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Git::help
-     */
-    public function testHelpOnEmptyCommand(): void
-    {
-        self::expectException(UnexpectedException::class);
-
-        $this->mockGit('')->help();
     }
 }
