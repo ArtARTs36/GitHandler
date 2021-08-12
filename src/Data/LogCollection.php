@@ -3,7 +3,6 @@
 namespace ArtARTs36\GitHandler\Data;
 
 use JetBrains\PhpStorm\Immutable;
-use Webmozart\Assert\Assert;
 
 #[Immutable]
 class LogCollection implements \IteratorAggregate, \Countable
@@ -11,14 +10,11 @@ class LogCollection implements \IteratorAggregate, \Countable
     protected $logs;
 
     /**
-     * @param array<Log> $logs
-     * @throws \InvalidArgumentException
+     * @param non-empty-array<Log> $logs
+     * @codeCoverageIgnore
      */
     public function __construct(array $logs)
     {
-        Assert::notEmpty($logs);
-        Assert::allIsInstanceOf($logs, Log::class);
-
         $this->logs = $logs;
     }
 

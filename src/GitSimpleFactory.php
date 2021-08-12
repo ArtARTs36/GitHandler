@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler;
 
+use ArtARTs36\GitHandler\Config\Configurators\BranchConfigurator;
 use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Config\Configurators\CoreConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\CredentialConfigurator;
@@ -46,6 +47,7 @@ class GitSimpleFactory
                 new CoreConfigurator(),
                 new PackConfigurator(),
                 new CredentialConfigurator(),
+                new BranchConfigurator(),
             ])
         );
     }

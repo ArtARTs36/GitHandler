@@ -26,7 +26,7 @@ class LocalFileSystem implements FileSystem
 
     public function removeDir(string $path): bool
     {
-        if (! file_exists($path)) {
+        if (! $this->exists($path)) {
             return true;
         }
 

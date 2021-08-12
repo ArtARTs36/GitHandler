@@ -174,4 +174,107 @@ class LocalFileSystemTest extends TestCase
 
         self::assertEquals('filemtime', $this->getPropertyValueOfObject($system, 'fileDateGetter'));
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::createFile
+     */
+    public function testCreateFile(): void
+    {
+        $system = new LocalFileSystem();
+
+        $path = __DIR__ . '/../Mocks/files/local_file_system_test/test_create_file.txt';
+
+        $system->createFile($path, 'ss');
+
+        self::assertFileExists($path);
+
+        $system->removeFile($path);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::createDir
+     */
+    public function testCreateDir(): void
+    {
+        $system = new LocalFileSystem();
+
+        $path = __DIR__ . '/../Mocks/files/local_file_system_test/test_create_file';
+
+        $system->createDir($path);
+
+        self::assertFileExists($path);
+
+        $system->removeDir($path);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::createDir
+     */
+    public function testCreateDirOnExists(): void
+    {
+        $system = new LocalFileSystem();
+
+        $path = __DIR__ . '/../Mocks/files/local_file_system_test/test_create_file';
+
+        $system->createDir($path);
+
+        self::assertFileExists($path);
+        self::assertTrue($system->createDir($path));
+
+        $system->removeDir($path);
+    }
+
+    public function providerForTestRemoveDirOn2Level(): array
+    {
+        return [
+            [
+                __DIR__ . '/../Mocks/files/test_remove_dir',
+                [
+                    'folder' => [
+                        ['file1.txt', 'ss'],
+                        ['file2.txt', 'ss'],
+                        ['ignore', 'no-content'],
+                    ]
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::removeDir
+     * @dataProvider providerForTestRemoveDirOn2Level
+     */
+    public function testRemoveDirOn2Level(string $directory, array $files): void
+    {
+        $system = new LocalFileSystem();
+
+        //
+
+        foreach ($files as $folder => $names) {
+            $system->createDir($dir = $directory . DIRECTORY_SEPARATOR . $folder);
+
+            foreach ($names as [$file, $content]) {
+                file_put_contents($dir . DIRECTORY_SEPARATOR . $file, $content);
+            }
+        }
+
+        $system->removeDir($directory);
+
+        self::assertFileDoesNotExist($directory);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::removeDir
+     */
+    public function testRemoveDirExistsUndefined(): void
+    {
+        $system = new class extends LocalFileSystem {
+            public function exists(string $path): bool
+            {
+                return true;
+            }
+        };
+
+        self::assertTrue($system->removeDir('random-ath'));
+    }
 }

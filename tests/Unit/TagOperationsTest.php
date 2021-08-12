@@ -3,6 +3,8 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\TagNotFound;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 
 class TagOperationsTest extends TestCase
 {
@@ -65,5 +67,62 @@ class TagOperationsTest extends TestCase
     public function testPerformTag(): void
     {
         self::assertTrue($this->mockGit()->performTag('tag'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getTag
+     */
+    public function testGetTagFound(): void
+    {
+        $git = $this->mockGit(
+            'ArtARTs36|temicska99@mail.ru|Mon, 26 Jul 2021 22:47:34 +0300|'.
+            '3e60b7250a3fdaebd50edca9bbe8a1aea7f40410|fix Git::add at many files'
+        );
+
+        $tag = $git->getTag('0.12.1');
+
+        self::assertEquals([
+            'name' => 'ArtARTs36',
+            'email' => 'temicska99@mail.ru',
+            'commit' => '3e60b7250a3fdaebd50edca9bbe8a1aea7f40410',
+            'message' => 'fix Git::add at many files',
+        ], [
+            'name' => $tag->author->name,
+            'email' => $tag->author->email,
+            'commit' => $tag->commit->hash,
+            'message' => $tag->message,
+        ]);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getTag
+     */
+    public function testGetTagOnUnexpectedException(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit('')->getTag(1);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getTag
+     */
+    public function testGetTagOnUnexpectedExceptionWithNull(): void
+    {
+        self::expectException(UnexpectedException::class);
+
+        $this->mockGit()->getTag(1);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Git::getTag
+     */
+    public function testGetTagOnNotFound(): void
+    {
+        self::expectException(TagNotFound::class);
+
+        $git = $this->mockGit("ambiguous argument '111': unknown revision or path not in the working tree");
+
+        $git->getTag('111');
     }
 }

@@ -2,7 +2,13 @@
 
 namespace ArtARTs36\GitHandler\Operations;
 
+use ArtARTs36\GitHandler\Data\Author;
+use ArtARTs36\GitHandler\Data\Commit;
+use ArtARTs36\GitHandler\Data\Tag;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\TagNotFound;
+use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
+use ArtARTs36\GitHandler\Support\FormatPlaceholder;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
@@ -49,6 +55,47 @@ trait TagOperations
                 ->addArgument($tag)
                 ->addCutOption('m')
                 ->addArgument($message ?? "Version {$tag}", true))->isEmpty();
+    }
+
+    public function getTag(string $tag): Tag
+    {
+        $result = $this->executeCommand(
+            $cmd = $this
+                ->newCommand()
+                ->addParameter('show')
+                ->addParameter($tag)
+                ->addOptionWithValue('pretty', FormatPlaceholder::format([
+                    FormatPlaceholder::AUTHOR_NAME,
+                    FormatPlaceholder::AUTHOR_EMAIL,
+                    FormatPlaceholder::AUTHOR_DATE_RFC2822,
+                    FormatPlaceholder::COMMIT_HASH,
+                    FormatPlaceholder::SUBJECT,
+                ]))
+                ->addCutOption('s')
+        );
+
+        if ($result === null) {
+            throw new UnexpectedException($cmd);
+        }
+
+        if ($result->contains("ambiguous argument '$tag': unknown revision or path not in the working tree")) {
+            throw new TagNotFound($tag);
+        }
+
+        $parts = $result->explode('|');
+
+        if (count($parts) !== 5) {
+            throw new UnexpectedException($cmd);
+        }
+
+        [$authorName, $authorEmail, $date, $commit, $message] = $parts;
+
+        return new Tag(
+            new Author($authorName, $authorEmail),
+            new \DateTime($date),
+            new Commit($commit),
+            $message
+        );
     }
 
     public function isTagExists(string $tag): bool

@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\Author;
+use ArtARTs36\GitHandler\Data\Commit;
 use ArtARTs36\GitHandler\Data\Log;
 use ArtARTs36\GitHandler\Data\LogCollection;
 use ArtARTs36\Str\Str;
@@ -21,7 +22,7 @@ class Logger implements LogParser
 
         foreach ($raw->globalMatch($this->regex) as $match) {
             $logs[] = new Log(
-                $match[1],
+                new Commit($match[1]),
                 new \DateTime($match[2]),
                 $this->getOrCreateAuthor($match[3], $match[4]),
                 trim($match[5])
