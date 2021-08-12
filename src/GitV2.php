@@ -6,9 +6,11 @@ use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHookCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPathCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitTagCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\HelpCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\HookCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\PathCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\TagCommandGroup;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 
@@ -42,6 +44,11 @@ class GitV2
     public function paths(): GitPathCommandGroup
     {
         return new PathCommandGroup($this->commandBuilder, $this->executor);
+    }
+
+    public function tags(): GitTagCommandGroup
+    {
+        return new TagCommandGroup($this->commandBuilder, $this->executor);
     }
 
     public function hooks(): GitHookCommandGroup

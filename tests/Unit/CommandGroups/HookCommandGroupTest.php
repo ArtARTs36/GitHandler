@@ -81,25 +81,13 @@ class HookCommandGroupTest extends V2TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::getHook
+     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommandGroup::get
      */
     public function testGetHookOnNotExists(): void
     {
         self::expectException(HookNotExists::class);
 
         $this->makeHookCommandGroup()->get(HookName::UPDATE);
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommandGroup::add
-     */
-    public function testAddHookOnUnexpectedError(): void
-    {
-        $hooks = $this->makeHookCommandGroup();
-
-        self::expectException(UnexpectedException::class);
-
-        $hooks->add(HookName::UPDATE, 'ss');
     }
 
     /**
@@ -117,7 +105,7 @@ class HookCommandGroupTest extends V2TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::getHooks
+     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommandGroup::getAll
      */
     public function testGetHooksOnEmpty(): void
     {

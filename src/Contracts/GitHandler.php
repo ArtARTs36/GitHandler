@@ -3,7 +3,6 @@
 namespace ArtARTs36\GitHandler\Contracts;
 
 interface GitHandler extends
-    Taggable,
     Addable,
     HasRemotes,
     Pushable,
@@ -15,8 +14,7 @@ interface GitHandler extends
     Stashable,
     Fetchable,
     HasBranches,
-    Grepable,
-    HasHooks
+    Grepable
 {
     /**
      * equals: git pull
