@@ -13,7 +13,7 @@ class GitV2SimpleFactory
         return new GitV2(
             new GitCommandBuilder(new ShellCommander(), $bin, $dir),
             new ProcOpenExecutor(),
-            $dir
+            GitContext::make($dir)
         );
     }
 }

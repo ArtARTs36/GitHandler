@@ -4,8 +4,6 @@ namespace ArtARTs36\GitHandler\Command\Groups;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
-use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
-use ArtARTs36\Str\Str;
 
 abstract class AbstractCommandGroup
 {
