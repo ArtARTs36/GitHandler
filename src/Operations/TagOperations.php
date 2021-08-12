@@ -62,8 +62,8 @@ trait TagOperations
         $result = $this->executeCommand(
             $cmd = $this
                 ->newCommand()
-                ->addParameter('show')
-                ->addParameter($tag)
+                ->addArgument('show')
+                ->addArgument($tag)
                 ->addOptionWithValue('pretty', FormatPlaceholder::format([
                     FormatPlaceholder::AUTHOR_NAME,
                     FormatPlaceholder::AUTHOR_EMAIL,
