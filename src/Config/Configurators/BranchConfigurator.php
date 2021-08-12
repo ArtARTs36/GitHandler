@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Config\Subjects\BranchList;
 use ArtARTs36\GitHandler\Config\Subjects\Branch;
 use ArtARTs36\GitHandler\Contracts\ConfigSubject;
 use ArtARTs36\GitHandler\Contracts\SubjectConfigurator;
+use ArtARTs36\Str\Str;
 
 class BranchConfigurator implements SubjectConfigurator
 {
@@ -40,8 +41,7 @@ class BranchConfigurator implements SubjectConfigurator
 
     protected function buildBranchName(array $parts): string
     {
-        $name = implode('.', array_slice($parts, 0, -1));
-
-        return mb_substr($name, strlen($this->getPrefix()) + 1);
+        return Str::fromArray(array_slice($parts, 0, -1), '.')
+            ->cut(null, strlen($this->getPrefix()) + 1);
     }
 }

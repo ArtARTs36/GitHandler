@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Origin\Url;
 
 use ArtARTs36\GitHandler\Contracts\OriginUrl;
+use ArtARTs36\GitHandler\Support\Uri;
 
 class GithubOriginUrl extends AbstractOriginUrl implements OriginUrl
 {
@@ -19,7 +20,7 @@ class GithubOriginUrl extends AbstractOriginUrl implements OriginUrl
 
     public function toArchiveFromFetchUrl(string $fetchUrl, string $branch = 'master'): string
     {
-        $host = parse_url($fetchUrl, PHP_URL_HOST);
+        $host = Uri::host($fetchUrl);
 
         return $this
             ->toGitFolder($fetchUrl)

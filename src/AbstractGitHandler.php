@@ -42,6 +42,6 @@ abstract class AbstractGitHandler implements GitHandler
      */
     protected function newCommand(?string $dir = null): ShellCommandInterface
     {
-        return ShellCommand::getInstanceWithMoveDir($dir ?? $this->getDir(), $this->executor);
+        return ShellCommand::withNavigateToDir($dir ?? $this->getDir(), $this->executor);
     }
 }

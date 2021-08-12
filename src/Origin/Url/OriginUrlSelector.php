@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Origin\Url;
 use ArtARTs36\GitHandler\Contracts\HasRemotes;
 use ArtARTs36\GitHandler\Contracts\OriginUrl;
 use ArtARTs36\GitHandler\Exceptions\OriginUrlNotFound;
+use ArtARTs36\GitHandler\Support\Uri;
 
 class OriginUrlSelector
 {
@@ -45,7 +46,7 @@ class OriginUrlSelector
 
     public function selectByUrl(string $url): OriginUrl
     {
-        return $this->selectByDomain(parse_url($url, PHP_URL_HOST));
+        return $this->selectByDomain(Uri::host($url));
     }
 
     /**

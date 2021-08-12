@@ -18,7 +18,7 @@ class Log
     /**
      * @codeCoverageIgnore
      */
-    public function __construct(string $commit, \DateTimeInterface $date, Author $author, string $message)
+    public function __construct(Commit $commit, \DateTimeInterface $date, Author $author, string $message)
     {
         $this->commit = $commit;
         $this->author = $author;
@@ -26,9 +26,13 @@ class Log
         $this->message = $message;
     }
 
+    /**
+     * @deprecated
+     * @see Commit::getAbbreviatedHash()
+     */
     public function getAbbreviatedCommitHash(): string
     {
-        return mb_substr($this->commit, 0, 6);
+        return $this->commit->getAbbreviatedHash();
     }
 
     public function equalsDate(\DateTimeInterface $date): bool
