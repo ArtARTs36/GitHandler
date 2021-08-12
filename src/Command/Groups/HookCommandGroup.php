@@ -33,9 +33,7 @@ class HookCommandGroup implements GitHookCommandGroup
      */
     public function add(string $name, string $script): bool
     {
-        $this
-            ->fileSystem
-            ->createFile($path = $this->getHookPath($name), $script);
+        $path = $this->doAdd($name, $script);
 
         Chmod::executable($path)->executeOrFail($this->executor);
 
@@ -111,5 +109,14 @@ class HookCommandGroup implements GitHookCommandGroup
             $this->fileSystem->getFileContent($path = $this->getHookPath($name)),
             $this->fileSystem->getLastUpdateDate($path)
         );
+    }
+
+    protected function doAdd(string $name, string $script): string
+    {
+        $this
+            ->fileSystem
+            ->createFile($path = $this->getHookPath($name), $script);
+
+        return $path;
     }
 }
