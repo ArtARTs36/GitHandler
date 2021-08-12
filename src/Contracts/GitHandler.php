@@ -11,7 +11,6 @@ interface GitHandler extends
     Logable,
     Configurable,
     Versionable,
-    HasPaths,
     Statusable,
     Stashable,
     Fetchable,

@@ -2,17 +2,16 @@
 
 namespace ArtARTs36\ShellCommand\Tests\Unit\CommandGroups;
 
-use ArtARTs36\GitHandler\Command\Groups\AbstractCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\PathCommandGroup;
 use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
 class PathCommandGroupTest extends V2TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Git::getHtmlPath
-     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommandGroup::html
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommandGroup::getPathByOption
      */
-    public function tesHtmlPath(): void
+    public function testHtmlPath(): void
     {
         $paths = new PathCommandGroup(
             $this->mockCommandBuilder,
@@ -23,8 +22,8 @@ class PathCommandGroupTest extends V2TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::getManPath
-     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommandGroup::man
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommandGroup::getPathByOption
      */
     public function testManPath(): void
     {
@@ -38,8 +37,8 @@ class PathCommandGroupTest extends V2TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::getInfoPath
-     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommandGroup::info
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommandGroup::getPathByOption
      */
     public function testInfoPath(): void
     {

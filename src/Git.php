@@ -17,7 +17,6 @@ use ArtARTs36\GitHandler\Operations\GrepOperations;
 use ArtARTs36\GitHandler\Operations\HookOperations;
 use ArtARTs36\GitHandler\Operations\InitOperations;
 use ArtARTs36\GitHandler\Operations\LogOperations;
-use ArtARTs36\GitHandler\Operations\PathOperations;
 use ArtARTs36\GitHandler\Operations\PushOperations;
 use ArtARTs36\GitHandler\Operations\RemoteOperations;
 use ArtARTs36\GitHandler\Operations\StashOperations;
@@ -37,7 +36,6 @@ class Git extends AbstractGitHandler implements GitHandler
     use LogOperations;
     use RemoteOperations;
     use PushOperations;
-    use PathOperations;
     use StatusOperations;
     use StashOperations;
     use FetchOperations;

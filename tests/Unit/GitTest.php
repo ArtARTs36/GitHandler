@@ -154,18 +154,6 @@ Changes to be committed:';
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::getInfoPath
-     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
-     */
-    public function testGetInfoPath(): void
-    {
-        $git = $this->mockGit('/Applications/Xcode.app/Contents/Developer/usr/share/info
-');
-
-        self::assertEquals('/Applications/Xcode.app/Contents/Developer/usr/share/info', $git->getInfoPath());
-    }
-
-    /**
      * @covers \ArtARTs36\GitHandler\Git::getDir
      */
     public function testGetDir(): void
@@ -173,26 +161,6 @@ Changes to be committed:';
         $git = $this->mockGit('', $dir = '/path/to/dir');
 
         self::assertEquals($dir, $git->getDir());
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
-     */
-    public function testGetPathByOptionOnNullResult(): void
-    {
-        self::expectException(UnexpectedException::class);
-
-        $this->callMethodFromObject($this->mockGit(null), 'getPathByOption', 't');
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Git::getPathByOption
-     */
-    public function testGetPathByOptionOnEmptyResult(): void
-    {
-        self::expectException(UnexpectedException::class);
-
-        $this->callMethodFromObject($this->mockGit(''), 'getPathByOption', 't');
     }
 
     /**
