@@ -4,9 +4,7 @@ namespace ArtARTs36\GitHandler\Contracts;
 
 interface GitHandler extends
     HasRemotes,
-    Configurable,
-    Versionable,
-    Fetchable
+    Versionable
 {
     /**
      * equals: git pull
