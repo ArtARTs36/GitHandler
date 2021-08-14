@@ -35,7 +35,7 @@ class LogCommandGroup extends AbstractCommandGroup implements GitLogCommandGroup
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) {
                     $branch = $result
-                        ->getResult()
+                        ->getError()
                         ->match("/fatal: your current branch '(.*)' does not have any commits yet/i");
 
                     if ($branch->isNotEmpty()) {

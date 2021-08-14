@@ -1,11 +1,11 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Contracts;
+namespace ArtARTs36\GitHandler\Command\Groups\Contracts;
 
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\Str\Str;
 
-interface HasBranches
+interface GitBranchCommand
 {
     /**
      * equals: git checkout <branch>
@@ -13,6 +13,10 @@ interface HasBranches
      */
     public function checkout(string $branch, bool $merge = false): bool;
 
+    /**
+     * equals: git branch -d {branchName}
+     * @throws BranchNotFound
+     */
     public function deleteBranch(string $branch): bool;
 
     public function newBranch(string $branch): bool;
