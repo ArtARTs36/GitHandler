@@ -18,6 +18,7 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitLogCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPathCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPushCommand;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitRemoteCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStashCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStatusCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitTagCommandGroup;
@@ -28,6 +29,7 @@ use ArtARTs36\GitHandler\Command\Groups\InitCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\LogCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\PathCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\PushCommand;
+use ArtARTs36\GitHandler\Command\Groups\RemoteCommand;
 use ArtARTs36\GitHandler\Command\Groups\StashCommand;
 use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
 use ArtARTs36\GitHandler\Command\Groups\TagCommandGroup;
@@ -159,6 +161,14 @@ class GitV2
                     new BranchConfigurator(),
                 ])
             ),
+            $this->commandBuilder,
+            $this->executor,
+        );
+    }
+
+    public function remotes(): GitRemoteCommand
+    {
+        return new RemoteCommand(
             $this->commandBuilder,
             $this->executor,
         );
