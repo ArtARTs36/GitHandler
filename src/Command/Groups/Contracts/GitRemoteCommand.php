@@ -1,13 +1,13 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Contracts;
+namespace ArtARTs36\GitHandler\Command\Groups\Contracts;
 
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RemoteNotFound;
 use ArtARTs36\GitHandler\Exceptions\RemoteRepositoryNotFound;
 
-interface HasRemotes
+interface GitRemoteCommand
 {
     /**
      * @throws RemoteAlreadyExists
