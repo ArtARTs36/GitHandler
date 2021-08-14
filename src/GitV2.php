@@ -3,12 +3,16 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitGrepCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHookCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitLogCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPathCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitTagCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\GrepGroupCommand;
 use ArtARTs36\GitHandler\Command\Groups\HelpCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\HookCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\LogCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\PathCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\TagCommandGroup;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
@@ -58,5 +62,15 @@ class GitV2
             $this->executor,
             $this->context
         );
+    }
+
+    public function logs(): GitLogCommandGroup
+    {
+        return new LogCommandGroup(new Logger(), $this->commandBuilder, $this->executor);
+    }
+
+    public function greps(): GitGrepCommandGroup
+    {
+        return new GrepGroupCommand($this->commandBuilder, $this->executor);
     }
 }

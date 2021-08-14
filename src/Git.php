@@ -28,7 +28,6 @@ class Git extends AbstractGitHandler implements GitHandler
 {
     use ConfigOperations;
     use InitOperations;
-    use LogOperations;
     use RemoteOperations;
     use PushOperations;
     use StatusOperations;

@@ -7,7 +7,6 @@ interface GitHandler extends
     HasRemotes,
     Pushable,
     Initable,
-    Logable,
     Configurable,
     Versionable,
     Statusable,
