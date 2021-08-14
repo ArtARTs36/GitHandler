@@ -13,8 +13,6 @@ use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Operations\BranchOperations;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\FetchOperations;
-use ArtARTs36\GitHandler\Operations\InitOperations;
-use ArtARTs36\GitHandler\Operations\LogOperations;
 use ArtARTs36\GitHandler\Operations\PushOperations;
 use ArtARTs36\GitHandler\Operations\RemoteOperations;
 use ArtARTs36\GitHandler\Operations\StashOperations;
@@ -27,7 +25,6 @@ use ArtARTs36\ShellCommand\ShellCommand;
 class Git extends AbstractGitHandler implements GitHandler
 {
     use ConfigOperations;
-    use InitOperations;
     use RemoteOperations;
     use PushOperations;
     use StatusOperations;
