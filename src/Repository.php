@@ -61,6 +61,9 @@ class Repository
         $this->git->clone($remote, $branch);
     }
 
+    /**
+     * @deprecated
+     */
     public function delete(): bool
     {
         return $this->fileSystem->removeDir($this->git->getDir());

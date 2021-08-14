@@ -60,6 +60,7 @@ class RepositoryTest extends TestCase
     }
 
     /**
+     * @deprecated
      * @covers \ArtARTs36\GitHandler\Repository::delete
      */
     public function testDelete(): void

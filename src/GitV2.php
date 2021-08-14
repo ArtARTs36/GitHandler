@@ -183,4 +183,9 @@ class GitV2
             $this->fileSystem
         );
     }
+
+    public function delete(): bool
+    {
+        return $this->fileSystem->removeDir($this->context->getRootDir());
+    }
 }
