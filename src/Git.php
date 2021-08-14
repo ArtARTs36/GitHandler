@@ -109,46 +109,6 @@ class Git extends AbstractGitHandler implements GitHandler
         throw new UnexpectedException($command);
     }
 
-    public function commit(string $message, bool $amend = false): bool
-    {
-        $result = $this
-            ->executeCommand(
-                $command = $this
-                    ->newCommand()
-                    ->addArgument('commit')
-                    ->addCutOption('m')
-                    ->addArgument($message, true)
-                    ->when($amend === true, function (ShellCommandInterface $command) {
-                        $command->addOption('amend');
-                    })
-            );
-
-        if ($result === null || $result->isEmpty()) {
-            throw new UnexpectedException($command);
-        }
-
-        if ($result->contains('nothing to commit')) {
-            throw new NothingToCommit();
-        }
-
-        if ($result->contains('file changed')) {
-            return true;
-        }
-
-        throw new UnexpectedException($command);
-    }
-
-    /**
-     * equals: git add (untracked files) && git commit -m $message
-     * @codeCoverageIgnore
-     */
-    public function autoCommit(string $message, bool $amend = false): bool
-    {
-        $this->add($this->getModifiedFiles());
-
-        return $this->commit($message, $amend);
-    }
-
     public function version(): string
     {
         return $this->executeCommand($this->newCommand()->addOption('version'))->trim();

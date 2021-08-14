@@ -5,8 +5,10 @@ namespace ArtARTs36\GitHandler;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Command\Groups\AddCommand;
 use ArtARTs36\GitHandler\Command\Groups\BranchCommand;
+use ArtARTs36\GitHandler\Command\Groups\CommitCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitAddCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitBranchCommand;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitCommitCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitGrepCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHookCommandGroup;
@@ -14,6 +16,7 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitLogCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPathCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPushCommand;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStatusCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitTagCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\GrepGroupCommand;
 use ArtARTs36\GitHandler\Command\Groups\HelpCommandGroup;
@@ -22,6 +25,7 @@ use ArtARTs36\GitHandler\Command\Groups\InitCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\LogCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\PathCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\PushCommand;
+use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
 use ArtARTs36\GitHandler\Command\Groups\TagCommandGroup;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
@@ -47,6 +51,11 @@ class GitV2
         $this->executor = $executor;
         $this->fileSystem = $fileSystem;
         $this->context = $context;
+    }
+
+    public function getContext(): GitContext
+    {
+        return $this->context;
     }
 
     public function helps(): GitHelpCommandGroup
@@ -106,5 +115,20 @@ class GitV2
     public function pushes(): GitPushCommand
     {
         return new PushCommand($this->branches(), $this->commandBuilder, $this->executor);
+    }
+
+    public function statuses(): GitStatusCommand
+    {
+        return new StatusCommand($this->commandBuilder, $this->executor);
+    }
+
+    public function commits(): GitCommitCommand
+    {
+        return new CommitCommand(
+            $this->adds(),
+            $this->statuses(),
+            $this->commandBuilder,
+            $this->executor
+        );
     }
 }

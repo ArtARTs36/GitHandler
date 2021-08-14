@@ -22,12 +22,5 @@ interface GitHandler extends
      */
     public function clone(string $url, ?string $branch = null, ?string $folder = null): bool;
 
-    /**
-     * equals: git commit -m=$message
-     */
-    public function commit(string $message, bool $amend = false): bool;
-
-    public function autoCommit(string $message, bool $amend = false): bool;
-
     public function pathToGitFolder(): string;
 }
