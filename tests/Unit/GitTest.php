@@ -57,42 +57,6 @@ Changes to be committed:';
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::add
-     */
-    public function testAdd(): void
-    {
-        $git = $this->mockGit('');
-
-        self::assertTrue($git->add('README.MD'));
-
-        //
-
-        $git = $this->mockGit(null);
-
-        self::assertTrue($git->add('README.MD', true));
-
-        //
-
-        self::expectException(FileNotFound::class);
-
-        $git = $this->mockGit("pathspec 'random.file' did not match any files");
-
-        $git->add('random.file');
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Git::add
-     */
-    public function testAddOnUndefinedResult(): void
-    {
-        $git = $this->mockGit('undefined');
-
-        self::expectException(UnexpectedException::class);
-
-        $git->add('doc.txt');
-    }
-
-    /**
      * @covers \ArtARTs36\GitHandler\Git::clone
      */
     public function testClone(): void

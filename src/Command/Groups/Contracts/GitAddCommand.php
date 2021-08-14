@@ -1,8 +1,8 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Contracts;
+namespace ArtARTs36\GitHandler\Command\Groups\Contracts;
 
-interface Addable
+interface GitAddCommand
 {
     /**
      * @param string|array<string> $file - file name to git added

@@ -3,15 +3,13 @@
 namespace ArtARTs36\GitHandler\Contracts;
 
 interface GitHandler extends
-    Addable,
     HasRemotes,
     Pushable,
     Configurable,
     Versionable,
     Statusable,
     Stashable,
-    Fetchable,
-    HasBranches
+    Fetchable
 {
     /**
      * equals: git pull

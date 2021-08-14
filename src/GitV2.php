@@ -3,7 +3,9 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
+use ArtARTs36\GitHandler\Command\Groups\AddCommand;
 use ArtARTs36\GitHandler\Command\Groups\BranchCommand;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitAddCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitBranchCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitGrepCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommandGroup;
@@ -92,5 +94,10 @@ class GitV2
     public function branches(): GitBranchCommand
     {
         return new BranchCommand($this->commandBuilder, $this->executor);
+    }
+
+    public function adds(): GitAddCommand
+    {
+        return new AddCommand($this->commandBuilder, $this->executor);
     }
 }

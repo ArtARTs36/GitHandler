@@ -6,7 +6,6 @@ use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
-use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
@@ -76,31 +75,6 @@ class Git extends AbstractGitHandler implements GitHandler
         ])) {
             return true;
         }
-
-        throw new UnexpectedException($command);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function add($file, bool $force = false): bool
-    {
-        $sh = $this
-            ->executeCommand(
-                $command = $this
-                    ->newCommand()
-                    ->addArgument('add')
-                    ->addArguments((array) $file)
-                    ->when($force, function (ShellCommandInterface $command) {
-                        $command->addOption('force');
-                    })
-            );
-
-        if ($sh === null || $sh->isEmpty()) {
-            return true;
-        }
-
-        FileNotFound::handleIfSo($file, $sh);
 
         throw new UnexpectedException($command);
     }
