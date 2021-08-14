@@ -31,4 +31,13 @@ abstract class V2TestCase extends \PHPUnit\Framework\TestCase
         $this->mockCommandExecutor = new V2QueueCommandExecutor();
         $this->mockGitContext = GitContext::make(__DIR__);
     }
+
+    protected function callMethodFromObject($object, string $method, ...$args)
+    {
+        $caller = function () use ($method, $args) {
+            return $this->$method(...$args);
+        };
+
+        return $caller->call($object);
+    }
 }

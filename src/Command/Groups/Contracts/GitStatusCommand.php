@@ -1,10 +1,10 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Contracts;
+namespace ArtARTs36\GitHandler\Command\Groups\Contracts;
 
 use ArtARTs36\Str\Str;
 
-interface Statusable
+interface GitStatusCommand
 {
     /**
      * equals: git status
