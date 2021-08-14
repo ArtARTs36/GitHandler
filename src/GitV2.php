@@ -16,6 +16,7 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitLogCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPathCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPushCommand;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStashCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStatusCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitTagCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\GrepGroupCommand;
@@ -25,6 +26,7 @@ use ArtARTs36\GitHandler\Command\Groups\InitCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\LogCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\PathCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\PushCommand;
+use ArtARTs36\GitHandler\Command\Groups\StashCommand;
 use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
 use ArtARTs36\GitHandler\Command\Groups\TagCommandGroup;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
@@ -130,5 +132,10 @@ class GitV2
             $this->commandBuilder,
             $this->executor
         );
+    }
+
+    public function stashes(): GitStashCommand
+    {
+        return new StashCommand($this->commandBuilder, $this->executor);
     }
 }
