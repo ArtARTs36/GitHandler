@@ -10,5 +10,5 @@ interface GitLogCommandGroup
      * Get all git logs
      * equals: git log
      */
-    public function getAll(): LogCollection;
+    public function getAll(): ?LogCollection;
 }

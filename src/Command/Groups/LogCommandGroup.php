@@ -15,6 +15,7 @@ class LogCommandGroup extends AbstractCommandGroup implements GitLogCommandGroup
 {
     protected $parser;
 
+    /** @codeCoverageIgnore */
     public function __construct(LogParser $parser, GitCommandBuilder $builder, ShellCommandExecutor $executor)
     {
         $this->parser = $parser;
@@ -22,7 +23,7 @@ class LogCommandGroup extends AbstractCommandGroup implements GitLogCommandGroup
         parent::__construct($builder, $executor);
     }
 
-    public function getAll(): LogCollection
+    public function getAll(): ?LogCollection
     {
         return $this->parser->parse($this->builder->make()
             ->addArgument('log')
