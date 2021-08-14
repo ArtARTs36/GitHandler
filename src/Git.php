@@ -10,7 +10,6 @@ use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
-use ArtARTs36\GitHandler\Operations\BranchOperations;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\FetchOperations;
 use ArtARTs36\GitHandler\Operations\PushOperations;
@@ -30,7 +29,6 @@ class Git extends AbstractGitHandler implements GitHandler
     use StatusOperations;
     use StashOperations;
     use FetchOperations;
-    use BranchOperations;
 
     protected $logger;
 
