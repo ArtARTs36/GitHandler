@@ -2,11 +2,14 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
+use ArtARTs36\GitHandler\Command\Groups\BranchCommand;
+use ArtARTs36\GitHandler\Command\Groups\PushCommand;
 use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 
-class PushOperationsTest extends TestCase
+final class PushCommandTest extends V2TestCase
 {
+
     /**
      * @covers \ArtARTs36\GitHandler\Git::push
      */
@@ -52,15 +55,21 @@ To push the current branch and set the remote as upstream, use
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::pushOnAutoSetUpStream
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PushCommand::pushOnAutoSetUpStream
      */
     public function testPushOnAutoSetUpStream(): void
     {
-        $git = $this->mockGit([
-            'dev',
-            'Everything up-to-date',
-        ]);
+        $this->mockCommandExecutor->nextOk('dev')->nextOk('Everything up-to-date');
 
-        self::assertTrue($git->pushOnAutoSetUpStream());
+        self::assertTrue($this->makePushCommand()->pushOnAutoSetUpStream());
+    }
+
+    private function makePushCommand(): PushCommand
+    {
+        return new PushCommand(
+            new BranchCommand($this->mockCommandBuilder, $this->mockCommandExecutor),
+            $this->mockCommandBuilder,
+            $this->mockCommandExecutor
+        );
     }
 }

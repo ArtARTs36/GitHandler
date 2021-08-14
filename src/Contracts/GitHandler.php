@@ -4,10 +4,8 @@ namespace ArtARTs36\GitHandler\Contracts;
 
 interface GitHandler extends
     HasRemotes,
-    Pushable,
     Configurable,
     Versionable,
-    Statusable,
     Stashable,
     Fetchable
 {
