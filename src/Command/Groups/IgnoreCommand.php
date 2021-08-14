@@ -1,23 +1,24 @@
 <?php
 
-namespace ArtARTs36\GitHandler;
+namespace ArtARTs36\GitHandler\Command\Groups;
 
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIgnoreCommand;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
-use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\GitHandler\GitContext;
 use ArtARTs36\Str\Str;
 
-class Ignore
+class IgnoreCommand implements GitIgnoreCommand
 {
-    protected $git;
+    protected $context;
 
     protected $fileSystem;
 
     /**
      * @codeCoverageIgnore
      */
-    public function __construct(GitHandler $git, FileSystem $fileSystem)
+    public function __construct(GitContext $context, FileSystem $fileSystem)
     {
-        $this->git = $git;
+        $this->context = $context;
         $this->fileSystem = $fileSystem;
     }
 
@@ -64,6 +65,6 @@ class Ignore
      */
     public function getPathToFile(): string
     {
-        return $this->git->getDir() . '/.gitignore';
+        return $this->context->getRootDir() . '/.gitignore';
     }
 }

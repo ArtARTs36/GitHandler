@@ -65,13 +65,4 @@ class Repository
     {
         return $this->fileSystem->removeDir($this->git->getDir());
     }
-
-    public function ignore(): Ignore
-    {
-        if ($this->ignore === null) {
-            $this->ignore = new Ignore($this->git, $this->fileSystem);
-        }
-
-        return $this->ignore;
-    }
 }

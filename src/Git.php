@@ -8,19 +8,12 @@ use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
-use ArtARTs36\GitHandler\Operations\FetchOperations;
-use ArtARTs36\GitHandler\Operations\PushOperations;
-use ArtARTs36\GitHandler\Operations\RemoteOperations;
 use ArtARTs36\ShellCommand\Interfaces\CommandBuilder;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\ShellCommand;
 
 class Git extends AbstractGitHandler implements GitHandler
 {
-    use RemoteOperations;
-    use PushOperations;
-    use FetchOperations;
-
     protected $logger;
 
     private $config;

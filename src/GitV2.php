@@ -14,6 +14,7 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitConfigCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitGrepCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHookCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIgnoreCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitLogCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPathCommandGroup;
@@ -25,6 +26,7 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitTagCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\GrepGroupCommand;
 use ArtARTs36\GitHandler\Command\Groups\HelpCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\HookCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\IgnoreCommand;
 use ArtARTs36\GitHandler\Command\Groups\InitCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\LogCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\PathCommandGroup;
@@ -171,6 +173,14 @@ class GitV2
         return new RemoteCommand(
             $this->commandBuilder,
             $this->executor,
+        );
+    }
+
+    public function ignores(): GitIgnoreCommand
+    {
+        return new IgnoreCommand(
+            $this->context,
+            $this->fileSystem
         );
     }
 }
