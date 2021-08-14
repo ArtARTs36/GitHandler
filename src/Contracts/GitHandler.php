@@ -6,7 +6,6 @@ interface GitHandler extends
     HasRemotes,
     Configurable,
     Versionable,
-    Stashable,
     Fetchable
 {
     /**
