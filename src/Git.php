@@ -6,27 +6,19 @@ use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\GitHandler;
 use ArtARTs36\GitHandler\Contracts\LogParser;
-use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
-use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\FetchOperations;
 use ArtARTs36\GitHandler\Operations\PushOperations;
 use ArtARTs36\GitHandler\Operations\RemoteOperations;
-use ArtARTs36\GitHandler\Operations\StashOperations;
-use ArtARTs36\GitHandler\Operations\StatusOperations;
 use ArtARTs36\ShellCommand\Interfaces\CommandBuilder;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
-use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 
 class Git extends AbstractGitHandler implements GitHandler
 {
-    use ConfigOperations;
     use RemoteOperations;
     use PushOperations;
-    use StatusOperations;
-    use StashOperations;
     use FetchOperations;
 
     protected $logger;

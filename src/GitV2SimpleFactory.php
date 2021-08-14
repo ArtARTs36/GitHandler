@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
+use ArtARTs36\GitHandler\Support\LocalFileSystem;
 use ArtARTs36\ShellCommand\Executors\ProcOpenExecutor;
 use ArtARTs36\ShellCommand\ShellCommander;
 
@@ -13,6 +14,7 @@ class GitV2SimpleFactory
         return new GitV2(
             new GitCommandBuilder(new ShellCommander(), $bin, $dir),
             new ProcOpenExecutor(),
+            new LocalFileSystem(),
             GitContext::make($dir)
         );
     }

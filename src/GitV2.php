@@ -6,9 +6,11 @@ use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Command\Groups\AddCommand;
 use ArtARTs36\GitHandler\Command\Groups\BranchCommand;
 use ArtARTs36\GitHandler\Command\Groups\CommitCommand;
+use ArtARTs36\GitHandler\Command\Groups\ConfigCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitAddCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitBranchCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitCommitCommand;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitConfigCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitGrepCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHookCommandGroup;
@@ -29,8 +31,14 @@ use ArtARTs36\GitHandler\Command\Groups\PushCommand;
 use ArtARTs36\GitHandler\Command\Groups\StashCommand;
 use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
 use ArtARTs36\GitHandler\Command\Groups\TagCommandGroup;
+use ArtARTs36\GitHandler\Config\Configurators\BranchConfigurator;
+use ArtARTs36\GitHandler\Config\Configurators\CoreConfigurator;
+use ArtARTs36\GitHandler\Config\Configurators\CredentialConfigurator;
+use ArtARTs36\GitHandler\Config\Configurators\PackConfigurator;
+use ArtARTs36\GitHandler\Config\Configurators\UserConfigurator;
+use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
+use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
-use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 
 class GitV2
@@ -137,5 +145,22 @@ class GitV2
     public function stashes(): GitStashCommand
     {
         return new StashCommand($this->commandBuilder, $this->executor);
+    }
+
+    public function configs(): GitConfigCommand
+    {
+        return new ConfigCommand(
+            new RegexConfigResultParser(
+                ConfiguratorsDict::make([
+                    new UserConfigurator(),
+                    new CoreConfigurator(),
+                    new PackConfigurator(),
+                    new CredentialConfigurator(),
+                    new BranchConfigurator(),
+                ])
+            ),
+            $this->commandBuilder,
+            $this->executor,
+        );
     }
 }
