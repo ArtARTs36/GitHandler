@@ -13,14 +13,12 @@ use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Operations\BranchOperations;
 use ArtARTs36\GitHandler\Operations\ConfigOperations;
 use ArtARTs36\GitHandler\Operations\FetchOperations;
-use ArtARTs36\GitHandler\Operations\GrepOperations;
 use ArtARTs36\GitHandler\Operations\InitOperations;
 use ArtARTs36\GitHandler\Operations\LogOperations;
 use ArtARTs36\GitHandler\Operations\PushOperations;
 use ArtARTs36\GitHandler\Operations\RemoteOperations;
 use ArtARTs36\GitHandler\Operations\StashOperations;
 use ArtARTs36\GitHandler\Operations\StatusOperations;
-use ArtARTs36\GitHandler\Operations\TagOperations;
 use ArtARTs36\ShellCommand\Interfaces\CommandBuilder;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
@@ -37,7 +35,6 @@ class Git extends AbstractGitHandler implements GitHandler
     use StashOperations;
     use FetchOperations;
     use BranchOperations;
-    use GrepOperations;
 
     protected $logger;
 

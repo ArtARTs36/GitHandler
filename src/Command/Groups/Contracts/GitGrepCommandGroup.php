@@ -1,10 +1,10 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Contracts;
+namespace ArtARTs36\GitHandler\Command\Groups\Contracts;
 
 use ArtARTs36\GitHandler\Data\FileMatch;
 
-interface Grepable
+interface GitGrepCommandGroup
 {
     /**
      * @return array<FileMatch>

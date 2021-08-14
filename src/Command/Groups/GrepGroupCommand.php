@@ -1,34 +1,25 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Operations;
+namespace ArtARTs36\GitHandler\Command\Groups;
 
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitGrepCommandGroup;
 use ArtARTs36\GitHandler\Data\FileMatch;
-use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
-use ArtARTs36\ShellCommand\ShellCommand;
-use ArtARTs36\Str\Str;
 
-trait GrepOperations
+class GrepGroupCommand extends AbstractCommandGroup implements GitGrepCommandGroup
 {
     private $grepRegex = '/(?<file>.*)\:(?<line>\d+)\:(?<content>.*)\n?/i';
 
-    abstract protected function newCommand(?string $dir = null): ShellCommandInterface;
-
-    abstract protected function executeCommand(ShellCommand $command): ?Str;
-
-    /**
-     * @return array<FileMatch>
-     */
     public function grep(string $term): array
     {
-        $result = $this->executeCommand(
-            $this->newCommand()
+        $result = $this->builder->make()
                 ->addOption('no-pager')
                 ->addArgument('grep')
                 ->addCutOption('n')
                 ->addArgument($term, true)
-        );
+                ->executeOrFail($this->executor)
+                ->getResult();
 
-        if ($result === null || $result->isEmpty()) {
+        if ($result->isEmpty()) {
             return [];
         }
 
