@@ -39,51 +39,6 @@ final class GitTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::status
-     */
-    public function testStatus(): void
-    {
-        $expected = $shellResult = 'On branch master
-
-No commits yet
-
-Changes to be committed:';
-
-        $git = $this->mockGit($shellResult);
-
-        //
-
-        self::assertEquals($expected, (string) $git->status());
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Git::clone
-     */
-    public function testCloneUndefinedError(): void
-    {
-        $git = $this->mockGit(null);
-
-        self::expectException(UnexpectedException::class);
-
-        $git->clone('');
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Git::clone
-     */
-    public function testCloneBranch(): void
-    {
-        $folder = 'project';
-        $dir = '/var/web/'. $folder;
-        $url = 'http://url.git';
-        $branch = 'dev';
-
-        $git = $this->mockGit("Cloning into '{$folder}' ...", $dir);
-
-        self::assertTrue($git->clone($url, $branch));
-    }
-
-    /**
      * @covers \ArtARTs36\GitHandler\Git::version
      */
     public function testVersion(): void
