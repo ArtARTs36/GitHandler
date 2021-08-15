@@ -64,36 +64,6 @@ class Git extends AbstractGitHandler implements GitHandler
         throw new UnexpectedException($command);
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function clone(string $url, ?string $branch = null, ?string $folder = null): bool
-    {
-        $command = $this->newCommand($this->getFileSystem()->belowPath($this->getDir()))
-            ->addArgument('clone')
-            ->when($branch !== null, function (ShellCommand $command) use ($branch) {
-                $command
-                    ->addCutOption('b')
-                    ->addArgument($branch);
-            })
-            ->addArgument($url)
-            ->addArgument($folder = $folder ?? $this->fileSystem->endFolder($this->getDir()));
-
-        //
-
-        $sh = $this->executeCommand($command);
-
-        //
-
-        if ($sh && $sh->contains("Cloning into '{$folder}'")) {
-            return true;
-        } elseif ($sh !== null) {
-            PathAlreadyExists::handleIfSo($folder, $sh);
-        }
-
-        throw new UnexpectedException($command);
-    }
-
     public function version(): string
     {
         return $this->executeCommand($this->newCommand()->addOption('version'))->trim();

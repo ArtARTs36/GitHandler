@@ -59,29 +59,6 @@ Changes to be committed:';
     /**
      * @covers \ArtARTs36\GitHandler\Git::clone
      */
-    public function testClone(): void
-    {
-        $folder = 'project';
-        $dir = '/var/web/'. $folder;
-        $url = 'http://url.git';
-
-        //
-
-        $git = $this->mockGit("Cloning into '{$folder}' ...", $dir);
-
-        self::assertTrue($git->clone($url));
-
-        //
-
-        self::expectException(PathAlreadyExists::class);
-
-        $this->mockGit("fatal: destination path '{$folder}' already exists " .
-            "and is not an empty directory.", $dir)->clone($url);
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Git::clone
-     */
     public function testCloneUndefinedError(): void
     {
         $git = $this->mockGit(null);
