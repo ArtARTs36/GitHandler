@@ -11,7 +11,7 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIndexCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitBranchCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitCommitCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitConfigCommand;
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitGrepCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitGrepCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHookCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIgnoreCommand;
@@ -103,7 +103,7 @@ class GitV2
         return new LogCommand(new Logger(), $this->commandBuilder, $this->executor);
     }
 
-    public function greps(): GitGrepCommandGroup
+    public function greps(): GitGrepCommand
     {
         return new GrepCommand($this->commandBuilder, $this->executor);
     }
