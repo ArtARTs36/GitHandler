@@ -2,14 +2,14 @@
 
 namespace ArtARTs36\GitHandler\Command\Groups;
 
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitAddCommand;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIndexCommand;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 use ArtARTs36\Str\Str;
 
-class AddCommand extends AbstractCommand implements GitAddCommand
+class IndexCommand extends AbstractCommand implements GitIndexCommand
 {
     /**
      * @inheritDoc

@@ -2,13 +2,13 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
-use ArtARTs36\GitHandler\Command\Groups\AddCommand;
+use ArtARTs36\GitHandler\Command\Groups\IndexCommand;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 
 final class AddCommandTest extends V2TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\AddCommand::add
+     * @covers \ArtARTs36\GitHandler\Command\Groups\IndexCommand::add
      */
     public function testAddOk(): void
     {
@@ -18,7 +18,7 @@ final class AddCommandTest extends V2TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\AddCommand::add
+     * @covers \ArtARTs36\GitHandler\Command\Groups\IndexCommand::add
      */
     public function testAddOnNotFound(): void
     {
@@ -29,8 +29,8 @@ final class AddCommandTest extends V2TestCase
         $this->makeAddCommand()->add('random.file');
     }
 
-    private function makeAddCommand(): AddCommand
+    private function makeAddCommand(): IndexCommand
     {
-        return new AddCommand($this->mockCommandBuilder, $this->mockCommandExecutor);
+        return new IndexCommand($this->mockCommandBuilder, $this->mockCommandExecutor);
     }
 }

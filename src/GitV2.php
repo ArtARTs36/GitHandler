@@ -3,11 +3,11 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
-use ArtARTs36\GitHandler\Command\Groups\AddCommand;
+use ArtARTs36\GitHandler\Command\Groups\IndexCommand;
 use ArtARTs36\GitHandler\Command\Groups\BranchCommand;
 use ArtARTs36\GitHandler\Command\Groups\CommitCommand;
 use ArtARTs36\GitHandler\Command\Groups\ConfigCommand;
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitAddCommand;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIndexCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitBranchCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitCommitCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitConfigCommand;
@@ -123,9 +123,9 @@ class GitV2
         return new BranchCommand($this->commandBuilder, $this->executor);
     }
 
-    public function adds(): GitAddCommand
+    public function index(): GitIndexCommand
     {
-        return new AddCommand($this->commandBuilder, $this->executor);
+        return new IndexCommand($this->commandBuilder, $this->executor);
     }
 
     public function pushes(): GitPushCommand
@@ -141,7 +141,7 @@ class GitV2
     public function commits(): GitCommitCommand
     {
         return new CommitCommand(
-            $this->adds(),
+            $this->index(),
             $this->statuses(),
             $this->commandBuilder,
             $this->executor

@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
-use ArtARTs36\GitHandler\Command\Groups\AddCommand;
+use ArtARTs36\GitHandler\Command\Groups\IndexCommand;
 use ArtARTs36\GitHandler\Command\Groups\CommitCommand;
 use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
@@ -34,7 +34,7 @@ final class CommitCommandTest extends V2TestCase
     protected function makeCommitCommand(): CommitCommand
     {
         return new CommitCommand(
-            new AddCommand($this->mockCommandBuilder, $this->mockCommandExecutor),
+            new IndexCommand($this->mockCommandBuilder, $this->mockCommandExecutor),
             new StatusCommand($this->mockCommandBuilder, $this->mockCommandExecutor),
             $this->mockCommandBuilder,
             $this->mockCommandExecutor

@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Command\Groups;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitAddCommand;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIndexCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitCommitCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStatusCommand;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
@@ -19,7 +19,7 @@ class CommitCommand extends AbstractCommand implements GitCommitCommand
     protected $statuses;
 
     public function __construct(
-        GitAddCommand $adds,
+        GitIndexCommand $adds,
         GitStatusCommand $statuses,
         GitCommandBuilder $builder,
         ShellCommandExecutor $executor
