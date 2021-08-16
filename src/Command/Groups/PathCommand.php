@@ -2,9 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Command\Groups;
 
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPathCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPathCommand;
 
-class PathCommand extends AbstractCommand implements GitPathCommandGroup
+class PathCommand extends AbstractCommand implements GitPathCommand
 {
     public function info(): string
     {

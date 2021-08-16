@@ -17,7 +17,7 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHookCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIgnoreCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitLogCommand;
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPathCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPathCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPushCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitRemoteCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStashCommand;
@@ -79,7 +79,7 @@ class GitV2
         return new HelpCommand($this->commandBuilder, $this->executor);
     }
 
-    public function paths(): GitPathCommandGroup
+    public function paths(): GitPathCommand
     {
         return new PathCommand($this->commandBuilder, $this->executor);
     }
