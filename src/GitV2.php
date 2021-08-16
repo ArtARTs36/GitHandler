@@ -43,7 +43,9 @@ use ArtARTs36\GitHandler\Config\Configurators\UserConfigurator;
 use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
+use ArtARTs36\Str\Str;
 
 class GitV2
 {
@@ -182,6 +184,21 @@ class GitV2
             $this->context,
             $this->fileSystem
         );
+    }
+
+    public function version(): Version
+    {
+        $result = $this
+            ->commandBuilder
+            ->make()
+            ->addOption('version')
+            ->executeOrFail($this->executor)
+            ->getResult()
+            ->trim();
+
+        return new Version($result, ...array_map(function (Str $str) {
+            return $str->toInteger();
+        }, $result->match('/([0-9]+.[0-9]+.[0-9]+)/i')->sentences()));
     }
 
     public function delete(): bool
