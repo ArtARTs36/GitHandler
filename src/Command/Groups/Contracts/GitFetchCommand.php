@@ -15,7 +15,7 @@ interface GitFetchCommand
 
     /**
      * Git fetch all
-     * @git-command git fetch -all
+     * @git-command git fetch --all
      */
     public function fetchAll(): void;
 }
