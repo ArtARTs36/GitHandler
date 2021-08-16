@@ -10,7 +10,7 @@ use ArtARTs36\GitHandler\GitContext;
 use ArtARTs36\GitHandler\Support\Chmod;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 
-class HookCommandGroup implements GitHookCommandGroup
+class HookCommand implements GitHookCommandGroup
 {
     protected $fileSystem;
 

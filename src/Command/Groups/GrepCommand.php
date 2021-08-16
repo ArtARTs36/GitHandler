@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Command\Groups;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitGrepCommandGroup;
 use ArtARTs36\GitHandler\Data\FileMatch;
 
-class GrepGroupCommand extends AbstractCommand implements GitGrepCommandGroup
+class GrepCommand extends AbstractCommand implements GitGrepCommandGroup
 {
     private $grepRegex = '/(?<file>.*)\:(?<line>\d+)\:(?<content>.*)\n?/i';
 

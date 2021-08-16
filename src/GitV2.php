@@ -23,9 +23,9 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitRemoteCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStashCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStatusCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitTagCommandGroup;
-use ArtARTs36\GitHandler\Command\Groups\GrepGroupCommand;
+use ArtARTs36\GitHandler\Command\Groups\GrepCommand;
 use ArtARTs36\GitHandler\Command\Groups\HelpCommand;
-use ArtARTs36\GitHandler\Command\Groups\HookCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\HookCommand;
 use ArtARTs36\GitHandler\Command\Groups\IgnoreCommand;
 use ArtARTs36\GitHandler\Command\Groups\InitCommand;
 use ArtARTs36\GitHandler\Command\Groups\LogCommand;
@@ -91,7 +91,7 @@ class GitV2
 
     public function hooks(): GitHookCommandGroup
     {
-        return new HookCommandGroup(
+        return new HookCommand(
             $this->fileSystem,
             $this->executor,
             $this->context
@@ -105,7 +105,7 @@ class GitV2
 
     public function greps(): GitGrepCommandGroup
     {
-        return new GrepGroupCommand($this->commandBuilder, $this->executor);
+        return new GrepCommand($this->commandBuilder, $this->executor);
     }
 
     public function inits(): GitInitCommandGroup
