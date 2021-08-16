@@ -15,7 +15,7 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitGrepCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHookCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIgnoreCommand;
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitLogCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPathCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPushCommand;
@@ -108,7 +108,7 @@ class GitV2
         return new GrepCommand($this->commandBuilder, $this->executor);
     }
 
-    public function inits(): GitInitCommandGroup
+    public function inits(): GitInitCommand
     {
         return new InitCommand(
             $this->fileSystem,

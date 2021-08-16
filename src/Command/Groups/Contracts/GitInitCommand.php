@@ -4,13 +4,20 @@ namespace ArtARTs36\GitHandler\Command\Groups\Contracts;
 
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 
-interface GitInitCommandGroup
+/**
+ * Git Init
+ */
+interface GitInitCommand
 {
     /**
-     * equals: git init
+     * Init git repository
+     * @git-command git init
      * @throws RepositoryAlreadyExists
      */
     public function init(): bool;
 
+    /**
+     * Check for init repository
+     */
     public function isInit(): bool;
 }

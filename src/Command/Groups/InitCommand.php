@@ -3,13 +3,13 @@
 namespace ArtARTs36\GitHandler\Command\Groups;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommand;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\GitContext;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 
-class InitCommand extends AbstractCommand implements GitInitCommandGroup
+class InitCommand extends AbstractCommand implements GitInitCommand
 {
     protected $fileSystem;
 
