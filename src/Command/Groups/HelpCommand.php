@@ -2,9 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Command\Groups;
 
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommand;
 
-class HelpCommand extends AbstractCommand implements GitHelpCommandGroup
+class HelpCommand extends AbstractCommand implements GitHelpCommand
 {
     public function get(): string
     {

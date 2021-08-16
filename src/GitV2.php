@@ -12,7 +12,7 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitBranchCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitCommitCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitConfigCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitGrepCommand;
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHookCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIgnoreCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommandGroup;
@@ -74,7 +74,7 @@ class GitV2
         return $this->context;
     }
 
-    public function helps(): GitHelpCommandGroup
+    public function helps(): GitHelpCommand
     {
         return new HelpCommand($this->commandBuilder, $this->executor);
     }

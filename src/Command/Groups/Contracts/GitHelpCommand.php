@@ -2,11 +2,14 @@
 
 namespace ArtARTs36\GitHandler\Command\Groups\Contracts;
 
-interface GitHelpCommandGroup
+/**
+ * Git Help
+ */
+interface GitHelpCommand
 {
     /**
      * Get git help information
-     * equals: git --help
+     * @git-command git --help
      */
     public function get(): string;
 }
