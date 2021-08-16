@@ -53,13 +53,13 @@ final class StashCommandTest extends V2TestCase
 
     /**
      * @dataProvider providerForTestUnStash
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StashCommand::unStash
+     * @covers \ArtARTs36\GitHandler\Command\Groups\StashCommand::pop
      */
     public function testUnStash(string $commandResult, bool $state): void
     {
         $this->mockCommandExecutor->nextOk($commandResult);
 
-        self::assertEquals($state, $this->makeStashCommand()->unStash());
+        self::assertEquals($state, $this->makeStashCommand()->pop());
     }
 
     /**

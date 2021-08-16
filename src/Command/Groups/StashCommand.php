@@ -32,7 +32,7 @@ class StashCommand extends AbstractCommand implements GitStashCommand
             ]);
     }
 
-    public function unStash(): bool
+    public function pop(): bool
     {
         return $this
             ->builder
