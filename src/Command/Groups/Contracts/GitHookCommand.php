@@ -4,14 +4,19 @@ namespace ArtARTs36\GitHandler\Command\Groups\Contracts;
 
 use ArtARTs36\GitHandler\Data\Hook;
 
-interface GitHookCommandGroup
+/**
+ * Git Hooks
+ */
+interface GitHookCommand
 {
     /**
+     * Add git Hook
      * @see HookName for $name
      */
     public function add(string $name, string $script): bool;
 
     /**
+     * Check exists Hook
      * @see HookName for $name
      */
     public function has(string $name): bool;
@@ -24,7 +29,7 @@ interface GitHookCommandGroup
 
     /**
      * @see HookName for $name
-     * @covers \ArtARTs36\GitHandler\Exceptions\HookNotExists
+     * @throws \ArtARTs36\GitHandler\Exceptions\HookNotExists
      */
     public function get(string $name): Hook;
 

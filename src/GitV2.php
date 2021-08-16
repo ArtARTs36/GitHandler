@@ -13,7 +13,7 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitCommitCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitConfigCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitGrepCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHelpCommandGroup;
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHookCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHookCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIgnoreCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitLogCommandGroup;
@@ -89,7 +89,7 @@ class GitV2
         return new TagCommand($this->commandBuilder, $this->executor);
     }
 
-    public function hooks(): GitHookCommandGroup
+    public function hooks(): GitHookCommand
     {
         return new HookCommand(
             $this->fileSystem,
