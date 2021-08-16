@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Groups;
 
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitTagCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitTagCommand;
 use ArtARTs36\GitHandler\Data\Author;
 use ArtARTs36\GitHandler\Data\Commit;
 use ArtARTs36\GitHandler\Data\Tag;
@@ -12,18 +12,16 @@ use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Support\FormatPlaceholder;
 use ArtARTs36\ShellCommand\ShellCommand;
 
-class TagCommand extends AbstractCommand implements GitTagCommandGroup
+class TagCommand extends AbstractCommand implements GitTagCommand
 {
     public function getAll(?string $pattern = null): array
     {
-        $raw = $this->builder->make()->addArgument('tag')
+        return $this->builder->make()->addArgument('tag')
             ->when($pattern !== null, function (ShellCommand $command) use ($pattern) {
                 $command
                     ->addCutOption('l')
                     ->addArgument($pattern, true);
-            })->executeOrFail($this->executor)->getResult();
-
-        return $raw->trim()->lines();
+            })->executeOrFail($this->executor)->getResult()->trim()->lines();
     }
 
     public function add(string $tag, ?string $message = null): bool

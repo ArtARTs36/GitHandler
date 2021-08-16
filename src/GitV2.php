@@ -22,7 +22,7 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPushCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitRemoteCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStashCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStatusCommand;
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitTagCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitTagCommand;
 use ArtARTs36\GitHandler\Command\Groups\GrepCommand;
 use ArtARTs36\GitHandler\Command\Groups\HelpCommand;
 use ArtARTs36\GitHandler\Command\Groups\HookCommand;
@@ -84,7 +84,7 @@ class GitV2
         return new PathCommand($this->commandBuilder, $this->executor);
     }
 
-    public function tags(): GitTagCommandGroup
+    public function tags(): GitTagCommand
     {
         return new TagCommand($this->commandBuilder, $this->executor);
     }
