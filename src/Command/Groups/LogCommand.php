@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Command\Groups;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitLogCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitLogCommand;
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\LogCollection;
 use ArtARTs36\GitHandler\Exceptions\BranchDoesNotHaveCommits;
@@ -11,7 +11,7 @@ use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 
-class LogCommand extends AbstractCommand implements GitLogCommandGroup
+class LogCommand extends AbstractCommand implements GitLogCommand
 {
     protected $parser;
 

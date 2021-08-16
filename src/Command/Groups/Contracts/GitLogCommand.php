@@ -4,11 +4,14 @@ namespace ArtARTs36\GitHandler\Command\Groups\Contracts;
 
 use ArtARTs36\GitHandler\Data\LogCollection;
 
-interface GitLogCommandGroup
+/**
+ * Git Log
+ */
+interface GitLogCommand
 {
     /**
      * Get all git logs
-     * equals: git log
+     * @git-command git log
      */
     public function getAll(): ?LogCollection;
 }
