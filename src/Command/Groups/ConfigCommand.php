@@ -27,9 +27,6 @@ class ConfigCommand extends AbstractCommand implements GitConfigCommand
         return $this->reader->parse($this->executeConfigList());
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getConfigSubject(string $prefix): ConfigSubject
     {
         return $this->reader->parseByPrefix($this->executeConfigList(), $prefix);
