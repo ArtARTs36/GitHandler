@@ -2,18 +2,18 @@
 
 namespace ArtARTs36\ShellCommand\Tests\Unit\CommandGroups;
 
-use ArtARTs36\GitHandler\Command\Groups\PathCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\PathCommand;
 use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
 class PathCommandGroupTest extends V2TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommandGroup::html
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommandGroup::getPathByOption
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommand::html
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommand::getPathByOption
      */
     public function testHtmlPath(): void
     {
-        $paths = new PathCommandGroup(
+        $paths = new PathCommand(
             $this->mockCommandBuilder,
             $this->mockCommandExecutor->nextOk('/Applications/Xcode.app/Contents/Developer/usr/share/doc/git-doc')
         );
@@ -22,12 +22,12 @@ class PathCommandGroupTest extends V2TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommandGroup::man
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommandGroup::getPathByOption
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommand::man
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommand::getPathByOption
      */
     public function testManPath(): void
     {
-        $paths = new PathCommandGroup(
+        $paths = new PathCommand(
             $this->mockCommandBuilder,
             $this->mockCommandExecutor->nextOk('/Applications/Xcode.app/Contents/Developer/usr/share/man
 ')
@@ -37,12 +37,12 @@ class PathCommandGroupTest extends V2TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommandGroup::info
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommandGroup::getPathByOption
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommand::info
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommand::getPathByOption
      */
     public function testInfoPath(): void
     {
-        $paths = new PathCommandGroup(
+        $paths = new PathCommand(
             $this->mockCommandBuilder,
             $this->mockCommandExecutor->nextOk('/Applications/Xcode.app/Contents/Developer/usr/share/info')
         );

@@ -4,7 +4,7 @@ namespace ArtARTs36\GitHandler\Command\Groups;
 
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPathCommandGroup;
 
-class PathCommandGroup extends AbstractCommandGroup implements GitPathCommandGroup
+class PathCommand extends AbstractCommand implements GitPathCommandGroup
 {
     public function info(): string
     {

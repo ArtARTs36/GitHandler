@@ -13,7 +13,7 @@ use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 use ArtARTs36\ShellCommand\ShellCommand;
 
-class CloneCommand extends AbstractCommandGroup implements GitCloneCommand
+class CloneCommand extends AbstractCommand implements GitCloneCommand
 {
     protected $files;
 

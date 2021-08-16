@@ -12,7 +12,7 @@ use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 use ArtARTs36\Str\Str;
 
-class RemoteCommand extends AbstractCommandGroup implements GitRemoteCommand
+class RemoteCommand extends AbstractCommand implements GitRemoteCommand
 {
     public function showRemote(): Remotes
     {

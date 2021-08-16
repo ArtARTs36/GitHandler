@@ -11,7 +11,7 @@ use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 
-class LogCommandGroup extends AbstractCommandGroup implements GitLogCommandGroup
+class LogCommand extends AbstractCommand implements GitLogCommandGroup
 {
     protected $parser;
 

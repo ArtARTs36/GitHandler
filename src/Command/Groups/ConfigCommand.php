@@ -11,7 +11,7 @@ use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\Str\Str;
 
-class ConfigCommand extends AbstractCommandGroup implements GitConfigCommand
+class ConfigCommand extends AbstractCommand implements GitConfigCommand
 {
     protected $reader;
 

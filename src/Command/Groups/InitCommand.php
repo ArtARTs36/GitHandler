@@ -9,7 +9,7 @@ use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\GitContext;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 
-class InitCommandGroup extends AbstractCommandGroup implements GitInitCommandGroup
+class InitCommand extends AbstractCommand implements GitInitCommandGroup
 {
     protected $fileSystem;
 

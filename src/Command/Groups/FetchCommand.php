@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Command\Groups;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitFetchCommand;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 
-class FetchCommand extends AbstractCommandGroup implements GitFetchCommand
+class FetchCommand extends AbstractCommand implements GitFetchCommand
 {
     public function fetch(): void
     {

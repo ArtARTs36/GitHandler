@@ -7,7 +7,7 @@ use ArtARTs36\GitHandler\Support\StatusResult;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;
 
-class StatusCommand extends AbstractCommandGroup implements GitStatusCommand
+class StatusCommand extends AbstractCommand implements GitStatusCommand
 {
     public function status(bool $short = false): Str
     {

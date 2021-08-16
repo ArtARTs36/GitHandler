@@ -12,7 +12,7 @@ use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 
-class PushCommand extends AbstractCommandGroup implements GitPushCommand
+class PushCommand extends AbstractCommand implements GitPushCommand
 {
     protected $branches;
 

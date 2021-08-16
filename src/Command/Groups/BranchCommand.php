@@ -13,7 +13,7 @@ use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 use ArtARTs36\Str\Str;
 
-class BranchCommand extends AbstractCommandGroup implements GitBranchCommand
+class BranchCommand extends AbstractCommand implements GitBranchCommand
 {
     public function checkout(string $branch, bool $merge = false): bool
     {

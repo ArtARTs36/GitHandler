@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Command\Groups;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 
-abstract class AbstractCommandGroup
+abstract class AbstractCommand
 {
     protected $builder;
 

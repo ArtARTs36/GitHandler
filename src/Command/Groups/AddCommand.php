@@ -9,7 +9,7 @@ use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 use ArtARTs36\Str\Str;
 
-class AddCommand extends AbstractCommandGroup implements GitAddCommand
+class AddCommand extends AbstractCommand implements GitAddCommand
 {
     /**
      * @inheritDoc

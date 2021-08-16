@@ -12,7 +12,7 @@ use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Support\FormatPlaceholder;
 use ArtARTs36\ShellCommand\ShellCommand;
 
-class TagCommandGroup extends AbstractCommandGroup implements GitTagCommandGroup
+class TagCommand extends AbstractCommand implements GitTagCommandGroup
 {
     public function getAll(?string $pattern = null): array
     {

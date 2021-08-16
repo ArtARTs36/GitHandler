@@ -2,17 +2,17 @@
 
 namespace ArtARTs36\ShellCommand\Tests\Unit\CommandGroups;
 
-use ArtARTs36\GitHandler\Command\Groups\HelpCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\HelpCommand;
 use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
 class HelpCommandGroupTest extends V2TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HelpCommandGroup::get
+     * @covers \ArtARTs36\GitHandler\Command\Groups\HelpCommand::get
      */
     public function testGet(): void
     {
-        $help = new HelpCommandGroup(
+        $help = new HelpCommand(
             $this->mockCommandBuilder,
             $this->mockCommandExecutor->nextOk('help information')
         );

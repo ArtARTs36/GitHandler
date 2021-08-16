@@ -11,7 +11,7 @@ use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 use ArtARTs36\ShellCommand\ShellCommand;
 
-class StashCommand extends AbstractCommandGroup implements GitStashCommand
+class StashCommand extends AbstractCommand implements GitStashCommand
 {
     public function stash(?string $message = null): bool
     {

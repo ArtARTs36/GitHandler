@@ -24,17 +24,17 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStashCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitStatusCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitTagCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\GrepGroupCommand;
-use ArtARTs36\GitHandler\Command\Groups\HelpCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\HelpCommand;
 use ArtARTs36\GitHandler\Command\Groups\HookCommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\IgnoreCommand;
-use ArtARTs36\GitHandler\Command\Groups\InitCommandGroup;
-use ArtARTs36\GitHandler\Command\Groups\LogCommandGroup;
-use ArtARTs36\GitHandler\Command\Groups\PathCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\InitCommand;
+use ArtARTs36\GitHandler\Command\Groups\LogCommand;
+use ArtARTs36\GitHandler\Command\Groups\PathCommand;
 use ArtARTs36\GitHandler\Command\Groups\PushCommand;
 use ArtARTs36\GitHandler\Command\Groups\RemoteCommand;
 use ArtARTs36\GitHandler\Command\Groups\StashCommand;
 use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
-use ArtARTs36\GitHandler\Command\Groups\TagCommandGroup;
+use ArtARTs36\GitHandler\Command\Groups\TagCommand;
 use ArtARTs36\GitHandler\Config\Configurators\BranchConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\CoreConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\CredentialConfigurator;
@@ -76,17 +76,17 @@ class GitV2
 
     public function helps(): GitHelpCommandGroup
     {
-        return new HelpCommandGroup($this->commandBuilder, $this->executor);
+        return new HelpCommand($this->commandBuilder, $this->executor);
     }
 
     public function paths(): GitPathCommandGroup
     {
-        return new PathCommandGroup($this->commandBuilder, $this->executor);
+        return new PathCommand($this->commandBuilder, $this->executor);
     }
 
     public function tags(): GitTagCommandGroup
     {
-        return new TagCommandGroup($this->commandBuilder, $this->executor);
+        return new TagCommand($this->commandBuilder, $this->executor);
     }
 
     public function hooks(): GitHookCommandGroup
@@ -100,7 +100,7 @@ class GitV2
 
     public function logs(): GitLogCommandGroup
     {
-        return new LogCommandGroup(new Logger(), $this->commandBuilder, $this->executor);
+        return new LogCommand(new Logger(), $this->commandBuilder, $this->executor);
     }
 
     public function greps(): GitGrepCommandGroup
@@ -110,7 +110,7 @@ class GitV2
 
     public function inits(): GitInitCommandGroup
     {
-        return new InitCommandGroup(
+        return new InitCommand(
             $this->fileSystem,
             $this->context,
             $this->commandBuilder,
