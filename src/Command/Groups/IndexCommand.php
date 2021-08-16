@@ -34,4 +34,18 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
             ->executeOrFail($this->executor)
             ->isOk();
     }
+
+    public function remove($files, bool $force = false): bool
+    {
+        return $this
+            ->builder
+            ->make()
+            ->addArgument('rm')
+            ->addArguments((array) $files)
+            ->when($force, function (ShellCommandInterface $command) {
+                $command->addOption('force');
+            })
+            ->executeOrFail($this->executor)
+            ->isOk();
+    }
 }
