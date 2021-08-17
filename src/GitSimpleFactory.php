@@ -11,7 +11,7 @@ use ArtARTs36\GitHandler\Config\Configurators\UserConfigurator;
 use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
-use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrl;
 use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl;
 use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl;

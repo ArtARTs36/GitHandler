@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Contracts;
+namespace ArtARTs36\GitHandler\Contracts\Handler;
 
 interface Versionable
 {

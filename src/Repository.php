@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Contracts\FileSystem;
-use ArtARTs36\GitHandler\Contracts\GitHandler;
+use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 
 class Repository
 {
