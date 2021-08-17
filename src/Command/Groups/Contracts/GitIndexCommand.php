@@ -31,6 +31,7 @@ interface GitIndexCommand
 
     /**
      * Git Reset Head
+     * @git-command git reset --$mode HEAD~
      */
     public function resetHead(ResetMode $mode): bool;
 }
