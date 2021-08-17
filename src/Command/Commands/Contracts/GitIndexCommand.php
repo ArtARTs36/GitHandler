@@ -10,6 +10,7 @@ use ArtARTs36\GitHandler\Enum\ResetMode;
 interface GitIndexCommand
 {
     /**
+     * Add file/files to git index
      * @git-command git add $file
      * @git-command git add $file $file $file
      * @param string|array<string> $file - file name to git added
@@ -17,6 +18,7 @@ interface GitIndexCommand
     public function add($file, bool $force = false): bool;
 
     /**
+     * Remove file/files from git index
      * @git-command git rm $file
      * @git-command git rm $file $file $file
      * @param string|array<string> $files
