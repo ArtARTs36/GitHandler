@@ -2,15 +2,15 @@
 
 namespace ArtARTs36\GitHandler\DocBuilder;
 
-use ArtARTs36\Str\Facade\Str;
+use phpDocumentor\Reflection\DocBlock;
 
 class MethodSignatureBuilder
 {
-    public static function build(\ReflectionMethod $method): array
+    public static function build(\ReflectionMethod $method, DocBlock $docBlock): array
     {
         $suggests = [];
 
-        $params = array_map(function (\ReflectionParameter $parameter) use (&$suggests) {
+        $params = array_map(function (\ReflectionParameter $parameter) use (&$suggests, $docBlock) {
             if ($parameter->hasType()) {
                 $parts = explode("\\", $parameter->getType());
 
@@ -21,6 +21,12 @@ class MethodSignatureBuilder
                 $type = end($parts);
             } else {
                 $type = 'string';
+
+                foreach ($docBlock->getTagsByName('param') as $tag) {
+                    if ($tag->getVariableName() === $parameter->name) {
+                        $type = (string) $tag->getType();
+                    }
+                }
             }
 
             return $type . ' $' . $parameter->name;

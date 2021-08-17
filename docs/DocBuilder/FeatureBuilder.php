@@ -22,7 +22,7 @@ class FeatureBuilder
 
         $gitCommands = $docBlock->getTagsByName('git-command');
 
-        [$signature, $suggests] = MethodSignatureBuilder::build($method);
+        [$signature, $suggests] = MethodSignatureBuilder::build($method, $docBlock);
 
         $suggests = $this->buildSuggests($suggests);
 
