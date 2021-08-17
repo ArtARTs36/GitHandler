@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommand;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
-use ArtARTs36\GitHandler\GitContext;
+use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 
 class InitCommand extends AbstractCommand implements GitInitCommand

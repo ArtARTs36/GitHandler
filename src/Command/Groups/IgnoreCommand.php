@@ -4,7 +4,7 @@ namespace ArtARTs36\GitHandler\Command\Groups;
 
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIgnoreCommand;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
-use ArtARTs36\GitHandler\GitContext;
+use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\Str\Str;
 
 class IgnoreCommand implements GitIgnoreCommand

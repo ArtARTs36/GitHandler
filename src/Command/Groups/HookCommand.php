@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Command\Groups\Contracts\GitHookCommand;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Data\Hook;
 use ArtARTs36\GitHandler\Exceptions\HookNotExists;
-use ArtARTs36\GitHandler\GitContext;
+use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Support\Chmod;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 

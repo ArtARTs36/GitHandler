@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Factory;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Contracts\Factory\GitHandlerFactory;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
-use ArtARTs36\GitHandler\GitContext;
+use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Git;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
 use ArtARTs36\ShellCommand\Executors\ProcOpenExecutor;

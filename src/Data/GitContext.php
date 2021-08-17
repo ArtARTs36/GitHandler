@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler;
+namespace ArtARTs36\GitHandler\Data;
 
 class GitContext
 {
