@@ -65,6 +65,9 @@ class Git implements GitHandler
 
     protected $context;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(
         GitCommandBuilder $builder,
         ShellCommandExecutor $executor,
@@ -77,6 +80,9 @@ class Git implements GitHandler
         $this->context = $context;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getContext(): GitContext
     {
         return $this->context;
