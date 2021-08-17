@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Origin;
 
 use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
-use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrl;
+use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrl;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 

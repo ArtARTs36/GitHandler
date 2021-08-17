@@ -13,8 +13,8 @@ use ArtARTs36\GitHandler\Contracts\Config\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrl;
-use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl;
-use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl;
+use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
+use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
 use ArtARTs36\GitHandler\Support\SimpleHttpClient;
@@ -64,8 +64,8 @@ class GitSimpleFactory
     public static function factoryOriginUrlSelector(): OriginUrlSelector
     {
         return OriginUrlSelector::make([
-            new GithubOriginUrl(),
-            new GitlabOriginUrl(),
+            new GithubOriginUrlBuilder(),
+            new GitlabOriginUrlBuilder(),
             new BitbucketOriginUrl(),
         ]);
     }

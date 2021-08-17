@@ -2,10 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Origin\Url;
 
-use ArtARTs36\GitHandler\Contracts\OriginUrl;
+use ArtARTs36\GitHandler\Contracts\Origin\OriginUrlBuilder;
 use ArtARTs36\GitHandler\Support\Uri;
 
-class GithubOriginUrl extends AbstractOriginUrl implements OriginUrl
+class GithubOriginUrlBuilder extends AbstractOriginUrlBuilder implements OriginUrlBuilder
 {
     protected $archiveSubdomain = 'codeload';
 

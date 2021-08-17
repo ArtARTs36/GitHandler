@@ -2,9 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Origin\Url;
 
-use ArtARTs36\GitHandler\Contracts\OriginUrl;
+use ArtARTs36\GitHandler\Contracts\Origin\OriginUrlBuilder;
 
-class GitlabOriginUrl extends AbstractOriginUrl implements OriginUrl
+class GitlabOriginUrlBuilder extends AbstractOriginUrlBuilder implements OriginUrlBuilder
 {
     protected $domains = [
         'gitlab.com',

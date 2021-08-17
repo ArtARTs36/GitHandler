@@ -1,11 +1,12 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Contracts;
+namespace ArtARTs36\GitHandler\Contracts\Origin;
 
+use ArtARTs36\GitHandler\Contracts\Handler\HasRemotes;
 use ArtARTs36\GitHandler\Data\Repo;
 use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
 
-interface OriginUrl
+interface OriginUrlBuilder
 {
     public function toCommit(HasRemotes $git, string $hash): string;
 

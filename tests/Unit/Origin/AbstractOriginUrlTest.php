@@ -2,14 +2,14 @@
 
 namespace ArtARTs36\GitHandler\Tests\Origin;
 
-use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrl;
+use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
 class AbstractOriginUrlTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrl::getAvailableDomains
-     * @covers \ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrl::__construct
+     * @covers \ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder::getAvailableDomains
+     * @covers \ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder::__construct
      */
     public function testGetAvailableDomains(): void
     {
@@ -26,9 +26,9 @@ class AbstractOriginUrlTest extends TestCase
         self::assertEquals(['test.ru'], $url->getAvailableDomains());
     }
 
-    protected function mock(array $domains = []): AbstractOriginUrl
+    protected function mock(array $domains = []): AbstractOriginUrlBuilder
     {
-        return new class($domains) extends AbstractOriginUrl {
+        return new class($domains) extends AbstractOriginUrlBuilder {
             public function toArchiveFromFetchUrl(string $fetchUrl, string $branch = 'master'): string
             {
                 //
@@ -42,7 +42,7 @@ class AbstractOriginUrlTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrl::toGitFolder
+     * @covers \ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder::toGitFolder
      */
     public function testToGitFolder(): void
     {

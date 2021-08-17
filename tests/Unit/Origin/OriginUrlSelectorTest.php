@@ -2,11 +2,11 @@
 
 namespace ArtARTs36\GitHandler\Tests\Origin;
 
-use ArtARTs36\GitHandler\Contracts\OriginUrl;
+use ArtARTs36\GitHandler\Contracts\OriginUrlBuilder;
 use ArtARTs36\GitHandler\Exceptions\OriginUrlNotFound;
-use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrl;
-use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl;
-use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrl;
+use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder;
+use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
+use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
@@ -18,7 +18,7 @@ class OriginUrlSelectorTest extends TestCase
     public function testHas(): void
     {
         $selector = new OriginUrlSelector([
-            'domain.ru' => new GithubOriginUrl(),
+            'domain.ru' => new GithubOriginUrlBuilder(),
         ]);
 
         //
@@ -33,7 +33,7 @@ class OriginUrlSelectorTest extends TestCase
     public function testSelectByDomain(): void
     {
         $selector = new OriginUrlSelector([
-            'domain.ru' => $url = new GithubOriginUrl(),
+            'domain.ru' => $url = new GithubOriginUrlBuilder(),
         ]);
 
         //
@@ -54,8 +54,8 @@ class OriginUrlSelectorTest extends TestCase
     public function testSelect(): void
     {
         $selector = new OriginUrlSelector([
-            'github.com' => $url = new GithubOriginUrl(),
-            'gitlab.com' => new GitlabOriginUrl(),
+            'github.com' => $url = new GithubOriginUrlBuilder(),
+            'gitlab.com' => new GitlabOriginUrlBuilder(),
         ]);
 
         //
@@ -80,9 +80,9 @@ class OriginUrlSelectorTest extends TestCase
         ], $this->getPropertyValueOfObject($selector, 'map'));
     }
 
-    protected function makeOriginUrl(array $domains): OriginUrl
+    protected function makeOriginUrl(array $domains): OriginUrlBuilder
     {
-        return new class($domains) extends AbstractOriginUrl {
+        return new class($domains) extends AbstractOriginUrlBuilder {
             public function toArchiveFromFetchUrl(string $fetchUrl, string $branch = 'master'): string
             {
                 return '';

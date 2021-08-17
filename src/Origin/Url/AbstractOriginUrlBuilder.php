@@ -2,14 +2,14 @@
 
 namespace ArtARTs36\GitHandler\Origin\Url;
 
-use ArtARTs36\GitHandler\Contracts\HasRemotes;
-use ArtARTs36\GitHandler\Contracts\OriginUrl;
+use ArtARTs36\GitHandler\Contracts\Handler\HasRemotes;
+use ArtARTs36\GitHandler\Contracts\Origin\OriginUrlBuilder;
 use ArtARTs36\GitHandler\Data\Repo;
 use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
 use ArtARTs36\GitHandler\Support\Uri;
 use ArtARTs36\Str\Str;
 
-abstract class AbstractOriginUrl implements OriginUrl
+abstract class AbstractOriginUrlBuilder implements OriginUrlBuilder
 {
     protected $domains = [];
 
@@ -20,12 +20,12 @@ abstract class AbstractOriginUrl implements OriginUrl
 
     public function toCommit(HasRemotes $git, string $hash): string
     {
-        return $this->toCommitFromFetchUrl($git->showRemote()->fetch, $hash);
+        return $this->toCommitFromFetchUrl($git->remotes()->showRemote()->fetch, $hash);
     }
 
     public function toArchive(HasRemotes $git, string $branch = 'master'): string
     {
-        return $this->toArchiveFromFetchUrl($git->showRemote()->fetch, $branch);
+        return $this->toArchiveFromFetchUrl($git->remotes()->showRemote()->fetch, $branch);
     }
 
     public function getAvailableDomains(): array

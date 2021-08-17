@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Origin;
 
 use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
-use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl;
+use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
 class GithubOriginUrlTest extends TestCase
@@ -31,14 +31,14 @@ class GithubOriginUrlTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toCommit
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toCommitFromFetchUrl
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder::toCommit
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder::toCommitFromFetchUrl
      * @dataProvider toCommitDataProvider
      */
     public function testToCommit(string $fetch, string $commit, string $expected): void
     {
         $git = $this->mockHasRemotes($fetch);
-        $url = new GithubOriginUrl();
+        $url = new GithubOriginUrlBuilder();
 
         //
 
@@ -46,24 +46,24 @@ class GithubOriginUrlTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toArchive
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toArchiveFromFetchUrl
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder::toArchive
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder::toArchiveFromFetchUrl
      * @dataProvider toArchiveDataProvider
      */
     public function testToArchive(string $fetch, string $branch, string $expected): void
     {
         $git = $this->mockHasRemotes($fetch);
-        $url = new GithubOriginUrl();
+        $url = new GithubOriginUrlBuilder();
 
         self::assertEquals($expected, $url->toArchive($git, $branch));
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::buildArchiveDomain
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder::buildArchiveDomain
      */
     public function testBuildArchiveDomain(): void
     {
-        $url = new GithubOriginUrl();
+        $url = new GithubOriginUrlBuilder();
 
         self::assertEquals(
             'codeload.github.com',
@@ -72,7 +72,7 @@ class GithubOriginUrlTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toRepoFromUrl
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder::toRepoFromUrl
      */
     public function testToRepoFromUrl(): void
     {
@@ -80,18 +80,18 @@ class GithubOriginUrlTest extends TestCase
             'name' => 'GitHandler',
             'user' => 'ArtARTs36',
             'url'  => 'https://github.com/ArtARTs36/GitHandler',
-        ], (new GithubOriginUrl())
+        ], (new GithubOriginUrlBuilder())
             ->toRepoFromUrl('https://github.com/ArtARTs36/GitHandler/tree/master/src')
             ->toArray());
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toRepoFromUrl
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder::toRepoFromUrl
      */
     public function testToRepoFromUrlOnIncorrectUri(): void
     {
         self::expectException(GivenInvalidUri::class);
 
-        (new GithubOriginUrl())->toRepoFromUrl('h');
+        (new GithubOriginUrlBuilder())->toRepoFromUrl('h');
     }
 }
