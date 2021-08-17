@@ -10,7 +10,7 @@ use GuzzleHttp\Psr7\Request;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 
-class RepositoryDownloader
+class Downloader
 {
     protected $url;
 

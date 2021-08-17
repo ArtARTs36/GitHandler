@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\GitSimpleFactory;
-use ArtARTs36\GitHandler\RepositoryDownloader;
+use ArtARTs36\GitHandler\Downloader;
 use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
 use ArtARTs36\GitHandler\Tests\Support\MockHttpClient;
 use Psr\Http\Message\RequestInterface;
@@ -11,11 +11,11 @@ use Psr\Http\Message\RequestInterface;
 class RepositoryDownloaderTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\RepositoryDownloader::download
+     * @covers \ArtARTs36\GitHandler\Downloader::download
      */
     public function testDownload(): void
     {
-        $downloader = new RepositoryDownloader(
+        $downloader = new Downloader(
             GitSimpleFactory::factoryOriginUrlSelector(),
             MockHttpClient::good('test-file'),
             $fileSystem = new ArrayFileSystem()
@@ -29,11 +29,11 @@ class RepositoryDownloaderTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\RepositoryDownloader::fetch
+     * @covers \ArtARTs36\GitHandler\Downloader::fetch
      */
     public function testFetch(): void
     {
-        $downloader = new RepositoryDownloader(
+        $downloader = new Downloader(
             GitSimpleFactory::factoryOriginUrlSelector(),
             MockHttpClient::good('test-file'),
             new ArrayFileSystem()
@@ -49,11 +49,11 @@ class RepositoryDownloaderTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\RepositoryDownloader::createRequestOnFetch
+     * @covers \ArtARTs36\GitHandler\Downloader::createRequestOnFetch
      */
     public function testCreateRequestOnFetch(): void
     {
-        $downloader = new RepositoryDownloader(
+        $downloader = new Downloader(
             GitSimpleFactory::factoryOriginUrlSelector(),
             MockHttpClient::good('test-file'),
             new ArrayFileSystem()

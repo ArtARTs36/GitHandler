@@ -52,9 +52,9 @@ class GitSimpleFactory
         );
     }
 
-    public static function factoryRepositoryDownloader(): RepositoryDownloader
+    public static function factoryRepositoryDownloader(): Downloader
     {
-        return new RepositoryDownloader(
+        return new Downloader(
             static::factoryOriginUrlSelector(),
             new SimpleHttpClient(),
             new LocalFileSystem()
