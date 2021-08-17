@@ -17,9 +17,9 @@ class DownloaderFactory
     {
         return new Downloader(
             OriginUrlSelector::make([
-                    new GithubOriginUrlBuilder(),
-                    new GitlabOriginUrlBuilder(),
-                    new BitbucketOriginUrl(),
+                new GithubOriginUrlBuilder(),
+                new GitlabOriginUrlBuilder(),
+                new BitbucketOriginUrl(),
             ]),
             $client,
             $files
