@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Command\Groups\Contracts;
 
 use ArtARTs36\GitHandler\Config\Subjects\SubjectsCollection;
-use ArtARTs36\GitHandler\Contracts\ConfigSubject;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 use ArtARTs36\GitHandler\Exceptions\ConfigDataNotFound;
 use ArtARTs36\GitHandler\Exceptions\SubjectConfiguratorNotFound;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Contracts;
+namespace ArtARTs36\GitHandler\Contracts\Config;
 
 use ArtARTs36\GitHandler\Config\Subjects\SubjectsCollection;
 use ArtARTs36\GitHandler\Exceptions\ConfigDataNotFound;

@@ -4,7 +4,7 @@ namespace ArtARTs36\GitHandler\Config\Configurators;
 
 use ArtARTs36\GitHandler\Config\Subjects\BranchList;
 use ArtARTs36\GitHandler\Config\Subjects\Branch;
-use ArtARTs36\GitHandler\Contracts\ConfigSubject;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 use ArtARTs36\GitHandler\Contracts\SubjectConfigurator;
 use ArtARTs36\Str\Str;
 

@@ -9,7 +9,7 @@ use ArtARTs36\GitHandler\Config\Configurators\CredentialConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\PackConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\UserConfigurator;
 use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
-use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrl;

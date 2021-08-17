@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Config\Configurators;
 
 use ArtARTs36\GitHandler\Config\Subjects\User;
-use ArtARTs36\GitHandler\Contracts\ConfigSubject;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 use ArtARTs36\GitHandler\Contracts\SubjectConfigurator;
 
 class UserConfigurator implements SubjectConfigurator

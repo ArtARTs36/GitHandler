@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Config;
 
 use ArtARTs36\GitHandler\Config\Subjects\AbstractSubject;
-use ArtARTs36\GitHandler\Contracts\ConfigSubject;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 use ArtARTs36\GitHandler\Contracts\SubjectConfigurator;
 use ArtARTs36\GitHandler\Exceptions\ConfigDataNotFound;
 use ArtARTs36\GitHandler\GitSimpleFactory;
