@@ -33,7 +33,7 @@ class RepositoryDownloaderTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Downloader::fetch
+     * @covers \ArtARTs36\GitHandler\Origin\Downloader::fetch
      */
     public function testFetch(): void
     {
@@ -55,7 +55,7 @@ class RepositoryDownloaderTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Downloader::createRequestOnFetch
+     * @covers \ArtARTs36\GitHandler\Origin\Downloader::createRequestOnFetch
      */
     public function testCreateRequestOnFetch(): void
     {

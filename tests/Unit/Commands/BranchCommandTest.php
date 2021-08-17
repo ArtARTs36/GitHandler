@@ -90,7 +90,7 @@ final class BranchCommandTest extends V2TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::newBranch
+     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::newBranch
      */
     public function testNewBranchOk(): void
     {
@@ -132,7 +132,7 @@ final class BranchCommandTest extends V2TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::switchBranch
+     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::switchBranch
      */
     public function testSwitchBranchOnInvalidReference(): void
     {
