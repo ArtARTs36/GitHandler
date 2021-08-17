@@ -2,22 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
-use ArtARTs36\GitHandler\Contracts\Handler\HasRemotes;
-use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
-use ArtARTs36\Str\Str;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
-    protected $fileSystem;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->fileSystem = new ArrayFileSystem();
-    }
-
     protected function getPropertyValueOfObject($object, string $property)
     {
         $getter = function () use ($property) {

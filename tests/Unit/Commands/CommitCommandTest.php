@@ -6,9 +6,9 @@ use ArtARTs36\GitHandler\Command\Groups\IndexCommand;
 use ArtARTs36\GitHandler\Command\Groups\CommitCommand;
 use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
-use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
+use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
-final class CommitCommandTest extends V2TestCase
+final class CommitCommandTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\CommitCommand::commit

@@ -9,9 +9,9 @@ use ArtARTs36\GitHandler\Config\Configurators\UserConfigurator;
 use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Config\Subjects\User;
-use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
+use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
-final class ConfigCommandTest extends V2TestCase
+final class ConfigCommandTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\ConfigCommand::getConfigList

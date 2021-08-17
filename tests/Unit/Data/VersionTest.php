@@ -3,9 +3,9 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Data;
 
 use ArtARTs36\GitHandler\Data\Version;
-use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
+use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
-class VersionTest extends V2TestCase
+class VersionTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Data\Version::__toString

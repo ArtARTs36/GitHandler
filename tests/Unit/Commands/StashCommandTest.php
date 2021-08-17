@@ -5,9 +5,9 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 use ArtARTs36\GitHandler\Command\Groups\StashCommand;
 use ArtARTs36\GitHandler\Exceptions\StashDoesNotExists;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
-use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
+use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
-final class StashCommandTest extends V2TestCase
+final class StashCommandTest extends GitTestCase
 {
     public function providerForTestStash(): array
     {

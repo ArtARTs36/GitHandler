@@ -3,9 +3,9 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\FileCommand;
-use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
+use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
-final class FileCommandTest extends V2TestCase
+final class FileCommandTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\FileCommand::createFile

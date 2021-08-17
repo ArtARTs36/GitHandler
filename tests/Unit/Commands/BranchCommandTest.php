@@ -8,9 +8,9 @@ use ArtARTs36\GitHandler\Exceptions\BranchAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 use ArtARTs36\GitHandler\Exceptions\ObjectNameNotValid;
 use ArtARTs36\GitHandler\Exceptions\ReferenceInvalid;
-use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
+use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
-final class BranchCommandTest extends V2TestCase
+final class BranchCommandTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::delete

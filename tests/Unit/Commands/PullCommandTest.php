@@ -3,9 +3,9 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\PullCommand;
-use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
+use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
-final class PullCommandTest extends V2TestCase
+final class PullCommandTest extends GitTestCase
 {
     public function providerForTestPull(): array
     {

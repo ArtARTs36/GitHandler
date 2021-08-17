@@ -6,9 +6,9 @@ use ArtARTs36\GitHandler\Command\Groups\TagCommand;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\TagNotFound;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
-use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
+use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
-final class TagCommandTest extends V2TestCase
+final class TagCommandTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::getAll

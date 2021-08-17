@@ -6,9 +6,9 @@ use ArtARTs36\GitHandler\Command\Groups\HookCommand;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Exceptions\HookNotExists;
 use ArtARTs36\GitHandler\Support\HookName;
-use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
+use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
-final class HookCommandTest extends V2TestCase
+final class HookCommandTest extends GitTestCase
 {
     protected function makeHookCommandGroup(): HookCommand
     {

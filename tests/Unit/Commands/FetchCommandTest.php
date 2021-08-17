@@ -3,9 +3,9 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\FetchCommand;
-use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
+use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
-final class FetchCommandTest extends V2TestCase
+final class FetchCommandTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\FetchCommand::fetch

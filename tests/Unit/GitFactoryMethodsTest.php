@@ -22,7 +22,7 @@ use ArtARTs36\GitHandler\Command\Groups\StashCommand;
 use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
 use ArtARTs36\GitHandler\Command\Groups\TagCommand;
 
-class GitFactoryMethodsTest extends V2TestCase
+class GitFactoryMethodsTest extends GitTestCase
 {
     public function providerForTestFactoryMethod(): array
     {

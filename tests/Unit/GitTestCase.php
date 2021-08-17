@@ -9,7 +9,7 @@ use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
 use ArtARTs36\GitHandler\Tests\Support\V2QueueCommandExecutor;
 use ArtARTs36\ShellCommand\ShellCommander;
 
-abstract class V2TestCase extends \PHPUnit\Framework\TestCase
+abstract class GitTestCase extends TestCase
 {
     /** @var GitCommandBuilder */
     protected $mockCommandBuilder;
@@ -40,14 +40,5 @@ abstract class V2TestCase extends \PHPUnit\Framework\TestCase
             $this->mockFileSystem,
             $this->mockGitContext
         );
-    }
-
-    protected function callMethodFromObject($object, string $method, ...$args)
-    {
-        $caller = function () use ($method, $args) {
-            return $this->$method(...$args);
-        };
-
-        return $caller->call($object);
     }
 }
