@@ -26,15 +26,6 @@ class Log
         $this->message = $message;
     }
 
-    /**
-     * @deprecated
-     * @see Commit::getAbbreviatedHash()
-     */
-    public function getAbbreviatedCommitHash(): string
-    {
-        return $this->commit->getAbbreviatedHash();
-    }
-
     public function equalsDate(\DateTimeInterface $date): bool
     {
         return $this->date->format('Y-m-d') === $date->format('Y-m-d');
