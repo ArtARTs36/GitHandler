@@ -30,7 +30,7 @@ final class CloneCommandTest extends V2TestCase
      */
     public function testCloneOnPathAlreadyExists(): void
     {
-        $this->mockGitContext = GitContext::make($dir ='/var/web/project');
+        $this->mockGitContext = GitContext::make('/var/web/project');
         $folder = 'project';
         $url = 'http://url.git';
 
@@ -39,7 +39,7 @@ final class CloneCommandTest extends V2TestCase
         $this->mockCommandExecutor->nextFailed("fatal: destination path '{$folder}' already exists " .
             "and is not an empty directory.");
 
-        $this->makeCloneCommand()->clone($url);
+        $this->makeCloneCommand()->clone($url, 'master');
     }
 
     private function makeCloneCommand(): CloneCommand
