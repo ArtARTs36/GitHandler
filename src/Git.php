@@ -3,7 +3,11 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
+use ArtARTs36\GitHandler\Command\Groups\CloneCommand;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitCloneCommand;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitFileCommand;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPullCommand;
+use ArtARTs36\GitHandler\Command\Groups\FileCommand;
 use ArtARTs36\GitHandler\Command\Groups\IndexCommand;
 use ArtARTs36\GitHandler\Command\Groups\BranchCommand;
 use ArtARTs36\GitHandler\Command\Groups\CommitCommand;
@@ -190,6 +194,11 @@ class Git implements GitHandler
         );
     }
 
+    public function clones(): GitCloneCommand
+    {
+        return new CloneCommand($this->fileSystem, $this->context, $this->commandBuilder, $this->executor);
+    }
+
     public function version(): Version
     {
         $result = $this
@@ -205,6 +214,18 @@ class Git implements GitHandler
         }, $result->match('/([0-9]+.[0-9]+.[0-9]+)/i')->sentences()));
     }
 
+    /**
+     * Delete local repository and fetch from origin
+     */
+    public function reinstall(?string $branch = null): void
+    {
+        $remote = $this->remotes()->showRemote()->fetch;
+
+        $this->delete();
+
+        $this->clones()->clone($remote, $branch);
+    }
+
     public function delete(): bool
     {
         return $this->fileSystem->removeDir($this->context->getRootDir());
@@ -213,5 +234,10 @@ class Git implements GitHandler
     public function pulls(): GitPullCommand
     {
         return new PullCommand($this->commandBuilder, $this->executor);
+    }
+
+    public function files(): GitFileCommand
+    {
+        return new FileCommand($this->fileSystem, $this->context);
     }
 }
