@@ -1,12 +1,16 @@
-### {$featureName}
+### * {$featureName}
 
 Method Signature:
+
+{$featureSuggestsClasses}
 
 ```php
 {$featureMethodSignature}
 ```
 
-Equals Git Command: `{$realGitCommand}`
+Equals Git Command:
+
+`{$realGitCommand}`
 
 Example:
 
