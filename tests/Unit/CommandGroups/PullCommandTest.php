@@ -3,7 +3,6 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Command\Groups\PullCommand;
-use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 
 class PullCommandTest extends V2TestCase
 {
