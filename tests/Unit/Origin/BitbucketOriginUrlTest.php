@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Origin;
 use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
 use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrl;
+use ArtARTs36\GitHandler\Tests\Support\MockHasRemotes;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
 class BitbucketOriginUrlTest extends TestCase
@@ -39,7 +40,7 @@ class BitbucketOriginUrlTest extends TestCase
      */
     public function testToCommit(string $fetch, string $commit, string $expected): void
     {
-        $git = $this->mockHasRemotes($fetch);
+        $git = new MockHasRemotes($fetch);
         $url = new BitbucketOriginUrl();
 
         //
@@ -53,7 +54,7 @@ class BitbucketOriginUrlTest extends TestCase
      */
     public function testToArchive(string $fetch, string $branch, string $expected): void
     {
-        $git = $this->mockHasRemotes($fetch);
+        $git = new MockHasRemotes($fetch);
         $url = new BitbucketOriginUrl();
 
         self::assertEquals($expected, $url->toArchive($git, $branch));

@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Tests\Origin;
 
 use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
 use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
+use ArtARTs36\GitHandler\Tests\Support\MockHasRemotes;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
 class GithubOriginUrlTest extends TestCase
@@ -37,7 +38,7 @@ class GithubOriginUrlTest extends TestCase
      */
     public function testToCommit(string $fetch, string $commit, string $expected): void
     {
-        $git = $this->mockHasRemotes($fetch);
+        $git = new MockHasRemotes($fetch);
         $url = new GithubOriginUrlBuilder();
 
         //
@@ -52,7 +53,7 @@ class GithubOriginUrlTest extends TestCase
      */
     public function testToArchive(string $fetch, string $branch, string $expected): void
     {
-        $git = $this->mockHasRemotes($fetch);
+        $git = new MockHasRemotes($fetch);
         $url = new GithubOriginUrlBuilder();
 
         self::assertEquals($expected, $url->toArchive($git, $branch));

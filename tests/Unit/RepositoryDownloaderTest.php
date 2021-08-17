@@ -2,28 +2,32 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
-use ArtARTs36\GitHandler\GitSimpleFactory;
 use ArtARTs36\GitHandler\Origin\Downloader;
+use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
+use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
+use ArtARTs36\GitHandler\Tests\Support\MockHasRemotes;
 use ArtARTs36\GitHandler\Tests\Support\MockHttpClient;
 use Psr\Http\Message\RequestInterface;
 
 class RepositoryDownloaderTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Downloader::download
+     * @covers \ArtARTs36\GitHandler\Origin\Downloader::download
      */
     public function testDownload(): void
     {
         $downloader = new Downloader(
-            GitSimpleFactory::factoryOriginUrlSelector(),
+            OriginUrlSelector::make([
+                new GithubOriginUrlBuilder(),
+            ]),
             MockHttpClient::good('test-file'),
             $fileSystem = new ArrayFileSystem()
         );
 
         $pathToSave = __DIR__ . '/archive.zip';
 
-        $downloader->download($this->mockHasRemotes('https://github.com/ArtARTs36/GitHandler.git'), $pathToSave);
+        $downloader->download(new MockHasRemotes('https://github.com/ArtARTs36/GitHandler.git'), $pathToSave);
 
         self::assertTrue($fileSystem->exists($pathToSave));
     }
@@ -34,7 +38,9 @@ class RepositoryDownloaderTest extends TestCase
     public function testFetch(): void
     {
         $downloader = new Downloader(
-            GitSimpleFactory::factoryOriginUrlSelector(),
+            OriginUrlSelector::make([
+                new GithubOriginUrlBuilder(),
+            ]),
             MockHttpClient::good('test-file'),
             new ArrayFileSystem()
         );
@@ -42,7 +48,7 @@ class RepositoryDownloaderTest extends TestCase
         $result = $this->callMethodFromObject(
             $downloader,
             'fetch',
-            $this->mockHasRemotes('https://github.com/ArtARTs36/GitHandler.git')
+            new MockHasRemotes('https://github.com/ArtARTs36/GitHandler.git')
         );
 
         self::assertEquals('test-file', $result);
@@ -54,7 +60,9 @@ class RepositoryDownloaderTest extends TestCase
     public function testCreateRequestOnFetch(): void
     {
         $downloader = new Downloader(
-            GitSimpleFactory::factoryOriginUrlSelector(),
+            OriginUrlSelector::make([
+                new GithubOriginUrlBuilder(),
+            ]),
             MockHttpClient::good('test-file'),
             new ArrayFileSystem()
         );
@@ -63,7 +71,7 @@ class RepositoryDownloaderTest extends TestCase
         $result = $this->callMethodFromObject(
             $downloader,
             'createRequestOnFetch',
-            $this->mockHasRemotes('https://github.com/ArtARTs36/GitHandler.git')
+            new MockHasRemotes('https://github.com/ArtARTs36/GitHandler.git')
         );
 
         self::assertEquals(

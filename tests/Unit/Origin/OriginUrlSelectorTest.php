@@ -2,12 +2,13 @@
 
 namespace ArtARTs36\GitHandler\Tests\Origin;
 
-use ArtARTs36\GitHandler\Contracts\OriginUrlBuilder;
+use ArtARTs36\GitHandler\Contracts\Origin\OriginUrlBuilder;
 use ArtARTs36\GitHandler\Exceptions\OriginUrlNotFound;
 use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
+use ArtARTs36\GitHandler\Tests\Support\MockHasRemotes;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
 class OriginUrlSelectorTest extends TestCase
@@ -60,7 +61,7 @@ class OriginUrlSelectorTest extends TestCase
 
         //
 
-        $git = $this->mockHasRemotes('https://github.com/repo/');
+        $git = new MockHasRemotes('https://github.com/repo/');
 
         self::assertSame($url, $selector->select($git));
     }

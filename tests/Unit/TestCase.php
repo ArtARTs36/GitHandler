@@ -2,17 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
-use ArtARTs36\GitHandler\Contracts\FileSystem;
-use ArtARTs36\GitHandler\Contracts\HasRemotes;
-use ArtARTs36\GitHandler\Contracts\LogParser;
+use ArtARTs36\GitHandler\Contracts\Handler\HasRemotes;
 use ArtARTs36\GitHandler\Data\Remotes;
-use ArtARTs36\GitHandler\Git;
-use ArtARTs36\GitHandler\GitSimpleFactory;
-use ArtARTs36\GitHandler\Logger;
 use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
-use ArtARTs36\GitHandler\Tests\Support\QueueCommandExecutor;
-use ArtARTs36\ShellCommand\ShellCommand;
-use ArtARTs36\ShellCommand\ShellCommander;
 use ArtARTs36\Str\Str;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
@@ -24,22 +16,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         parent::setUp();
 
         $this->fileSystem = new ArrayFileSystem();
-    }
-
-    protected function mockGit($shellResult = null, ?string $dir = null, ?LogParser $logger = null): Git
-    {
-        $dir = $dir ?? __DIR__;
-
-        $results = empty($shellResult) ? [''] : (array) $shellResult;
-
-        return new Git(
-            $dir,
-            $logger ?? new Logger(),
-            GitSimpleFactory::factoryConfigReader(),
-            $this->fileSystem,
-            new QueueCommandExecutor($results),
-            new ShellCommander()
-        );
     }
 
     protected function mockHasRemotes(string $fetch, ?string $push = null): HasRemotes
@@ -64,17 +40,17 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
             public function addRemote(string $shortName, string $url): bool
             {
-                //
+                return true;
             }
 
             public function removeRemote(string $shortName): bool
             {
-                // TODO: Implement removeRemote() method.
+                return true;
             }
 
             public function hasAnyRemoteUrl(string $url): bool
             {
-                // TODO: Implement hasAnyRemoteUrl() method.
+                return true;
             }
         };
     }
