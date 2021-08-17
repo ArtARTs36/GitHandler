@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Data\GitContext;
+use ArtARTs36\GitHandler\Git;
 use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
 use ArtARTs36\GitHandler\Tests\Support\V2QueueCommandExecutor;
 use ArtARTs36\ShellCommand\ShellCommander;
@@ -22,6 +23,9 @@ abstract class V2TestCase extends \PHPUnit\Framework\TestCase
     /** @var GitContext */
     protected $mockGitContext;
 
+    /** @var Git */
+    protected $mockGitHandler;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -30,6 +34,12 @@ abstract class V2TestCase extends \PHPUnit\Framework\TestCase
         $this->mockFileSystem = new ArrayFileSystem();
         $this->mockCommandExecutor = new V2QueueCommandExecutor();
         $this->mockGitContext = GitContext::make(__DIR__);
+        $this->mockGitHandler = new Git(
+            $this->mockCommandBuilder,
+            $this->mockCommandExecutor,
+            $this->mockFileSystem,
+            $this->mockGitContext
+        );
     }
 
     protected function callMethodFromObject($object, string $method, ...$args)
