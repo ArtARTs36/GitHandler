@@ -11,8 +11,6 @@ class Repository
 
     protected $fileSystem;
 
-    protected $ignore = null;
-
     /**
      * @codeCoverageIgnore
      */
