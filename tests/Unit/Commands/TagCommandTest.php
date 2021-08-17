@@ -15,7 +15,7 @@ final class TagCommandTest extends V2TestCase
      */
     public function testGetAll(): void
     {
-        $tags = $this->makeTagCommandGroup();
+        $tags = $this->makeTagCommand();
 
         $this->mockCommandExecutor->nextOk('0.1.0
 0.2.0
@@ -37,7 +37,7 @@ final class TagCommandTest extends V2TestCase
     {
         $this->mockCommandExecutor->nextOk('0.1.0');
 
-        self::assertTrue($this->makeTagCommandGroup()->exists('0.1.0'));
+        self::assertTrue($this->makeTagCommand()->exists('0.1.0'));
     }
 
     /**
@@ -48,7 +48,7 @@ final class TagCommandTest extends V2TestCase
     {
         $this->mockCommandExecutor->nextOk();
 
-        self::assertFalse($this->makeTagCommandGroup()->exists('0.1.0'));
+        self::assertFalse($this->makeTagCommand()->exists('0.1.0'));
     }
 
     /**
@@ -60,7 +60,7 @@ final class TagCommandTest extends V2TestCase
 
         $this->mockCommandExecutor->nextOk('1.0.0');
 
-        $this->makeTagCommandGroup()->add('1.0.0');
+        $this->makeTagCommand()->add('1.0.0');
     }
 
     /**
@@ -70,7 +70,7 @@ final class TagCommandTest extends V2TestCase
     {
         $this->mockCommandExecutor->nextOk()->nextOk();
 
-        self::assertTrue($this->makeTagCommandGroup()->add('0.1.0'));
+        self::assertTrue($this->makeTagCommand()->add('0.1.0'));
     }
 
     /**
@@ -83,7 +83,7 @@ final class TagCommandTest extends V2TestCase
             '3e60b7250a3fdaebd50edca9bbe8a1aea7f40410|fix Git::add at many files'
         );
 
-        $git = $this->makeTagCommandGroup();
+        $git = $this->makeTagCommand();
 
         $tag = $git->get('0.12.1');
 
@@ -109,7 +109,7 @@ final class TagCommandTest extends V2TestCase
 
         self::expectException(UnexpectedException::class);
 
-        $this->makeTagCommandGroup()->get(1);
+        $this->makeTagCommand()->get(1);
     }
 
     /**
@@ -123,12 +123,12 @@ final class TagCommandTest extends V2TestCase
             ->mockCommandExecutor
             ->nextFailed("ambiguous argument '111': unknown revision or path not in the working tree");
 
-        $git = $this->makeTagCommandGroup();
+        $git = $this->makeTagCommand();
 
         $git->get('111');
     }
 
-    protected function makeTagCommandGroup(): TagCommand
+    private function makeTagCommand(): TagCommand
     {
         return new TagCommand($this->mockCommandBuilder, $this->mockCommandExecutor);
     }
