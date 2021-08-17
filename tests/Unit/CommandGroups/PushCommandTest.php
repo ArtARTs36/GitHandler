@@ -9,49 +9,29 @@ use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 
 final class PushCommandTest extends V2TestCase
 {
-
     /**
-     * @covers \ArtARTs36\GitHandler\Git::push
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PushCommand::push
      */
     public function testPushBranchHasNoUpstreamBranch(): void
     {
-        $git = $this->mockGit("fatal: The current branch push-testing has no upstream branch.
+        $this->mockCommandExecutor->nextFailed("fatal: The current branch push-testing has no upstream branch.
 To push the current branch and set the remote as upstream, use
 
     git push --set-upstream origin push-testing
 ");
-
         self::expectException(BranchHasNoUpstream::class);
 
-        $git->push();
+        $this->makePushCommand()->push();
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Git::push
+     * @covers \ArtARTs36\GitHandler\Command\Groups\PushCommand::push
      */
     public function testPushGood(): void
     {
-        self::assertTrue($this->mockGit('Everything up-to-date')->push(false, 'push-testing'));
-    }
+        $this->mockCommandExecutor->nextOk('Everything up-to-date');
 
-    /**
-     * @covers \ArtARTs36\GitHandler\Git::push
-     */
-    public function testOnNullCommandResult(): void
-    {
-        self::expectException(UnexpectedException::class);
-
-        $this->mockGit(null)->push(true);
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Git::push
-     */
-    public function testOnEmptyCommandResult(): void
-    {
-        self::expectException(UnexpectedException::class);
-
-        $this->mockGit('')->push();
+        self::assertTrue($this->makePushCommand()->push(false, 'push-testing'));
     }
 
     /**
