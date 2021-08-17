@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Support;
 
 trait Enumerable
 {
+    /** @var string */
     public $value;
 
     /**

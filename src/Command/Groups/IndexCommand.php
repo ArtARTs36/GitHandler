@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Command\Groups;
 
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIndexCommand;
+use ArtARTs36\GitHandler\Enum\ResetMode;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
@@ -47,5 +48,22 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
             })
             ->executeOrFail($this->executor)
             ->isOk();
+    }
+
+    public function reset(ResetMode $mode, string $subject): bool
+    {
+        return $this
+            ->builder
+            ->make()
+            ->addArgument('reset')
+            ->addOption($mode->value)
+            ->addArgument($subject)
+            ->executeOrFail($this->executor)
+            ->isOk();
+    }
+
+    public function resetHead(ResetMode $mode): bool
+    {
+        return $this->reset($mode, 'HEAD~');
     }
 }

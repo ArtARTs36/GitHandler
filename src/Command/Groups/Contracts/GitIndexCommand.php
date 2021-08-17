@@ -2,8 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Command\Groups\Contracts;
 
+use ArtARTs36\GitHandler\Enum\ResetMode;
+
 /**
- * Git Index: (git add, git rm, ...)
+ * Git Index: (git add, git reset, git rm, ...)
  */
 interface GitIndexCommand
 {
@@ -20,4 +22,15 @@ interface GitIndexCommand
      * @param string|array<string> $files
      */
     public function remove($files, bool $force = false): bool;
+
+    /**
+     * Git Reset
+     * @git-command git reset --$mode $subject
+     */
+    public function reset(ResetMode $mode, string $subject): bool;
+
+    /**
+     * Git Reset Head
+     */
+    public function resetHead(ResetMode $mode): bool;
 }
