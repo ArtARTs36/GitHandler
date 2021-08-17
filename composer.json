@@ -30,7 +30,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "ArtARTs36\\GitHandler\\Tests\\": "tests/"
+            "ArtARTs36\\GitHandler\\Tests\\": "tests/",
+            "ArtARTs36\\GitHandler\\DocBuilder\\": "docs/DocBuilder"
         },
         "files": [
             "tests/functions.php"
