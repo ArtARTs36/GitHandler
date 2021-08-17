@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Origin\Url;
 
-use ArtARTs36\GitHandler\Contracts\HasRemotes;
+use ArtARTs36\GitHandler\Contracts\Handler\HasRemotes;
 use ArtARTs36\GitHandler\Contracts\Origin\OriginUrlBuilder;
 use ArtARTs36\GitHandler\Exceptions\OriginUrlNotFound;
 use ArtARTs36\GitHandler\Support\Uri;
@@ -41,7 +41,7 @@ class OriginUrlSelector
      */
     public function select(HasRemotes $git): OriginUrlBuilder
     {
-        return $this->selectByUrl($git->showRemote()->fetch);
+        return $this->selectByUrl($git->remotes()->showRemote()->fetch);
     }
 
     public function selectByUrl(string $url): OriginUrlBuilder
