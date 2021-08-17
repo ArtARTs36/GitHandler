@@ -18,6 +18,9 @@ class HookCommand implements GitHookCommand
 
     protected $context;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(
         FileSystem $fileSystem,
         ShellCommandExecutor $executor,

@@ -13,17 +13,17 @@ use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 final class BranchCommandTest extends V2TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::deleteBranch
+     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::delete
      */
     public function testDeleteOk(): void
     {
         $this->mockCommandExecutor->nextOk('Deleted branch config (was a48b10d).');
 
-        self::assertTrue($this->makeBranchCommand()->deleteBranch('config'));
+        self::assertTrue($this->makeBranchCommand()->delete('config'));
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::deleteBranch
+     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::delete
      */
     public function testDeleteBranchOnBranchNotFound(): void
     {
@@ -31,7 +31,7 @@ final class BranchCommandTest extends V2TestCase
 
         $this->mockCommandExecutor->nextFailed("error: branch 'test' not found");
 
-        $this->makeBranchCommand()->deleteBranch('test');
+        $this->makeBranchCommand()->delete('test');
     }
 
     /**

@@ -24,7 +24,7 @@ interface GitBranchCommand
      * @git-command git branch -d {$branch}
      * @throws BranchNotFound
      */
-    public function deleteBranch(string $branch): bool;
+    public function delete(string $branch): bool;
 
     /**
      * Create new Branch

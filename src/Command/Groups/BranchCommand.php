@@ -34,7 +34,7 @@ class BranchCommand extends AbstractCommand implements GitBranchCommand
             ->isOk();
     }
 
-    public function deleteBranch(string $branch): bool
+    public function delete(string $branch): bool
     {
         return $this
             ->builder
