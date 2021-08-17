@@ -1,16 +1,17 @@
 <?php
 
-namespace ArtARTs36\GitHandler;
+namespace ArtARTs36\GitHandler\Origin;
 
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\HasRemotes;
+use ArtARTs36\GitHandler\Contracts\Origin\OriginDownloader;
 use ArtARTs36\GitHandler\Exceptions\OriginUrlNotFound;
 use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 
-class Downloader
+class Downloader implements OriginDownloader
 {
     protected $url;
 

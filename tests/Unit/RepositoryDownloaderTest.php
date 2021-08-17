@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\GitSimpleFactory;
-use ArtARTs36\GitHandler\Downloader;
+use ArtARTs36\GitHandler\Origin\Downloader;
 use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
 use ArtARTs36\GitHandler\Tests\Support\MockHttpClient;
 use Psr\Http\Message\RequestInterface;

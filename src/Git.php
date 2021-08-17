@@ -46,6 +46,7 @@ use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
+use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\Str\Str;

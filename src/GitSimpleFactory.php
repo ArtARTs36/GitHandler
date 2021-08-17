@@ -12,12 +12,7 @@ use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Contracts\Config\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
-use ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrl;
-use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
-use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder;
-use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
-use ArtARTs36\GitHandler\Support\SimpleHttpClient;
 use ArtARTs36\ShellCommand\Executors\ProcOpenExecutor;
 use ArtARTs36\ShellCommand\ShellCommander;
 
@@ -50,28 +45,5 @@ class GitSimpleFactory
                 new BranchConfigurator(),
             ])
         );
-    }
-
-    public static function factoryRepositoryDownloader(): Downloader
-    {
-        return new Downloader(
-            static::factoryOriginUrlSelector(),
-            new SimpleHttpClient(),
-            new LocalFileSystem()
-        );
-    }
-
-    public static function factoryOriginUrlSelector(): OriginUrlSelector
-    {
-        return OriginUrlSelector::make([
-            new GithubOriginUrlBuilder(),
-            new GitlabOriginUrlBuilder(),
-            new BitbucketOriginUrl(),
-        ]);
-    }
-
-    public static function factoryRepository(GitHandler $git): Repository
-    {
-        return new Repository($git, new LocalFileSystem());
     }
 }
