@@ -9,7 +9,7 @@ interface GitArchiveCommand
 {
     /**
      * Create git archive
-     * @git-command git archive --output-path=$path
+     * @git-command git archive --output=$path HEAD
      */
     public function create(string $path): void;
 }
