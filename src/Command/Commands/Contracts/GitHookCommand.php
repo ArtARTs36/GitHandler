@@ -38,5 +38,8 @@ interface GitHookCommand
      */
     public function getAll(bool $onlyWorked = true): array;
 
+    /**
+     * Get path to hooks storage
+     */
     public function getHookPath(?string $name = null): string;
 }
