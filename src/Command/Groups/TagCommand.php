@@ -60,11 +60,13 @@ class TagCommand extends AbstractCommand implements GitTagCommand
             ]))
             ->addCutOption('s')
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
-                function (CommandResult $result) {
+                function (CommandResult $result) use ($tagName) {
                     if ($result
                         ->getError()
-                        ->contains("ambiguous argument '$tag': unknown revision or path not in the working tree")) {
-                        throw new TagNotFound($tag);
+                        ->contains(
+                            "ambiguous argument '$tagName': unknown revision or path not in the working tree"
+                        )) {
+                        throw new TagNotFound($tagName);
                     }
                 }
             ]))

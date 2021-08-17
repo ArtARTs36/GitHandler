@@ -103,23 +103,9 @@ final class TagCommandTest extends V2TestCase
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::get
      */
-    public function testGetTagOnUnexpectedException(): void
-    {
-        $this->mockCommandExecutor->nextFailed();
-
-        self::expectException(UnexpectedException::class);
-
-        $tags = $this->makeTagCommandGroup();
-
-        $tags->get(1);
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::get
-     */
     public function testGetTagOnUnexpectedExceptionWithNull(): void
     {
-        $this->mockCommandExecutor->nextFailed();
+        $this->mockCommandExecutor->nextOk('invalid structure answer');
 
         self::expectException(UnexpectedException::class);
 
