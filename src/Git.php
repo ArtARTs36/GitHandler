@@ -50,7 +50,7 @@ use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\Str\Str;
 
-class GitV2 implements GitHandler
+class Git implements GitHandler
 {
     protected $commandBuilder;
 
