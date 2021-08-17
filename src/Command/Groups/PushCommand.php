@@ -16,6 +16,9 @@ class PushCommand extends AbstractCommand implements GitPushCommand
 {
     protected $branches;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(
         GitBranchCommand $branches,
         GitCommandBuilder $builder,

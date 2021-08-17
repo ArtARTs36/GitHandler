@@ -27,4 +27,25 @@ class Version
     {
         return $this->full;
     }
+
+    /**
+     * @param static|string $comparedVersion
+     */
+    public function compare($comparedVersion)
+    {
+        if ($comparedVersion instanceof static) {
+            $comparedVersion = $comparedVersion->toTag();
+        }
+
+        return version_compare($this->toTag(), $comparedVersion);
+    }
+
+    public function toTag(): string
+    {
+        return implode('.', [
+            $this->major,
+            $this->minor,
+            $this->patch,
+        ]);
+    }
 }
