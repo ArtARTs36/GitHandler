@@ -24,7 +24,7 @@ class FeatureBuilder
 
         [$signature, $suggests] = MethodSignatureBuilder::build($method);
 
-        $suggests = count($suggests) === 0 ? '' : "See classes: ". implode("\n", $suggests);
+        $suggests = $this->buildSuggests($suggests);
 
         if (count($gitCommands) === 0) {
             return $this->stubs->load('page_command_feature_content.md')->render([
@@ -37,11 +37,28 @@ class FeatureBuilder
 
         return $this->stubs->load('page_git_command_feature_content.md')->render([
             'featureName' => $docBlock->getSummary(),
-            'realGitCommand' => (string) $gitCommands[0],
+            'realGitCommands' => implode("\n", array_map(function (string $command) {
+                return "`" . $command . "`";
+            }, $gitCommands)),
             'factoryMethodName' => $factoryMethodName,
             'featureMethodName' => $method->getShortName(),
             'featureMethodSignature' => $signature,
             'featureSuggestsClasses' => $suggests,
         ]);
+    }
+
+    protected function buildSuggests(array $suggests): string
+    {
+        if (count($suggests) === 0) {
+            return '';
+        }
+
+        $message = "See classes: \n";
+
+        foreach ($suggests as $suggestClass) {
+            $message .= "\n* $suggestClass";
+        }
+
+        return $message;
     }
 }

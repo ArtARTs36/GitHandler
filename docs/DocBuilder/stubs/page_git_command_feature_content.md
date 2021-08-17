@@ -1,6 +1,6 @@
 ### * {$featureName}
 
-Method Signature:
+#### Method Signature:
 
 {$featureSuggestsClasses}
 
@@ -8,11 +8,11 @@ Method Signature:
 {$featureMethodSignature}
 ```
 
-Equals Git Command:
+#### Equals Git Command:
 
-`{$realGitCommand}`
+{$realGitCommands}
 
-Example:
+#### Example:
 
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
