@@ -33,17 +33,4 @@ class GitSimpleFactory
             $executor
         );
     }
-
-    public static function factoryConfigReader(?array $configurators = null): ConfigResultParser
-    {
-        return new RegexConfigResultParser(
-            ConfiguratorsDict::make($configurators ?? [
-                new UserConfigurator(),
-                new CoreConfigurator(),
-                new PackConfigurator(),
-                new CredentialConfigurator(),
-                new BranchConfigurator(),
-            ])
-        );
-    }
 }
