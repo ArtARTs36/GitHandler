@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Command\Groups;
 use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIndexCommand;
 use ArtARTs36\GitHandler\Enum\ResetMode;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+use ArtARTs36\GitHandler\Exceptions\UnknownRevisionInWorkingTree;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\Result\CommandResult;
@@ -58,6 +59,13 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
             ->addArgument('reset')
             ->addOption($mode->value)
             ->addArgument($subject)
+            ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
+                function (CommandResult $result) use ($subject) {
+                    if ($result->getError()->contains('unknown revision or path not in the working tree')) {
+                        throw new UnknownRevisionInWorkingTree($subject);
+                    }
+                }
+            ]))
             ->executeOrFail($this->executor)
             ->isOk();
     }
