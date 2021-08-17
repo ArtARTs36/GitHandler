@@ -1,10 +1,11 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\CloneCommand;
+use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
-use ArtARTs36\GitHandler\GitContext;
+use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
 final class CloneCommandTest extends V2TestCase
 {
@@ -13,7 +14,7 @@ final class CloneCommandTest extends V2TestCase
      */
     public function testCloneOk(): void
     {
-        $this->mockGitContext = GitContext::make($dir ='/var/web/project');
+        $this->mockGitContext = GitContext::make('/var/web/project');
         $folder = 'project';
         $url = 'http://url.git';
 

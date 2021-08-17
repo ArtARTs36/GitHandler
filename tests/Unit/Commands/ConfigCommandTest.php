@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\ConfigCommand;
 use ArtARTs36\GitHandler\Config\Configurators\CoreConfigurator;
@@ -9,6 +9,7 @@ use ArtARTs36\GitHandler\Config\Configurators\UserConfigurator;
 use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Config\Subjects\User;
+use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
 final class ConfigCommandTest extends V2TestCase
 {

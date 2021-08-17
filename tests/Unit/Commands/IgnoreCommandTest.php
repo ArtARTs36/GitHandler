@@ -1,8 +1,9 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\IgnoreCommand;
+use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
 final class IgnoreCommandTest extends V2TestCase
 {

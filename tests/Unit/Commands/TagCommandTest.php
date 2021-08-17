@@ -8,12 +8,12 @@ use ArtARTs36\GitHandler\Exceptions\TagNotFound;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
-class TagCommandTest extends V2TestCase
+final class TagCommandTest extends V2TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand
+     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::getAll
      */
-    public function testGetTags(): void
+    public function testGetAll(): void
     {
         $tags = $this->makeTagCommandGroup();
 

@@ -1,9 +1,10 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
 use ArtARTs36\GitHandler\Support\StatusResult;
+use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 use ArtARTs36\Str\Str;
 
 final class StatusCommandTest extends V2TestCase

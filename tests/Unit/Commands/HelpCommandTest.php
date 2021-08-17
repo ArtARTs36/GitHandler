@@ -5,7 +5,7 @@ namespace ArtARTs36\ShellCommand\Tests\Unit\CommandGroups;
 use ArtARTs36\GitHandler\Command\Groups\HelpCommand;
 use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
-class HelpCommandTest extends V2TestCase
+final class HelpCommandTest extends V2TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\HelpCommand::get

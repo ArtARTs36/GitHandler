@@ -1,11 +1,12 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\IndexCommand;
 use ArtARTs36\GitHandler\Command\Groups\CommitCommand;
 use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
+use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
 final class CommitCommandTest extends V2TestCase
 {

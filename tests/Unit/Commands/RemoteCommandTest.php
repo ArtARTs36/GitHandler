@@ -1,11 +1,12 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\RemoteCommand;
 use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RemoteNotFound;
 use ArtARTs36\GitHandler\Exceptions\RemoteRepositoryNotFound;
+use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
 final class RemoteCommandTest extends V2TestCase
 {

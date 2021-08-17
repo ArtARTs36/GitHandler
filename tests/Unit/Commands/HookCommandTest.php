@@ -1,14 +1,14 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\HookCommand;
+use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Exceptions\HookNotExists;
-use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
-use ArtARTs36\GitHandler\GitContext;
 use ArtARTs36\GitHandler\Support\HookName;
+use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
-class HookCommandTest extends V2TestCase
+final class HookCommandTest extends V2TestCase
 {
     protected function makeHookCommandGroup(): HookCommand
     {

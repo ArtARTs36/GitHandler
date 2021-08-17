@@ -1,11 +1,12 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\BranchCommand;
 use ArtARTs36\GitHandler\Command\Groups\PushCommand;
 use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
+use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
 final class PushCommandTest extends V2TestCase
 {

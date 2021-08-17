@@ -1,12 +1,13 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit;
+namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\LogCommand;
 use ArtARTs36\GitHandler\Exceptions\BranchDoesNotHaveCommits;
 use ArtARTs36\GitHandler\Logger;
+use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
-class LogCommandTest extends V2TestCase
+final class LogCommandTest extends V2TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\LogCommand::getAll

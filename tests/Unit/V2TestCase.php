@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
-use ArtARTs36\GitHandler\GitContext;
+use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
 use ArtARTs36\GitHandler\Tests\Support\V2QueueCommandExecutor;
 use ArtARTs36\ShellCommand\ShellCommander;
