@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\HookCommand;
+use ArtARTs36\GitHandler\Command\Commands\HookCommand;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Exceptions\HookNotExists;
 use ArtARTs36\GitHandler\Support\HookName;
@@ -16,7 +16,7 @@ final class HookCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommand::has
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::has
      */
     public function testHasHookTrue(): void
     {
@@ -28,7 +28,7 @@ final class HookCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommand::has
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::has
      */
     public function testHasHookFalse(): void
     {
@@ -36,7 +36,7 @@ final class HookCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommand::delete
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::delete
      */
     public function testDeleteHookTrue(): void
     {
@@ -48,7 +48,7 @@ final class HookCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommand::delete
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::delete
      */
     public function testDeleteHookOnNotExists(): void
     {
@@ -60,8 +60,8 @@ final class HookCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommand::makeHookObject
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommand::makeHookObject
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::makeHookObject
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::makeHookObject
      */
     public function testGetHookGood(): void
     {
@@ -81,7 +81,7 @@ final class HookCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommand::get
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::get
      */
     public function testGetHookOnNotExists(): void
     {
@@ -91,7 +91,7 @@ final class HookCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommand::add
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::add
      */
     public function testAddHookGood(): void
     {
@@ -105,7 +105,7 @@ final class HookCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommand::getAll
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::getAll
      */
     public function testGetHooksOnEmpty(): void
     {
@@ -116,7 +116,7 @@ final class HookCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommand::getAll
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::getAll
      */
     public function testGetHooksOnlyWorked(): void
     {
@@ -130,7 +130,7 @@ final class HookCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\HookCommand::getAll
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::getAll
      */
     public function testGetHooks(): void
     {

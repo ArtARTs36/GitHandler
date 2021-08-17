@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\PullCommand;
+use ArtARTs36\GitHandler\Command\Commands\PullCommand;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class PullCommandTest extends GitTestCase
@@ -23,8 +23,8 @@ final class PullCommandTest extends GitTestCase
 
     /**
      * @dataProvider providerForTestPull
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PullCommand::pull
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PullCommand::buildPurePullCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PullCommand::pull
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PullCommand::buildPurePullCommand
      */
     public function testPullOk(string $commandResult, bool $expectedState): void
     {
@@ -35,8 +35,8 @@ final class PullCommandTest extends GitTestCase
 
     /**
      * @dataProvider providerForTestPull
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PullCommand::pull
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PullCommand::buildPurePullCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PullCommand::pull
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PullCommand::buildPurePullCommand
      */
     public function testPullBranchOk(string $commandResult, bool $expectedState): void
     {

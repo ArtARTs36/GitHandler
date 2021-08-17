@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Support;
 
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitRemoteCommand;
+use ArtARTs36\GitHandler\Command\Commands\Contracts\GitRemoteCommand;
 use ArtARTs36\GitHandler\Contracts\Handler\HasRemotes;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\Str\Str;

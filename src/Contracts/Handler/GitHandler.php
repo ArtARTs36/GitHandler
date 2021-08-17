@@ -2,9 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Handler;
 
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitFileCommand;
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitIndexCommand;
-use ArtARTs36\GitHandler\Command\Groups\Contracts\GitInitCommand;
+use ArtARTs36\GitHandler\Command\Commands\Contracts\GitFileCommand;
+use ArtARTs36\GitHandler\Command\Commands\Contracts\GitIndexCommand;
+use ArtARTs36\GitHandler\Command\Commands\Contracts\GitInitCommand;
 
 interface GitHandler extends Versionable, HasRemotes
 {

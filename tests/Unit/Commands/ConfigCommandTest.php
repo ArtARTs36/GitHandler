@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\ConfigCommand;
+use ArtARTs36\GitHandler\Command\Commands\ConfigCommand;
 use ArtARTs36\GitHandler\Config\Configurators\CoreConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\CredentialConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\UserConfigurator;
@@ -14,8 +14,8 @@ use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 final class ConfigCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\ConfigCommand::getConfigList
-     * @covers \ArtARTs36\GitHandler\Command\Groups\ConfigCommand::executeConfigList
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::getConfigList
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::executeConfigList
      */
     public function testGetConfigList(): void
     {
@@ -29,8 +29,8 @@ core.autocrlf=input
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\ConfigCommand::getConfigSubject
-     * @covers \ArtARTs36\GitHandler\Command\Groups\ConfigCommand::executeConfigList
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::getConfigSubject
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::executeConfigList
      */
     public function testGetConfigSubject(): void
     {
@@ -49,7 +49,7 @@ core.autocrlf=input
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\ConfigCommand::setConfig
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::setConfig
      */
     public function testSetConfig(): void
     {

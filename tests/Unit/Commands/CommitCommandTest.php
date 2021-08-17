@@ -2,16 +2,16 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\IndexCommand;
-use ArtARTs36\GitHandler\Command\Groups\CommitCommand;
-use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
+use ArtARTs36\GitHandler\Command\Commands\IndexCommand;
+use ArtARTs36\GitHandler\Command\Commands\CommitCommand;
+use ArtARTs36\GitHandler\Command\Commands\StatusCommand;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class CommitCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\CommitCommand::commit
+     * @covers \ArtARTs36\GitHandler\Command\Commands\CommitCommand::commit
      */
     public function testCommitOnNothingToCommit(): void
     {
@@ -23,7 +23,7 @@ final class CommitCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\CommitCommand::commit
+     * @covers \ArtARTs36\GitHandler\Command\Commands\CommitCommand::commit
      */
     public function testCommitOnFileChanged(): void
     {

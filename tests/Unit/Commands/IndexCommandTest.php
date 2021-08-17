@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\IndexCommand;
+use ArtARTs36\GitHandler\Command\Commands\IndexCommand;
 use ArtARTs36\GitHandler\Enum\ResetMode;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\UnknownRevisionInWorkingTree;
@@ -11,7 +11,7 @@ use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 final class IndexCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\IndexCommand::add
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::add
      */
     public function testAddOk(): void
     {
@@ -21,7 +21,7 @@ final class IndexCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\IndexCommand::add
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::add
      */
     public function testAddOnNotFound(): void
     {
@@ -33,7 +33,7 @@ final class IndexCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\IndexCommand::reset
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::reset
      */
     public function testResetOnUnknownRevision(): void
     {

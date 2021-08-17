@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\RemoteCommand;
+use ArtARTs36\GitHandler\Command\Commands\RemoteCommand;
 use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RemoteNotFound;
 use ArtARTs36\GitHandler\Exceptions\RemoteRepositoryNotFound;
@@ -11,8 +11,8 @@ use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 final class RemoteCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\RemoteCommand::showRemote
-     * @covers \ArtARTs36\GitHandler\Command\Groups\RemoteCommand::executeShowRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::showRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::executeShowRemote
      */
     public function testShowRemoteOnRemoteNotFound(): void
     {
@@ -27,8 +27,8 @@ fatal: repository 'https://github.com/ArtARTs36/test/' not found
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\RemoteCommand::showRemote
-     * @covers \ArtARTs36\GitHandler\Command\Groups\RemoteCommand::executeShowRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::showRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::executeShowRemote
      */
     public function testShowRemote(): void
     {
@@ -45,7 +45,7 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\RemoteCommand::addRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::addRemote
      */
     public function testAddRemoteAlreadyExists(): void
     {
@@ -57,7 +57,7 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\RemoteCommand::addRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::addRemote
      */
     public function testAddRemoteOnGood(): void
     {
@@ -67,7 +67,7 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\RemoteCommand::removeRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::removeRemote
      */
     public function testRemoveRemote(): void
     {
@@ -77,7 +77,7 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\RemoteCommand::removeRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::removeRemote
      */
     public function testRemoveRemoteOnNotFound(): void
     {
@@ -89,7 +89,7 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\RemoteCommand::hasAnyRemoteUrl
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::hasAnyRemoteUrl
      */
     public function testHasAnyRemoteUrl(): void
     {

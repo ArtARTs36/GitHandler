@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\CloneCommand;
+use ArtARTs36\GitHandler\Command\Commands\CloneCommand;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
@@ -10,7 +10,7 @@ use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 final class CloneCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\CloneCommand::clone
+     * @covers \ArtARTs36\GitHandler\Command\Commands\CloneCommand::clone
      */
     public function testCloneOk(): void
     {
@@ -26,7 +26,7 @@ final class CloneCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\CloneCommand::clone
+     * @covers \ArtARTs36\GitHandler\Command\Commands\CloneCommand::clone
      */
     public function testCloneOnPathAlreadyExists(): void
     {

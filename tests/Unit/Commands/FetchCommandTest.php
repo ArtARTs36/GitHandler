@@ -2,14 +2,14 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\FetchCommand;
+use ArtARTs36\GitHandler\Command\Commands\FetchCommand;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class FetchCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\FetchCommand::fetch
-     * @covers \ArtARTs36\GitHandler\Command\Groups\FetchCommand::buildFetchCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\FetchCommand::fetch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\FetchCommand::buildFetchCommand
      */
     public function testFetchGood(): void
     {
@@ -19,8 +19,8 @@ final class FetchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\FetchCommand::fetchAll
-     * @covers \ArtARTs36\GitHandler\Command\Groups\FetchCommand::buildFetchCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\FetchCommand::fetchAll
+     * @covers \ArtARTs36\GitHandler\Command\Commands\FetchCommand::buildFetchCommand
      */
     public function testFetchAllGood(): void
     {

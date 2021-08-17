@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\BranchCommand;
+use ArtARTs36\GitHandler\Command\Commands\BranchCommand;
 use ArtARTs36\GitHandler\Exceptions\AlreadySwitched;
 use ArtARTs36\GitHandler\Exceptions\BranchAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
@@ -13,7 +13,7 @@ use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 final class BranchCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::delete
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::delete
      */
     public function testDeleteOk(): void
     {
@@ -23,7 +23,7 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::delete
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::delete
      */
     public function testDeleteBranchOnBranchNotFound(): void
     {
@@ -35,7 +35,7 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::newBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::newBranch
      */
     public function testNewBranchOnInvalidObjectName(): void
     {
@@ -47,7 +47,7 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::getBranches
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::getBranches
      */
     public function testGetAll(): void
     {
@@ -68,7 +68,7 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::checkout
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::checkout
      */
     public function testCheckoutOk(): void
     {
@@ -78,7 +78,7 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::checkout
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::checkout
      */
     public function testCheckoutOnNotFoundBranch(): void
     {
@@ -90,7 +90,7 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::newBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::newBranch
      */
     public function testNewBranchOk(): void
     {
@@ -100,7 +100,7 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::newBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::newBranch
      */
     public function testNewBranchOnAlreadyExists(): void
     {
@@ -112,7 +112,7 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::getCurrentBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::getCurrentBranch
      */
     public function testGetCurrentBranch(): void
     {
@@ -122,7 +122,7 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::switchBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::switchBranch
      */
     public function testSwitchBranchOnGood(): void
     {
@@ -132,7 +132,7 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::switchBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::switchBranch
      */
     public function testSwitchBranchOnInvalidReference(): void
     {
@@ -144,7 +144,7 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\BranchCommand::switchBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::switchBranch
      */
     public function testSwitchBranchOnAlreadySwitched(): void
     {

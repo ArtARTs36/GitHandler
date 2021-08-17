@@ -2,25 +2,25 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
-use ArtARTs36\GitHandler\Command\Groups\BranchCommand;
-use ArtARTs36\GitHandler\Command\Groups\CloneCommand;
-use ArtARTs36\GitHandler\Command\Groups\CommitCommand;
-use ArtARTs36\GitHandler\Command\Groups\ConfigCommand;
-use ArtARTs36\GitHandler\Command\Groups\FileCommand;
-use ArtARTs36\GitHandler\Command\Groups\GrepCommand;
-use ArtARTs36\GitHandler\Command\Groups\HelpCommand;
-use ArtARTs36\GitHandler\Command\Groups\HookCommand;
-use ArtARTs36\GitHandler\Command\Groups\IgnoreCommand;
-use ArtARTs36\GitHandler\Command\Groups\IndexCommand;
-use ArtARTs36\GitHandler\Command\Groups\InitCommand;
-use ArtARTs36\GitHandler\Command\Groups\LogCommand;
-use ArtARTs36\GitHandler\Command\Groups\PathCommand;
-use ArtARTs36\GitHandler\Command\Groups\PullCommand;
-use ArtARTs36\GitHandler\Command\Groups\PushCommand;
-use ArtARTs36\GitHandler\Command\Groups\RemoteCommand;
-use ArtARTs36\GitHandler\Command\Groups\StashCommand;
-use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
-use ArtARTs36\GitHandler\Command\Groups\TagCommand;
+use ArtARTs36\GitHandler\Command\Commands\BranchCommand;
+use ArtARTs36\GitHandler\Command\Commands\CloneCommand;
+use ArtARTs36\GitHandler\Command\Commands\CommitCommand;
+use ArtARTs36\GitHandler\Command\Commands\ConfigCommand;
+use ArtARTs36\GitHandler\Command\Commands\FileCommand;
+use ArtARTs36\GitHandler\Command\Commands\GrepCommand;
+use ArtARTs36\GitHandler\Command\Commands\HelpCommand;
+use ArtARTs36\GitHandler\Command\Commands\HookCommand;
+use ArtARTs36\GitHandler\Command\Commands\IgnoreCommand;
+use ArtARTs36\GitHandler\Command\Commands\IndexCommand;
+use ArtARTs36\GitHandler\Command\Commands\InitCommand;
+use ArtARTs36\GitHandler\Command\Commands\LogCommand;
+use ArtARTs36\GitHandler\Command\Commands\PathCommand;
+use ArtARTs36\GitHandler\Command\Commands\PullCommand;
+use ArtARTs36\GitHandler\Command\Commands\PushCommand;
+use ArtARTs36\GitHandler\Command\Commands\RemoteCommand;
+use ArtARTs36\GitHandler\Command\Commands\StashCommand;
+use ArtARTs36\GitHandler\Command\Commands\StatusCommand;
+use ArtARTs36\GitHandler\Command\Commands\TagCommand;
 
 class GitFactoryMethodsTest extends GitTestCase
 {

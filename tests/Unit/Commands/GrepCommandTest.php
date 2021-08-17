@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands\CommandGroup;
 
-use ArtARTs36\GitHandler\Command\Groups\GrepCommand;
+use ArtARTs36\GitHandler\Command\Commands\GrepCommand;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class GrepCommandTest extends GitTestCase
@@ -17,7 +17,7 @@ final class GrepCommandTest extends GitTestCase
 
     /**
      * @dataProvider providerForTestGrepEmpty
-     * @covers \ArtARTs36\GitHandler\Command\Groups\GrepCommand::grep
+     * @covers \ArtARTs36\GitHandler\Command\Commands\GrepCommand::grep
      */
     public function testGrepEmpty(string $result, string $term): void
     {
@@ -27,7 +27,7 @@ final class GrepCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\GrepCommand::grep
+     * @covers \ArtARTs36\GitHandler\Command\Commands\GrepCommand::grep
      */
     public function testGrepFound(): void
     {

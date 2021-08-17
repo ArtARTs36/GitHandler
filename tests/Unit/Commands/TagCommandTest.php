@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\ShellCommand\Tests\Unit\CommandGroups;
 
-use ArtARTs36\GitHandler\Command\Groups\TagCommand;
+use ArtARTs36\GitHandler\Command\Commands\TagCommand;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\TagNotFound;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
@@ -11,7 +11,7 @@ use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 final class TagCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::getAll
+     * @covers \ArtARTs36\GitHandler\Command\Commands\TagCommand::getAll
      */
     public function testGetAll(): void
     {
@@ -30,8 +30,8 @@ final class TagCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::exists
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::getAll
+     * @covers \ArtARTs36\GitHandler\Command\Commands\TagCommand::exists
+     * @covers \ArtARTs36\GitHandler\Command\Commands\TagCommand::getAll
      */
     public function testIsTagExistsOnFound(): void
     {
@@ -41,8 +41,8 @@ final class TagCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::exists
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::getAll
+     * @covers \ArtARTs36\GitHandler\Command\Commands\TagCommand::exists
+     * @covers \ArtARTs36\GitHandler\Command\Commands\TagCommand::getAll
      */
     public function testIsTagExistsOnNotFound(): void
     {
@@ -52,7 +52,7 @@ final class TagCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::add
+     * @covers \ArtARTs36\GitHandler\Command\Commands\TagCommand::add
      */
     public function testAddTagOnAlreadyExists(): void
     {
@@ -64,7 +64,7 @@ final class TagCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::add
+     * @covers \ArtARTs36\GitHandler\Command\Commands\TagCommand::add
      */
     public function testAddTag(): void
     {
@@ -74,7 +74,7 @@ final class TagCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::get
+     * @covers \ArtARTs36\GitHandler\Command\Commands\TagCommand::get
      */
     public function testGetTagFound(): void
     {
@@ -101,7 +101,7 @@ final class TagCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::get
+     * @covers \ArtARTs36\GitHandler\Command\Commands\TagCommand::get
      */
     public function testGetTagOnUnexpectedExceptionWithNull(): void
     {
@@ -113,7 +113,7 @@ final class TagCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::get
+     * @covers \ArtARTs36\GitHandler\Command\Commands\TagCommand::get
      */
     public function testGetTagOnNotFound(): void
     {

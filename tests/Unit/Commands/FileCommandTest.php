@@ -2,13 +2,13 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\FileCommand;
+use ArtARTs36\GitHandler\Command\Commands\FileCommand;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class FileCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\FileCommand::createFile
+     * @covers \ArtARTs36\GitHandler\Command\Commands\FileCommand::createFile
      */
     public function testCreateFileWithoutFolder(): void
     {
@@ -18,8 +18,8 @@ final class FileCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\FileCommand::createFile
-     * @covers \ArtARTs36\GitHandler\Command\Groups\FileCommand::createFolder
+     * @covers \ArtARTs36\GitHandler\Command\Commands\FileCommand::createFile
+     * @covers \ArtARTs36\GitHandler\Command\Commands\FileCommand::createFolder
      */
     public function testCreateFileWithFolder(): void
     {

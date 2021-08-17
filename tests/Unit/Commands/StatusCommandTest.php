@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\StatusCommand;
+use ArtARTs36\GitHandler\Command\Commands\StatusCommand;
 use ArtARTs36\GitHandler\Support\StatusResult;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 use ArtARTs36\Str\Str;
@@ -10,7 +10,7 @@ use ArtARTs36\Str\Str;
 final class StatusCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StatusCommand::getUntrackedFiles
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StatusCommand::getUntrackedFiles
      */
     public function testGetUntrackedFiles(): void
     {
@@ -29,7 +29,7 @@ AM tests/Unit/StatusOperationsTest.php
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StatusCommand::getGroupsByStatusResult
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StatusCommand::getGroupsByStatusResult
      */
     public function testGetGroupsByStatusResultOnEmpty(): void
     {
@@ -44,7 +44,7 @@ AM tests/Unit/StatusOperationsTest.php
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StatusCommand::getGroupsByStatusResult
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StatusCommand::getGroupsByStatusResult
      */
     public function testGetGroupsByStatusResult(): void
     {
@@ -59,7 +59,7 @@ AM tests/Unit/StatusOperationsTest.php
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StatusCommand::getAddedFiles
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StatusCommand::getAddedFiles
      */
     public function testGetAddedFilesOnEmpty(): void
     {
@@ -69,7 +69,7 @@ AM tests/Unit/StatusOperationsTest.php
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StatusCommand::getAddedFiles
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StatusCommand::getAddedFiles
      */
     public function testGetAddedFiles(): void
     {
@@ -106,7 +106,7 @@ AM tests/Unit/StatusOperationsTest.php
 
     /**
      * @dataProvider providerForTestGetModifiedFiles
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StatusCommand::getModifiedFiles
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StatusCommand::getModifiedFiles
      */
     public function testGetModifiedFiles(string $commandResult, array $files): void
     {
@@ -135,7 +135,7 @@ AM tests/Unit/StatusOperationsTest.php
 
     /**
      * @dataProvider providerForTestHasChanges
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StatusCommand::hasChanges
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StatusCommand::hasChanges
      */
     public function testHasChanges(string $commandResult, bool $state): void
     {
@@ -162,7 +162,7 @@ AM tests/Unit/StatusOperationsTest.php
 
     /**
      * @dataProvider providerForTestStatus
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StatusCommand::status
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StatusCommand::status
      */
     public function testStatus(string $commandResult, string $return, bool $short): void
     {

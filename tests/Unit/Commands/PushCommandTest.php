@@ -2,8 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\BranchCommand;
-use ArtARTs36\GitHandler\Command\Groups\PushCommand;
+use ArtARTs36\GitHandler\Command\Commands\BranchCommand;
+use ArtARTs36\GitHandler\Command\Commands\PushCommand;
 use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
@@ -11,7 +11,7 @@ use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 final class PushCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PushCommand::push
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::push
      */
     public function testPushBranchHasNoUpstreamBranch(): void
     {
@@ -26,7 +26,7 @@ To push the current branch and set the remote as upstream, use
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PushCommand::push
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::push
      */
     public function testPushGood(): void
     {
@@ -36,7 +36,7 @@ To push the current branch and set the remote as upstream, use
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\PushCommand::pushOnAutoSetUpStream
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::pushOnAutoSetUpStream
      */
     public function testPushOnAutoSetUpStream(): void
     {

@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\InitCommand;
+use ArtARTs36\GitHandler\Command\Commands\InitCommand;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
@@ -21,7 +21,7 @@ final class InitCommandTest extends GitTestCase
 
     /**
      * @dataProvider provideForTestInit
-     * @covers \ArtARTs36\GitHandler\Command\Groups\InitCommand::init
+     * @covers \ArtARTs36\GitHandler\Command\Commands\InitCommand::init
      */
     public function testInit(string $commandResult, bool $return, bool $dirExists): void
     {
@@ -35,7 +35,7 @@ final class InitCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\InitCommand::init
+     * @covers \ArtARTs36\GitHandler\Command\Commands\InitCommand::init
      */
     public function testInitOnRepositoryAlreadyExists(): void
     {
@@ -48,7 +48,7 @@ final class InitCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\InitCommand::isInit
+     * @covers \ArtARTs36\GitHandler\Command\Commands\InitCommand::isInit
      */
     public function testIsInitOnFalse(): void
     {
@@ -60,7 +60,7 @@ final class InitCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\InitCommand::isInit
+     * @covers \ArtARTs36\GitHandler\Command\Commands\InitCommand::isInit
      */
     public function testIsInitOnTrue(): void
     {

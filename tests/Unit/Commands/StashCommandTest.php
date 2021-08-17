@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\StashCommand;
+use ArtARTs36\GitHandler\Command\Commands\StashCommand;
 use ArtARTs36\GitHandler\Exceptions\StashDoesNotExists;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
@@ -29,7 +29,7 @@ final class StashCommandTest extends GitTestCase
 
     /**
      * @dataProvider providerForTestStash
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StashCommand::stash
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StashCommand::stash
      */
     public function testStash(string $commandResult, bool $state): void
     {
@@ -54,7 +54,7 @@ final class StashCommandTest extends GitTestCase
 
     /**
      * @dataProvider providerForTestUnStash
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StashCommand::pop
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StashCommand::pop
      */
     public function testUnStash(string $commandResult, bool $state): void
     {
@@ -64,7 +64,7 @@ final class StashCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StashCommand::getStashList
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StashCommand::getStashList
      */
     public function testGetStashList(): void
     {
@@ -80,7 +80,7 @@ final class StashCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StashCommand::applyStash
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StashCommand::applyStash
      */
     public function testApplyStashGood(): void
     {
@@ -90,7 +90,7 @@ final class StashCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\StashCommand::applyStash
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StashCommand::applyStash
      */
     public function testApplyStashOnDoesNotExists(): void
     {

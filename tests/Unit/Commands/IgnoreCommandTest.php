@@ -2,13 +2,13 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
-use ArtARTs36\GitHandler\Command\Groups\IgnoreCommand;
+use ArtARTs36\GitHandler\Command\Commands\IgnoreCommand;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class IgnoreCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\IgnoreCommand::files
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IgnoreCommand::files
      */
     public function testFilesEmptyOnNotExistsIgnoreFile(): void
     {
@@ -18,7 +18,7 @@ final class IgnoreCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\IgnoreCommand::files
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IgnoreCommand::files
      */
     public function testFiles(): void
     {
@@ -33,7 +33,7 @@ final class IgnoreCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\IgnoreCommand::add
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IgnoreCommand::add
      */
     public function testAddOnEmptyFile(): void
     {
@@ -46,7 +46,7 @@ final class IgnoreCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\IgnoreCommand::add
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IgnoreCommand::add
      */
     public function testAddOnFilledFile(): void
     {
@@ -60,7 +60,7 @@ final class IgnoreCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\IgnoreCommand::has
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IgnoreCommand::has
      */
     public function testHas(): void
     {
@@ -72,7 +72,7 @@ final class IgnoreCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\IgnoreCommand::has
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IgnoreCommand::has
      */
     public function testHasOnNotExistsIgnoreFile(): void
     {
