@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler;
 
+use ArtARTs36\GitHandler\Command\Commands\ArchiveCommand;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Command\Commands\CloneCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitCloneCommand;
@@ -54,6 +55,7 @@ use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\Str\Str;
+use ArtARTs36\GitHandler\Command\Commands\Contracts\GitArchiveCommand;
 
 class Git implements GitHandler
 {
@@ -110,6 +112,11 @@ class Git implements GitHandler
             $this->executor,
             $this->context
         );
+    }
+
+    public function archives(): GitArchiveCommand
+    {
+        return new ArchiveCommand($this->commandBuilder, $this->executor);
     }
 
     public function logs(): GitLogCommand

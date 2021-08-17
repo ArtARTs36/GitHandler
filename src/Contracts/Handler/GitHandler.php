@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Handler;
 
+use ArtARTs36\GitHandler\Command\Commands\Contracts\GitArchiveCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitBranchCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitCloneCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitCommitCommand;
@@ -42,6 +43,11 @@ interface GitHandler extends Versionable, HasRemotes
      * Git Hooks
      */
     public function hooks(): GitHookCommand;
+
+    /**
+     * Git Archives
+     */
+    public function archives(): GitArchiveCommand;
 
     /**
      * Git Logs
