@@ -4,6 +4,8 @@ namespace ArtARTs36\GitHandler\Support;
 
 trait Enumerable
 {
+    public $value;
+
     /**
      * @codeCoverageIgnore
      */
@@ -16,5 +18,16 @@ trait Enumerable
         }
 
         return $cases[static::class];
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public static function from(string $value): self
+    {
+        $enum = new static();
+        $enum->value = $value;
+
+        return $enum;
     }
 }
