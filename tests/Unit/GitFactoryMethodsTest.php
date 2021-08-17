@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
+use ArtARTs36\GitHandler\Command\Commands\ArchiveCommand;
 use ArtARTs36\GitHandler\Command\Commands\BranchCommand;
 use ArtARTs36\GitHandler\Command\Commands\CloneCommand;
 use ArtARTs36\GitHandler\Command\Commands\CommitCommand;
@@ -46,6 +47,7 @@ class GitFactoryMethodsTest extends GitTestCase
             ['clones', CloneCommand::class],
             ['pulls', PullCommand::class],
             ['files', FileCommand::class],
+            ['archives', ArchiveCommand::class],
         ];
     }
 
