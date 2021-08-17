@@ -9,13 +9,25 @@ class GitCommandDocTag extends BaseTag
 {
     protected $name = 'git-command';
 
+    protected $command;
+
+    public function __construct(string $command)
+    {
+        $this->command = $command;
+    }
+
     public static function create(string $body)
     {
-        // TODO: Implement create() method.
+        return new static($body);
+    }
+
+    public function getCommand(): string
+    {
+        return $this->command;
     }
 
     public function __toString(): string
     {
-        return '';
+        return $this->command;
     }
 }
