@@ -74,7 +74,7 @@ final class TagCommandTest extends V2TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::add
+     * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand::get
      */
     public function testGetTagFound(): void
     {

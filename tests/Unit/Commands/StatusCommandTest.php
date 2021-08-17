@@ -152,6 +152,11 @@ AM tests/Unit/StatusOperationsTest.php
                 'A1 s',
                 false,
             ],
+            [
+                'A1 s',
+                'A1 s',
+                true,
+            ],
         ];
     }
 

@@ -74,7 +74,7 @@ final class BranchCommandTest extends V2TestCase
     {
         $this->mockCommandExecutor->nextOk("Already on 'master'");
 
-        self::assertTrue($this->makeBranchCommand()->checkout('master'));
+        self::assertTrue($this->makeBranchCommand()->checkout('master', true));
     }
 
     /**

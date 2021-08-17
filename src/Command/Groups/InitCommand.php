@@ -15,6 +15,9 @@ class InitCommand extends AbstractCommand implements GitInitCommand
 
     protected $context;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(
         FileSystem $fileSystem,
         GitContext $context,

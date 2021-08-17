@@ -10,6 +10,8 @@ use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\TagNotFound;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Support\FormatPlaceholder;
+use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
+use ArtARTs36\ShellCommand\Result\CommandResult;
 use ArtARTs36\ShellCommand\ShellCommand;
 
 class TagCommand extends AbstractCommand implements GitTagCommand
@@ -42,12 +44,13 @@ class TagCommand extends AbstractCommand implements GitTagCommand
             ->isEmpty();
     }
 
-    public function get(string $tag): Tag
+    public function get(string $tagName): Tag
     {
-        $result = $this->builder
+        $result = $this
+            ->builder
             ->make()
             ->addArgument('show')
-            ->addArgument($tag)
+            ->addArgument($tagName)
             ->addOptionWithValue('pretty', FormatPlaceholder::format([
                 FormatPlaceholder::AUTHOR_NAME,
                 FormatPlaceholder::AUTHOR_EMAIL,
@@ -56,17 +59,20 @@ class TagCommand extends AbstractCommand implements GitTagCommand
                 FormatPlaceholder::SUBJECT,
             ]))
             ->addCutOption('s')
-            ->execute($this->executor);
-
-        if ($result
-            ->getError()
-            ->contains("ambiguous argument '$tag': unknown revision or path not in the working tree")) {
-            throw new TagNotFound($tag);
-        }
+            ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
+                function (CommandResult $result) {
+                    if ($result
+                        ->getError()
+                        ->contains("ambiguous argument '$tag': unknown revision or path not in the working tree")) {
+                        throw new TagNotFound($tag);
+                    }
+                }
+            ]))
+            ->executeOrFail($this->executor);
 
         $parts = $result->getResult()->explode('|');
 
-        if ($result->isFail() || count($parts) !== 5) {
+        if (count($parts) !== 5) {
             throw new UnexpectedException($result->getCommandLine());
         }
 

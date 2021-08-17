@@ -47,6 +47,6 @@ final class PathCommandTest extends V2TestCase
             $this->mockCommandExecutor->nextOk('/Applications/Xcode.app/Contents/Developer/usr/share/info')
         );
 
-        self::assertEquals('/Applications/Xcode.app/Contents/Developer/usr/share/info', $paths->man());
+        self::assertEquals('/Applications/Xcode.app/Contents/Developer/usr/share/info', $paths->info());
     }
 }

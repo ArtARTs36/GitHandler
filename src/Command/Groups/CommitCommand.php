@@ -18,6 +18,9 @@ class CommitCommand extends AbstractCommand implements GitCommitCommand
 
     protected $statuses;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(
         GitIndexCommand $adds,
         GitStatusCommand $statuses,

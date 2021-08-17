@@ -15,6 +15,9 @@ class ConfigCommand extends AbstractCommand implements GitConfigCommand
 {
     protected $reader;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(ConfigResultParser $reader, GitCommandBuilder $builder, ShellCommandExecutor $executor)
     {
         $this->reader = $reader;
