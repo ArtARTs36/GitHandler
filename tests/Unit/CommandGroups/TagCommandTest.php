@@ -8,7 +8,7 @@ use ArtARTs36\GitHandler\Exceptions\TagNotFound;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
-class TagCommandGroupTest extends V2TestCase
+class TagCommandTest extends V2TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\TagCommand

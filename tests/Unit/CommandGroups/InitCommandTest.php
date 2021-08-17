@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 use ArtARTs36\GitHandler\Command\Groups\InitCommand;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 
-class InitCommandGroupTest extends V2TestCase
+class InitCommandTest extends V2TestCase
 {
     public function provideForTestInit(): array
     {

@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\CommandGroup;
 use ArtARTs36\GitHandler\Command\Groups\GrepCommand;
 use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
-class GrepCommandGroupTest extends V2TestCase
+class GrepCommandTest extends V2TestCase
 {
     public function providerForTestGrepEmpty(): array
     {

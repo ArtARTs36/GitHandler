@@ -5,7 +5,7 @@ namespace ArtARTs36\ShellCommand\Tests\Unit\CommandGroups;
 use ArtARTs36\GitHandler\Command\Groups\PathCommand;
 use ArtARTs36\GitHandler\Tests\Unit\V2TestCase;
 
-class PathCommandGroupTest extends V2TestCase
+class PathCommandTest extends V2TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\PathCommand::html

@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 use ArtARTs36\GitHandler\Command\Groups\IndexCommand;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 
-final class AddCommandTest extends V2TestCase
+final class IndexCommandTest extends V2TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\IndexCommand::add

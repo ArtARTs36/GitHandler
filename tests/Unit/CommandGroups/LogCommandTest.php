@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Command\Groups\LogCommand;
 use ArtARTs36\GitHandler\Exceptions\BranchDoesNotHaveCommits;
 use ArtARTs36\GitHandler\Logger;
 
-class LogCommandGroupTest extends V2TestCase
+class LogCommandTest extends V2TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Groups\LogCommand::getAll

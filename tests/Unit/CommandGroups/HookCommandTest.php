@@ -8,7 +8,7 @@ use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\GitContext;
 use ArtARTs36\GitHandler\Support\HookName;
 
-class HookCommandGroupTest extends V2TestCase
+class HookCommandTest extends V2TestCase
 {
     protected function makeHookCommandGroup(): HookCommand
     {
