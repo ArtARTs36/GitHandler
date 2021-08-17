@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
+use ArtARTs36\GitHandler\Command\Groups\Contracts\GitPullCommand;
 use ArtARTs36\GitHandler\Command\Groups\IndexCommand;
 use ArtARTs36\GitHandler\Command\Groups\BranchCommand;
 use ArtARTs36\GitHandler\Command\Groups\CommitCommand;
@@ -30,6 +31,7 @@ use ArtARTs36\GitHandler\Command\Groups\IgnoreCommand;
 use ArtARTs36\GitHandler\Command\Groups\InitCommand;
 use ArtARTs36\GitHandler\Command\Groups\LogCommand;
 use ArtARTs36\GitHandler\Command\Groups\PathCommand;
+use ArtARTs36\GitHandler\Command\Groups\PullCommand;
 use ArtARTs36\GitHandler\Command\Groups\PushCommand;
 use ArtARTs36\GitHandler\Command\Groups\RemoteCommand;
 use ArtARTs36\GitHandler\Command\Groups\StashCommand;
@@ -153,7 +155,7 @@ class GitV2
         return new StashCommand($this->commandBuilder, $this->executor);
     }
 
-    public function configs(): GitConfigCommand
+    public function config(): GitConfigCommand
     {
         return new ConfigCommand(
             new RegexConfigResultParser(
@@ -204,5 +206,10 @@ class GitV2
     public function delete(): bool
     {
         return $this->fileSystem->removeDir($this->context->getRootDir());
+    }
+
+    public function pulls(): GitPullCommand
+    {
+        return new PullCommand($this->commandBuilder, $this->executor);
     }
 }
