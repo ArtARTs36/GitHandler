@@ -3,7 +3,9 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Groups\IndexCommand;
+use ArtARTs36\GitHandler\Enum\ResetMode;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+use ArtARTs36\GitHandler\Exceptions\UnknownRevisionInWorkingTree;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class IndexCommandTest extends GitTestCase
@@ -15,7 +17,7 @@ final class IndexCommandTest extends GitTestCase
     {
         $this->mockCommandExecutor->nextOk();
 
-        self::assertTrue($this->makeAddCommand()->add('README.MD', true));
+        self::assertTrue($this->makeIndexCommand()->add('README.MD', true));
     }
 
     /**
@@ -27,10 +29,22 @@ final class IndexCommandTest extends GitTestCase
 
         $this->mockCommandExecutor->nextFailed("pathspec 'random.file' did not match any files");
 
-        $this->makeAddCommand()->add('random.file');
+        $this->makeIndexCommand()->add('random.file');
     }
 
-    private function makeAddCommand(): IndexCommand
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Groups\IndexCommand::reset
+     */
+    public function testResetOnUnknownRevision(): void
+    {
+        self::expectException(UnknownRevisionInWorkingTree::class);
+
+        $this->mockCommandExecutor->nextFailed('unknown revision or path not in the working tree');
+
+        $this->makeIndexCommand()->reset(ResetMode::from(ResetMode::SOFT), 'file.txt');
+    }
+
+    private function makeIndexCommand(): IndexCommand
     {
         return new IndexCommand($this->mockCommandBuilder, $this->mockCommandExecutor);
     }

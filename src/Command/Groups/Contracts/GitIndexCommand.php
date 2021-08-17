@@ -27,11 +27,11 @@ interface GitIndexCommand
      * Git Reset
      * @git-command git reset --$mode $subject
      */
-    public function reset(ResetMode $mode, string $subject): bool;
+    public function reset(ResetMode $mode, string $subject): void;
 
     /**
      * Git Reset Head
      * @git-command git reset --$mode HEAD~
      */
-    public function resetHead(ResetMode $mode): bool;
+    public function resetHead(ResetMode $mode): void;
 }

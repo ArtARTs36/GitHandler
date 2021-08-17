@@ -51,9 +51,9 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
             ->isOk();
     }
 
-    public function reset(ResetMode $mode, string $subject): bool
+    public function reset(ResetMode $mode, string $subject): void
     {
-        return $this
+        $this
             ->builder
             ->make()
             ->addArgument('reset')
@@ -66,12 +66,14 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
                     }
                 }
             ]))
-            ->executeOrFail($this->executor)
-            ->isOk();
+            ->executeOrFail($this->executor);
     }
 
-    public function resetHead(ResetMode $mode): bool
+    /**
+     * @codeCoverageIgnore
+     */
+    public function resetHead(ResetMode $mode): void
     {
-        return $this->reset($mode, 'HEAD~');
+        $this->reset($mode, 'HEAD~');
     }
 }
