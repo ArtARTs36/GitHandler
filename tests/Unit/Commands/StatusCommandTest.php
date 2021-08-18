@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Commands\StatusCommand;
-use ArtARTs36\GitHandler\Support\StatusResult;
+use ArtARTs36\GitHandler\Enum\StatusResult;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 use ArtARTs36\Str\Str;
 

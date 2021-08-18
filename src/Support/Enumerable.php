@@ -26,9 +26,21 @@ trait Enumerable
      */
     public static function from(string $value): self
     {
+        if (! static::has($value)) {
+            throw new \InvalidArgumentException();
+        }
+
         $enum = new static();
         $enum->value = $value;
 
         return $enum;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    protected static function has(string $value): bool
+    {
+        return array_key_exists($value, static::cases());
     }
 }
