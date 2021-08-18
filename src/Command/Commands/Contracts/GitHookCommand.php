@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Command\Commands\Contracts;
 
 use ArtARTs36\GitHandler\Data\Hook;
+use ArtARTs36\GitHandler\Enum\HookName;
 
 /**
  * Git Hooks
@@ -13,7 +14,7 @@ interface GitHookCommand
      * Add git Hook
      * @see HookName for $name
      */
-    public function add(string $name, string $script): bool;
+    public function add(HookName $name, string $script): bool;
 
     /**
      * Check exists Hook

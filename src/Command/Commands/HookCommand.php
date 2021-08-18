@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Command\Commands;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitHookCommand;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Data\Hook;
+use ArtARTs36\GitHandler\Enum\HookName;
 use ArtARTs36\GitHandler\Exceptions\HookNotExists;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Support\Chmod;
@@ -34,7 +35,7 @@ class HookCommand implements GitHookCommand
     /**
      * @see HookName for $name
      */
-    public function add(string $name, string $script): bool
+    public function add(HookName $name, string $script): bool
     {
         $path = $this->doAdd($name, $script);
 

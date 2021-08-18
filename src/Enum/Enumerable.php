@@ -41,6 +41,14 @@ trait Enumerable
      */
     protected static function has(string $value): bool
     {
-        return array_key_exists($value, static::cases());
+        return array_key_exists($value, array_flip(static::cases()));
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function __toString()
+    {
+        return $this->value;
     }
 }

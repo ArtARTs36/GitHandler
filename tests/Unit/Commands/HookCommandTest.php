@@ -99,7 +99,7 @@ final class HookCommandTest extends GitTestCase
 
         $hooks = $this->makeHookCommandGroup();
 
-        $hooks->add(HookName::UPDATE, 'ss');
+        $hooks->add(HookName::from(HookName::UPDATE), 'ss');
 
         self::assertTrue($this->mockFileSystem->exists($hooks->getHookPath(HookName::UPDATE)));
     }
