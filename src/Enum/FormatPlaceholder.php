@@ -1,12 +1,16 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Support;
+namespace ArtARTs36\GitHandler\Enum;
+
+use ArtARTs36\GitHandler\Support\Enumerable;
 
 /**
  * @link https://git-scm.com/docs/pretty-formats
  */
 class FormatPlaceholder
 {
+    use Enumerable;
+
     public const COMMIT_HASH = '%H';
     public const BODY = '%b';
 

@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Command\Commands\Contracts\GitStashCommand;
 use ArtARTs36\GitHandler\Data\Stash;
 use ArtARTs36\GitHandler\Exceptions\StashDoesNotExists;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
-use ArtARTs36\GitHandler\Support\FormatPlaceholder;
+use ArtARTs36\GitHandler\Enum\FormatPlaceholder;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 use ArtARTs36\ShellCommand\ShellCommand;

@@ -9,7 +9,7 @@ use ArtARTs36\GitHandler\Data\Tag;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\TagNotFound;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
-use ArtARTs36\GitHandler\Support\FormatPlaceholder;
+use ArtARTs36\GitHandler\Enum\FormatPlaceholder;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 use ArtARTs36\ShellCommand\ShellCommand;
