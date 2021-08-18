@@ -60,7 +60,7 @@ final class HookCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::makeHookObject
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::get
      * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::makeHookObject
      */
     public function testGetHookGood(): void
@@ -92,6 +92,7 @@ final class HookCommandTest extends GitTestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::add
+     * @covers \ArtARTs36\GitHandler\Command\Commands\HookCommand::doAdd
      */
     public function testAddHookGood(): void
     {
