@@ -96,7 +96,7 @@ final class BranchCommandTest extends GitTestCase
     {
         $this->mockCommandExecutor->nextOk();
 
-        self::assertTrue($this->makeBranchCommand()->checkout('master'));
+        self::assertNull($this->makeBranchCommand()->newBranch('master'));
     }
 
     /**

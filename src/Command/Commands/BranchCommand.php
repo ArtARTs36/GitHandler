@@ -54,9 +54,9 @@ class BranchCommand extends AbstractCommand implements GitBranchCommand
             ->contains("Deleted branch $branch");
     }
 
-    public function newBranch(string $branch): bool
+    public function newBranch(string $branch): void
     {
-        return $this
+        $this
             ->builder
             ->make()
             ->addArgument('branch')
@@ -74,8 +74,7 @@ class BranchCommand extends AbstractCommand implements GitBranchCommand
                     }
                 }
             ]))
-            ->executeOrFail($this->executor)
-            ->isOk();
+            ->executeOrFail($this->executor);
     }
 
     public function getBranches(): array
@@ -86,10 +85,6 @@ class BranchCommand extends AbstractCommand implements GitBranchCommand
             ->addArgument('branch')
             ->addCutOption('a')
             ->executeOrFail($this->executor);
-
-        if ($result->isEmpty()) {
-            return [];
-        }
 
         return array_map('trim', $result->getResult()->trim()->replace([
             '* master' => 'master',

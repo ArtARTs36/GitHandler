@@ -30,7 +30,7 @@ interface GitBranchCommand
      * Create new Branch
      * @git-command git branch {$branch}
      */
-    public function newBranch(string $branch): bool;
+    public function newBranch(string $branch): void;
 
     /**
      * Get all Branches
