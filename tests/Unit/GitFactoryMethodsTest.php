@@ -72,6 +72,7 @@ class GitFactoryMethodsTest extends GitTestCase
      * @covers \ArtARTs36\GitHandler\Git::clones
      * @covers \ArtARTs36\GitHandler\Git::pulls
      * @covers \ArtARTs36\GitHandler\Git::files
+     * @covers \ArtARTs36\GitHandler\Git::archives
      */
     public function testFactoryMethod(string $method, string $expectedClass): void
     {
