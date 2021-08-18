@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 use ArtARTs36\GitHandler\Command\Commands\HookCommand;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Exceptions\HookNotExists;
-use ArtARTs36\GitHandler\Support\HookName;
+use ArtARTs36\GitHandler\Enum\HookName;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class HookCommandTest extends GitTestCase

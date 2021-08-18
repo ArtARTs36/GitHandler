@@ -634,14 +634,14 @@ $git->autoCommit('Hello', true);
 
 Use [\ArtARTs36\GitHandler\Contracts\HasHooks](./src/Contracts/HasHooks.php)
 
-Hook names: [\ArtARTs36\GitHandler\Support\HookName](./src/Support/HookName.php)
+Hook names: [\ArtARTs36\GitHandler\Enum\HookName](src/Enum/HookName.php)
 
 ### * Add hook
 
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 
-$git->addHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG, "echo 'hello'");
+$git->addHook(\ArtARTs36\GitHandler\Enum\HookName::APPLY_PATH_MSG, "echo 'hello'");
 ```
 
 ### * Check hook exists
@@ -649,7 +649,7 @@ $git->addHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG, "echo 'hel
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 
-var_dump($git->hasHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG));
+var_dump($git->hasHook(\ArtARTs36\GitHandler\Enum\HookName::APPLY_PATH_MSG));
 ```
 
 ### * Delete hook
@@ -657,7 +657,7 @@ var_dump($git->hasHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG));
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 
-$git->deleteHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG);
+$git->deleteHook(\ArtARTs36\GitHandler\Enum\HookName::APPLY_PATH_MSG);
 ```
 
 ### * Get hooks
@@ -673,7 +673,7 @@ var_dump($git->getHooks());
 ```php
 $git = \ArtARTs36\GitHandler\GitSimpleFactory::factory('/var/web/project');
 
-var_dump($git->getHook(\ArtARTs36\GitHandler\Support\HookName::APPLY_PATH_MSG));
+var_dump($git->getHook(\ArtARTs36\GitHandler\Enum\HookName::APPLY_PATH_MSG));
 ```
 
 ---

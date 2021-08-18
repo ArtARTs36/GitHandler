@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Data;
 
 use ArtARTs36\GitHandler\Data\Hook;
-use ArtARTs36\GitHandler\Support\HookName;
+use ArtARTs36\GitHandler\Enum\HookName;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
 class HookTest extends TestCase
