@@ -1,7 +1,8 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Support;
+namespace ArtARTs36\GitHandler\Enum;
 
+use ArtARTs36\GitHandler\Support\Enumerable;
 use ArtARTs36\Str\Str;
 
 class BranchBadName

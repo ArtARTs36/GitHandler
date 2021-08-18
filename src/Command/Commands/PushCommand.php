@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitBranchCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitPushCommand;
 use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
-use ArtARTs36\GitHandler\Support\BranchBadName;
+use ArtARTs36\GitHandler\Enum\BranchBadName;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
