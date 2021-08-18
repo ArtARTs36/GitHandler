@@ -27,7 +27,7 @@ trait Enumerable
     public static function from(string $value): self
     {
         if (! static::has($value)) {
-            throw new \InvalidArgumentException();
+            throw new \InvalidArgumentException('Invalid Enum Value');
         }
 
         $enum = new static();
