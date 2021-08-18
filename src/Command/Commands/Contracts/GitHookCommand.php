@@ -12,27 +12,23 @@ interface GitHookCommand
 {
     /**
      * Add git Hook
-     * @see HookName for $name
      */
     public function add(HookName $name, string $script): bool;
 
     /**
      * Check exists Hook
-     * @see HookName for $name
      */
-    public function has(string $name): bool;
+    public function has(HookName $name): bool;
 
     /**
-     * @see HookName for $name
      * @covers \ArtARTs36\GitHandler\Exceptions\HookNotExists
      */
-    public function delete(string $name): bool;
+    public function delete(HookName $name): bool;
 
     /**
-     * @see HookName for $name
      * @throws \ArtARTs36\GitHandler\Exceptions\HookNotExists
      */
-    public function get(string $name): Hook;
+    public function get(HookName $name): Hook;
 
     /**
      * @return array<string, Hook>

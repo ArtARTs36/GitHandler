@@ -44,7 +44,7 @@ class HookCommand implements GitHookCommand
         return $this->has($name);
     }
 
-    public function get(string $name): Hook
+    public function get(HookName $name): Hook
     {
         if (! $this->has($name)) {
             throw new HookNotExists($name);
@@ -56,15 +56,12 @@ class HookCommand implements GitHookCommand
     /**
      * @see HookName for $name
      */
-    public function has(string $name): bool
+    public function has(HookName $name): bool
     {
         return $this->fileSystem->exists($this->getHookPath($name));
     }
 
-    /**
-     * @see HookName for $name
-     */
-    public function delete(string $name): bool
+    public function delete(HookName $name): bool
     {
         if (! $this->has($name)) {
             throw new HookNotExists($name);
