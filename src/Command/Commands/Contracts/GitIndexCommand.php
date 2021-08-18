@@ -23,7 +23,7 @@ interface GitIndexCommand
      * @git-command git rm $file1 $file2 ...
      * @param string|array<string> $files
      */
-    public function remove($files, bool $force = false): bool;
+    public function remove($files, bool $force = false): void;
 
     /**
      * Git Reset

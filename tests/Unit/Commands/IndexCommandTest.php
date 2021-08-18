@@ -44,6 +44,27 @@ final class IndexCommandTest extends GitTestCase
         $this->makeIndexCommand()->reset(ResetMode::from(ResetMode::SOFT), 'file.txt');
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::remove
+     */
+    public function testRemoveOk(): void
+    {
+        $this->mockCommandExecutor->nextOk();
+
+        self::assertNull($this->makeIndexCommand()->remove('file.txt'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::remove
+     */
+    public function testRemoveOnFileNotFound(): void
+    {
+        self::expectException(FileNotFound::class);
+
+        $this->mockCommandExecutor->nextFailed("pathspec 'f.txt' did not match any");
+        $this->makeIndexCommand()->remove('f.txt');
+    }
+
     private function makeIndexCommand(): IndexCommand
     {
         return new IndexCommand($this->mockCommandBuilder, $this->mockCommandExecutor);

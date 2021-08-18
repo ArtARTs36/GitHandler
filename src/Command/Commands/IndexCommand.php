@@ -37,9 +37,9 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
             ->isOk();
     }
 
-    public function remove($files, bool $force = false): bool
+    public function remove($files, bool $force = false): void
     {
-        return $this
+        $this
             ->builder
             ->make()
             ->addArgument('rm')
@@ -47,6 +47,11 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
             ->when($force, function (ShellCommandInterface $command) {
                 $command->addOption('force');
             })
+            ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
+                function (CommandResult $result) use ($files) {
+                    FileNotFound::handleIfSoOnAnyFile($result->getError());
+                }
+            ]))
             ->executeOrFail($this->executor)
             ->isOk();
     }
