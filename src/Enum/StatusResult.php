@@ -2,8 +2,6 @@
 
 namespace ArtARTs36\GitHandler\Enum;
 
-use ArtARTs36\GitHandler\Support\Enumerable;
-
 class StatusResult
 {
     use Enumerable;

@@ -2,8 +2,6 @@
 
 namespace ArtARTs36\GitHandler\Enum;
 
-use ArtARTs36\GitHandler\Support\Enumerable;
-
 /**
  * @link https://git-scm.com/docs/pretty-formats
  */

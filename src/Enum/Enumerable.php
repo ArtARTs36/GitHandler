@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Support;
+namespace ArtARTs36\GitHandler\Enum;
 
 trait Enumerable
 {
