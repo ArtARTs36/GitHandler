@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
 use ArtARTs36\GitHandler\Support\Uri;
 
-class UriTest extends TestCase
+final class UriTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Support\Uri::unParse

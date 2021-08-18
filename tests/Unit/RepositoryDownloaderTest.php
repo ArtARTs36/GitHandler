@@ -10,7 +10,7 @@ use ArtARTs36\GitHandler\Tests\Support\MockHasRemotes;
 use ArtARTs36\GitHandler\Tests\Support\MockHttpClient;
 use Psr\Http\Message\RequestInterface;
 
-class RepositoryDownloaderTest extends TestCase
+final class RepositoryDownloaderTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Origin\Downloader::download

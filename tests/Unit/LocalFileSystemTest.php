@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\PathIncorrect;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
 
-class LocalFileSystemTest extends TestCase
+final class LocalFileSystemTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getFromDirectory

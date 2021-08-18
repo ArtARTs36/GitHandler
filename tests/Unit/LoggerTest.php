@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Data\Author;
 use ArtARTs36\GitHandler\Logger;
 use ArtARTs36\Str\Str;
 
-class LoggerTest extends TestCase
+final class LoggerTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Logger::parse

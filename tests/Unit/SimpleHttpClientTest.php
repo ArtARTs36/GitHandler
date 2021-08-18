@@ -5,12 +5,12 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 use ArtARTs36\GitHandler\Support\SimpleHttpClient;
 use GuzzleHttp\Psr7\Request;
 
-class SimpleHttpClientTest extends TestCase
+final class SimpleHttpClientTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Support\SimpleHttpClient::sendRequest
      */
-    public function testSendRequest(): void
+    public function testSendRequestNotFound(): void
     {
         $client = new SimpleHttpClient();
 
@@ -22,8 +22,14 @@ class SimpleHttpClientTest extends TestCase
 
         self::assertEmpty($response->getBody()->getContents());
         self::assertEquals(404, $response->getStatusCode());
+    }
 
-        //
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\SimpleHttpClient::sendRequest
+     */
+    public function testSendRequestOk(): void
+    {
+        $client = new SimpleHttpClient();
 
         $response = $client->sendRequest(
             new Request('GET', 'php://filter/read=string.toupper/resource=data:,hello')

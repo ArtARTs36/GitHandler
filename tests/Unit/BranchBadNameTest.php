@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Enum\BranchBadName;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 use ArtARTs36\Str\Str;
 
-class BranchBadNameTest extends TestCase
+final class BranchBadNameTest extends TestCase
 {
     public function dataIsProvider(): array
     {
