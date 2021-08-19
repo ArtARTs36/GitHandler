@@ -4,7 +4,6 @@ namespace ArtARTs36\GitHandler\Contracts\Handler;
 
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitArchiveCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitBranchCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitCloneCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitCommitCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitConfigCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitFileCommand;
@@ -13,7 +12,7 @@ use ArtARTs36\GitHandler\Command\Commands\Contracts\GitHelpCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitHookCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitIgnoreCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitIndexCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitInitCommand;
+use ArtARTs36\GitHandler\Command\Commands\Contracts\GitSetupCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitLogCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitPathCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitPullCommand;
@@ -60,9 +59,9 @@ interface GitHandler extends Versionable, HasRemotes
     public function greps(): GitGrepCommand;
 
     /**
-     * Git Init
+     * Git Setup
      */
-    public function inits(): GitInitCommand;
+    public function setup(): GitSetupCommand;
 
     /**
      * Git Branches
@@ -108,11 +107,6 @@ interface GitHandler extends Versionable, HasRemotes
      * Git Ignore
      */
     public function ignores(): GitIgnoreCommand;
-
-    /**
-     * Git Clone
-     */
-    public function clones(): GitCloneCommand;
 
     /**
      * Git Pulls

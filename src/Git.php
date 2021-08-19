@@ -21,7 +21,7 @@ use ArtARTs36\GitHandler\Command\Commands\Contracts\GitGrepCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitHelpCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitHookCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitIgnoreCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitInitCommand;
+use ArtARTs36\GitHandler\Command\Commands\Contracts\GitSetupCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitLogCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitPathCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitPushCommand;
@@ -33,7 +33,7 @@ use ArtARTs36\GitHandler\Command\Commands\GrepCommand;
 use ArtARTs36\GitHandler\Command\Commands\HelpCommand;
 use ArtARTs36\GitHandler\Command\Commands\HookCommand;
 use ArtARTs36\GitHandler\Command\Commands\IgnoreCommand;
-use ArtARTs36\GitHandler\Command\Commands\InitCommand;
+use ArtARTs36\GitHandler\Command\Commands\SetupCommand;
 use ArtARTs36\GitHandler\Command\Commands\LogCommand;
 use ArtARTs36\GitHandler\Command\Commands\PathCommand;
 use ArtARTs36\GitHandler\Command\Commands\PullCommand;
@@ -129,9 +129,9 @@ class Git implements GitHandler
         return new GrepCommand($this->commandBuilder, $this->executor);
     }
 
-    public function inits(): GitInitCommand
+    public function setup(): GitSetupCommand
     {
-        return new InitCommand(
+        return new SetupCommand(
             $this->fileSystem,
             $this->context,
             $this->commandBuilder,
@@ -205,11 +205,6 @@ class Git implements GitHandler
             $this->context,
             $this->fileSystem
         );
-    }
-
-    public function clones(): GitCloneCommand
-    {
-        return new CloneCommand($this->fileSystem, $this->context, $this->commandBuilder, $this->executor);
     }
 
     public function version(): Version

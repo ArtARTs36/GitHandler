@@ -3,17 +3,17 @@
 namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitCloneCommand;
+use ArtARTs36\GitHandler\Command\Commands\Contracts\GitSetupCommand;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
-use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
+use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 use ArtARTs36\ShellCommand\ShellCommand;
 
-class CloneCommand extends AbstractCommand implements GitCloneCommand
+class SetupCommand extends AbstractCommand implements GitSetupCommand
 {
     protected $files;
 
@@ -23,15 +23,37 @@ class CloneCommand extends AbstractCommand implements GitCloneCommand
      * @codeCoverageIgnore
      */
     public function __construct(
-        FileSystem $files,
+        FileSystem $fileSystem,
         GitContext $context,
         GitCommandBuilder $builder,
         ShellCommandExecutor $executor
     ) {
-        $this->files = $files;
+        $this->files = $fileSystem;
         $this->context = $context;
 
         parent::__construct($builder, $executor);
+    }
+
+    public function init(): bool
+    {
+        if ($this->isInit()) {
+            throw new RepositoryAlreadyExists($this->context->getGitDir());
+        } elseif (! $this->files->exists($this->context->getGitDir())) {
+            $this->files->createDir($this->context->getRootDir());
+        }
+
+        return $this
+            ->builder
+            ->make()
+            ->addArgument('init')
+            ->executeOrFail($this->executor)
+            ->getResult()
+            ->contains('Initialized empty Git repository');
+    }
+
+    public function isInit(): bool
+    {
+        return $this->files->exists($this->context->getGitDir());
     }
 
     public function clone(string $url, ?string $branch = null, ?string $folder = null): bool

@@ -7,7 +7,7 @@ use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 /**
  * Git Init
  */
-interface GitInitCommand
+interface GitSetupCommand
 {
     /**
      * Init git repository
@@ -20,4 +20,11 @@ interface GitInitCommand
      * Check for init repository
      */
     public function isInit(): bool;
+
+    /**
+     * Git Clone
+     * @git-command git clone $url
+     * @git-command git clone $url -b $branch
+     */
+    public function clone(string $url, ?string $branch = null, ?string $folder = null): bool;
 }
