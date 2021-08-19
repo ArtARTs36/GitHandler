@@ -35,7 +35,7 @@ final class PullCommandTest extends GitTestCase
 
     /**
      * @dataProvider providerForTestPull
-     * @covers \ArtARTs36\GitHandler\Command\Commands\PullCommand::pull
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PullCommand::pullBranch
      * @covers \ArtARTs36\GitHandler\Command\Commands\PullCommand::buildPurePullCommand
      */
     public function testPullBranchOk(string $commandResult, bool $expectedState): void

@@ -32,7 +32,7 @@ To push the current branch and set the remote as upstream, use
     {
         $this->mockCommandExecutor->nextOk('Everything up-to-date');
 
-        self::assertTrue($this->makePushCommand()->push(false, 'push-testing'));
+        self::assertTrue($this->makePushCommand()->push(true, 'push-testing'));
     }
 
     /**
