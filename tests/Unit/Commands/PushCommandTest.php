@@ -45,6 +45,16 @@ To push the current branch and set the remote as upstream, use
         self::assertTrue($this->makePushCommand()->pushOnAutoSetUpStream());
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::pushOnAutoSetUpStream
+     */
+    public function testPushOnAutoSetUpStreamWithInvalidCurrentBranch(): void
+    {
+        $this->mockCommandExecutor->nextOk('HEAD')->nextOk('Everything up-to-date');
+
+        self::assertTrue($this->makePushCommand()->pushOnAutoSetUpStream());
+    }
+
     private function makePushCommand(): PushCommand
     {
         return new PushCommand(
