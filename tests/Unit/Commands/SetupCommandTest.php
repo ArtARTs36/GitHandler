@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
+use ArtARTs36\GitHandler\Command\Commands\RemoteCommand;
 use ArtARTs36\GitHandler\Command\Commands\SetupCommand;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
@@ -106,9 +107,22 @@ final class SetupCommandTest extends GitTestCase
         $this->makeSetupCommand()->clone($url, 'master');
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\SetupCommand::delete
+     */
+    public function testDelete(): void
+    {
+        $this->mockFileSystem->createDir($this->mockGitContext->getRootDir());
+
+        $this->makeSetupCommand()->delete();
+
+        self::assertFalse($this->mockFileSystem->exists($this->mockGitContext->getRootDir()));
+    }
+
     private function makeSetupCommand(): SetupCommand
     {
         return new SetupCommand(
+            new RemoteCommand($this->mockCommandBuilder, $this->mockCommandExecutor),
             $this->mockFileSystem,
             $this->mockGitContext,
             $this->mockCommandBuilder,

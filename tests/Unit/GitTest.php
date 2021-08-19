@@ -11,18 +11,6 @@ use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 final class GitTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Git::delete
-     */
-    public function testDelete(): void
-    {
-        $this->mockFileSystem->createDir($this->mockGitContext->getRootDir());
-
-        $this->mockGitHandler->delete();
-
-        self::assertFalse($this->mockFileSystem->exists($this->mockGitContext->getRootDir()));
-    }
-
-    /**
      * @covers \ArtARTs36\GitHandler\Git::version
      */
     public function testVersion(): void

@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
+use ArtARTs36\GitHandler\Command\Commands\Contracts\GitRemoteCommand;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitSetupCommand;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
@@ -15,6 +16,8 @@ use ArtARTs36\ShellCommand\ShellCommand;
 
 class SetupCommand extends AbstractCommand implements GitSetupCommand
 {
+    protected $remotes;
+
     protected $files;
 
     protected $context;
@@ -23,11 +26,13 @@ class SetupCommand extends AbstractCommand implements GitSetupCommand
      * @codeCoverageIgnore
      */
     public function __construct(
+        GitRemoteCommand $remotes,
         FileSystem $fileSystem,
         GitContext $context,
         GitCommandBuilder $builder,
         ShellCommandExecutor $executor
     ) {
+        $this->remotes = $remotes;
         $this->files = $fileSystem;
         $this->context = $context;
 
@@ -77,5 +82,25 @@ class SetupCommand extends AbstractCommand implements GitSetupCommand
             ->executeOrFail($this->executor)
             ->getResult()
             ->contains("Cloning into '{$folder}'");
+    }
+
+    /**
+     * Delete this repository
+     */
+    public function delete(): bool
+    {
+        return $this->files->removeDir($this->context->getRootDir());
+    }
+
+    /**
+     * Delete local repository and fetch from origin
+     */
+    public function reinstall(?string $branch = null): void
+    {
+        $remote = $this->remotes->showRemote()->fetch;
+
+        $this->delete();
+
+        $this->clone($remote, $branch);
     }
 }

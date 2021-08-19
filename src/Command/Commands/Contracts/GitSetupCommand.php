@@ -27,4 +27,14 @@ interface GitSetupCommand
      * @git-command git clone $url -b $branch
      */
     public function clone(string $url, ?string $branch = null, ?string $folder = null): bool;
+
+    /**
+     * Delete this repository
+     */
+    public function delete(): bool;
+
+    /**
+     * Delete local repository and fetch from origin
+     */
+    public function reinstall(?string $branch = null): void;
 }

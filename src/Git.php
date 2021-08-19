@@ -132,6 +132,7 @@ class Git implements GitHandler
     public function setup(): GitSetupCommand
     {
         return new SetupCommand(
+            new RemoteCommand($this->commandBuilder, $this->executor),
             $this->fileSystem,
             $this->context,
             $this->commandBuilder,
@@ -220,23 +221,6 @@ class Git implements GitHandler
         return new Version($result, ...array_map(function (Str $str) {
             return $str->toInteger();
         }, $result->match('/([0-9]+.[0-9]+.[0-9]+)/i')->sentences()));
-    }
-
-    /**
-     * Delete local repository and fetch from origin
-     */
-    public function reinstall(?string $branch = null): void
-    {
-        $remote = $this->remotes()->showRemote()->fetch;
-
-        $this->delete();
-
-        $this->clones()->clone($remote, $branch);
-    }
-
-    public function delete(): bool
-    {
-        return $this->fileSystem->removeDir($this->context->getRootDir());
     }
 
     public function pulls(): GitPullCommand
