@@ -32,14 +32,17 @@ final class GrepCommandTest extends GitTestCase
     public function testGrepFound(): void
     {
         $git = new GrepCommand($this->mockCommandBuilder, $this->mockCommandExecutor->nextOk(
-            "tests/Unit/Data/AuthorTest.php:24:        self::assertFalse();\n"
+            "tests/Unit/Data/AuthorTest.php:24:        self::assertFalse();\n".
+            "tests/Unit/Data/AuthorTest1.php:24:        self::assertFalse();\n"
         ));
 
         $matches = $git->grep('Author');
 
-        self::assertArrayHasKey(0, $matches);
-        self::assertEquals('tests/Unit/Data/AuthorTest.php', $matches[0]->file);
-        self::assertEquals(24, $matches[0]->line);
-        self::assertEquals('        self::assertFalse();', $matches[0]->content);
+        self::assertCount(2, $matches);
+        self::assertEquals([
+            'file' => 'tests/Unit/Data/AuthorTest.php',
+            'line' => 24,
+            'content' => '        self::assertFalse();',
+        ], $matches[0]->toArray());
     }
 }
