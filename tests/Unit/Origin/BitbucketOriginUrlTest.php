@@ -74,13 +74,22 @@ class BitbucketOriginUrlTest extends TestCase
         ], $repo->toArray());
     }
 
+    public function providerForTestToRepoFromUrlOnIncorrectUri(): array
+    {
+        return [
+            ['h'],
+            ['https://bitbucket.org/aukrainsky/'],
+        ];
+    }
+
     /**
+     * @dataProvider providerForTestToRepoFromUrlOnIncorrectUri
      * @covers \ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrl::toRepoFromUrl
      */
-    public function testToRepoFromUrlOnIncorrectUri(): void
+    public function testToRepoFromUrlOnIncorrectUri(string $url): void
     {
         self::expectException(GivenInvalidUri::class);
 
-        (new BitbucketOriginUrl())->toRepoFromUrl('h');
+        (new BitbucketOriginUrl())->toRepoFromUrl($url);
     }
 }
