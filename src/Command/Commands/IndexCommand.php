@@ -52,8 +52,7 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
                     FileNotFound::handleIfSoOnAnyFile($result->getError());
                 }
             ]))
-            ->executeOrFail($this->executor)
-            ->isOk();
+            ->executeOrFail($this->executor);
     }
 
     public function reset(ResetMode $mode, string $subject): void
