@@ -4,8 +4,6 @@ namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Command\Commands\ArchiveCommand;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
-use ArtARTs36\GitHandler\Command\Commands\CloneCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitCloneCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitFileCommand;
 use ArtARTs36\GitHandler\Command\Commands\Contracts\GitPullCommand;
 use ArtARTs36\GitHandler\Command\Commands\FileCommand;
