@@ -13,6 +13,9 @@ class GitCommandBuilder
 
     protected $dir;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(CommandBuilder $builder, string $bin, string $dir)
     {
         $this->builder = $builder;
