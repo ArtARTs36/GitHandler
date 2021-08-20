@@ -41,7 +41,7 @@ class OriginUrlSelector
      */
     public function select(HasRemotes $git): OriginUrlBuilder
     {
-        return $this->selectByUrl($git->remotes()->showRemote()->fetch);
+        return $this->selectByUrl($git->remotes()->show()->fetch);
     }
 
     public function selectByUrl(string $url): OriginUrlBuilder

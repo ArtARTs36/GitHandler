@@ -61,7 +61,7 @@ class PushCommand extends AbstractCommand implements GitPushCommand
     {
         $upstream = null;
 
-        if (($branch = $this->branches->getCurrentBranch()) && ! BranchBadName::is($branch)) {
+        if (($branch = $this->branches->current()) && ! BranchBadName::is($branch)) {
             $upstream = 'origin '. $branch;
         }
 

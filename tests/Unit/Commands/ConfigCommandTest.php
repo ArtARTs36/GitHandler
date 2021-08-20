@@ -14,7 +14,7 @@ use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 final class ConfigCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::getConfigList
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::getAll
      * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::executeConfigList
      */
     public function testGetConfigList(): void
@@ -25,11 +25,11 @@ user.email=artem@artem.ru
 core.autocrlf=input
 ");
 
-        self::assertCount(3, $this->makeConfigCommand()->getConfigList());
+        self::assertCount(3, $this->makeConfigCommand()->getAll());
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::getConfigSubject
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::getSubject
      * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::executeConfigList
      */
     public function testGetConfigSubject(): void
@@ -41,7 +41,7 @@ core.autocrlf=input
 ");
 
         /** @var User $subject */
-        $subject = $this->makeConfigCommand()->getConfigSubject('user');
+        $subject = $this->makeConfigCommand()->getSubject('user');
 
         self::assertInstanceOf(User::class, $subject);
         self::assertEquals('artem', $subject->name);
@@ -49,13 +49,13 @@ core.autocrlf=input
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::setConfig
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::set
      */
     public function testSetConfig(): void
     {
         $this->mockCommandExecutor->nextOk();
 
-        self::assertTrue($this->makeConfigCommand()->setConfig('user', 'name', 'artem', true));
+        self::assertTrue($this->makeConfigCommand()->set('user', 'name', 'artem', true));
     }
 
     protected function makeConfigCommand(): ConfigCommand

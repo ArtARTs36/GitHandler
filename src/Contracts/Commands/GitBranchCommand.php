@@ -30,14 +30,14 @@ interface GitBranchCommand
      * Create new Branch
      * @git-command git branch {$branch}
      */
-    public function newBranch(string $branch): void;
+    public function create(string $branch): void;
 
     /**
      * Get all Branches
      * @git-command git branch -a
      * @return array<string>
      */
-    public function getBranches(): array;
+    public function getAll(): array;
 
     /**
      * Switch to Branch
@@ -45,11 +45,11 @@ interface GitBranchCommand
      * @throws ReferenceInvalid
      * @throws AlreadySwitched
      */
-    public function switchBranch(string $branch): bool;
+    public function switch(string $branch): bool;
 
     /**
      * Get current Branch
      * @git-command git branch --show-current
      */
-    public function getCurrentBranch(): Str;
+    public function current(): Str;
 }

@@ -32,17 +32,17 @@ class MockHasRemotes implements HasRemotes
                 $this->push = $push;
             }
 
-            public function showRemote(): Remotes
+            public function show(): Remotes
             {
                 return new Remotes(new Str($this->fetch), new Str($this->push));
             }
 
-            public function addRemote(string $shortName, string $url): bool
+            public function add(string $shortName, string $url): bool
             {
                 return true;
             }
 
-            public function removeRemote(string $shortName): bool
+            public function remove(string $shortName): bool
             {
                 return true;
             }

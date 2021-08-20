@@ -20,12 +20,12 @@ abstract class AbstractOriginUrlBuilder implements OriginUrlBuilder
 
     public function toCommit(HasRemotes $git, string $hash): string
     {
-        return $this->toCommitFromFetchUrl($git->remotes()->showRemote()->fetch, $hash);
+        return $this->toCommitFromFetchUrl($git->remotes()->show()->fetch, $hash);
     }
 
     public function toArchive(HasRemotes $git, string $branch = 'master'): string
     {
-        return $this->toArchiveFromFetchUrl($git->remotes()->showRemote()->fetch, $branch);
+        return $this->toArchiveFromFetchUrl($git->remotes()->show()->fetch, $branch);
     }
 
     public function getAvailableDomains(): array

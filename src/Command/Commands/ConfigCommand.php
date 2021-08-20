@@ -25,17 +25,17 @@ class ConfigCommand extends AbstractCommand implements GitConfigCommand
         parent::__construct($builder, $executor);
     }
 
-    public function getConfigList(): SubjectsCollection
+    public function getAll(): SubjectsCollection
     {
         return $this->reader->parse($this->executeConfigList());
     }
 
-    public function getConfigSubject(string $prefix): ConfigSubject
+    public function getSubject(string $prefix): ConfigSubject
     {
         return $this->reader->parseByPrefix($this->executeConfigList(), $prefix);
     }
 
-    public function setConfig(string $scope, string $field, string $value, bool $replaceAll = false): bool
+    public function set(string $scope, string $field, string $value, bool $replaceAll = false): bool
     {
         return $this
             ->builder

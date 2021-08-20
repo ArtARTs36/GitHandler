@@ -11,7 +11,7 @@ use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 final class RemoteCommandTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::showRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::show
      * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::executeShowRemote
      */
     public function testShowRemoteOnRemoteNotFound(): void
@@ -23,11 +23,11 @@ final class RemoteCommandTest extends GitTestCase
 fatal: repository 'https://github.com/ArtARTs36/test/' not found
 ");
 
-        $this->makeRemoteCommand()->showRemote();
+        $this->makeRemoteCommand()->show();
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::showRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::show
      * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::executeShowRemote
      */
     public function testShowRemote(): void
@@ -41,11 +41,11 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
             'push' => 'https://github.com/ArtARTs36/GitHandler.git',
         ];
 
-        self::assertEquals($expected, $this->makeRemoteCommand()->showRemote()->toArray());
+        self::assertEquals($expected, $this->makeRemoteCommand()->show()->toArray());
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::addRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::add
      */
     public function testAddRemoteAlreadyExists(): void
     {
@@ -53,31 +53,31 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
 
         self::expectException(RemoteAlreadyExists::class);
 
-        $this->makeRemoteCommand()->addRemote('m', 'https://site.ru');
+        $this->makeRemoteCommand()->add('m', 'https://site.ru');
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::addRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::add
      */
     public function testAddRemoteOnGood(): void
     {
         $this->mockCommandExecutor->nextOk();
 
-        self::assertTrue($this->makeRemoteCommand()->addRemote('m', 'https://site.ru'));
+        self::assertTrue($this->makeRemoteCommand()->add('m', 'https://site.ru'));
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::removeRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::remove
      */
     public function testRemoveRemote(): void
     {
         $this->mockCommandExecutor->nextOk();
 
-        self::assertTrue($this->makeRemoteCommand()->removeRemote('origin'));
+        self::assertTrue($this->makeRemoteCommand()->remove('origin'));
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::removeRemote
+     * @covers \ArtARTs36\GitHandler\Command\Commands\RemoteCommand::remove
      */
     public function testRemoveRemoteOnNotFound(): void
     {
@@ -85,7 +85,7 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
 
         $this->mockCommandExecutor->nextFailed('No such remote: \'origin\'');
 
-        $this->makeRemoteCommand()->removeRemote('origin');
+        $this->makeRemoteCommand()->remove('origin');
     }
 
     /**

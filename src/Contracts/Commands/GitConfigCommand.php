@@ -16,7 +16,7 @@ interface GitConfigCommand
      * Get config list
      * @git-command git config --list
      */
-    public function getConfigList(): SubjectsCollection;
+    public function getAll(): SubjectsCollection;
 
     /**
      * Get config subject
@@ -24,12 +24,12 @@ interface GitConfigCommand
      * @throws ConfigDataNotFound
      * @throws SubjectConfiguratorNotFound
      */
-    public function getConfigSubject(string $prefix): ConfigSubject;
+    public function getSubject(string $prefix): ConfigSubject;
 
     /**
      * Set git config
      * @git-command git config $scope.$field=$value
      * @git-command git config $scope.$field=$value --replace-all
      */
-    public function setConfig(string $scope, string $field, string $value, bool $replaceAll = false): bool;
+    public function set(string $scope, string $field, string $value, bool $replaceAll = false): bool;
 }

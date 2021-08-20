@@ -14,7 +14,7 @@ use ArtARTs36\Str\Str;
 
 class RemoteCommand extends AbstractCommand implements GitRemoteCommand
 {
-    public function showRemote(): Remotes
+    public function show(): Remotes
     {
         $sh = $this->executeShowRemote();
 
@@ -26,13 +26,13 @@ class RemoteCommand extends AbstractCommand implements GitRemoteCommand
 
     public function hasAnyRemoteUrl(string $url): bool
     {
-        return ($remotes = $this->showRemote()) && ($remotes->fetch->equals($url) || $remotes->push->equals($url));
+        return ($remotes = $this->show()) && ($remotes->fetch->equals($url) || $remotes->push->equals($url));
     }
 
     /**
      * @inheritDoc
      */
-    public function removeRemote(string $shortName): bool
+    public function remove(string $shortName): bool
     {
         return $this
             ->builder
@@ -55,7 +55,7 @@ class RemoteCommand extends AbstractCommand implements GitRemoteCommand
     /**
      * @inheritDoc
      */
-    public function addRemote(string $shortName, string $url): bool
+    public function add(string $shortName, string $url): bool
     {
         return $this
             ->builder

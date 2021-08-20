@@ -35,7 +35,7 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::newBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::create
      */
     public function testNewBranchOnInvalidObjectName(): void
     {
@@ -43,11 +43,11 @@ final class BranchCommandTest extends GitTestCase
 
         $this->mockCommandExecutor->nextFailed('fatal: Not a valid object name: \'1234\'');
 
-        $this->makeBranchCommand()->newBranch('master');
+        $this->makeBranchCommand()->create('master');
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::getBranches
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::getAll
      */
     public function testGetAll(): void
     {
@@ -64,7 +64,7 @@ final class BranchCommandTest extends GitTestCase
             'repository-downloader',
             'remotes/origin/HEAD -> origin/master',
             'remotes/origin/config',
-        ], $this->makeBranchCommand()->getBranches());
+        ], $this->makeBranchCommand()->getAll());
     }
 
     /**
@@ -90,17 +90,17 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::newBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::create
      */
     public function testNewBranchOk(): void
     {
         $this->mockCommandExecutor->nextOk();
 
-        self::assertNull($this->makeBranchCommand()->newBranch('master'));
+        self::assertNull($this->makeBranchCommand()->create('master'));
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::newBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::create
      */
     public function testNewBranchOnAlreadyExists(): void
     {
@@ -108,31 +108,31 @@ final class BranchCommandTest extends GitTestCase
 
         self::expectException(BranchAlreadyExists::class);
 
-        $this->makeBranchCommand()->newBranch('test');
+        $this->makeBranchCommand()->create('test');
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::getCurrentBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::current
      */
     public function testGetCurrentBranch(): void
     {
         $this->mockCommandExecutor->nextOk('dev ');
 
-        self::assertEquals('dev', $this->makeBranchCommand()->getCurrentBranch());
+        self::assertEquals('dev', $this->makeBranchCommand()->current());
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::switchBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::switch
      */
     public function testSwitchBranchOnGood(): void
     {
         $this->mockCommandExecutor->nextOk('Switched to branch \'master\'');
 
-        self::assertTrue($this->makeBranchCommand()->switchBranch('master'));
+        self::assertTrue($this->makeBranchCommand()->switch('master'));
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::switchBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::switch
      */
     public function testSwitchBranchOnInvalidReference(): void
     {
@@ -140,11 +140,11 @@ final class BranchCommandTest extends GitTestCase
 
         $this->mockCommandExecutor->nextFailed('fatal: invalid reference: master');
 
-        $this->makeBranchCommand()->switchBranch('master');
+        $this->makeBranchCommand()->switch('master');
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::switchBranch
+     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::switch
      */
     public function testSwitchBranchOnAlreadySwitched(): void
     {
@@ -152,7 +152,7 @@ final class BranchCommandTest extends GitTestCase
 
         $this->mockCommandExecutor->nextFailed('Already on \'master\'');
 
-        $this->makeBranchCommand()->switchBranch('master');
+        $this->makeBranchCommand()->switch('master');
     }
 
     private function makeBranchCommand(): BranchCommand
