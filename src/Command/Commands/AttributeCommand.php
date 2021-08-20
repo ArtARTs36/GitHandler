@@ -18,8 +18,6 @@ class AttributeCommand implements GitAttributeCommand
 
     protected $context;
 
-    protected $folder;
-
     /**
      * @codeCoverageIgnore
      */
@@ -27,7 +25,7 @@ class AttributeCommand implements GitAttributeCommand
     {
         $this->files = $files;
         $this->context = $context;
-        $this->folder = $context->getRootDir();
+        $this->seeToFolder($context->getRootDir());
     }
 
     public function add(string $pattern, array $attributes): void
