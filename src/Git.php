@@ -49,8 +49,10 @@ use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
+use ArtARTs36\GitHandler\Contracts\GitTransaction;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Version;
+use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\Str\Str;
 use ArtARTs36\GitHandler\Contracts\Commands\GitArchiveCommand;
@@ -114,7 +116,12 @@ class Git implements GitHandler
 
     public function archives(): GitArchiveCommand
     {
-        return new ArchiveCommand($this->commandBuilder, $this->executor);
+        return new ArchiveCommand(
+            $this->fileSystem,
+            $this->context,
+            $this->commandBuilder,
+            $this->executor
+        );
     }
 
     public function logs(): GitLogCommand

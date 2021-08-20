@@ -23,8 +23,16 @@ class GitCommandBuilder
         $this->dir = $dir;
     }
 
+    /**
+     * @todo rename to 'git'
+     */
     public function make(?string $dir = null): ShellCommandInterface
     {
         return $this->builder->makeNavigateToDir($dir ?? $this->dir, $this->bin);
+    }
+
+    public function toDir(string $dir, string $bin): ShellCommandInterface
+    {
+        return $this->builder->makeNavigateToDir($dir, $bin);
     }
 }

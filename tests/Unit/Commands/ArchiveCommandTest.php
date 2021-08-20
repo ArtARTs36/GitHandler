@@ -32,6 +32,11 @@ final class ArchiveCommandTest extends GitTestCase
 
     private function makeArchiveCommand(): ArchiveCommand
     {
-        return new ArchiveCommand($this->mockCommandBuilder, $this->mockCommandExecutor);
+        return new ArchiveCommand(
+            $this->mockFileSystem,
+            $this->mockGitContext,
+            $this->mockCommandBuilder,
+            $this->mockCommandExecutor
+        );
     }
 }

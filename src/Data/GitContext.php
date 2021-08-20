@@ -41,4 +41,12 @@ class GitContext
     {
         return $this->gitDir;
     }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getRefsDir(): string
+    {
+        return $this->gitDir . DIRECTORY_SEPARATOR . 'refs';
+    }
 }
