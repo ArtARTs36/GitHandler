@@ -39,6 +39,8 @@ class ArchiveTransaction implements GitTransaction
             $this->files->removeDir($this->context->getRefsDir());
             $this->git->archives()->unPackRefs($archivePath);
             $this->git->garbage()->collect(GarbageCollectMode::from(GarbageCollectMode::AUTO));
+
+            throw $e;
         }
     }
 }
