@@ -64,13 +64,13 @@ final class StashCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\StashCommand::getStashList
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StashCommand::getList
      */
     public function testGetStashList(): void
     {
         $this->mockCommandExecutor->nextOk('stash@{7}|WIP on 2.x: a561440 up artarts36/str');
 
-        $result = $this->makeStashCommand()->getStashList();
+        $result = $this->makeStashCommand()->getList();
 
         self::assertEquals([
             'id' => 7,
@@ -80,17 +80,17 @@ final class StashCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\StashCommand::applyStash
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StashCommand::apply
      */
     public function testApplyStashGood(): void
     {
         $this->mockCommandExecutor->nextOk('Changes not staged for commit');
 
-        self::assertTrue($this->makeStashCommand()->applyStash(1));
+        self::assertTrue($this->makeStashCommand()->apply(1));
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\StashCommand::applyStash
+     * @covers \ArtARTs36\GitHandler\Command\Commands\StashCommand::apply
      */
     public function testApplyStashOnDoesNotExists(): void
     {
@@ -98,7 +98,7 @@ final class StashCommandTest extends GitTestCase
 
         self::expectException(StashDoesNotExists::class);
 
-        $this->makeStashCommand()->applyStash(1);
+        $this->makeStashCommand()->apply(1);
     }
 
     private function makeStashCommand(): StashCommand

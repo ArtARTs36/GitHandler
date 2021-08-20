@@ -27,11 +27,11 @@ interface GitStashCommand
      * @git-command git stash --list
      * @return array<Stash>
      */
-    public function getStashList(): array;
+    public function getList(): array;
 
     /**
      * Git apply stash
      * @git-command git apply stash stash@{$id}
      */
-    public function applyStash(int $id): bool;
+    public function apply(int $id): bool;
 }

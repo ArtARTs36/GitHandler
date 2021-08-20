@@ -47,7 +47,7 @@ class StashCommand extends AbstractCommand implements GitStashCommand
     /**
      * @return array<Stash>
      */
-    public function getStashList(): array
+    public function getList(): array
     {
         $result = $this
             ->builder
@@ -67,7 +67,7 @@ class StashCommand extends AbstractCommand implements GitStashCommand
         }, $result->globalMatch('/stash@{(.*)}\|.*on (.*):(.*)/i'));
     }
 
-    public function applyStash(int $id): bool
+    public function apply(int $id): bool
     {
         return $this
             ->builder
