@@ -65,7 +65,7 @@ class SetupCommand extends AbstractCommand implements GitSetupCommand
     {
         return $this
             ->builder
-            ->make($this->files->belowPath($this->context->getRootDir()))
+            ->make($this->files->downPath($this->context->getRootDir()))
             ->addArgument('clone')
             ->when($branch !== null, function (ShellCommand $command) use ($branch) {
                 $command

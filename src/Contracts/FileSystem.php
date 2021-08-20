@@ -15,7 +15,7 @@ interface FileSystem
      */
     public function getFromDirectory(string $path): array;
 
-    public function belowPath(string $path): string;
+    public function downPath(string $path): string;
 
     public function endFolder(string $path): string;
 

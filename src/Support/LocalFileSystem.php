@@ -53,7 +53,7 @@ class LocalFileSystem implements FileSystem
         return glob(realpath($path) . '/*');
     }
 
-    public function belowPath(string $path): string
+    public function downPath(string $path): string
     {
         // For not exists Path
         if (! $this->exists($path)) {
