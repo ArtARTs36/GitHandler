@@ -34,4 +34,6 @@ interface FileSystem
      * @throws FileNotFound
      */
     public function getLastUpdateDate(string $path): \DateTimeInterface;
+
+    public function getAbsolutePath(string $path): ?string;
 }

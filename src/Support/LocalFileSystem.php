@@ -50,13 +50,13 @@ class LocalFileSystem implements FileSystem
      */
     public function getFromDirectory(string $path): array
     {
-        return glob(realpath($path) . '/*');
+        return glob($this->getAbsolutePath($path) . '/*');
     }
 
     public function downPath(string $path): string
     {
         if ($this->exists($path)) {
-            return realpath($path . '/../');
+            return $this->getAbsolutePath($path . '/../');
         }
 
         return dirname($path);
@@ -137,5 +137,12 @@ class LocalFileSystem implements FileSystem
         $dateGetter = $this->fileDateGetter;
 
         return (new \DateTime())->setTimestamp($dateGetter($path));
+    }
+
+    public function getAbsolutePath(string $path): ?string
+    {
+        $real = realpath($path);
+
+        return $real === false ? null : $real;
     }
 }
