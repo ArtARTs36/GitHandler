@@ -30,7 +30,7 @@ class LogCommand extends AbstractCommand implements GitLogCommand
             ->addOption('oneline')
             ->addOption('decorate')
             ->addOption('graph')
-            ->addOptionWithValue('pretty', "format:'%H|%ad|%an|%ae|%Creset%s'")
+            ->addOptionWithValue('pretty', "format:'|log-entry|%H|%ad|%an|%ae|%Creset%s|'")
             ->addOptionWithValue('date', 'iso')
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) {

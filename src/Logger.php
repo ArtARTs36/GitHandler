@@ -11,7 +11,7 @@ use ArtARTs36\Str\Str;
 
 class Logger implements LogParser
 {
-    protected $regex = '/\* (.*)\|(.*)\|(.*)\|(.*)\|(.*)/m';
+    protected $regex = '/\|log-entry\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|/m';
 
     /** @var array<string, Author> $authors */
     protected $authors = [];
@@ -22,7 +22,7 @@ class Logger implements LogParser
 
         foreach ($raw->globalMatch($this->regex) as $match) {
             $logs[] = new Log(
-                new Commit($match[1]),
+                new Commit(trim($match[1])),
                 new \DateTime($match[2]),
                 $this->getOrCreateAuthor($match[3], $match[4]),
                 trim($match[5])

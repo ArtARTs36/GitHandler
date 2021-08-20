@@ -29,11 +29,11 @@ final class LoggerTest extends TestCase
         //
 
         $result = $logger->parse(
-            new Str('* 7d0aca97318037b6cbccc7d7169079b9dcfe6d49|2021-04-01 23:28:08 +0300|ArtARTs36|'
-            .'temicska99@mail.ru|update readme.md'
-            .'* 3ceda5859b20957d47bcbe519317de5ee9db938b|2021-04-01 23:25:19 +0300|ArtARTs36|temicska99@mail.ru|'
-            .'support download from bit bucket
-')
+            new Str('* |log-entry|7d0aca97318037b6cbccc7d7169079b9dcfe6d49|2021-04-01 23:28:08 +0300|ArtARTs36|'
+            .'temicska99@mail.ru|update readme.md|'
+            .'* |log-entry|3ceda5859b20957d47bcbe519317de5ee9db938b|2021-04-01 23:25:19 +0300|ArtARTs36'
+            .'|temicska99@mail.ru|support download from bit bucket|
+        ')
         );
 
         self::assertNotNull($result);
