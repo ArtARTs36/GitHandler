@@ -7,22 +7,34 @@ use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
 class AuthorTest extends TestCase
 {
+    public function providerForTestEquals(): array
+    {
+        return [
+            [
+                new Author('test', 'test@mail.ru'),
+                new Author('test', 'test@mail.ru'),
+                true,
+            ],
+            [
+                new Author('test', 'test@mail.ru'),
+                new Author('test', ''),
+                false,
+            ],
+            [
+                new Author('test', 'test@mail.ru'),
+                new Author('', 'test@mail.ru'),
+                false,
+            ],
+        ];
+    }
+
     /**
+     * @dataProvider providerForTestEquals
      * @covers \ArtARTs36\GitHandler\Data\Author::equals
      */
-    public function testEquals(): void
+    public function testEquals(Author $one, Author $two, bool $expected): void
     {
-        $author = new Author('test', 'test@mail.ru');
-
-        //
-
-        self::assertTrue($author->equals($author));
-        self::assertTrue($author->equals(new Author('test', 'test@mail.ru')));
-
-        //
-
-        self::assertFalse($author->equals(new Author('test', '')));
-        self::assertFalse($author->equals(new Author('', 'test@mail.ru')));
+        self::assertSame($expected, $one->equals($two));
     }
 
     public function toStringDataProvider(): array
