@@ -10,16 +10,21 @@ final class LoggerTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Logger::parse
+     */
+    public function testParseOnEmptyRaw(): void
+    {
+        $logger = new Logger();
+
+        self::assertNull($logger->parse(new Str('')));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Logger::parse
      * @covers \ArtARTs36\GitHandler\Logger::hasAuthor
      */
     public function testParse(): void
     {
         $logger = new Logger();
-
-        //
-
-        self::assertNull($logger->parse(new Str('')));
-        self::assertFalse($this->callMethodFromObject($logger, 'hasAuthor', 'ArtARTs36'));
 
         //
 

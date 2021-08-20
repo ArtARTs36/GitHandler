@@ -8,54 +8,47 @@ use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
 class UserConfiguratorTest extends TestCase
 {
+    public function providerForTestParse(): array
+    {
+        return [
+            [
+                [],
+                ['name' => '', 'email' => ''],
+            ],
+            [
+                ['name' => 'artem'],
+                ['name' => 'artem', 'email' => ''],
+            ],
+            [
+                ['name' => 'artem', 'email' => 'temicska99@mail.ru'],
+                ['name' => 'artem', 'email' => 'temicska99@mail.ru'],
+            ],
+            [
+                ['email' => 'temicska99@mail.ru'],
+                ['name' => '', 'email' => 'temicska99@mail.ru'],
+            ],
+        ];
+    }
+
     /**
      * @covers \ArtARTs36\GitHandler\Config\Configurators\UserConfigurator::parse
      */
-    public function testParse(): void
+    public function testParseInstanceof(): void
     {
         $configurator = new UserConfigurator();
 
-        //
+        self::assertInstanceOf(User::class, $configurator->parse([]));
+    }
 
-        $user = $configurator->parse([]);
+    /**
+     * @dataProvider providerForTestParse
+     * @covers \ArtARTs36\GitHandler\Config\Configurators\UserConfigurator::parse
+     */
+    public function testParse(array $raw, array $expected): void
+    {
+        $configurator = new UserConfigurator();
+        $user = $configurator->parse($raw);
 
-        self::assertInstanceOf(User::class, $user);
-        self::assertTrue($user->isEmpty());
-        self::assertEmpty($user->email);
-        self::assertEmpty($user->name);
-
-        //
-
-        $user = $configurator->parse([
-           'email' => $email = 'test@mail.ru',
-        ]);
-
-        self::assertInstanceOf(User::class, $user);
-        self::assertFalse($user->isEmpty());
-        self::assertEquals($email, $user->email);
-        self::assertEmpty($user->name);
-
-        //
-
-        $user = $configurator->parse([
-            'email' => $email = 'test@mail.ru',
-            'name' => $name = 'test',
-        ]);
-
-        self::assertInstanceOf(User::class, $user);
-        self::assertFalse($user->isEmpty());
-        self::assertEquals($email, $user->email);
-        self::assertEquals($name, $user->name);
-
-        //
-
-        $user = $configurator->parse([
-            'name' => $name = 'test',
-        ]);
-
-        self::assertInstanceOf(User::class, $user);
-        self::assertFalse($user->isEmpty());
-        self::assertEmpty($user->email);
-        self::assertEquals($name, $user->name);
+        self::assertEquals($expected, $user->toArray());
     }
 }
