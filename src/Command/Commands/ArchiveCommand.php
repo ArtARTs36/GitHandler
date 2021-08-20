@@ -4,7 +4,7 @@ namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Contracts\Commands\GitArchiveCommand;
-use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Enum\ArchiveFormat;
 use ArtARTs36\GitHandler\Exceptions\PathIsDirectoryNotCould;

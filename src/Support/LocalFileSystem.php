@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Support;
 
-use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 
 class LocalFileSystem implements FileSystem

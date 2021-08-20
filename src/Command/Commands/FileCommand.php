@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand;
-use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Data\GitContext;
 
 class FileCommand implements GitFileCommand

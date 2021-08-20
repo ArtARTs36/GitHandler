@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Command\Commands;
 use ArtARTs36\GitHandler\Contracts\Commands\GitRemoteCommand;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Contracts\Commands\GitSetupCommand;
-use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\Data\GitContext;

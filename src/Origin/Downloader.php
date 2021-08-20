@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Origin;
 
-use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\HasRemotes;
 use ArtARTs36\GitHandler\Contracts\Origin\OriginDownloader;
 use ArtARTs36\GitHandler\Exceptions\OriginUrlNotFound;

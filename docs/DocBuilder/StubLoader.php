@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\DocBuilder;
 
-use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\Str\Str;
 
 class StubLoader

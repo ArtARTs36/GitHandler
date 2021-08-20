@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Factory;
 
-use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Origin\OriginDownloader;
 use ArtARTs36\GitHandler\Origin\Downloader;
 use ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrl;
