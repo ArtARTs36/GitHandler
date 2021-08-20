@@ -55,22 +55,11 @@ class LocalFileSystem implements FileSystem
 
     public function downPath(string $path): string
     {
-        // For not exists Path
-        if (! $this->exists($path)) {
-            $array = explode(DIRECTORY_SEPARATOR, $path);
-
-            if (count($array) < 2) {
-                throw new PathIncorrect($path);
-            }
-
-            $last = array_key_last($array);
-
-            return implode(DIRECTORY_SEPARATOR, array_slice($array, 0, $last));
+        if ($this->exists($path)) {
+            return realpath($path . '/../');
         }
 
-        // For exists Path
-
-        return realpath($path . '/../');
+        return dirname($path);
     }
 
     public function endFolder(string $path): string
