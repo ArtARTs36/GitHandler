@@ -31,6 +31,9 @@ class GitCommandBuilder
         return $this->builder->makeNavigateToDir($dir ?? $this->dir, $this->bin);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function toDir(string $dir, string $bin): ShellCommandInterface
     {
         return $this->builder->makeNavigateToDir($dir, $bin);

@@ -19,4 +19,12 @@ class GitContextTest extends TestCase
             'gitDir'  => __DIR__ . '/.git'
         ], $context->toArray());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\GitContext::getRootFolder
+     */
+    public function testGetRootFolder(): void
+    {
+        self::assertEquals('project', GitContext::make('/var/web/project')->getRootFolder());
+    }
 }
