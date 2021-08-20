@@ -28,6 +28,7 @@ class ArchiveTransaction implements GitTransaction
 
     public function attempt(callable $callback)
     {
+        // @todo Move to FileSystem Contract
         $archivePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'archive.zip';
 
         $this->git->archives()->packRefs($archivePath);
