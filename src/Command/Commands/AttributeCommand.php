@@ -1,0 +1,109 @@
+<?php
+
+namespace ArtARTs36\GitHandler\Command\Commands;
+
+use ArtARTs36\FileSystem\Contracts\FileSystem;
+use ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand;
+use ArtARTs36\GitHandler\Data\GitAttributes;
+use ArtARTs36\GitHandler\Data\GitContext;
+use ArtARTs36\Str\Facade\Str;
+
+class AttributeCommand implements GitAttributeCommand
+{
+    protected $files;
+
+    protected $context;
+
+    protected $folder;
+
+    public function __construct(FileSystem $files, GitContext $context)
+    {
+        $this->files = $files;
+        $this->context = $context;
+        $this->folder = $context->getRootDir();
+    }
+
+    public function seeToRoot(): self
+    {
+        $this->folder = $this->context->getRootDir();
+
+        return $this;
+    }
+
+    public function seeToFolder(string $folder): self
+    {
+        $this->folder = $this->context->getRootDir() . DIRECTORY_SEPARATOR . $folder;
+
+        return $this;
+    }
+
+    public function add(string $pattern, array $attributes): void
+    {
+        $map = $this->getMap();
+
+        $map[$pattern] = array_merge($map[$pattern] ?? [], $attributes);
+
+        $this->saveFromMap($map);
+    }
+
+    public function find(string $pattern): ?GitAttributes
+    {
+        $map = $this->getMap();
+
+        if (! array_key_exists($pattern, $map)) {
+            return null;
+        }
+
+        return new GitAttributes($pattern, $map[$pattern]);
+    }
+
+    /**
+     * @return array<string, array<Str>>
+     * @throws \ArtARTs36\FileSystem\Contracts\FileNotFound
+     */
+    public function getMap(): array
+    {
+        $content = $this->files->getFileContent($this->getPath());
+
+        if (empty(trim($content))) {
+            return [];
+        }
+
+        $map = [];
+
+        foreach (Str::lines($content . "\n") as $match) {
+            $parts = $match->deleteUnnecessarySpaces()->words();
+
+            $map[$parts[0]->__toString()] = array_slice($parts, 1);
+        }
+
+        return $map;
+    }
+
+    public function getPath(): string
+    {
+        return $this->folder . DIRECTORY_SEPARATOR . '.gitattributes';
+    }
+
+    protected function saveFromMap(array $map): void
+    {
+        $this->files->createFile($this->getPath(), $this->buildContentFromMap($map));
+    }
+
+    protected function buildContentFromMap(array $map): string
+    {
+        $content = '';
+
+        foreach ($map as $pattern => $attributes) {
+            $content .= $this->buildAttributeString($pattern, $attributes);
+            $content .= "\n";
+        }
+
+        return $content;
+    }
+
+    protected function buildAttributeString(string $pattern, array $patterns): string
+    {
+        return $pattern . "\t\t\t" . implode(' ', $patterns);
+    }
+}

@@ -3,9 +3,11 @@
 namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Command\Commands\ArchiveCommand;
+use ArtARTs36\GitHandler\Command\Commands\AttributeCommand;
 use ArtARTs36\GitHandler\Command\Commands\GarbageCommand;
 use ArtARTs36\GitHandler\Command\Commands\MergeCommand;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
+use ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitGarbageCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitMergeCommand;
@@ -255,5 +257,10 @@ class Git implements GitHandler
     public function merges(): GitMergeCommand
     {
         return new MergeCommand($this->commandBuilder, $this->executor);
+    }
+
+    public function attributes(): GitAttributeCommand
+    {
+        return new AttributeCommand($this->fileSystem, $this->context);
     }
 }
