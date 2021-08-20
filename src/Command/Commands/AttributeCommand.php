@@ -7,6 +7,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand;
 use ArtARTs36\GitHandler\Data\GitAttributes;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\Str\Facade\Str;
+use ArtARTs36\Str\Tab;
 
 class AttributeCommand implements GitAttributeCommand
 {
@@ -92,18 +93,15 @@ class AttributeCommand implements GitAttributeCommand
 
     protected function buildContentFromMap(array $map): string
     {
+        $patterns = array_keys($map);
+        $tabs = Tab::addSpaces($patterns);
         $content = '';
 
-        foreach ($map as $pattern => $attributes) {
-            $content .= $this->buildAttributeString($pattern, $attributes);
+        foreach ($patterns as $index => $pattern) {
+            $content .= $tabs[$index] . implode(' ', $map[$pattern]);
             $content .= "\n";
         }
 
         return $content;
-    }
-
-    protected function buildAttributeString(string $pattern, array $patterns): string
-    {
-        return $pattern . "\t\t\t" . implode(' ', $patterns);
     }
 }
