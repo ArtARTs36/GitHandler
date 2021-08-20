@@ -28,8 +28,8 @@ class StatusCommand extends AbstractCommand implements GitStatusCommand
         $groups = $this->getGroupsByStatusResult($status);
 
         return $status->isNotEmpty() && (
-                ! array_key_exists(StatusResult::GROUP_MODIFIED, $groups) ||
-                ! array_key_exists(StatusResult::GROUP_ADDED, $groups));
+                array_key_exists(StatusResult::GROUP_MODIFIED, $groups) ||
+                array_key_exists(StatusResult::GROUP_ADDED, $groups));
     }
 
     public function getUntrackedFiles(): array
