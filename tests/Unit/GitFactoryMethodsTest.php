@@ -7,11 +7,13 @@ use ArtARTs36\GitHandler\Command\Commands\BranchCommand;
 use ArtARTs36\GitHandler\Command\Commands\CommitCommand;
 use ArtARTs36\GitHandler\Command\Commands\ConfigCommand;
 use ArtARTs36\GitHandler\Command\Commands\FileCommand;
+use ArtARTs36\GitHandler\Command\Commands\GarbageCommand;
 use ArtARTs36\GitHandler\Command\Commands\GrepCommand;
 use ArtARTs36\GitHandler\Command\Commands\HelpCommand;
 use ArtARTs36\GitHandler\Command\Commands\HookCommand;
 use ArtARTs36\GitHandler\Command\Commands\IgnoreCommand;
 use ArtARTs36\GitHandler\Command\Commands\IndexCommand;
+use ArtARTs36\GitHandler\Command\Commands\MergeCommand;
 use ArtARTs36\GitHandler\Command\Commands\SetupCommand;
 use ArtARTs36\GitHandler\Command\Commands\LogCommand;
 use ArtARTs36\GitHandler\Command\Commands\PathCommand;
@@ -21,6 +23,7 @@ use ArtARTs36\GitHandler\Command\Commands\RemoteCommand;
 use ArtARTs36\GitHandler\Command\Commands\StashCommand;
 use ArtARTs36\GitHandler\Command\Commands\StatusCommand;
 use ArtARTs36\GitHandler\Command\Commands\TagCommand;
+use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
 
 class GitFactoryMethodsTest extends GitTestCase
 {
@@ -46,6 +49,9 @@ class GitFactoryMethodsTest extends GitTestCase
             ['pulls', PullCommand::class],
             ['files', FileCommand::class],
             ['archives', ArchiveCommand::class],
+            ['transaction', ArchiveTransaction::class],
+            ['garbage', GarbageCommand::class],
+            ['merges', MergeCommand::class],
         ];
     }
 
@@ -70,6 +76,9 @@ class GitFactoryMethodsTest extends GitTestCase
      * @covers \ArtARTs36\GitHandler\Git::pulls
      * @covers \ArtARTs36\GitHandler\Git::files
      * @covers \ArtARTs36\GitHandler\Git::archives
+     * @covers \ArtARTs36\GitHandler\Git::transaction
+     * @covers \ArtARTs36\GitHandler\Git::garbage
+     * @covers \ArtARTs36\GitHandler\Git::merges
      */
     public function testFactoryMethod(string $method, string $expectedClass): void
     {

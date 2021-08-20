@@ -13,6 +13,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitHelpCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitHookCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitIgnoreCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitIndexCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitMergeCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitSetupCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitLogCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitPathCommand;
@@ -124,4 +125,6 @@ interface GitHandler extends Versionable, HasRemotes
      * Git Garbage collect
      */
     public function garbage(): GitGarbageCommand;
+
+    public function merges(): GitMergeCommand;
 }
