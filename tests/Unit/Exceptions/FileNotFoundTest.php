@@ -23,10 +23,10 @@ class FileNotFoundTest extends TestCase
      */
     public function testHandleIfSo(): void
     {
-        FileNotFound::handleIfSo('f.php', Str::make('f.php'));
+        FileNotFound::handleIfSo(Str::make('f.php'));
 
         self::expectException(FileNotFound::class);
 
-        FileNotFound::handleIfSo('f.php', Str::make("pathspec 'f.php' did not match any"));
+        FileNotFound::handleIfSo(Str::make("pathspec 'f.php' did not match any"));
     }
 }

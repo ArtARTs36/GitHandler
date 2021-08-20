@@ -13,37 +13,11 @@ class FileNotFound extends GitHandlerException
         parent::__construct($message);
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
-    public static function patternStdError(string $file): string
+    public static function handleIfSo(Str $err): void
     {
-        return "pathspec '{$file}' did not match any";
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public static function patternStdErrorOnAnyFile(): string
-    {
-        return "/pathspec '(.*)' did not match any/i";
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public static function handleIfSoOnAnyFile(Str $err): void
-    {
-        if (($path = $err->match(static::patternStdErrorOnAnyFile())) &&
-            $err->isNotEmpty()) {
+        if (($path = $err->match("/pathspec '(.*)' did not match any/i")) &&
+            $path->isNotEmpty()) {
             throw new static($path);
-        }
-    }
-
-    public static function handleIfSo(string $file, Str $stdout): void
-    {
-        if ($stdout->contains(static::patternStdError($file))) {
-            throw new static($file);
         }
     }
 }

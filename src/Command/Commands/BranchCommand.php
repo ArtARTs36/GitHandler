@@ -26,8 +26,8 @@ class BranchCommand extends AbstractCommand implements GitBranchCommand
                 $command->addOption('merge');
             })
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
-                function (CommandResult $result) use ($branch) {
-                    BranchNotFound::handleIfSo($branch, $result->getError());
+                function (CommandResult $result) {
+                    BranchNotFound::handleIfSo($result->getError());
                 }
             ]))
             ->executeOrFail($this->executor)

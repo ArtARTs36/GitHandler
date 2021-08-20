@@ -29,8 +29,8 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
                 $command->addOption('force');
             })
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
-                function (CommandResult $result) use ($files) {
-                    FileNotFound::handleIfSo(Str::fromArray($files, ','), $result->getError());
+                function (CommandResult $result) {
+                    FileNotFound::handleIfSo($result->getError());
                 }
             ]))
             ->executeOrFail($this->executor)
@@ -49,7 +49,7 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
             })
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) use ($files) {
-                    FileNotFound::handleIfSoOnAnyFile($result->getError());
+                    FileNotFound::handleIfSo($result->getError());
                 }
             ]))
             ->executeOrFail($this->executor);
