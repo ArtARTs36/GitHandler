@@ -9,3 +9,5 @@
 .gitignore      export-ignore
 readme.md       export-ignore
 LICENSE         export-ignore
+
+extensions      export-ignore

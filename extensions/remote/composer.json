@@ -1,0 +1,22 @@
+{
+    "name": "artarts36/git-handler-remote",
+    "type": "library",
+    "require": {
+        "artarts36/git-handler": "dev-1.x-new",
+        "artarts36/shell-command-ssh-executor": "dev-dev",
+        "php": ">=7.2",
+        "ext-ssh2": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ArtARTs36",
+            "email": "temicska99@mail.ru"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ArtARTs36\\GitHandler\\Factory\\": "src"
+        }
+    }
+}
