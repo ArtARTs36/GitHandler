@@ -108,4 +108,9 @@ class LocalFileSystem implements FileSystem
 
         return realpath($path);
     }
+
+    public function getTmpDir(): string
+    {
+        return sys_get_temp_dir();
+    }
 }
