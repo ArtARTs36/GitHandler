@@ -3,11 +3,11 @@
 *.md diff=markdown
 *.php diff=php
 
-/tests          export-ignore
-/phpunit.xml    export-ignore
+tests           export-ignore
+.github         export-ignore
+phpunit.xml     export-ignore
 .gitattributes  export-ignore
 .gitignore      export-ignore
 readme.md       export-ignore
 LICENSE         export-ignore
-
 extensions      export-ignore
