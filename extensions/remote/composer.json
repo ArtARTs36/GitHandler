@@ -16,7 +16,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "ArtARTs36\\GitHandler\\Factory\\": "src"
+            "ArtARTs36\\GitHandler\\": "src"
         }
     }
 }
