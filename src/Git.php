@@ -51,7 +51,7 @@ use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
-use ArtARTs36\GitHandler\Contracts\GitTransaction;
+use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;

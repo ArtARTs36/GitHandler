@@ -21,7 +21,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitPushCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitStashCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitStatusCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand;
-use ArtARTs36\GitHandler\Contracts\GitTransaction;
+use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
 
 interface GitHandler extends Versionable, HasRemotes
 {

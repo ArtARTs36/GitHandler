@@ -6,5 +6,5 @@ use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 
 interface TransactionOperation
 {
-    public function __invoke(GitHandler $handler): void;
+    public function __invoke(GitHandler $handler);
 }

@@ -1,8 +1,7 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Contracts;
+namespace ArtARTs36\GitHandler\Contracts\Transaction;
 
-use ArtARTs36\GitHandler\Contracts\Transaction\TransactionOperation;
 use ArtARTs36\GitHandler\Exceptions\GitHandlerException;
 
 interface GitTransaction
