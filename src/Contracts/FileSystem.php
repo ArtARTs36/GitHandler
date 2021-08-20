@@ -17,8 +17,6 @@ interface FileSystem
 
     public function downPath(string $path): string;
 
-    public function endFolder(string $path): string;
-
     public function createDir(string $path, int $permissions = 0755): bool;
 
     public function exists(string $path): bool;

@@ -54,60 +54,6 @@ final class LocalFileSystemTest extends TestCase
         self::assertEquals($expected, $fileSystem->downPath($input));
     }
 
-    /**
-     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::downPath
-     */
-    public function testDownPathOnPathIncorrect(): void
-    {
-        $fileSystem = new LocalFileSystem();
-
-        self::expectException(PathIncorrect::class);
-
-        $fileSystem->downPath('------test');
-    }
-
-    public function providerForTestEndFolder(): array
-    {
-        return [
-            [__DIR__, 'Unit'],
-            [__FILE__, 'Unit'],
-            ['/path/to/tests', 'tests'],
-            ['/path/to/tests/image.jpeg', 'tests'],
-            ['image.jpeg', ''],
-        ];
-    }
-
-    /**
-     * @dataProvider providerForTestEndFolder
-     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::endFolder
-     */
-    public function testEndFolder(string $input, string $expected): void
-    {
-        $fileSystem = new LocalFileSystem();
-
-        self::assertEquals($expected, $fileSystem->endFolder($input));
-    }
-
-    public function providerForTestIsPseudoFile(): array
-    {
-        return [
-            ['image', false],
-            ['image.jpeg', true],
-            ['super.image.jpeg', true],
-        ];
-    }
-
-    /**
-     * @dataProvider providerForTestIsPseudoFile
-     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::isPseudoFile
-     */
-    public function testIsPseudoFile(string $input, bool $expected): void
-    {
-        $fileSystem = new LocalFileSystem();
-
-        self::assertEquals($expected, $fileSystem->isPseudoFile($input));
-    }
-
     public function providerForTestExists(): array
     {
         return [

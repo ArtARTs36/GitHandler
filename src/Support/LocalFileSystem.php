@@ -62,44 +62,6 @@ class LocalFileSystem implements FileSystem
         return dirname($path);
     }
 
-    public function endFolder(string $path): string
-    {
-        // For not exists Path
-        if (! $this->exists($path)) {
-            $array = explode(DIRECTORY_SEPARATOR, $path);
-
-            $end = end($array);
-
-            if (! static::isPseudoFile($end)) {
-                return $end;
-            }
-
-            if (count($array) > 1) {
-                return $array[array_key_last($array) - 1];
-            }
-
-            return '';
-        }
-
-        // For exists Path
-        if (is_dir($path)) {
-            return pathinfo($path, PATHINFO_BASENAME);
-        }
-
-        $dir = pathinfo($path, PATHINFO_DIRNAME);
-
-        $array = explode(DIRECTORY_SEPARATOR, $dir);
-
-        return end($array);
-    }
-
-    public function isPseudoFile(string $file): bool
-    {
-        $array = explode('.', $file);
-
-        return count($array) > 1;
-    }
-
     public function createDir(string $path, int $permissions = 0755): bool
     {
         if (! $this->exists($path)) {
