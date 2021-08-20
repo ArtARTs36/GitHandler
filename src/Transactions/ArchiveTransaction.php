@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Transactions;
 
-use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
 use ArtARTs36\GitHandler\Data\GitContext;
@@ -16,6 +16,9 @@ class ArchiveTransaction implements GitTransaction
 
     protected $files;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(GitContext $context, GitHandler $git, FileSystem $files)
     {
         $this->context = $context;

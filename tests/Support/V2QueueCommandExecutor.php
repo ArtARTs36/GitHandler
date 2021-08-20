@@ -34,6 +34,15 @@ class V2QueueCommandExecutor implements ShellCommandExecutor
         return $this;
     }
 
+    public function nextAttemptsOk(int $count): self
+    {
+        for ($i = 0; $i < $count; $i++) {
+            $this->nextOk();
+        }
+
+        return $this;
+    }
+
     public function nextOk(string $result = ''): self
     {
         $this->results[] = function (string $command) use ($result) {
