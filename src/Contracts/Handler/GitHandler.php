@@ -2,24 +2,24 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Handler;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitArchiveCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitBranchCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitCommitCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitConfigCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitFileCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitGrepCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitHelpCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitHookCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitIgnoreCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitIndexCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitSetupCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitLogCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitPathCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitPullCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitPushCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitStashCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitStatusCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitTagCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitArchiveCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitBranchCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitCommitCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitConfigCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitGrepCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitHelpCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitHookCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitIgnoreCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitIndexCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitSetupCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitLogCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitPathCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitPullCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitPushCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitStashCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitStatusCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand;
 
 interface GitHandler extends Versionable, HasRemotes
 {

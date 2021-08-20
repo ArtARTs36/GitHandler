@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitIndexCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitIndexCommand;
 use ArtARTs36\GitHandler\Enum\ResetMode;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
 use ArtARTs36\GitHandler\Exceptions\UnknownRevisionInWorkingTree;

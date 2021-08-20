@@ -3,9 +3,9 @@
 namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitIndexCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitCommitCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitStatusCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitIndexCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitCommitCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitStatusCommand;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;

@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitPathCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitPathCommand;
 
 class PathCommand extends AbstractCommand implements GitPathCommand
 {

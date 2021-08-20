@@ -3,8 +3,8 @@
 namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitBranchCommand;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitPushCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitBranchCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitPushCommand;
 use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
 use ArtARTs36\GitHandler\Enum\BranchBadName;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;

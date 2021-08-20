@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitPullCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitPullCommand;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 
 class PullCommand extends AbstractCommand implements GitPullCommand

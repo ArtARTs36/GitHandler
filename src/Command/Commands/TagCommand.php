@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitTagCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand;
 use ArtARTs36\GitHandler\Data\Author;
 use ArtARTs36\GitHandler\Data\Commit;
 use ArtARTs36\GitHandler\Data\Tag;

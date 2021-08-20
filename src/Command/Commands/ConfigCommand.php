@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitConfigCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitConfigCommand;
 use ArtARTs36\GitHandler\Config\Subjects\SubjectsCollection;
 use ArtARTs36\GitHandler\Contracts\Config\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;

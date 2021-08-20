@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitGrepCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitGrepCommand;
 use ArtARTs36\GitHandler\Data\FileMatch;
 
 class GrepCommand extends AbstractCommand implements GitGrepCommand

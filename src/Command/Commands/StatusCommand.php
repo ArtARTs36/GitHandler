@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitStatusCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitStatusCommand;
 use ArtARTs36\GitHandler\Enum\StatusResult;
 use ArtARTs36\ShellCommand\ShellCommand;
 use ArtARTs36\Str\Str;

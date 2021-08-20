@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitStashCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitStashCommand;
 use ArtARTs36\GitHandler\Data\Stash;
 use ArtARTs36\GitHandler\Exceptions\StashDoesNotExists;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;

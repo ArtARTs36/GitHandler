@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitArchiveCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitArchiveCommand;
 use ArtARTs36\GitHandler\Enum\ArchiveFormat;
 use ArtARTs36\GitHandler\Exceptions\PathIsDirectoryNotCould;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;

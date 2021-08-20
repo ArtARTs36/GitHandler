@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitFetchCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitFetchCommand;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 
 class FetchCommand extends AbstractCommand implements GitFetchCommand

@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitIgnoreCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitIgnoreCommand;
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\Str\Str;

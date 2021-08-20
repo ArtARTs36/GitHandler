@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Command\Commands\Contracts;
+namespace ArtARTs36\GitHandler\Contracts\Commands;
 
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Exceptions\RemoteAlreadyExists;

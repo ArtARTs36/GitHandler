@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitLogCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitLogCommand;
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\LogCollection;
 use ArtARTs36\GitHandler\Exceptions\BranchDoesNotHaveCommits;

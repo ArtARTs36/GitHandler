@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Handler;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitRemoteCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitRemoteCommand;
 
 interface HasRemotes
 {

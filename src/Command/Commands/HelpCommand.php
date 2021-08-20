@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitHelpCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitHelpCommand;
 
 class HelpCommand extends AbstractCommand implements GitHelpCommand
 {

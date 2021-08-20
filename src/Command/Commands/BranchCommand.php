@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
-use ArtARTs36\GitHandler\Command\Commands\Contracts\GitBranchCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitBranchCommand;
 use ArtARTs36\GitHandler\Exceptions\AlreadySwitched;
 use ArtARTs36\GitHandler\Exceptions\BranchAlreadyExists;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
