@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\ShellCommand\Tests\Unit\CommandGroups;
+namespace ArtARTs36\ShellCommand\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Commands\TagCommand;
 use ArtARTs36\GitHandler\Exceptions\TagAlreadyExists;

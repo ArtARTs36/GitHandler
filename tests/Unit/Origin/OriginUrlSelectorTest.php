@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Origin;
+namespace ArtARTs36\GitHandler\Tests\Unit\Origin;
 
 use ArtARTs36\GitHandler\Contracts\Origin\OriginUrlBuilder;
 use ArtARTs36\GitHandler\Exceptions\OriginUrlNotFound;

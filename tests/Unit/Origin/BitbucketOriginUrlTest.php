@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Origin;
+namespace ArtARTs36\GitHandler\Tests\Unit\Origin;
 
 use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
 use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder;

@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit\Commands\CommandGroup;
+namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Commands\GrepCommand;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;

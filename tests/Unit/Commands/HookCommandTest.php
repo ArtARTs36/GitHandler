@@ -10,7 +10,7 @@ use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class HookCommandTest extends GitTestCase
 {
-    protected function makeHookCommandGroup(): HookCommand
+    protected function makeHookCommand(): HookCommand
     {
         return new HookCommand($this->mockFileSystem, $this->mockCommandExecutor, GitContext::make(__DIR__));
     }
@@ -20,7 +20,7 @@ final class HookCommandTest extends GitTestCase
      */
     public function testHasHookTrue(): void
     {
-        $hooks = $this->makeHookCommandGroup();
+        $hooks = $this->makeHookCommand();
 
         $this->mockFileSystem->createFile($hooks->getHookPath(HookName::UPDATE), 'hook');
 
@@ -32,7 +32,7 @@ final class HookCommandTest extends GitTestCase
      */
     public function testHasHookFalse(): void
     {
-        self::assertFalse($this->makeHookCommandGroup()->has(HookName::from(HookName::UPDATE)));
+        self::assertFalse($this->makeHookCommand()->has(HookName::from(HookName::UPDATE)));
     }
 
     /**
@@ -40,7 +40,7 @@ final class HookCommandTest extends GitTestCase
      */
     public function testDeleteHookTrue(): void
     {
-        $hooks = $this->makeHookCommandGroup();
+        $hooks = $this->makeHookCommand();
 
         $this->mockFileSystem->createFile($hooks->getHookPath(HookName::UPDATE), 'hook');
 
@@ -52,7 +52,7 @@ final class HookCommandTest extends GitTestCase
      */
     public function testDeleteHookOnNotExists(): void
     {
-        $hooks = $this->makeHookCommandGroup();
+        $hooks = $this->makeHookCommand();
 
         self::expectException(HookNotExists::class);
 
@@ -65,7 +65,7 @@ final class HookCommandTest extends GitTestCase
      */
     public function testGetHookGood(): void
     {
-        $hooks = $this->makeHookCommandGroup();
+        $hooks = $this->makeHookCommand();
 
         $this->mockFileSystem->createFile($hooks->getHookPath(HookName::UPDATE), 'echo 1');
 
@@ -87,7 +87,7 @@ final class HookCommandTest extends GitTestCase
     {
         self::expectException(HookNotExists::class);
 
-        $this->makeHookCommandGroup()->get(HookName::from(HookName::UPDATE));
+        $this->makeHookCommand()->get(HookName::from(HookName::UPDATE));
     }
 
     /**
@@ -98,7 +98,7 @@ final class HookCommandTest extends GitTestCase
     {
         $this->mockCommandExecutor->nextOk();
 
-        $hooks = $this->makeHookCommandGroup();
+        $hooks = $this->makeHookCommand();
 
         $hooks->add(HookName::from(HookName::UPDATE), 'ss');
 
@@ -110,7 +110,7 @@ final class HookCommandTest extends GitTestCase
      */
     public function testGetHooksOnEmpty(): void
     {
-        $hooks = $this->makeHookCommandGroup();
+        $hooks = $this->makeHookCommand();
 
         self::assertEquals([], $hooks->getAll());
         self::assertEquals([], $hooks->getAll());
@@ -121,7 +121,7 @@ final class HookCommandTest extends GitTestCase
      */
     public function testGetHooksOnlyWorked(): void
     {
-        $hooks = $this->makeHookCommandGroup();
+        $hooks = $this->makeHookCommand();
 
         $this->mockFileSystem->createDir($hooks->getHookPath());
         $this->mockFileSystem->createFile($hooks->getHookPath(HookName::UPDATE), 'ss');
@@ -135,7 +135,7 @@ final class HookCommandTest extends GitTestCase
      */
     public function testGetHooks(): void
     {
-        $hooks = $this->makeHookCommandGroup();
+        $hooks = $this->makeHookCommand();
 
         $this->mockFileSystem->createDir($hooks->getHookPath());
         $this->mockFileSystem->createFile($hooks->getHookPath(HookName::UPDATE), 'ss');
