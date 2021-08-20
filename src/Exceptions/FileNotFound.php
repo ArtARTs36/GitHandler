@@ -10,7 +10,7 @@ class FileNotFound extends GitHandlerException implements \ArtARTs36\FileSystem\
 
     public function __construct(string $file)
     {
-        $this->file = $file;
+        $this->invalidFilePath = $file;
 
         $message = "File '{$file}' Not Found";
 

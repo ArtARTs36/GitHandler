@@ -29,4 +29,14 @@ class FileNotFoundTest extends TestCase
 
         FileNotFound::handleIfSo(Str::make("pathspec 'f.php' did not match any"));
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Exceptions\FileNotFound::getInvalidFilePath
+     */
+    public function testGetInvalidFilePath(): void
+    {
+        $exception = new FileNotFound($path = '/var/web');
+
+        self::assertEquals($path, $exception->getInvalidFilePath());
+    }
 }
