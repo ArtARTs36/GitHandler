@@ -24,7 +24,7 @@ final class IgnoreCommandTest extends GitTestCase
     {
         $command = $this->makeIgnoreCommand();
 
-        $this->mockFileSystem->createFile($command->getPathToFile(), "index.php\nfile.php");
+        $this->mockFileSystem->createFile($command->getPath(), "index.php\nfile.php");
 
         self::assertEquals([
             'index.php',
@@ -41,8 +41,8 @@ final class IgnoreCommandTest extends GitTestCase
 
         $command->add('index.php');
 
-        self::assertTrue($this->mockFileSystem->exists($command->getPathToFile()));
-        self::assertEquals("index.php", $this->mockFileSystem->getFileContent($command->getPathToFile()));
+        self::assertTrue($this->mockFileSystem->exists($command->getPath()));
+        self::assertEquals("index.php", $this->mockFileSystem->getFileContent($command->getPath()));
     }
 
     /**
@@ -52,11 +52,11 @@ final class IgnoreCommandTest extends GitTestCase
     {
         $command = $this->makeIgnoreCommand();
 
-        $this->mockFileSystem->createFile($command->getPathToFile(), "file.php");
+        $this->mockFileSystem->createFile($command->getPath(), "file.php");
 
         $command->add('index.php');
 
-        self::assertEquals("file.php\nindex.php", $this->mockFileSystem->getFileContent($command->getPathToFile()));
+        self::assertEquals("file.php\nindex.php", $this->mockFileSystem->getFileContent($command->getPath()));
     }
 
     /**
@@ -66,7 +66,7 @@ final class IgnoreCommandTest extends GitTestCase
     {
         $command = $this->makeIgnoreCommand();
 
-        $this->mockFileSystem->createFile($command->getPathToFile(), 'index.php');
+        $this->mockFileSystem->createFile($command->getPath(), 'index.php');
 
         self::assertTrue($command->has('index.php'));
     }

@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Command\Commands;
 
+use ArtARTs36\GitHandler\Concerns\SwitchFolder;
 use ArtARTs36\GitHandler\Contracts\Commands\GitIgnoreCommand;
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Data\GitContext;
@@ -9,6 +10,8 @@ use ArtARTs36\Str\Str;
 
 class IgnoreCommand implements GitIgnoreCommand
 {
+    use SwitchFolder;
+
     protected $context;
 
     protected $fileSystem;
@@ -20,6 +23,7 @@ class IgnoreCommand implements GitIgnoreCommand
     {
         $this->context = $context;
         $this->fileSystem = $fileSystem;
+        $this->seeToFolder($this->context->getRootDir());
     }
 
     /**
@@ -27,18 +31,18 @@ class IgnoreCommand implements GitIgnoreCommand
      */
     public function files(): array
     {
-        $path = $this->getPathToFile();
+        $path = $this->getPath();
 
         if (! $this->fileSystem->exists($path)) {
             return [];
         }
 
-        return array_map('trim', (new Str($this->fileSystem->getFileContent($this->getPathToFile())))->lines());
+        return array_map('trim', (new Str($this->fileSystem->getFileContent($this->getPath())))->lines());
     }
 
     public function add(string $path): bool
     {
-        $gitIgnore = $this->getPathToFile();
+        $gitIgnore = $this->getPath();
 
         $content = $this->fileSystem->exists($gitIgnore) ? $this->fileSystem->getFileContent($gitIgnore) : '';
         $content = new Str($content);
@@ -52,19 +56,19 @@ class IgnoreCommand implements GitIgnoreCommand
 
     public function has(string $path): bool
     {
-        if (! $this->fileSystem->exists($this->getPathToFile())) {
+        if (! $this->fileSystem->exists($this->getPath())) {
             return false;
         }
 
-        return (new Str($this->fileSystem->getFileContent($this->getPathToFile())))
+        return (new Str($this->fileSystem->getFileContent($this->getPath())))
             ->hasLine($path);
     }
 
     /**
      * @codeCoverageIgnore
      */
-    public function getPathToFile(): string
+    public function getPath(): string
     {
-        return $this->context->getRootDir() . '/.gitignore';
+        return $this->folder . DIRECTORY_SEPARATOR . '.gitignore';
     }
 }

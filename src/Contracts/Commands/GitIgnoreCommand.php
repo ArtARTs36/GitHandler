@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Contracts\Commands;
 /**
  * Git Ignore Files (.gitignore)
  */
-interface GitIgnoreCommand
+interface GitIgnoreCommand extends FolderSwitchable
 {
     /**
      * @return array<string>
@@ -25,5 +25,5 @@ interface GitIgnoreCommand
     /**
      * Get full path to file ".gitignore"
      */
-    public function getPathToFile(): string;
+    public function getPath(): string;
 }
