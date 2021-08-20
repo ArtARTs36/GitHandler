@@ -10,8 +10,16 @@ interface GitMergeCommand
     /**
      * Merge with branch
      * @git-command git merge $branch
+     * @git-command git merge $branch -m=$message
      */
-    public function mergeWithBranch(string $branch): void;
+    public function merge(string $branch, ?string $message = null): void;
+
+    /**
+     * Squash Merge with branch
+     * @git-command git merge $branch --squash
+     * @git-command git merge $branch -m=$message --squash
+     */
+    public function mergeSquash(string $branch, ?string $message = null): void;
 
     /**
      * Abort merge
