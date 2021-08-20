@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\FileSystem\Contracts\FileSystem;
+use ArtARTs36\GitHandler\Concerns\SwitchFolder;
 use ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand;
 use ArtARTs36\GitHandler\Data\GitAttributes;
 use ArtARTs36\GitHandler\Data\GitContext;
@@ -11,31 +12,22 @@ use ArtARTs36\Str\Tab;
 
 class AttributeCommand implements GitAttributeCommand
 {
+    use SwitchFolder;
+
     protected $files;
 
     protected $context;
 
     protected $folder;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(FileSystem $files, GitContext $context)
     {
         $this->files = $files;
         $this->context = $context;
         $this->folder = $context->getRootDir();
-    }
-
-    public function seeToRoot(): self
-    {
-        $this->folder = $this->context->getRootDir();
-
-        return $this;
-    }
-
-    public function seeToFolder(string $folder): self
-    {
-        $this->folder = $this->context->getRootDir() . DIRECTORY_SEPARATOR . $folder;
-
-        return $this;
     }
 
     public function add(string $pattern, array $attributes): void
@@ -59,7 +51,7 @@ class AttributeCommand implements GitAttributeCommand
     }
 
     /**
-     * @return array<string, array<Str>>
+     * @return array<string, array<\ArtARTs36\Str\Str>>
      * @throws \ArtARTs36\FileSystem\Contracts\FileNotFound
      */
     public function getMap(): array
