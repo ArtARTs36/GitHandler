@@ -28,8 +28,7 @@ class ArchiveTransaction implements GitTransaction
 
     public function attempt(callable $callback)
     {
-        // @todo Move to FileSystem Contract
-        $archivePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'archive.zip';
+        $archivePath = $this->buildTmpArchivePath();
 
         $this->git->archives()->packRefs($archivePath);
 
@@ -46,5 +45,14 @@ class ArchiveTransaction implements GitTransaction
 
             throw $e;
         }
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    protected function buildTmpArchivePath(): string
+    {
+        return $this->files->getTmpDir() . DIRECTORY_SEPARATOR
+            . 'git-handler-'. time() . '-archive.zip';
     }
 }
