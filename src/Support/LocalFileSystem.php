@@ -4,7 +4,6 @@ namespace ArtARTs36\GitHandler\Support;
 
 use ArtARTs36\GitHandler\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
-use ArtARTs36\GitHandler\Exceptions\PathIncorrect;
 
 class LocalFileSystem implements FileSystem
 {
@@ -101,10 +100,12 @@ class LocalFileSystem implements FileSystem
         return (new \DateTime())->setTimestamp($dateGetter($path));
     }
 
-    public function getAbsolutePath(string $path): ?string
+    public function getAbsolutePath(string $path): string
     {
-        $real = realpath($path);
+        if (! $this->exists($path)) {
+            throw new FileNotFound($path);
+        }
 
-        return $real === false ? null : $real;
+        return realpath($path);
     }
 }

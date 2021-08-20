@@ -73,7 +73,7 @@ class SetupCommand extends AbstractCommand implements GitSetupCommand
                     ->addArgument($branch);
             })
             ->addArgument($url)
-            ->addArgument($folder = $folder ?? $this->files->endFolder($this->context->getRootDir()))
+            ->addArgument($folder = $folder ?? $this->context->getRootFolder())
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) use ($folder) {
                     PathAlreadyExists::handleIfSo($folder, $result->getError());

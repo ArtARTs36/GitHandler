@@ -34,6 +34,11 @@ class GitContext
         return $this->rootDir;
     }
 
+    public function getRootFolder(): string
+    {
+        return pathinfo($this->rootDir, PATHINFO_BASENAME);
+    }
+
     /**
      * @codeCoverageIgnore
      */

@@ -6,6 +6,7 @@
         "php": ">=7.3",
         "artarts36/shell-command": "^2.1",
         "artarts36/str": "^1.3.16",
+        "artarts36/file-system-contracts": "0.1.0",
         "psr/http-client": "^1.0",
         "guzzlehttp/psr7": "^1.8"
     },

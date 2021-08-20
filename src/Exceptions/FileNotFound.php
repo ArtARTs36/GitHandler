@@ -4,10 +4,14 @@ namespace ArtARTs36\GitHandler\Exceptions;
 
 use ArtARTs36\Str\Str;
 
-class FileNotFound extends GitHandlerException
+class FileNotFound extends GitHandlerException implements \ArtARTs36\FileSystem\Contracts\FileNotFound
 {
+    protected $invalidFilePath;
+
     public function __construct(string $file)
     {
+        $this->file = $file;
+
         $message = "File '{$file}' Not Found";
 
         parent::__construct($message);
@@ -19,5 +23,10 @@ class FileNotFound extends GitHandlerException
             $path->isNotEmpty()) {
             throw new static($path);
         }
+    }
+
+    public function getInvalidFilePath(): string
+    {
+        return $this->invalidFilePath;
     }
 }
