@@ -18,12 +18,14 @@ class TagCommand extends AbstractCommand implements GitTagCommand
 {
     public function getAll(?string $pattern = null): array
     {
-        return $this->builder->make()->addArgument('tag')
+        $result = $this->builder->make()->addArgument('tag')
             ->when($pattern !== null, function (ShellCommand $command) use ($pattern) {
                 $command
                     ->addCutOption('l')
                     ->addArgument($pattern, true);
-            })->executeOrFail($this->executor)->getResult()->trim()->lines();
+            })->executeOrFail($this->executor)->getResult()->trim();
+
+        return $result->isEmpty() ? [] : $result->lines();
     }
 
     public function add(string $tag, ?string $message = null): bool
