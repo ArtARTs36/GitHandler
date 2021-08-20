@@ -7,6 +7,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitBranchCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitCommitCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitConfigCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitGarbageCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitGrepCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitHelpCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitHookCommand;
@@ -20,6 +21,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitPushCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitStashCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitStatusCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand;
+use ArtARTs36\GitHandler\Contracts\GitTransaction;
 
 interface GitHandler extends Versionable, HasRemotes
 {
@@ -112,4 +114,14 @@ interface GitHandler extends Versionable, HasRemotes
      * Git Pulls
      */
     public function pulls(): GitPullCommand;
+
+    /**
+     * Git Transaction
+     */
+    public function transaction(): GitTransaction;
+
+    /**
+     * Git Garbage collect
+     */
+    public function garbage(): GitGarbageCommand;
 }
