@@ -10,6 +10,11 @@ class TemporaryPathGenerator implements PathGenerator
 {
     protected $files;
 
+    private static $counter = 0;
+
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(FileSystem $files)
     {
         $this->files = $files;
@@ -30,6 +35,7 @@ class TemporaryPathGenerator implements PathGenerator
             'handler',
             time(),
             'archive',
+            static::$counter++,
         ]);
     }
 }
