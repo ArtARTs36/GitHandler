@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\GitHandler\Contracts\Commands\GitMergeCommand;
 use ArtARTs36\GitHandler\Exceptions\MergeHeadMissing;
+use ArtARTs36\GitHandler\Exceptions\NotSomethingWeCanMerge;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\Result\CommandResult;
@@ -46,6 +47,15 @@ class MergeCommand extends AbstractCommand implements GitMergeCommand
             ->make()
             ->addArgument('merge')
             ->addArgument($branch)
+            ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
+                function (CommandResult $result) {
+                    if (($failedBranch = $result->getError()
+                        ->match('#merge: (.*) - not something we can merge#i')) &&
+                        $failedBranch->isNotEmpty()) {
+                        throw new NotSomethingWeCanMerge($failedBranch);
+                    }
+                }
+            ]))
             ->when($message !== null, function (ShellCommandInterface $command) use ($message) {
                 $command->addCutOption('m')->addArgument($message);
             });
