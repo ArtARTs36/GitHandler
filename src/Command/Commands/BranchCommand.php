@@ -86,9 +86,9 @@ class BranchCommand extends AbstractCommand implements GitBranchCommand
             ->addCutOption('a')
             ->executeOrFail($this->executor);
 
-        return array_map('trim', $result->getResult()->trim()->replace([
+        return $result->getResult()->trim()->replace([
             '* master' => 'master',
-        ])->lines());
+        ])->lines()->trim()->toStrings();
     }
 
     public function current(): Str

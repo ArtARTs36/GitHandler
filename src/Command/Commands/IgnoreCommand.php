@@ -37,7 +37,7 @@ class IgnoreCommand implements GitIgnoreCommand
             return [];
         }
 
-        return array_map('trim', (new Str($this->fileSystem->getFileContent($this->getPath())))->lines());
+        return Str::make($this->fileSystem->getFileContent($this->getPath()))->lines()->trim()->toStrings();
     }
 
     public function add(string $path): bool

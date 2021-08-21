@@ -25,7 +25,7 @@ class TagCommand extends AbstractCommand implements GitTagCommand
                     ->addArgument($pattern, true);
             })->executeOrFail($this->executor)->getResult()->trim();
 
-        return $result->isEmpty() ? [] : $result->lines();
+        return $result->isEmpty() ? [] : $result->lines()->toStrings();
     }
 
     public function add(string $tag, ?string $message = null): bool
@@ -76,11 +76,11 @@ class TagCommand extends AbstractCommand implements GitTagCommand
 
         $parts = $result->getResult()->explode('|');
 
-        if (count($parts) !== 5) {
+        if ($parts->count() !== 5) {
             throw new UnexpectedException($result->getCommandLine());
         }
 
-        [$authorName, $authorEmail, $date, $commit, $message] = $parts;
+        [$authorName, $authorEmail, $date, $commit, $message] = $parts->toStrings();
 
         return new Tag(
             new Author($authorName, $authorEmail),

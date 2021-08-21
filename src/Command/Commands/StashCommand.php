@@ -77,7 +77,7 @@ class StashCommand extends AbstractCommand implements GitStashCommand
             ->addArgument('stash@{'. $id . '}')
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) use ($id) {
-                    if ($result->getError()->contains("fatal: Log for 'stash' only has (.*) entries")) {
+                    if ($result->getError()->contains("fatal: Log for 'stash' only has (.*) entries", true)) {
                         throw new StashDoesNotExists($id);
                     }
                 }

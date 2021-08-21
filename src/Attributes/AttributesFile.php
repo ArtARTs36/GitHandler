@@ -21,7 +21,7 @@ class AttributesFile
         foreach (Str::make($content)->trim()->lines() as $match) {
             $parts = $match->deleteUnnecessarySpaces()->words();
 
-            $map[$parts[0]->__toString()] = array_slice($parts, 1);
+            $map[(string) $parts->first()] = $parts->slice(1)->toArray();
         }
 
         return $map;

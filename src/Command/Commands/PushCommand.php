@@ -43,7 +43,7 @@ class PushCommand extends AbstractCommand implements GitPushCommand
             })
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) {
-                    if ($result->getError()->contains($errPattern = BranchHasNoUpstream::patternStdError())) {
+                    if ($result->getError()->contains($errPattern = BranchHasNoUpstream::patternStdError(), true)) {
                         throw new BranchHasNoUpstream($result->getResult()->match('/'. $errPattern . '/i'));
                     }
                 }

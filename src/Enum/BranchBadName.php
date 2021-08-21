@@ -13,7 +13,7 @@ class BranchBadName
     public static function is(Str $branch): bool
     {
         return in_array($branch, static::cases()) || $branch->containsAny([
-            '\[', '\.\.',
+            '[', '..',
         ]);
     }
 }

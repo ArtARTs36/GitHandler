@@ -229,9 +229,7 @@ class Git implements GitHandler
             ->getResult()
             ->trim();
 
-        return new Version($result, ...array_map(function (Str $str) {
-            return $str->toInteger();
-        }, $result->match('/([0-9]+.[0-9]+.[0-9]+)/i')->sentences()));
+        return new Version($result, ...$result->match('/([0-9]+.[0-9]+.[0-9]+)/i')->sentences()->toIntegers());
     }
 
     public function pulls(): GitPullCommand
