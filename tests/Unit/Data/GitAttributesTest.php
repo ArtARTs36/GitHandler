@@ -12,7 +12,13 @@ final class GitAttributesTest extends TestCase
         return [
             [
                 ['file.txt', ['export-ignore']],
-                ['export-ignore'],
+                'export-ignore',
+                true,
+            ],
+            [
+                ['file.txt', ['export-ignore']],
+                'export-ignor',
+                false,
             ],
         ];
     }
@@ -21,10 +27,10 @@ final class GitAttributesTest extends TestCase
      * @dataProvider providerForTestHas
      * @covers \ArtARTs36\GitHandler\Data\GitAttributes::has
      */
-    public function testHas(array $attributesData, array $expected): void
+    public function testHas(array $attributesData, string $attr, bool $state): void
     {
         $attribute = new GitAttributes(...$attributesData);
 
-        self::assertEquals($expected, $attribute->attributes);
+        self::assertEquals($state, $attribute->has($attr));
     }
 }
