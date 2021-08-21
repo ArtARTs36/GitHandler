@@ -58,6 +58,7 @@ use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Version;
+use ArtARTs36\GitHandler\Support\TemporaryPathGenerator;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\Str\Str;
@@ -244,7 +245,12 @@ class Git implements GitHandler
 
     public function transaction(): GitTransaction
     {
-        return new ArchiveTransaction($this->context, $this, $this->fileSystem);
+        return new ArchiveTransaction(
+            $this->context,
+            $this,
+            $this->fileSystem,
+            new TemporaryPathGenerator($this->fileSystem)
+        );
     }
 
     public function garbage(): GitGarbageCommand

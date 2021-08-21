@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Transactions;
 
+use ArtARTs36\GitHandler\Support\TemporaryPathGenerator;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
 
@@ -30,7 +31,8 @@ final class ArchiveTransactionTest extends GitTestCase
         return new ArchiveTransaction(
             $this->mockGitContext,
             $this->mockGitHandler,
-            $this->mockFileSystem
+            $this->mockFileSystem,
+            new TemporaryPathGenerator($this->mockFileSystem)
         );
     }
 }
