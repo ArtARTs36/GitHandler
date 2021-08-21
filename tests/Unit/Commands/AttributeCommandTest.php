@@ -43,7 +43,6 @@ phpunit.xml    export-ignore param1 param2
     /**
      * @dataProvider providerForTestGetMap
      * @covers \ArtARTs36\GitHandler\Command\Commands\AttributeCommand::getMap
-     * @covers \ArtARTs36\GitHandler\Command\Commands\AttributeCommand::buildMapFromContent
      */
     public function testGetMap(string $content, array $expected): void
     {

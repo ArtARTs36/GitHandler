@@ -3,12 +3,11 @@
 namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\FileSystem\Contracts\FileSystem;
+use ArtARTs36\GitHandler\Attributes\AttributesFile;
 use ArtARTs36\GitHandler\Concerns\SwitchFolder;
 use ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand;
 use ArtARTs36\GitHandler\Data\GitAttributes;
 use ArtARTs36\GitHandler\Data\GitContext;
-use ArtARTs36\Str\Facade\Str;
-use ArtARTs36\Str\Tab;
 
 class AttributeCommand implements GitAttributeCommand
 {
@@ -18,6 +17,8 @@ class AttributeCommand implements GitAttributeCommand
 
     protected $context;
 
+    protected $file;
+
     /**
      * @codeCoverageIgnore
      */
@@ -25,6 +26,7 @@ class AttributeCommand implements GitAttributeCommand
     {
         $this->files = $files;
         $this->context = $context;
+        $this->file = new AttributesFile();
         $this->seeToRoot();
     }
 
@@ -69,11 +71,7 @@ class AttributeCommand implements GitAttributeCommand
     {
         $content = $this->files->getFileContent($this->getPath());
 
-        if (empty(trim($content))) {
-            return [];
-        }
-
-        return $this->buildMapFromContent($content);
+        return $this->file->buildMap($content);
     }
 
     /**
@@ -84,38 +82,8 @@ class AttributeCommand implements GitAttributeCommand
         return $this->folder . DIRECTORY_SEPARATOR . '.gitattributes';
     }
 
-    /**
-     * @return array<string, array<\ArtARTs36\Str\Str>>
-     */
-    protected function buildMapFromContent(string $content): array
-    {
-        $map = [];
-
-        foreach (Str::lines($content) as $match) {
-            $parts = $match->deleteUnnecessarySpaces()->words();
-
-            $map[$parts[0]->__toString()] = array_slice($parts, 1);
-        }
-
-        return $map;
-    }
-
     protected function saveFromMap(array $map): bool
     {
-        return $this->files->createFile($this->getPath(), $this->buildContentFromMap($map));
-    }
-
-    protected function buildContentFromMap(array $map): string
-    {
-        $patterns = array_keys($map);
-        $tabs = Tab::addSpaces($patterns);
-        $content = '';
-
-        foreach ($patterns as $index => $pattern) {
-            $content .= $tabs[$index] . implode(' ', $map[$pattern]);
-            $content .= "\n";
-        }
-
-        return $content;
+        return $this->files->createFile($this->getPath(), $this->file->buildContent($map));
     }
 }
