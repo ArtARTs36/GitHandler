@@ -60,16 +60,16 @@ class IgnoreCommand implements GitIgnoreCommand
             return false;
         }
 
-        $content = new Str($this->fileSystem->getFileContent($gitignore));
-        $newContent = Str::fromEmpty();
+        $content = Str::make($this->fileSystem->getFileContent($gitignore))->lines();
+        $excepts = [];
 
-        foreach ($content->lines() as $line) {
-            if (! $line->trim()->equals($path)) {
-                $newContent = $newContent->appendLine($line);
+        foreach ($content as $index => $line) {
+            if ($line->trim()->equals($path)) {
+                $excepts[] = $index;
             }
         }
 
-        return $this->fileSystem->createFile($gitignore, $newContent);
+        return $this->fileSystem->createFile($gitignore, $content->exceptKeys($excepts)->implode("\n"));
     }
 
     public function has(string $path): bool
