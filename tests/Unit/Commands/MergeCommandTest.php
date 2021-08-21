@@ -63,6 +63,26 @@ final class MergeCommandTest extends GitTestCase
         $command->mergeSquash('branch1');
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\MergeCommand::merge
+     */
+    public function testMergeOk(): void
+    {
+        $this->mockCommandExecutor->nextOk();
+
+        self::assertNull($this->makeMergeCommand()->merge('branch1'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\MergeCommand::mergeSquash
+     */
+    public function testMergeSquashOk(): void
+    {
+        $this->mockCommandExecutor->nextOk();
+
+        self::assertNull($this->makeMergeCommand()->mergeSquash('branch1'));
+    }
+
     private function makeMergeCommand(): MergeCommand
     {
         return new MergeCommand(
