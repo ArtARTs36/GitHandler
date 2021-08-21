@@ -18,4 +18,9 @@ interface GitAttributeCommand extends FolderSwitchable
      * Find git attribute by pattern
      */
     public function find(string $pattern): ?GitAttributes;
+
+    /**
+     * Delete git attribute by pattern
+     */
+    public function delete(string $pattern): bool;
 }

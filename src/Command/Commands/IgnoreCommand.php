@@ -23,7 +23,7 @@ class IgnoreCommand implements GitIgnoreCommand
     {
         $this->context = $context;
         $this->fileSystem = $fileSystem;
-        $this->seeToFolder($this->context->getRootDir());
+        $this->seeToRoot();
     }
 
     /**

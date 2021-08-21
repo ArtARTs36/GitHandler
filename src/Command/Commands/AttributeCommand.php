@@ -25,7 +25,7 @@ class AttributeCommand implements GitAttributeCommand
     {
         $this->files = $files;
         $this->context = $context;
-        $this->seeToFolder($context->getRootDir());
+        $this->seeToRoot();
     }
 
     public function add(string $pattern, array $attributes): void
@@ -46,6 +46,19 @@ class AttributeCommand implements GitAttributeCommand
         }
 
         return new GitAttributes($pattern, $map[$pattern]);
+    }
+
+    public function delete(string $pattern): bool
+    {
+        $map = $this->getMap();
+
+        if (! array_key_exists($pattern, $map)) {
+            return false;
+        }
+
+        unset($map[$pattern]);
+
+        return $this->saveFromMap($map);
     }
 
     /**
@@ -79,9 +92,9 @@ class AttributeCommand implements GitAttributeCommand
         return $this->folder . DIRECTORY_SEPARATOR . '.gitattributes';
     }
 
-    protected function saveFromMap(array $map): void
+    protected function saveFromMap(array $map): bool
     {
-        $this->files->createFile($this->getPath(), $this->buildContentFromMap($map));
+        return $this->files->createFile($this->getPath(), $this->buildContentFromMap($map));
     }
 
     protected function buildContentFromMap(array $map): string
