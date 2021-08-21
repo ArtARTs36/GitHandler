@@ -71,6 +71,9 @@ class AttributeCommand implements GitAttributeCommand
         return $map;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getPath(): string
     {
         return $this->folder . DIRECTORY_SEPARATOR . '.gitattributes';
