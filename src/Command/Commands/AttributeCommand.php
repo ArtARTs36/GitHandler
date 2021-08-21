@@ -75,7 +75,7 @@ class AttributeCommand implements GitAttributeCommand
 
         $map = [];
 
-        foreach (Str::lines($content . "\n") as $match) {
+        foreach (Str::lines($content) as $match) {
             $parts = $match->deleteUnnecessarySpaces()->words();
 
             $map[$parts[0]->__toString()] = array_slice($parts, 1);
