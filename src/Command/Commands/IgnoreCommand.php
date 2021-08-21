@@ -65,11 +65,11 @@ class IgnoreCommand implements GitIgnoreCommand
 
         foreach ($content->lines() as $line) {
             if (! $line->trim()->equals($path)) {
-                $newContent->appendLine($line);
+                $newContent = $newContent->appendLine($line);
             }
         }
 
-        return $this->fileSystem->createFile($gitignore, $content);
+        return $this->fileSystem->createFile($gitignore, $newContent);
     }
 
     public function has(string $path): bool
