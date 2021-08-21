@@ -18,6 +18,11 @@ interface GitIgnoreCommand extends FolderSwitchable
     public function add(string $path): bool;
 
     /**
+     * Delete path from .gitignore
+     */
+    public function delete(string $path): bool;
+
+    /**
      * Has file in .gitignore
      */
     public function has(string $path): bool;

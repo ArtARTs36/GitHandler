@@ -54,6 +54,24 @@ class IgnoreCommand implements GitIgnoreCommand
         return $this->fileSystem->createFile($gitIgnore, $content->append($path));
     }
 
+    public function delete(string $path): bool
+    {
+        if (! $this->fileSystem->exists($gitignore = $this->getPath())) {
+            return false;
+        }
+
+        $content = new Str($this->fileSystem->getFileContent($gitignore));
+        $newContent = Str::fromEmpty();
+
+        foreach ($content->lines() as $line) {
+            if (! $line->trim()->equals($path)) {
+                $newContent->appendLine($line);
+            }
+        }
+
+        return $this->fileSystem->createFile($gitignore, $content);
+    }
+
     public function has(string $path): bool
     {
         if (! $this->fileSystem->exists($this->getPath())) {
