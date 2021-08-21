@@ -69,7 +69,7 @@ class IgnoreCommand implements GitIgnoreCommand
             }
         }
 
-        return $this->fileSystem->createFile($gitignore, $content->exceptKeys($excepts)->implode("\n"));
+        return $this->fileSystem->createFile($gitignore, $content->exceptKeys($excepts)->implodeAsLines());
     }
 
     public function has(string $path): bool
