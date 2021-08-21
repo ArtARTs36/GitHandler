@@ -7,6 +7,7 @@ use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Contracts\Commands\GitSetupCommand;
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\RemoteNotFilled;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
@@ -97,7 +98,11 @@ class SetupCommand extends AbstractCommand implements GitSetupCommand
      */
     public function reinstall(?string $branch = null): void
     {
-        $remote = $this->remotes->showRemote()->fetch;
+        $remote = $this->remotes->show()->fetch;
+
+        if ($remote->isEmpty()) {
+            throw new RemoteNotFilled();
+        }
 
         $this->delete();
 

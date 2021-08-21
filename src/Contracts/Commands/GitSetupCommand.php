@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Commands;
 
+use ArtARTs36\GitHandler\Exceptions\RemoteNotFilled;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 
 /**
@@ -35,6 +36,7 @@ interface GitSetupCommand
 
     /**
      * Delete local repository and fetch from origin
+     * @throws RemoteNotFilled
      */
     public function reinstall(?string $branch = null): void;
 }
