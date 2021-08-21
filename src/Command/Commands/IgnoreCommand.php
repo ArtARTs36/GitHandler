@@ -74,7 +74,7 @@ class IgnoreCommand implements GitIgnoreCommand
 
     public function has(string $path): bool
     {
-        if (! $this->fileSystem->exists($this->getPath())) {
+        if (! $this->isFileExists()) {
             return false;
         }
 
@@ -88,5 +88,10 @@ class IgnoreCommand implements GitIgnoreCommand
     public function getPath(): string
     {
         return $this->folder . DIRECTORY_SEPARATOR . '.gitignore';
+    }
+
+    final protected function isFileExists(): bool
+    {
+        return $this->fileSystem->exists($this->getPath());
     }
 }

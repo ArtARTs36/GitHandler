@@ -61,6 +61,7 @@ final class IgnoreCommandTest extends GitTestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\IgnoreCommand::has
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IgnoreCommand::isFileExists
      */
     public function testHas(): void
     {
@@ -73,12 +74,23 @@ final class IgnoreCommandTest extends GitTestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\IgnoreCommand::has
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IgnoreCommand::isFileExists
      */
     public function testHasOnNotExistsIgnoreFile(): void
     {
         $command = $this->makeIgnoreCommand();
 
         self::assertFalse($command->has('index.php'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IgnoreCommand::delete
+     */
+    public function testDeleteOnFileNotExists(): void
+    {
+        $command = $this->makeIgnoreCommand();
+
+        self::assertFalse($command->delete('file1.txt'));
     }
 
     private function makeIgnoreCommand(): IgnoreCommand
