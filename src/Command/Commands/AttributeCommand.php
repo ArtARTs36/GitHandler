@@ -32,7 +32,7 @@ class AttributeCommand implements GitAttributeCommand
 
     public function add(string $pattern, array $attributes): void
     {
-        $map = $this->getMap();
+        $map = $this->isFileExists() ? $this->getMap() : [];
 
         $map[$pattern] = array_merge($map[$pattern] ?? [], $attributes);
 
@@ -85,5 +85,10 @@ class AttributeCommand implements GitAttributeCommand
     protected function saveFromMap(array $map): bool
     {
         return $this->files->createFile($this->getPath(), $this->file->buildContent($map));
+    }
+
+    private function isFileExists(): bool
+    {
+        return $this->files->exists($this->getPath());
     }
 }
