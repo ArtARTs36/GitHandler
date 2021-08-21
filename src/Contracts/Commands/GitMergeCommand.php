@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Commands;
 
+use ArtARTs36\GitHandler\Exceptions\CannotMergeAbort;
+
 /**
  * Git Merge
  */
@@ -24,6 +26,7 @@ interface GitMergeCommand
     /**
      * Abort merge
      * @git-command git merge --abort
+     * @throws CannotMergeAbort
      */
     public function abort(): void;
 }

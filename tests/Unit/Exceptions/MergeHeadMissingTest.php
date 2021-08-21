@@ -9,7 +9,6 @@ final class MergeHeadMissingTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Exceptions\MergeHeadMissing::__construct
-     * @covers \ArtARTs36\GitHandler\Exceptions\MergeHeadMissing::getMessage
      */
     public function testMessage(): void
     {

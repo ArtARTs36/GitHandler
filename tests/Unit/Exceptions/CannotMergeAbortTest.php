@@ -9,7 +9,6 @@ final class CannotMergeAbortTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Exceptions\CannotMergeAbort::__construct
-     * @covers \ArtARTs36\GitHandler\Exceptions\CannotMergeAbort::getMessage
      */
     public function testMessage(): void
     {
