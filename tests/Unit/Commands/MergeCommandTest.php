@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Commands\MergeCommand;
 use ArtARTs36\GitHandler\Exceptions\MergeHeadMissing;
+use ArtARTs36\GitHandler\Exceptions\NotSomethingWeCanMerge;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class MergeCommandTest extends GitTestCase
@@ -30,6 +31,36 @@ final class MergeCommandTest extends GitTestCase
         $this->mockCommandExecutor->nextOk();
 
         self::assertNull($this->makeMergeCommand()->abort());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\MergeCommand::merge
+     * @covers \ArtARTs36\GitHandler\Command\Commands\MergeCommand::buildMergeCommand
+     */
+    public function testMergeOnNotSomethingWeCanMerge(): void
+    {
+        $command = $this->makeMergeCommand();
+
+        $this->mockCommandExecutor->nextFailed('merge: branch1 - not something we can merge#');
+
+        self::expectException(NotSomethingWeCanMerge::class);
+
+        $command->merge('branch1', 'test-message');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\MergeCommand::mergeSquash
+     * @covers \ArtARTs36\GitHandler\Command\Commands\MergeCommand::buildMergeCommand
+     */
+    public function testMergeSquashOnNotSomethingWeCanMerge(): void
+    {
+        $command = $this->makeMergeCommand();
+
+        $this->mockCommandExecutor->nextFailed('merge: branch1 - not something we can merge#');
+
+        self::expectException(NotSomethingWeCanMerge::class);
+
+        $command->mergeSquash('branch1');
     }
 
     private function makeMergeCommand(): MergeCommand
