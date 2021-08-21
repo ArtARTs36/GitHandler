@@ -28,7 +28,7 @@ class AttributesFile
     }
 
     /**
-     * @param array<string, array<string>> $map
+     * @param non-empty-array<string, array<string>> $map
      */
     public function buildContent(array $map): string
     {

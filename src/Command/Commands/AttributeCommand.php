@@ -84,7 +84,10 @@ class AttributeCommand implements GitAttributeCommand
 
     protected function saveFromMap(array $map): bool
     {
-        return $this->files->createFile($this->getPath(), $this->file->buildContent($map));
+        return $this->files->createFile(
+            $this->getPath(),
+            count($map) === 0 ? '' : $this->file->buildContent($map)
+        );
     }
 
     final protected function isFileExists(): bool

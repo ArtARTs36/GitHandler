@@ -129,6 +129,35 @@ phpunit.xml    export-ignore param1 param2
         self::assertEquals($endContent, $this->mockFileSystem->getFileContent($command->getPath()));
     }
 
+    public function providerForTestDelete(): array
+    {
+        return [
+            [
+                'path1 attribute1',
+                'path1',
+                true,
+            ],
+            [
+                'path1 attribute1',
+                'path2',
+                false,
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider providerForTestDelete
+     * @covers \ArtARTs36\GitHandler\Command\Commands\AttributeCommand::delete
+     */
+    public function testDelete(string $startContent, string $pattern, bool $state): void
+    {
+        $command = $this->makeAttributeCommand();
+
+        $this->mockFileSystem->createFile($command->getPath(), $startContent);
+
+        self::assertEquals($state, $command->delete($pattern));
+    }
+
     private function makeAttributeCommand(): AttributeCommand
     {
         return new AttributeCommand($this->mockFileSystem, $this->mockGitContext);
