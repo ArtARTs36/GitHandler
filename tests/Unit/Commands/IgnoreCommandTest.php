@@ -93,6 +93,32 @@ final class IgnoreCommandTest extends GitTestCase
         self::assertFalse($command->delete('file1.txt'));
     }
 
+    public function providerForTestDelete(): array
+    {
+        return [
+            [
+                "file1.txt\ncomposer.lock\nfile2.txt",
+                'composer.lock',
+                "file1.txt\nfile2.txt",
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider providerForTestDelete
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IgnoreCommand::delete
+     */
+    public function testDelete(string $startContent, string $path, string $endContent): void
+    {
+        $command = $this->makeIgnoreCommand();
+
+        $this->mockFileSystem->createFile($command->getPath(), $startContent);
+
+        $command->delete($path);
+
+        self::assertEquals($endContent, $this->mockFileSystem->getFileContent($command->getPath()));
+    }
+
     private function makeIgnoreCommand(): IgnoreCommand
     {
         return new IgnoreCommand($this->mockGitContext, $this->mockFileSystem);
