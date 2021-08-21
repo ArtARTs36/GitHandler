@@ -31,7 +31,7 @@ class MergeCommand extends AbstractCommand implements GitMergeCommand
                 function (CommandResult $result) {
                     if ($result
                         ->getError()
-                        ->contains('fatal: There is no merge to abort \(MERGE_HEAD missing\)')) {
+                        ->contains('fatal: There is no merge to abort (MERGE_HEAD missing)')) {
                         throw new MergeHeadMissing();
                     }
                 }
