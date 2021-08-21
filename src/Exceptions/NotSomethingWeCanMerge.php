@@ -2,8 +2,6 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-use Throwable;
-
 final class NotSomethingWeCanMerge extends CannotMergeException
 {
     public function __construct(string $branch)
