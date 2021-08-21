@@ -73,6 +73,22 @@ class AttributeCommand implements GitAttributeCommand
             return [];
         }
 
+        return $this->buildMapFromContent($content);
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getPath(): string
+    {
+        return $this->folder . DIRECTORY_SEPARATOR . '.gitattributes';
+    }
+
+    /**
+     * @return array<string, array<\ArtARTs36\Str\Str>>
+     */
+    protected function buildMapFromContent(string $content): array
+    {
         $map = [];
 
         foreach (Str::lines($content) as $match) {
@@ -82,14 +98,6 @@ class AttributeCommand implements GitAttributeCommand
         }
 
         return $map;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function getPath(): string
-    {
-        return $this->folder . DIRECTORY_SEPARATOR . '.gitattributes';
     }
 
     protected function saveFromMap(array $map): bool

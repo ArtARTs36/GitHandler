@@ -43,6 +43,7 @@ phpunit.xml    export-ignore param1 param2
     /**
      * @dataProvider providerForTestGetMap
      * @covers \ArtARTs36\GitHandler\Command\Commands\AttributeCommand::getMap
+     * @covers \ArtARTs36\GitHandler\Command\Commands\AttributeCommand::buildMapFromContent
      */
     public function testGetMap(string $content, array $expected): void
     {
@@ -74,6 +75,18 @@ phpunit.xml    export-ignore param1 param2
         $this->mockFileSystem->createFile($command->getPath(), $content);
 
         self::assertEquals($findPath, $command->find($findPath)->pattern);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\AttributeCommand::find
+     */
+    public function testFindNull(): void
+    {
+        $command = $this->makeAttributeCommand();
+
+        $this->mockFileSystem->createFile($command->getPath(), '');
+
+        self::assertNull($command->find('index.php'));
     }
 
     private function makeAttributeCommand(): AttributeCommand
