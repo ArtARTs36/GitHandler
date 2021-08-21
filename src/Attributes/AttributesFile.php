@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Attributes;
 
-use ArtARTs36\Str\Facade\Str;
+use ArtARTs36\Str\Str;
 use ArtARTs36\Str\Tab;
 
 class AttributesFile
@@ -18,7 +18,7 @@ class AttributesFile
 
         $map = [];
 
-        foreach (Str::lines($content) as $match) {
+        foreach (Str::make($content)->trim()->lines() as $match) {
             $parts = $match->deleteUnnecessarySpaces()->words();
 
             $map[$parts[0]->__toString()] = array_slice($parts, 1);

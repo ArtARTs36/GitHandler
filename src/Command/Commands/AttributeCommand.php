@@ -34,7 +34,7 @@ class AttributeCommand implements GitAttributeCommand
     {
         $map = $this->isFileExists() ? $this->getMap() : [];
 
-        $map[$pattern] = array_merge($map[$pattern] ?? [], $attributes);
+        $map[$pattern] = array_unique(array_merge($map[$pattern] ?? [], $attributes));
 
         $this->saveFromMap($map);
     }
@@ -87,7 +87,7 @@ class AttributeCommand implements GitAttributeCommand
         return $this->files->createFile($this->getPath(), $this->file->buildContent($map));
     }
 
-    private function isFileExists(): bool
+    final protected function isFileExists(): bool
     {
         return $this->files->exists($this->getPath());
     }

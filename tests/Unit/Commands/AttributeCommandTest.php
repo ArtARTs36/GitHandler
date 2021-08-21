@@ -43,6 +43,7 @@ phpunit.xml    export-ignore param1 param2
     /**
      * @dataProvider providerForTestGetMap
      * @covers \ArtARTs36\GitHandler\Command\Commands\AttributeCommand::getMap
+     * @covers \ArtARTs36\GitHandler\Attributes\AttributesFile::buildMap
      */
     public function testGetMap(string $content, array $expected): void
     {
@@ -86,6 +87,46 @@ phpunit.xml    export-ignore param1 param2
         $this->mockFileSystem->createFile($command->getPath(), '');
 
         self::assertNull($command->find('index.php'));
+    }
+
+    public function providerForTestAdd(): array
+    {
+        return [
+            [
+                // empty .gittatributes
+                '', 'my-pattern', ['value'], "my-pattern value\n",
+            ],
+            [
+                // .gitattributes not exists
+                false, 'my-pattern', ['value'], "my-pattern value\n",
+            ],
+            [
+                // .gitattributes has requested pattern and equals attribute
+                "my-pattern value\n", 'my-pattern', ['value'], "my-pattern value\n",
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider providerForTestAdd
+     * @covers \ArtARTs36\GitHandler\Command\Commands\AttributeCommand::add
+     * @covers \ArtARTs36\GitHandler\Command\Commands\AttributeCommand::isFileExists
+     * @covers \ArtARTs36\GitHandler\Command\Commands\AttributeCommand::saveFromMap
+     * @param bool|string $startContent
+     */
+    public function testAdd(
+        $startContent,
+        string $pattern,
+        array $attributes,
+        string $endContent
+    ): void {
+        $command = $this->makeAttributeCommand();
+
+        $startContent !== false && $this->mockFileSystem->createFile($command->getPath(), $startContent);
+
+        $command->add($pattern, $attributes);
+
+        self::assertEquals($endContent, $this->mockFileSystem->getFileContent($command->getPath()));
     }
 
     private function makeAttributeCommand(): AttributeCommand
