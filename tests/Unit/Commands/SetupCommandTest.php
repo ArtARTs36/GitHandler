@@ -134,6 +134,17 @@ final class SetupCommandTest extends GitTestCase
         $command->reinstall();
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\SetupCommand::reinstall
+     */
+    public function testReinstallOk(): void
+    {
+        $command = $this->makeSetupCommand();
+        $this->mockCommandExecutor->nextOk('origin https://github.com(fetch)')->nextOk();
+
+        self::assertNull($command->reinstall('master'));
+    }
+
     private function makeSetupCommand(): SetupCommand
     {
         return new SetupCommand(
