@@ -263,4 +263,42 @@ final class LocalFileSystemTest extends TestCase
 
         self::assertTrue($system->removeDir('random-ath'));
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getTmpDir
+     */
+    public function testGetTmpDir(): void
+    {
+        $fileSystem = new LocalFileSystem();
+
+        self::assertEquals(sys_get_temp_dir(), $fileSystem->getTmpDir());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getAbsolutePath
+     */
+    public function testGetAbsolutePathOnFileNotFound(): void
+    {
+        $fileSystem = new LocalFileSystem();
+
+        self::expectException(FileNotFound::class);
+
+        $fileSystem->getAbsolutePath('random-path');
+    }
+
+    public function providerForTestGetAbsolutePath(): array
+    {
+        return [
+            [__DIR__ . '/../functions.php', dirname(__DIR__) . '/functions.php']
+        ];
+    }
+
+    /**
+     * @dataProvider providerForTestGetAbsolutePath
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getAbsolutePath
+     */
+    public function testGetAbsolutePath(string $input, string $expected): void
+    {
+        self::assertEquals($expected, (new LocalFileSystem())->getAbsolutePath($input));
+    }
 }
