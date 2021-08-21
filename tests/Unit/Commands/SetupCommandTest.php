@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Command\Commands\RemoteCommand;
 use ArtARTs36\GitHandler\Command\Commands\SetupCommand;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Exceptions\PathAlreadyExists;
+use ArtARTs36\GitHandler\Exceptions\RemoteNotFilled;
 use ArtARTs36\GitHandler\Exceptions\RepositoryAlreadyExists;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
@@ -117,6 +118,20 @@ final class SetupCommandTest extends GitTestCase
         $this->makeSetupCommand()->delete();
 
         self::assertFalse($this->mockFileSystem->exists($this->mockGitContext->getRootDir()));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\SetupCommand::reinstall
+     */
+    public function testReinstallOnRemoteNotFilled(): void
+    {
+        $command = $this->makeSetupCommand();
+
+        $this->mockCommandExecutor->nextOk();
+
+        self::expectException(RemoteNotFilled::class);
+
+        $command->reinstall();
     }
 
     private function makeSetupCommand(): SetupCommand
