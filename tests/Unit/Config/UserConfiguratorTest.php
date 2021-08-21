@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Config\Configurators\UserConfigurator;
 use ArtARTs36\GitHandler\Config\Subjects\User;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class UserConfiguratorTest extends TestCase
+final class UserConfiguratorTest extends TestCase
 {
     public function providerForTestParse(): array
     {

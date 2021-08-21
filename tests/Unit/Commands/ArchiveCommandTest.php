@@ -30,6 +30,26 @@ final class ArchiveCommandTest extends GitTestCase
         self::assertNull($this->makeArchiveCommand()->create('var.zip'));
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ArchiveCommand::packRefs
+     */
+    public function testPackRefsOk(): void
+    {
+        $this->mockCommandExecutor->nextOk();
+
+        self::assertNull($this->makeArchiveCommand()->packRefs('var.zip'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ArchiveCommand::unpackRefs
+     */
+    public function testUnpackRefsOk(): void
+    {
+        $this->mockCommandExecutor->nextOk();
+
+        self::assertNull($this->makeArchiveCommand()->unpackRefs('var.zip'));
+    }
+
     private function makeArchiveCommand(): ArchiveCommand
     {
         return new ArchiveCommand(

@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Config\Configurators\CredentialConfigurator;
 use ArtARTs36\GitHandler\Config\Subjects\Credential;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class CredentialConfiguratorTest extends TestCase
+final class CredentialConfiguratorTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Config\Configurators\CredentialConfigurator::parse

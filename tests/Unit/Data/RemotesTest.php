@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Data;
 use ArtARTs36\GitHandler\Data\Remotes;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class RemotesTest extends TestCase
+final class RemotesTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Data\Remotes::createEmpty

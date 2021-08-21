@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Config\Configurators\PackConfigurator;
 use ArtARTs36\GitHandler\Config\Subjects\Pack;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class PackConfiguratorTest extends TestCase
+final class PackConfiguratorTest extends TestCase
 {
     public function providerForTestParse(): array
     {

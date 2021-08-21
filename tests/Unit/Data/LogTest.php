@@ -7,26 +7,24 @@ use ArtARTs36\GitHandler\Data\Commit;
 use ArtARTs36\GitHandler\Data\Log;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class LogTest extends TestCase
+final class LogTest extends TestCase
 {
+    public function providerForTestEqualsDate(): array
+    {
+        return [
+            [$date = new \DateTime(), $date, true],
+            [new \DateTime(), new \DateTime('50 day ago'), false],
+        ];
+    }
+
     /**
+     * @dataProvider providerForTestEqualsDate
      * @covers \ArtARTs36\GitHandler\Data\Log::equalsDate
      */
-    public function testEqualsDate(): void
+    public function testEqualsDate(\DateTimeInterface $logDate, \DateTimeInterface $compared, bool $expected): void
     {
-        $log = new Log(
-            new Commit(''),
-            $date = new \DateTime(),
-            new Author('', ''),
-            ''
-        );
+        $log = new Log(new Commit(''), $logDate, new Author('', ''), '');
 
-        //
-
-        self::assertTrue($log->equalsDate($date));
-
-        //
-
-        self::assertFalse($log->equalsDate(new \DateTime('50 day ago')));
+        self::assertEquals($expected, $log->equalsDate($compared));
     }
 }

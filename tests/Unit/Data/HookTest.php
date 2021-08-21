@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Data\Hook;
 use ArtARTs36\GitHandler\Enum\HookName;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class HookTest extends TestCase
+final class HookTest extends TestCase
 {
     public function providerForTestIsSample(): array
     {

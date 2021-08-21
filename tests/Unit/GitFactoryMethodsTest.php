@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Command\Commands\ArchiveCommand;
+use ArtARTs36\GitHandler\Command\Commands\AttributeCommand;
 use ArtARTs36\GitHandler\Command\Commands\BranchCommand;
 use ArtARTs36\GitHandler\Command\Commands\CommitCommand;
 use ArtARTs36\GitHandler\Command\Commands\ConfigCommand;
@@ -52,6 +53,7 @@ class GitFactoryMethodsTest extends GitTestCase
             ['transaction', ArchiveTransaction::class],
             ['garbage', GarbageCommand::class],
             ['merges', MergeCommand::class],
+            ['attributes', AttributeCommand::class],
         ];
     }
 
@@ -79,6 +81,7 @@ class GitFactoryMethodsTest extends GitTestCase
      * @covers \ArtARTs36\GitHandler\Git::transaction
      * @covers \ArtARTs36\GitHandler\Git::garbage
      * @covers \ArtARTs36\GitHandler\Git::merges
+     * @covers \ArtARTs36\GitHandler\Git::attributes
      */
     public function testFactoryMethod(string $method, string $expectedClass): void
     {

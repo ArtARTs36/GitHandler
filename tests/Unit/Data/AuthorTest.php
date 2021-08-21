@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Data;
 use ArtARTs36\GitHandler\Data\Author;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class AuthorTest extends TestCase
+final class AuthorTest extends TestCase
 {
     public function providerForTestEquals(): array
     {

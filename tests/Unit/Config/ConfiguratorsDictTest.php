@@ -8,7 +8,7 @@ use ArtARTs36\GitHandler\Contracts\Config\SubjectConfigurator;
 use ArtARTs36\GitHandler\Exceptions\SubjectConfiguratorNotFound;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class ConfiguratorsDictTest extends TestCase
+final class ConfiguratorsDictTest extends TestCase
 {
     public function mockDataProvider(): array
     {

@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Data;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class GitContextTest extends TestCase
+final class GitContextTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Data\GitContext::make

@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Config\Configurators\BranchConfigurator;
 use ArtARTs36\GitHandler\Config\Subjects\BranchList;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class BranchConfiguratorTest extends TestCase
+final class BranchConfiguratorTest extends TestCase
 {
     public function providerForTestParse(): array
     {
