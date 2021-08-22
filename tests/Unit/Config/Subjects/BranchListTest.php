@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Config\Subjects\Branch;
 use ArtARTs36\GitHandler\Config\Subjects\BranchList;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class BranchListTest extends TestCase
+final class BranchListTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Config\Subjects\BranchList::get
@@ -14,7 +14,7 @@ class BranchListTest extends TestCase
     public function testGet(): void
     {
         $list = new BranchList([
-            'test' => $branch = Branch::fromLinks('test', [])
+            'test' => $branch = Branch::fromLinks('test', []),
         ]);
 
         self::assertSame($branch, $list->get('test'));

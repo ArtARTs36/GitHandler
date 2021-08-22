@@ -11,7 +11,6 @@ class LogCollection implements \IteratorAggregate, \Countable
 
     /**
      * @param non-empty-array<Log> $logs
-     * @codeCoverageIgnore
      */
     public function __construct(array $logs)
     {
@@ -52,7 +51,7 @@ class LogCollection implements \IteratorAggregate, \Countable
             return null;
         }
 
-        return new static($logs);
+        return new static(array_values($logs));
     }
 
     /**

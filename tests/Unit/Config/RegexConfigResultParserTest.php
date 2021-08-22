@@ -2,22 +2,28 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Config;
 
+use ArtARTs36\GitHandler\Config\Configurators\BranchConfigurator;
+use ArtARTs36\GitHandler\Config\Configurators\CoreConfigurator;
+use ArtARTs36\GitHandler\Config\Configurators\CredentialConfigurator;
+use ArtARTs36\GitHandler\Config\Configurators\PackConfigurator;
+use ArtARTs36\GitHandler\Config\Configurators\UserConfigurator;
+use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
+use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Config\Subjects\AbstractSubject;
-use ArtARTs36\GitHandler\Contracts\ConfigSubject;
-use ArtARTs36\GitHandler\Contracts\SubjectConfigurator;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
+use ArtARTs36\GitHandler\Contracts\Config\SubjectConfigurator;
 use ArtARTs36\GitHandler\Exceptions\ConfigDataNotFound;
-use ArtARTs36\GitHandler\GitSimpleFactory;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 use ArtARTs36\Str\Str;
 
-class RegexConfigResultParserTest extends TestCase
+final class RegexConfigResultParserTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Config\RegexConfigResultParser::grouped
      */
     public function testGrouped(): void
     {
-        $parser = GitSimpleFactory::factoryConfigReader();
+        $parser = $this->makeRegexConfigResultParser();
 
         $matches = [
             [
@@ -58,7 +64,7 @@ class RegexConfigResultParserTest extends TestCase
      */
     public function testParseByPrefixOnNotFound(): void
     {
-        $parser = GitSimpleFactory::factoryConfigReader();
+        $parser = $this->makeRegexConfigResultParser();
 
         self::expectException(ConfigDataNotFound::class);
 
@@ -70,7 +76,7 @@ class RegexConfigResultParserTest extends TestCase
      */
     public function testParseByPrefix(): void
     {
-        $parser = GitSimpleFactory::factoryConfigReader([
+        $parser = $this->makeRegexConfigResultParser([
             new class implements SubjectConfigurator {
 
                 public function parse(array $raw): ConfigSubject
@@ -106,7 +112,7 @@ class RegexConfigResultParserTest extends TestCase
             "task.option=1\nab.field=2\ntask.option2=3"
         );
 
-        $parser = GitSimpleFactory::factoryConfigReader([
+        $parser = $this->makeRegexConfigResultParser([
             new class implements SubjectConfigurator {
                 public function parse(array $raw): ConfigSubject
                 {
@@ -132,5 +138,18 @@ class RegexConfigResultParserTest extends TestCase
         self::assertCount(1, $result);
         self::assertEquals(1, $result->all()[0]->option);
         self::assertEquals(3, $result->all()[0]->option2);
+    }
+
+    private function makeRegexConfigResultParser(array $configurators = []): RegexConfigResultParser
+    {
+        return new RegexConfigResultParser(
+            ConfiguratorsDict::make($configurators ?? [
+                    new UserConfigurator(),
+                    new CoreConfigurator(),
+                    new PackConfigurator(),
+                    new CredentialConfigurator(),
+                    new BranchConfigurator(),
+                ])
+        );
     }
 }

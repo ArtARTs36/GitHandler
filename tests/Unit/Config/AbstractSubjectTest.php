@@ -6,25 +6,37 @@ use ArtARTs36\GitHandler\Config\Subjects\AbstractSubject;
 use ArtARTs36\GitHandler\Tests\Unit\Config\Prototypes\Mask;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class AbstractSubjectTest extends TestCase
+final class AbstractSubjectTest extends TestCase
 {
-    public function testIsEmpty(): void
+    public function providerForTestIsEmpty(): array
     {
-        $subject = new class extends AbstractSubject {
-            private $oneField;
+        return [
+            [
+                ['field1' => '', 'field2' => ''],
+                true,
+            ],
+            [
+                ['field1' => 'value', 'field2' => ''],
+                false,
+            ],
+        ];
+    }
 
-            private $twoField = '';
+    /**
+     * @dataProvider providerForTestIsEmpty
+     */
+    public function testIsEmpty(array $subjectData, bool $state): void
+    {
+        $subject = new class($subjectData) extends AbstractSubject {
+            public function __construct(array $subjectData)
+            {
+                foreach ($subjectData as $key => $value) {
+                    $this->$key = $value;
+                }
+            }
         };
 
-        self::assertTrue($subject->isEmpty());
-
-        //
-
-        $subject = new class extends AbstractSubject {
-            protected $oneField = 'value';
-        };
-
-        self::assertFalse($subject->isEmpty());
+        self::assertEquals($state, $subject->isEmpty());
     }
 
     /**

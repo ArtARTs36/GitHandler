@@ -8,10 +8,11 @@ use ArtARTs36\GitHandler\Data\Log;
 use ArtARTs36\GitHandler\Data\LogCollection;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class LogCollectionTest extends TestCase
+final class LogCollectionTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::count
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testCount(): void
     {
@@ -24,20 +25,21 @@ class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::first
-     * @covers \ArtARTs36\GitHandler\Data\LogCollection::last
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testFirst(): void
     {
         $collection = new LogCollection([
             $log = new Log(new Commit(''), new \DateTime(), new Author('', ''), ''),
+            new Log(new Commit(''), new \DateTime(), new Author('', ''), ''),
         ]);
 
         self::assertSame($log, $collection->first());
-        self::assertSame($log, $collection->last());
     }
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::last
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testLast(): void
     {
@@ -51,6 +53,7 @@ class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::filterByAuthorName
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testFilterByAuthorName(): void
     {
@@ -68,6 +71,7 @@ class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::all
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testAll(): void
     {
@@ -80,6 +84,25 @@ class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::filter
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
+     */
+    public function testFilterWithReturnNull(): void
+    {
+        $collection = new LogCollection([
+            new Log(new Commit(''), new \DateTime(), new Author('artem', '@'), 'a'),
+            new Log(new Commit(''), new \DateTime(), new Author('artem', '@'), 'b'),
+        ]);
+
+        //
+
+        self::assertNull($collection->filter(function () {
+            return false;
+        }));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::filter
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testFilter(): void
     {
@@ -90,23 +113,16 @@ class LogCollectionTest extends TestCase
 
         //
 
-        self::assertNull($collection->filter(function () {
-            return false;
-        }));
-
-        //
-
         $filteredCollection = $collection->filter(function (Log $log) {
             return $log->message === 'b';
         });
 
-        self::assertNotNull($filteredCollection);
-        self::assertCount(1, $filteredCollection);
-        self::assertSame($lastLog, $filteredCollection->first());
+        self::assertSame([$lastLog], $filteredCollection->all());
     }
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::getIterator
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testGetIterator(): void
     {
@@ -120,6 +136,7 @@ class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::filterByDate
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testFilterByDate(): void
     {

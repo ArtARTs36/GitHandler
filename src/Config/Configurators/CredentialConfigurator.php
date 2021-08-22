@@ -3,8 +3,8 @@
 namespace ArtARTs36\GitHandler\Config\Configurators;
 
 use ArtARTs36\GitHandler\Config\Subjects\Credential;
-use ArtARTs36\GitHandler\Contracts\ConfigSubject;
-use ArtARTs36\GitHandler\Contracts\SubjectConfigurator;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
+use ArtARTs36\GitHandler\Contracts\Config\SubjectConfigurator;
 
 class CredentialConfigurator implements SubjectConfigurator
 {

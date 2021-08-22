@@ -2,8 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Origin\Url;
 
-use ArtARTs36\GitHandler\Contracts\HasRemotes;
-use ArtARTs36\GitHandler\Contracts\OriginUrl;
+use ArtARTs36\GitHandler\Contracts\Handler\HasRemotes;
+use ArtARTs36\GitHandler\Contracts\Origin\OriginUrlBuilder;
 use ArtARTs36\GitHandler\Exceptions\OriginUrlNotFound;
 use ArtARTs36\GitHandler\Support\Uri;
 
@@ -12,7 +12,7 @@ class OriginUrlSelector
     protected $map = [];
 
     /**
-     * @param array<string, OriginUrl> $map
+     * @param array<string, OriginUrlBuilder> $map
      * @codeCoverageIgnore
      */
     public function __construct(array $map)
@@ -21,7 +21,7 @@ class OriginUrlSelector
     }
 
     /**
-     * @param array<OriginUrl> $urls
+     * @param array<OriginUrlBuilder> $urls
      */
     public static function make(array $urls): self
     {
@@ -39,12 +39,12 @@ class OriginUrlSelector
     /**
      * @throws OriginUrlNotFound
      */
-    public function select(HasRemotes $git): OriginUrl
+    public function select(HasRemotes $git): OriginUrlBuilder
     {
-        return $this->selectByUrl($git->showRemote()->fetch);
+        return $this->selectByUrl($git->remotes()->show()->fetch);
     }
 
-    public function selectByUrl(string $url): OriginUrl
+    public function selectByUrl(string $url): OriginUrlBuilder
     {
         return $this->selectByDomain(Uri::host($url));
     }
@@ -52,7 +52,7 @@ class OriginUrlSelector
     /**
      * @throws OriginUrlNotFound
      */
-    public function selectByDomain(string $domain): OriginUrl
+    public function selectByDomain(string $domain): OriginUrlBuilder
     {
         if (! $this->has($domain)) {
             throw new OriginUrlNotFound();

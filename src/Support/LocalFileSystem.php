@@ -2,9 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Support;
 
-use ArtARTs36\GitHandler\Contracts\FileSystem;
+use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
-use ArtARTs36\GitHandler\Exceptions\PathIncorrect;
 
 class LocalFileSystem implements FileSystem
 {
@@ -50,65 +49,16 @@ class LocalFileSystem implements FileSystem
      */
     public function getFromDirectory(string $path): array
     {
-        return glob(realpath($path) . '/*');
+        return glob($this->getAbsolutePath($path) . '/*');
     }
 
-    public function belowPath(string $path): string
+    public function downPath(string $path): string
     {
-        // For not exists Path
-        if (! $this->exists($path)) {
-            $array = explode(DIRECTORY_SEPARATOR, $path);
-
-            if (count($array) < 2) {
-                throw new PathIncorrect($path);
-            }
-
-            $last = array_key_last($array);
-
-            return implode(DIRECTORY_SEPARATOR, array_slice($array, 0, $last));
+        if ($this->exists($path)) {
+            return $this->getAbsolutePath($path . '/../');
         }
 
-        // For exists Path
-
-        return realpath($path . '/../');
-    }
-
-    public function endFolder(string $path): string
-    {
-        // For not exists Path
-        if (! $this->exists($path)) {
-            $array = explode(DIRECTORY_SEPARATOR, $path);
-
-            $end = end($array);
-
-            if (! static::isPseudoFile($end)) {
-                return $end;
-            }
-
-            if (count($array) > 1) {
-                return $array[array_key_last($array) - 1];
-            }
-
-            return '';
-        }
-
-        // For exists Path
-        if (is_dir($path)) {
-            return pathinfo($path, PATHINFO_BASENAME);
-        }
-
-        $dir = pathinfo($path, PATHINFO_DIRNAME);
-
-        $array = explode(DIRECTORY_SEPARATOR, $dir);
-
-        return end($array);
-    }
-
-    public function isPseudoFile(string $file): bool
-    {
-        $array = explode('.', $file);
-
-        return count($array) > 1;
+        return dirname($path);
     }
 
     public function createDir(string $path, int $permissions = 0755): bool
@@ -148,5 +98,19 @@ class LocalFileSystem implements FileSystem
         $dateGetter = $this->fileDateGetter;
 
         return (new \DateTime())->setTimestamp($dateGetter($path));
+    }
+
+    public function getAbsolutePath(string $path): string
+    {
+        if (! $this->exists($path)) {
+            throw new FileNotFound($path);
+        }
+
+        return realpath($path);
+    }
+
+    public function getTmpDir(): string
+    {
+        return sys_get_temp_dir();
     }
 }

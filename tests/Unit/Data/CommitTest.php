@@ -5,10 +5,11 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Data;
 use ArtARTs36\GitHandler\Data\Commit;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class CommitTest extends TestCase
+final class CommitTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Data\Commit::__toString
+     * @covers \ArtARTs36\GitHandler\Data\Commit::__construct
      */
     public function testToString(): void
     {
@@ -19,6 +20,7 @@ class CommitTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\Commit::getAbbreviatedHash
+     * @covers \ArtARTs36\GitHandler\Data\Commit::__construct
      */
     public function testGetAbbreviatedHash(): void
     {

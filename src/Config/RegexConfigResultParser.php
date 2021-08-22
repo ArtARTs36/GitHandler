@@ -3,8 +3,8 @@
 namespace ArtARTs36\GitHandler\Config;
 
 use ArtARTs36\GitHandler\Config\Subjects\SubjectsCollection;
-use ArtARTs36\GitHandler\Contracts\ConfigResultParser;
-use ArtARTs36\GitHandler\Contracts\ConfigSubject;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigResultParser;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 use ArtARTs36\GitHandler\Exceptions\ConfigDataNotFound;
 use ArtARTs36\Str\Str;
 

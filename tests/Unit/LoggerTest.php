@@ -3,14 +3,24 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Data\Author;
-use ArtARTs36\GitHandler\Logger;
+use ArtARTs36\GitHandler\Support\Logger;
 use ArtARTs36\Str\Str;
 
-class LoggerTest extends TestCase
+final class LoggerTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Logger::parse
-     * @covers \ArtARTs36\GitHandler\Logger::hasAuthor
+     * @covers \ArtARTs36\GitHandler\Support\Logger::parse
+     */
+    public function testParseOnEmptyRaw(): void
+    {
+        $logger = new Logger();
+
+        self::assertNull($logger->parse(new Str('')));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Support\Logger::parse
+     * @covers \ArtARTs36\GitHandler\Support\Logger::hasAuthor
      */
     public function testParse(): void
     {
@@ -18,17 +28,12 @@ class LoggerTest extends TestCase
 
         //
 
-        self::assertNull($logger->parse(new Str('')));
-        self::assertFalse($this->callMethodFromObject($logger, 'hasAuthor', 'ArtARTs36'));
-
-        //
-
         $result = $logger->parse(
-            new Str('* 7d0aca97318037b6cbccc7d7169079b9dcfe6d49|2021-04-01 23:28:08 +0300|ArtARTs36|'
-            .'temicska99@mail.ru|update readme.md'
-            .'* 3ceda5859b20957d47bcbe519317de5ee9db938b|2021-04-01 23:25:19 +0300|ArtARTs36|temicska99@mail.ru|'
-            .'support download from bit bucket
-')
+            new Str('* |log-entry|7d0aca97318037b6cbccc7d7169079b9dcfe6d49|2021-04-01 23:28:08 +0300|ArtARTs36|'
+            .'temicska99@mail.ru|update readme.md|'
+            .'* |log-entry|3ceda5859b20957d47bcbe519317de5ee9db938b|2021-04-01 23:25:19 +0300|ArtARTs36'
+            .'|temicska99@mail.ru|support download from bit bucket|
+        ')
         );
 
         self::assertNotNull($result);
@@ -36,7 +41,7 @@ class LoggerTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Logger::getOrCreateAuthor
+     * @covers \ArtARTs36\GitHandler\Support\Logger::getOrCreateAuthor
      */
     public function testGetOrCreateAuthor(): void
     {

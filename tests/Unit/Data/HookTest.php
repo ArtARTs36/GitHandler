@@ -3,10 +3,10 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Data;
 
 use ArtARTs36\GitHandler\Data\Hook;
-use ArtARTs36\GitHandler\Support\HookName;
+use ArtARTs36\GitHandler\Enum\HookName;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class HookTest extends TestCase
+final class HookTest extends TestCase
 {
     public function providerForTestIsSample(): array
     {
@@ -24,6 +24,7 @@ class HookTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\Hook::isSample
+     * @covers \ArtARTs36\GitHandler\Data\Hook::__construct
      * @dataProvider providerForTestIsSample
      */
     public function testIsSample(string $name, bool $result): void

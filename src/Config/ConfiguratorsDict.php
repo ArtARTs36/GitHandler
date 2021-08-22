@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Config;
 
-use ArtARTs36\GitHandler\Contracts\SubjectConfigurator;
+use ArtARTs36\GitHandler\Contracts\Config\SubjectConfigurator;
 use ArtARTs36\GitHandler\Exceptions\SubjectConfiguratorNotFound;
 
 class ConfiguratorsDict implements \IteratorAggregate

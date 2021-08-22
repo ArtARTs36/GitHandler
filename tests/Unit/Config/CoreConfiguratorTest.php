@@ -6,47 +6,56 @@ use ArtARTs36\GitHandler\Config\Configurators\CoreConfigurator;
 use ArtARTs36\GitHandler\Config\Subjects\Core;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class CoreConfiguratorTest extends TestCase
+final class CoreConfiguratorTest extends TestCase
 {
+    public function providerForTestParse(): array
+    {
+        return [
+            [
+                [],
+                [
+                    'autocrlf' => '',
+                    'ignoreCase' => false,
+                    'repositoryFormatVersion' => 0,
+                    'bare' => false,
+                    'logAllRefUpdates' => false,
+                    'preComposeUnicode' => false,
+                    'fileMode' => false,
+                ],
+            ],
+            [
+                [
+                    'autocrlf' => 'auto',
+                    'ignorecase' => 'true',
+                    'repositoryformatversion' => 5,
+                    'bare' => 'true',
+                    'logallrefupdates' => 'true',
+                    'precomposeunicode' => 'true',
+                    'filemode' => 'true',
+                ],
+                [
+                    'autocrlf' => 'auto',
+                    'ignoreCase' => true,
+                    'repositoryFormatVersion' => 5,
+                    'bare' => true,
+                    'logAllRefUpdates' => true,
+                    'preComposeUnicode' => true,
+                    'fileMode' => true,
+                ],
+            ]
+        ];
+    }
+
     /**
+     * @dataProvider providerForTestParse
      * @covers \ArtARTs36\GitHandler\Config\Configurators\CoreConfigurator::parse
      */
-    public function testParse(): void
+    public function testParse(array $raw, array $expected): void
     {
         $configurator = new CoreConfigurator();
 
         //
 
-        /** @var Core $core */
-        $core = $configurator->parse([]);
-
-        self::assertInstanceOf(Core::class, $core);
-        self::assertEquals('', $core->autocrlf);
-        self::assertFalse($core->ignoreCase);
-        self::assertSame(0, $core->repositoryFormatVersion);
-        self::assertFalse($core->bare);
-        self::assertFalse($core->logAllRefUpdates);
-        self::assertFalse($core->preComposeUnicode);
-        self::assertFalse($core->fileMode);
-
-        /** @var Core $core */
-        $core = $configurator->parse([
-            'autocrlf' => 'auto',
-            'ignorecase' => 'true',
-            'repositoryformatversion' => 5,
-            'bare' => 'true',
-            'logallrefupdates' => 'true',
-            'precomposeunicode' => 'true',
-            'filemode' => 'true',
-        ]);
-
-        self::assertInstanceOf(Core::class, $core);
-        self::assertEquals('auto', $core->autocrlf);
-        self::assertTrue($core->ignoreCase);
-        self::assertSame(5, $core->repositoryFormatVersion);
-        self::assertTrue($core->bare);
-        self::assertTrue($core->logAllRefUpdates);
-        self::assertTrue($core->preComposeUnicode);
-        self::assertTrue($core->fileMode);
+        self::assertSame($expected, $configurator->parse($raw)->toArray());
     }
 }

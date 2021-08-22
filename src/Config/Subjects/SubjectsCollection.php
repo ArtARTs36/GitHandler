@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
-use ArtARTs36\GitHandler\Contracts\ConfigSubject;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 
 class SubjectsCollection implements \IteratorAggregate, \Countable
 {

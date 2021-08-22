@@ -15,24 +15,12 @@ class Log
 
     public $message;
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function __construct(Commit $commit, \DateTimeInterface $date, Author $author, string $message)
     {
         $this->commit = $commit;
         $this->author = $author;
         $this->date = $date;
         $this->message = $message;
-    }
-
-    /**
-     * @deprecated
-     * @see Commit::getAbbreviatedHash()
-     */
-    public function getAbbreviatedCommitHash(): string
-    {
-        return $this->commit->getAbbreviatedHash();
     }
 
     public function equalsDate(\DateTimeInterface $date): bool

@@ -7,41 +7,25 @@ use ArtARTs36\GitHandler\Data\Commit;
 use ArtARTs36\GitHandler\Data\Log;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class LogTest extends TestCase
+final class LogTest extends TestCase
 {
-    /**
-     * @covers \ArtARTs36\GitHandler\Data\Log::getAbbreviatedCommitHash
-     */
-    public function testGetAbbreviatedCommitHash(): void
+    public function providerForTestEqualsDate(): array
     {
-        $log = new Log(
-            $commit = new Commit('7bfab23737fad677905ae7ddd3ac76e2e31f30a4'),
-            new \DateTime(),
-            new Author('', ''),
-            ''
-        );
-
-        self::assertEquals($commit->getAbbreviatedHash(), $log->getAbbreviatedCommitHash());
+        return [
+            [$date = new \DateTime(), $date, true],
+            [new \DateTime(), new \DateTime('50 day ago'), false],
+        ];
     }
 
     /**
+     * @dataProvider providerForTestEqualsDate
      * @covers \ArtARTs36\GitHandler\Data\Log::equalsDate
+     * @covers \ArtARTs36\GitHandler\Data\Log::__construct
      */
-    public function testEqualsDate(): void
+    public function testEqualsDate(\DateTimeInterface $logDate, \DateTimeInterface $compared, bool $expected): void
     {
-        $log = new Log(
-            new Commit(''),
-            $date = new \DateTime(),
-            new Author('', ''),
-            ''
-        );
+        $log = new Log(new Commit(''), $logDate, new Author('', ''), '');
 
-        //
-
-        self::assertTrue($log->equalsDate($date));
-
-        //
-
-        self::assertFalse($log->equalsDate(new \DateTime('50 day ago')));
+        self::assertEquals($expected, $log->equalsDate($compared));
     }
 }

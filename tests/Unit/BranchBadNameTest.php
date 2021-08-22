@@ -2,11 +2,11 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
-use ArtARTs36\GitHandler\Support\BranchBadName;
+use ArtARTs36\GitHandler\Enum\BranchBadName;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 use ArtARTs36\Str\Str;
 
-class BranchBadNameTest extends TestCase
+final class BranchBadNameTest extends TestCase
 {
     public function dataIsProvider(): array
     {
@@ -20,7 +20,7 @@ class BranchBadNameTest extends TestCase
 
     /**
      * @dataProvider dataIsProvider
-     * @covers \ArtARTs36\GitHandler\Support\BranchBadName::is
+     * @covers \ArtARTs36\GitHandler\Enum\BranchBadName::is
      */
     public function testIs(string $branch, bool $condition): void
     {

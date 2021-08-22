@@ -12,6 +12,6 @@ class Chmod
      */
     public static function executable(string $path): ShellCommandInterface
     {
-        return (new ShellCommand('chmod'))->addParameter('+x')->addParameter($path);
+        return (new ShellCommand('chmod'))->addArgument('+x')->addArgument($path);
     }
 }
