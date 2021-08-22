@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Attributes;
+namespace ArtARTs36\GitHandler\Files;
 
 use ArtARTs36\Str\Str;
 use ArtARTs36\Str\Tab;

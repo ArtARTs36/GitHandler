@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\FileSystem\Contracts\FileSystem;
-use ArtARTs36\GitHandler\Attributes\AttributesFile;
+use ArtARTs36\GitHandler\Files\AttributesFile;
 use ArtARTs36\GitHandler\Concerns\SwitchFolder;
 use ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand;
 use ArtARTs36\GitHandler\Data\GitAttributes;

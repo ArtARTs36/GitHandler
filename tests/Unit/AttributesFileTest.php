@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
-use ArtARTs36\GitHandler\Attributes\AttributesFile;
+use ArtARTs36\GitHandler\Files\AttributesFile;
 
 final class AttributesFileTest extends TestCase
 {
@@ -21,7 +21,7 @@ final class AttributesFileTest extends TestCase
 
     /**
      * @dataProvider providerTestBuildContent
-     * @covers \ArtARTs36\GitHandler\Attributes\AttributesFile::buildContent
+     * @covers \ArtARTs36\GitHandler\Files\AttributesFile::buildContent
      */
     public function testBuildContent(array $map, string $expected): void
     {
