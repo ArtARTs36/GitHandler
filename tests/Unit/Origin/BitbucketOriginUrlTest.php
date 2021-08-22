@@ -3,7 +3,6 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Origin;
 
 use ArtARTs36\GitHandler\Exceptions\GivenInvalidUri;
-use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrlBuilder;
 use ArtARTs36\GitHandler\Tests\Support\MockHasRemotes;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
@@ -65,7 +64,8 @@ class BitbucketOriginUrlTest extends TestCase
      */
     public function testToRepoFromUrl(): void
     {
-        $repo = (new BitbucketOriginUrlBuilder())->toRepoFromUrl('https://bitbucket.org/aukrainsky/test-repo/src/master/');
+        $repo = (new BitbucketOriginUrlBuilder())
+            ->toRepoFromUrl('https://bitbucket.org/aukrainsky/test-repo/src/master/');
 
         self::assertEquals([
             'user' => 'aukrainsky',
