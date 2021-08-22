@@ -41,7 +41,7 @@ class MethodSignatureBuilder
             } else {
                 if ($type === 'int') {
                     $exampleArgs[] = 1;
-                } elseif ($parameter->hasType() && static::isEnum($parameter->getType())) {
+                } elseif ($parameter->hasType() && EnumDetector::is($parameter->getType())) {
                     $exampleArgs[] = static::buildEnumArgument($parameter->getType(), $type);
                 } elseif ($type === 'bool') {
                     $exampleArgs[] = 'true';
@@ -68,10 +68,5 @@ class MethodSignatureBuilder
         $const = reset($constants);
 
         return "$shortName::from(" . $shortName . '::' . $const . ")";
-    }
-
-    protected static function isEnum(string $class): bool
-    {
-        return class_exists($class) && array_key_exists(Enumerable::class, class_uses($class)) ?? false;
     }
 }
