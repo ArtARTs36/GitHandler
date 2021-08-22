@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\DocBuilder;
 
+use ArtARTs36\Str\Facade\Str;
 use phpDocumentor\Reflection\DocBlock;
 
 class MethodSignatureBuilder
@@ -15,12 +16,26 @@ class MethodSignatureBuilder
     {
         $suggests = [];
         $exampleArgs = [];
+        $needFindExamplesArgs = true;
 
-        $params = array_map(function (\ReflectionParameter $parameter) use (&$suggests, $docBlock, &$exampleArgs) {
+        if (($docArgs = $docBlock->getTagsByName('exampleArguments')) && ! empty($docArgs)) {
+            $exampleArgs = array_map(function (string $arg) {
+                return "'$arg'";
+            }, $docArgs[0]->getArguments());
+
+            $needFindExamplesArgs = false;
+        }
+
+        $params = array_map(function (\ReflectionParameter $parameter) use (
+            &$suggests,
+            $docBlock,
+            &$exampleArgs,
+            $needFindExamplesArgs
+        ) {
             if ($parameter->hasType()) {
                 $parts = explode("\\", $parameter->getType());
 
-                if (strpos($parameter->getType(), 'ArtARTs36\\GitHandler\\') !== false) {
+                if (Str::contains($parameter->getType(), 'ArtARTs36\\GitHandler\\')) {
                     $suggests[] = $parameter->getType();
                 }
 
@@ -35,20 +50,22 @@ class MethodSignatureBuilder
                 }
             }
 
-            if (array_key_exists($parameter->name, static::$placeholders)) {
-                $exampleArgs[] = "'". static::$placeholders[$parameter->name] . "'";
-            } else {
-                if ($type === 'int') {
-                    $exampleArgs[] = 1;
-                } elseif ($parameter->hasType() && EnumDetector::is($parameter->getType())) {
-                    $exampleArgs[] = static::buildEnumArgument($parameter->getType(), $type);
-                } elseif ($type === 'bool') {
-                    $exampleArgs[] = 'true';
-                } elseif (($callableTmp = CallableTemplate::buildExampleArgument($parameter, $docBlock))
-                    && $callableTmp !== null) {
-                    $exampleArgs[] = $callableTmp;
+            if ($needFindExamplesArgs) {
+                if (array_key_exists($parameter->name, static::$placeholders)) {
+                    $exampleArgs[] = "'" . static::$placeholders[$parameter->name] . "'";
                 } else {
-                    $exampleArgs[] = "'". $parameter->name ."-test'";
+                    if ($type === 'int') {
+                        $exampleArgs[] = 1;
+                    } elseif ($parameter->hasType() && EnumDetector::is($parameter->getType())) {
+                        $exampleArgs[] = static::buildEnumArgument($parameter->getType(), $type);
+                    } elseif ($type === 'bool') {
+                        $exampleArgs[] = 'true';
+                    } elseif (($callableTmp = CallableTemplate::buildExampleArgument($parameter, $docBlock))
+                        && $callableTmp !== null) {
+                        $exampleArgs[] = $callableTmp;
+                    } else {
+                        $exampleArgs[] = "'" . $parameter->name . "-test'";
+                    }
                 }
             }
 
@@ -65,7 +82,6 @@ class MethodSignatureBuilder
     protected static function buildSignature(\ReflectionMethod $method, array $params, DocBlock $docBlock): string
     {
         $params = implode(', ', $params);
-
 
         if ($method->hasReturnType()) {
             $returnType = (string) $method->getReturnType();

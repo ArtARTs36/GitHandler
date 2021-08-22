@@ -17,6 +17,7 @@ class DocCommandPageBuilder
         $this->stubs = $stubs;
         $this->docBlocks = DocBlockFactory::createInstance([
             'git-command' => GitCommandDocTag::class,
+            'exampleArguments' => ExampleArgumentsDocTag::class,
         ]);
         $this->features = $features ?? new FeatureBuilder($stubs, $this->docBlocks);
     }

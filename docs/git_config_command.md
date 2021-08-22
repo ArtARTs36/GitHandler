@@ -58,7 +58,7 @@ public function getSubject(string $prefix): ArtARTs36\GitHandler\Contracts\Confi
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->config()->getSubject('prefix-test');
+$command = (new LocalGitFactory())->factory(__DIR__)->config()->getSubject('user');
 ```
 
 ---
@@ -83,7 +83,7 @@ public function set(string $scope, string $field, string $value, bool $replaceAl
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->config()->set('scope-test', 'field-test', 'value-test', true);
+$command = (new LocalGitFactory())->factory(__DIR__)->config()->set('user', 'name', 'ArtARTs36');
 ```
 
 ---
