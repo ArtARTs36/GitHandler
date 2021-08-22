@@ -4,8 +4,8 @@
     "type": "library",
     "require": {
         "php": ">=7.3",
-        "artarts36/shell-command": "2.x-dev",
-        "artarts36/str": "2.x-dev",
+        "artarts36/shell-command": "^2.1.5",
+        "artarts36/str": "^2.0",
         "artarts36/file-system-contracts": "0.2.0",
         "psr/http-client": "^1.0",
         "guzzlehttp/psr7": "^1.8"

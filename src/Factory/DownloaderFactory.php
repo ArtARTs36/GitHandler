@@ -15,7 +15,7 @@ use Psr\Http\Client\ClientInterface;
 
 class DownloaderFactory
 {
-    public function factory(?FileSystem $files = null, ?ClientInterface $client = null): OriginDownloader
+    public function factory(?ClientInterface $client = null, ?FileSystem $files = null): OriginDownloader
     {
         return new Downloader(
             OriginUrlSelector::make([
