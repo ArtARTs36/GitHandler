@@ -16,7 +16,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->ignores();
 
 ## Features:
 
-### * 
+### * Get ignored files
 
 #### Method Signature:
 

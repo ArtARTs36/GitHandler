@@ -8,6 +8,7 @@ namespace ArtARTs36\GitHandler\Contracts\Commands;
 interface GitIgnoreCommand extends FolderSwitchable
 {
     /**
+     * Get ignored files
      * @return array<string>
      */
     public function files(): array;
