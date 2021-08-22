@@ -2,7 +2,6 @@
 
 namespace ArtARTs36\GitHandler\DocBuilder;
 
-use ArtARTs36\GitHandler\Enum\Enumerable;
 use phpDocumentor\Reflection\DocBlock;
 
 class MethodSignatureBuilder
@@ -53,13 +52,33 @@ class MethodSignatureBuilder
             return $type . ' $' . $parameter->name;
         }, $method->getParameters());
 
+        return new MethodSignature(
+            static::buildSignature($method, $params, $docBlock),
+            $exampleArgs,
+            $suggests
+        );
+    }
+
+    protected static function buildSignature(\ReflectionMethod $method, array $params, DocBlock $docBlock): string
+    {
         $params = implode(', ', $params);
 
-        $signature = 'public function '. $method->getShortName()
-            . '(' . $params . ')'
-            . ': ' . $method->getReturnType() . ';';
 
-        return new MethodSignature($signature, $exampleArgs, $suggests);
+        if ($method->hasReturnType()) {
+            $returnType = (string) $method->getReturnType();
+        } elseif ($docBlock->hasTag('return')) {
+            $returnType = (string) ($docBlock->getTagsByName('return')[0]);
+        } else {
+            $returnType = 'mixed';
+        }
+
+        if ($returnType === '$this') {
+            $returnType = 'static';
+        }
+
+        return 'public function '. $method->getShortName()
+            . '(' . $params . ')'
+            . ': ' . $returnType. ';';
     }
 
     protected static function buildEnumArgument(string $class, string $shortName): string

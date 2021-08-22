@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->transaction();
 #### Method Signature:
 
 ```php
-public function attempt(callable $callback): ;
+public function attempt(callable $callback): mixed;
 ```
 
 #### Example:

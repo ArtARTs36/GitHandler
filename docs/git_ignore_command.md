@@ -108,7 +108,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->ignores()->getPath();
 #### Method Signature:
 
 ```php
-public function seeToRoot(): ;
+public function seeToRoot(): static;
 ```
 
 #### Example:
@@ -125,7 +125,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->ignores()->seeToRoot();
 #### Method Signature:
 
 ```php
-public function seeToFolder(string $folder): ;
+public function seeToFolder(string $folder): static;
 ```
 
 #### Example:
