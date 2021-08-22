@@ -72,7 +72,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->index()->remove('files-tes
 
 See classes: 
 
-* ArtARTs36\GitHandler\Enum\ResetMode
+* [ArtARTs36\GitHandler\Enum\ResetMode](/src/Enum/ResetMode.php)
 
 ```php
 public function reset(ResetMode $mode, string $subject): void;
@@ -97,7 +97,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->index()->reset(ResetMode::
 
 See classes: 
 
-* ArtARTs36\GitHandler\Enum\ResetMode
+* [ArtARTs36\GitHandler\Enum\ResetMode](/src/Enum/ResetMode.php)
 
 ```php
 public function resetHead(ResetMode $mode): void;

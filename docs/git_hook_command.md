@@ -21,7 +21,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->hooks();
 #### Method Signature:
 See classes: 
 
-* ArtARTs36\GitHandler\Enum\HookName
+* [ArtARTs36\GitHandler\Enum\HookName](/src/Enum/HookName.php)
 ```php
 public function add(HookName $name, string $script): bool;
 ```
@@ -40,7 +40,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->hooks()->add(HookName::fro
 #### Method Signature:
 See classes: 
 
-* ArtARTs36\GitHandler\Enum\HookName
+* [ArtARTs36\GitHandler\Enum\HookName](/src/Enum/HookName.php)
 ```php
 public function has(HookName $name): bool;
 ```
@@ -59,7 +59,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->hooks()->has(HookName::fro
 #### Method Signature:
 See classes: 
 
-* ArtARTs36\GitHandler\Enum\HookName
+* [ArtARTs36\GitHandler\Enum\HookName](/src/Enum/HookName.php)
 ```php
 public function delete(HookName $name): bool;
 ```
@@ -78,7 +78,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->hooks()->delete(HookName::
 #### Method Signature:
 See classes: 
 
-* ArtARTs36\GitHandler\Enum\HookName
+* [ArtARTs36\GitHandler\Enum\HookName](/src/Enum/HookName.php)
 ```php
 public function get(HookName $name): ArtARTs36\GitHandler\Data\Hook;
 ```

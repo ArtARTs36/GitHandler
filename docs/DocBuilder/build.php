@@ -1,6 +1,7 @@
 <?php
 
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
+use ArtARTs36\GitHandler\DocBuilder\ClassFinder;
 use ArtARTs36\GitHandler\DocBuilder\DocBuilder;
 use ArtARTs36\GitHandler\DocBuilder\HomePageBuilder;
 use ArtARTs36\GitHandler\DocBuilder\StubLoader;
@@ -21,6 +22,8 @@ function snake_case(string $input): string
 }
 
 //
+
+ClassFinder::setProjectDir(__DIR__ . '/../..');
 
 $fileSystem = new LocalFileSystem();
 $stubLoader = new StubLoader($fileSystem);

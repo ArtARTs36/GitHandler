@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\DocBuilder;
 
+use ArtARTs36\Str\Facade\Str;
+use Composer\Autoload\ClassLoader;
 use phpDocumentor\Reflection\DocBlockFactory;
 
 class FeatureBuilder
@@ -59,7 +61,8 @@ class FeatureBuilder
         $message = "See classes: \n";
 
         foreach ($suggests as $suggestClass) {
-            $message .= "\n* $suggestClass";
+            $classInfo = ClassFinder::find($suggestClass);
+            $message .= "\n* [$suggestClass](". $classInfo->projectFilePath . ")";
         }
 
         return $message;

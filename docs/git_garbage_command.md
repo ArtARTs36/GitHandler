@@ -22,7 +22,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->garbage();
 
 See classes: 
 
-* ArtARTs36\GitHandler\Enum\GarbageCollectMode
+* [ArtARTs36\GitHandler\Enum\GarbageCollectMode](/src/Enum/GarbageCollectMode.php)
 
 ```php
 public function collect(GarbageCollectMode $mode): bool;
@@ -47,7 +47,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->garbage()->collect(Garbage
 
 See classes: 
 
-* ArtARTs36\GitHandler\Enum\GarbageCollectMode
+* [ArtARTs36\GitHandler\Enum\GarbageCollectMode](/src/Enum/GarbageCollectMode.php)
 
 ```php
 public function collectOnDate(GarbageCollectMode $mode, DateTimeInterface $date): bool;
