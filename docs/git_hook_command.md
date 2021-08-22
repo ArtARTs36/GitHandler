@@ -97,7 +97,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->hooks()->get(HookName::fro
 #### Method Signature:
 
 ```php
-public function getAll(bool $onlyWorked): array;
+public function getAll(bool $onlyWorked): array<string,\Hook>;
 ```
 
 #### Example:

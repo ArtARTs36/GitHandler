@@ -92,7 +92,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->branches()->create('master
 
 
 ```php
-public function getAll(): array;
+public function getAll(): string[];
 ```
 
 #### Equals Git Command:

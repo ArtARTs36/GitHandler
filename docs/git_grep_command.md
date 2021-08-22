@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->greps();
 
 
 ```php
-public function grep(string $term): array;
+public function grep(string $term): \FileMatch[];
 ```
 
 #### Equals Git Command:

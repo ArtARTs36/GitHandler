@@ -61,7 +61,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->statuses()->hasChanges();
 #### Method Signature:
 
 ```php
-public function getUntrackedFiles(): array;
+public function getUntrackedFiles(): string[];
 ```
 
 #### Example:
@@ -78,7 +78,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->statuses()->getUntrackedFi
 #### Method Signature:
 
 ```php
-public function getModifiedFiles(): array;
+public function getModifiedFiles(): string[];
 ```
 
 #### Example:
@@ -95,7 +95,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->statuses()->getModifiedFil
 #### Method Signature:
 
 ```php
-public function getAddedFiles(): array;
+public function getAddedFiles(): string[];
 ```
 
 #### Example:

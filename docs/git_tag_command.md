@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->tags();
 
 
 ```php
-public function getAll(string $pattern): array;
+public function getAll(string $pattern): string[];
 ```
 
 #### Equals Git Command:

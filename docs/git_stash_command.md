@@ -71,7 +71,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->stashes()->pop();
 
 
 ```php
-public function getList(): array;
+public function getList(): \Stash[];
 ```
 
 #### Equals Git Command:

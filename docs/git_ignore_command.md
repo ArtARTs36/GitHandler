@@ -21,7 +21,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->ignores();
 #### Method Signature:
 
 ```php
-public function files(): array;
+public function files(): string[];
 ```
 
 #### Example:

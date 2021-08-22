@@ -83,10 +83,10 @@ class MethodSignatureBuilder
     {
         $params = implode(', ', $params);
 
-        if ($method->hasReturnType()) {
+        if ($docBlock->hasTag('return')) {
+            $returnType = (string) ($docBlock->getTagsByName('return')[0]->getType());
+        } elseif ($method->hasReturnType()) {
             $returnType = (string) $method->getReturnType();
-        } elseif ($docBlock->hasTag('return')) {
-            $returnType = (string) ($docBlock->getTagsByName('return')[0]);
         } else {
             $returnType = 'mixed';
         }
