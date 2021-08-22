@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Factory;
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Origin\OriginDownloader;
 use ArtARTs36\GitHandler\Origin\Downloader;
-use ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrl;
+use ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
@@ -19,7 +19,7 @@ class DownloaderFactory
             OriginUrlSelector::make([
                 new GithubOriginUrlBuilder(),
                 new GitlabOriginUrlBuilder(),
-                new BitbucketOriginUrl(),
+                new BitbucketOriginUrlBuilder(),
             ]),
             $client,
             $files

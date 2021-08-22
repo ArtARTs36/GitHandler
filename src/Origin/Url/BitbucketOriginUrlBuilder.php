@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Origin\Url;
 
-class BitbucketOriginUrl extends AbstractOriginUrlBuilder
+class BitbucketOriginUrlBuilder extends AbstractOriginUrlBuilder
 {
     protected $domains = [
         'bitbucket.org',
