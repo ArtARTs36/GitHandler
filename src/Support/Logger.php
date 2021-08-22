@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler;
+namespace ArtARTs36\GitHandler\Support;
 
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\Author;

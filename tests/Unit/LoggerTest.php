@@ -3,13 +3,13 @@
 namespace ArtARTs36\GitHandler\Tests\Unit;
 
 use ArtARTs36\GitHandler\Data\Author;
-use ArtARTs36\GitHandler\Logger;
+use ArtARTs36\GitHandler\Support\Logger;
 use ArtARTs36\Str\Str;
 
 final class LoggerTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Logger::parse
+     * @covers \ArtARTs36\GitHandler\Support\Logger::parse
      */
     public function testParseOnEmptyRaw(): void
     {
@@ -19,8 +19,8 @@ final class LoggerTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Logger::parse
-     * @covers \ArtARTs36\GitHandler\Logger::hasAuthor
+     * @covers \ArtARTs36\GitHandler\Support\Logger::parse
+     * @covers \ArtARTs36\GitHandler\Support\Logger::hasAuthor
      */
     public function testParse(): void
     {
@@ -41,7 +41,7 @@ final class LoggerTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Logger::getOrCreateAuthor
+     * @covers \ArtARTs36\GitHandler\Support\Logger::getOrCreateAuthor
      */
     public function testGetOrCreateAuthor(): void
     {

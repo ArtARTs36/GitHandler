@@ -4,7 +4,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Commands\LogCommand;
 use ArtARTs36\GitHandler\Exceptions\BranchDoesNotHaveCommits;
-use ArtARTs36\GitHandler\Logger;
+use ArtARTs36\GitHandler\Support\Logger;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class LogCommandTest extends GitTestCase
