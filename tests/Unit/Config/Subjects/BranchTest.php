@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Config\Subjects;
 use ArtARTs36\GitHandler\Config\Subjects\Branch;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class BranchTest extends TestCase
+final class BranchTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Config\Subjects\Branch::fromLinks

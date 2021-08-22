@@ -12,6 +12,7 @@ final class LogCollectionTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::count
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testCount(): void
     {
@@ -24,6 +25,7 @@ final class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::first
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testFirst(): void
     {
@@ -37,6 +39,7 @@ final class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::last
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testLast(): void
     {
@@ -50,6 +53,7 @@ final class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::filterByAuthorName
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testFilterByAuthorName(): void
     {
@@ -67,6 +71,7 @@ final class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::all
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testAll(): void
     {
@@ -79,6 +84,7 @@ final class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::filter
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testFilterWithReturnNull(): void
     {
@@ -96,6 +102,7 @@ final class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::filter
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testFilter(): void
     {
@@ -115,6 +122,7 @@ final class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::getIterator
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testGetIterator(): void
     {
@@ -128,6 +136,7 @@ final class LogCollectionTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\LogCollection::filterByDate
+     * @covers \ArtARTs36\GitHandler\Data\LogCollection::__construct
      */
     public function testFilterByDate(): void
     {

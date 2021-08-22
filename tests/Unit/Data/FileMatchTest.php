@@ -9,6 +9,7 @@ final class FileMatchTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Data\FileMatch::fromArray
+     * @covers \ArtARTs36\GitHandler\Data\FileMatch::__construct
      */
     public function testFromArray(): void
     {

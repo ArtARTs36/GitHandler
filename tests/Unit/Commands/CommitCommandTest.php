@@ -32,7 +32,7 @@ final class CommitCommandTest extends GitTestCase
         self::assertTrue($this->makeCommitCommand()->commit('', true));
     }
 
-    protected function makeCommitCommand(): CommitCommand
+    private function makeCommitCommand(): CommitCommand
     {
         return new CommitCommand(
             new IndexCommand($this->mockCommandBuilder, $this->mockCommandExecutor),

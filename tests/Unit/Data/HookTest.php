@@ -24,6 +24,7 @@ final class HookTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\Hook::isSample
+     * @covers \ArtARTs36\GitHandler\Data\Hook::__construct
      * @dataProvider providerForTestIsSample
      */
     public function testIsSample(string $name, bool $result): void

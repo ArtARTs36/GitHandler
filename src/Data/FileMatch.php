@@ -14,9 +14,6 @@ class FileMatch
 
     public $content;
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function __construct(string $file, int $line, string $content)
     {
         $this->file = $file;

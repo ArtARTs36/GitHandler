@@ -15,9 +15,6 @@ class Remotes
 
     public $push;
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function __construct(Str $fetch, Str $push)
     {
         $this->fetch = $fetch;

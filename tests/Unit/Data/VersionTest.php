@@ -9,6 +9,7 @@ final class VersionTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Data\Version::__toString
+     * @covers \ArtARTs36\GitHandler\Data\Version::__construct
      */
     public function testToString(): void
     {
@@ -19,6 +20,7 @@ final class VersionTest extends GitTestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\Version::toTag
+     * @covers \ArtARTs36\GitHandler\Data\Version::__construct
      */
     public function testToTag(): void
     {
@@ -29,6 +31,7 @@ final class VersionTest extends GitTestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\Version::compare
+     * @covers \ArtARTs36\GitHandler\Data\Version::__construct
      */
     public function testCompareOnObject(): void
     {

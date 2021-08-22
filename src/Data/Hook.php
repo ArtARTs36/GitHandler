@@ -14,9 +14,6 @@ class Hook
 
     public $lastUpdateDate;
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function __construct(string $name, string $script, \DateTimeInterface $lastUpdateDate)
     {
         $this->name = $name;

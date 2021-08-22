@@ -6,9 +6,6 @@ class Commit
 {
     public $hash;
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function __construct(string $hash)
     {
         $this->hash = $hash;

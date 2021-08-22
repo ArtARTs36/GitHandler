@@ -26,6 +26,7 @@ final class GitAttributesTest extends TestCase
     /**
      * @dataProvider providerForTestHas
      * @covers \ArtARTs36\GitHandler\Data\GitAttributes::has
+     * @covers \ArtARTs36\GitHandler\Data\GitAttributes::__construct
      */
     public function testHas(array $attributesData, string $attr, bool $state): void
     {

@@ -9,6 +9,7 @@ final class CommitTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Data\Commit::__toString
+     * @covers \ArtARTs36\GitHandler\Data\Commit::__construct
      */
     public function testToString(): void
     {
@@ -19,6 +20,7 @@ final class CommitTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\Commit::getAbbreviatedHash
+     * @covers \ArtARTs36\GitHandler\Data\Commit::__construct
      */
     public function testGetAbbreviatedHash(): void
     {

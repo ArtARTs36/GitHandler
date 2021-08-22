@@ -15,9 +15,6 @@ class Log
 
     public $message;
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function __construct(Commit $commit, \DateTimeInterface $date, Author $author, string $message)
     {
         $this->commit = $commit;

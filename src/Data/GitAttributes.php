@@ -15,7 +15,6 @@ class GitAttributes
 
     /**
      * @param array<string|Str> $attributes
-     * @codeCoverageIgnore
      */
     public function __construct(string $pattern, array $attributes)
     {

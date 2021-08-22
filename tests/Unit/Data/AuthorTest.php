@@ -51,6 +51,7 @@ final class AuthorTest extends TestCase
     /**
      * @dataProvider toStringDataProvider
      * @covers \ArtARTs36\GitHandler\Data\Author::__toString()
+     * @covers \ArtARTs36\GitHandler\Data\Author::__construct
      */
     public function testToString(string $name, string $email, string $result): void
     {

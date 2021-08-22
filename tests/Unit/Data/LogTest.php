@@ -20,6 +20,7 @@ final class LogTest extends TestCase
     /**
      * @dataProvider providerForTestEqualsDate
      * @covers \ArtARTs36\GitHandler\Data\Log::equalsDate
+     * @covers \ArtARTs36\GitHandler\Data\Log::__construct
      */
     public function testEqualsDate(\DateTimeInterface $logDate, \DateTimeInterface $compared, bool $expected): void
     {

@@ -9,6 +9,7 @@ final class RemotesTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Data\Remotes::createEmpty
+     * @covers \ArtARTs36\GitHandler\Data\Remotes::__construct
      */
     public function testCreateEmpty(): void
     {
@@ -20,6 +21,7 @@ final class RemotesTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\Remotes::isEmpty
+     * @covers \ArtARTs36\GitHandler\Data\Remotes::__construct
      */
     public function testIsEmpty(): void
     {
