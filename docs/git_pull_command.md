@@ -35,7 +35,7 @@ public function pull(): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->pulls()->pull();
+(new LocalGitFactory())->factory(__DIR__)->pulls()->pull();
 ```
 
 ---
@@ -58,7 +58,7 @@ public function pullBranch(string $branch): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->pulls()->pullBranch('master');
+(new LocalGitFactory())->factory(__DIR__)->pulls()->pullBranch('master');
 ```
 
 ---

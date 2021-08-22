@@ -37,7 +37,7 @@ public function commit(string $message, bool $amend): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->commits()->commit('message-test', true);
+(new LocalGitFactory())->factory(__DIR__)->commits()->commit('message-test', true);
 ```
 
 ---
@@ -60,7 +60,7 @@ public function autoCommit(string $message, bool $amend): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->commits()->autoCommit('message-test', true);
+(new LocalGitFactory())->factory(__DIR__)->commits()->autoCommit('message-test', true);
 ```
 
 ---

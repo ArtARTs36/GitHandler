@@ -37,7 +37,7 @@ public function add(string|string[] $file, bool $force): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->index()->add('file-test', true);
+(new LocalGitFactory())->factory(__DIR__)->index()->add('file-test', true);
 ```
 
 ---
@@ -62,7 +62,7 @@ public function remove(string|string[] $files, bool $force): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->index()->remove('files-test', true);
+(new LocalGitFactory())->factory(__DIR__)->index()->remove('files-test', true);
 ```
 
 ---
@@ -87,7 +87,7 @@ public function reset(ResetMode $mode, string $subject): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->index()->reset(ResetMode::from(ResetMode::SOFT), 'subject-test');
+(new LocalGitFactory())->factory(__DIR__)->index()->reset(ResetMode::from(ResetMode::SOFT), 'subject-test');
 ```
 
 ---
@@ -112,7 +112,7 @@ public function resetHead(ResetMode $mode): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->index()->resetHead(ResetMode::from(ResetMode::SOFT));
+(new LocalGitFactory())->factory(__DIR__)->index()->resetHead(ResetMode::from(ResetMode::SOFT));
 ```
 
 ---

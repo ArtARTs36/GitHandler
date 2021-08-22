@@ -37,7 +37,7 @@ public function getAll(string $pattern): string[];
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->tags()->getAll('pattern-test');
+(new LocalGitFactory())->factory(__DIR__)->tags()->getAll('pattern-test');
 ```
 
 ---
@@ -62,7 +62,7 @@ public function add(string $tag, string $message): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->tags()->add('tag-test', 'message-test');
+(new LocalGitFactory())->factory(__DIR__)->tags()->add('tag-test', 'message-test');
 ```
 
 ---
@@ -79,7 +79,7 @@ public function exists(string $tag): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->tags()->exists('tag-test');
+(new LocalGitFactory())->factory(__DIR__)->tags()->exists('tag-test');
 ```
 
 ---
@@ -102,7 +102,7 @@ public function get(string $tagName): ArtARTs36\GitHandler\Data\Tag;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->tags()->get('tagName-test');
+(new LocalGitFactory())->factory(__DIR__)->tags()->get('tagName-test');
 ```
 
 ---

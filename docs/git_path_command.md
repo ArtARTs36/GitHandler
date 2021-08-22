@@ -35,7 +35,7 @@ public function info(): string;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->paths()->info();
+(new LocalGitFactory())->factory(__DIR__)->paths()->info();
 ```
 
 ---
@@ -58,7 +58,7 @@ public function html(): string;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->paths()->html();
+(new LocalGitFactory())->factory(__DIR__)->paths()->html();
 ```
 
 ---
@@ -81,7 +81,7 @@ public function man(): string;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->paths()->man();
+(new LocalGitFactory())->factory(__DIR__)->paths()->man();
 ```
 
 ---

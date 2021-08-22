@@ -35,7 +35,7 @@ public function checkout(string $branch, bool $merge): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->branches()->checkout('master', true);
+(new LocalGitFactory())->factory(__DIR__)->branches()->checkout('master', true);
 ```
 
 ---
@@ -58,7 +58,7 @@ public function delete(string $branch): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->branches()->delete('master');
+(new LocalGitFactory())->factory(__DIR__)->branches()->delete('master');
 ```
 
 ---
@@ -81,7 +81,7 @@ public function create(string $branch): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->branches()->create('master');
+(new LocalGitFactory())->factory(__DIR__)->branches()->create('master');
 ```
 
 ---
@@ -104,7 +104,7 @@ public function getAll(): string[];
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->branches()->getAll();
+(new LocalGitFactory())->factory(__DIR__)->branches()->getAll();
 ```
 
 ---
@@ -127,7 +127,7 @@ public function switch(string $branch): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->branches()->switch('master');
+(new LocalGitFactory())->factory(__DIR__)->branches()->switch('master');
 ```
 
 ---
@@ -150,7 +150,7 @@ public function current(): ArtARTs36\Str\Str;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->branches()->current();
+(new LocalGitFactory())->factory(__DIR__)->branches()->current();
 ```
 
 ---

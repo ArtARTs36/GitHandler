@@ -29,7 +29,7 @@ public function createFile(string $name, string $content, string $folder): strin
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->files()->createFile('name-test', 'content-test', 'folder-test');
+(new LocalGitFactory())->factory(__DIR__)->files()->createFile('name-test', 'content-test', 'folder-test');
 ```
 
 ---
@@ -46,7 +46,7 @@ public function createFolder(string $name): self;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->files()->createFolder('name-test');
+(new LocalGitFactory())->factory(__DIR__)->files()->createFolder('name-test');
 ```
 
 ---

@@ -29,7 +29,7 @@ public function attempt(callable $callback): mixed;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->transaction()->attempt(function (GitHandler $git) {
+(new LocalGitFactory())->factory(__DIR__)->transaction()->attempt(function (GitHandler $git) {
     $git->merges()->merge('master');
 });
 ```

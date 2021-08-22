@@ -35,7 +35,7 @@ public function getAll(): ArtARTs36\GitHandler\Config\Subjects\SubjectsCollectio
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->config()->getAll();
+(new LocalGitFactory())->factory(__DIR__)->config()->getAll();
 ```
 
 ---
@@ -58,7 +58,7 @@ public function getSubject(string $prefix): ArtARTs36\GitHandler\Contracts\Confi
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->config()->getSubject('user');
+(new LocalGitFactory())->factory(__DIR__)->config()->getSubject('user');
 ```
 
 ---
@@ -83,7 +83,7 @@ public function set(string $scope, string $field, string $value, bool $replaceAl
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->config()->set('user', 'name', 'ArtARTs36');
+(new LocalGitFactory())->factory(__DIR__)->config()->set('user', 'name', 'ArtARTs36');
 ```
 
 ---

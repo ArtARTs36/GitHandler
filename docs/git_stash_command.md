@@ -37,7 +37,7 @@ public function stash(string $message): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->stashes()->stash('message-test');
+(new LocalGitFactory())->factory(__DIR__)->stashes()->stash('message-test');
 ```
 
 ---
@@ -60,7 +60,7 @@ public function pop(): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->stashes()->pop();
+(new LocalGitFactory())->factory(__DIR__)->stashes()->pop();
 ```
 
 ---
@@ -83,7 +83,7 @@ public function getList(): \Stash[];
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->stashes()->getList();
+(new LocalGitFactory())->factory(__DIR__)->stashes()->getList();
 ```
 
 ---
@@ -106,7 +106,7 @@ public function apply(int $id): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->stashes()->apply(1);
+(new LocalGitFactory())->factory(__DIR__)->stashes()->apply(1);
 ```
 
 ---

@@ -31,7 +31,7 @@ public function add(HookName $name, string $script): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->hooks()->add(HookName::from(HookName::APPLY_PATH_MSG), 'script-test');
+(new LocalGitFactory())->factory(__DIR__)->hooks()->add(HookName::from(HookName::APPLY_PATH_MSG), 'script-test');
 ```
 
 ---
@@ -50,7 +50,7 @@ public function has(HookName $name): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->hooks()->has(HookName::from(HookName::APPLY_PATH_MSG));
+(new LocalGitFactory())->factory(__DIR__)->hooks()->has(HookName::from(HookName::APPLY_PATH_MSG));
 ```
 
 ---
@@ -69,7 +69,7 @@ public function delete(HookName $name): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->hooks()->delete(HookName::from(HookName::APPLY_PATH_MSG));
+(new LocalGitFactory())->factory(__DIR__)->hooks()->delete(HookName::from(HookName::APPLY_PATH_MSG));
 ```
 
 ---
@@ -88,7 +88,7 @@ public function get(HookName $name): ArtARTs36\GitHandler\Data\Hook;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->hooks()->get(HookName::from(HookName::APPLY_PATH_MSG));
+(new LocalGitFactory())->factory(__DIR__)->hooks()->get(HookName::from(HookName::APPLY_PATH_MSG));
 ```
 
 ---
@@ -105,7 +105,7 @@ public function getAll(bool $onlyWorked): array<string,\Hook>;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->hooks()->getAll(true);
+(new LocalGitFactory())->factory(__DIR__)->hooks()->getAll(true);
 ```
 
 ---
@@ -122,7 +122,7 @@ public function getHookPath(string $name): string;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->hooks()->getHookPath('name-test');
+(new LocalGitFactory())->factory(__DIR__)->hooks()->getHookPath('name-test');
 ```
 
 ---

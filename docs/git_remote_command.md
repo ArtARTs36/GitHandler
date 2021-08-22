@@ -35,7 +35,7 @@ public function add(string $shortName, string $url): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->remotes()->add('shortName-test', 'url-test');
+(new LocalGitFactory())->factory(__DIR__)->remotes()->add('shortName-test', 'url-test');
 ```
 
 ---
@@ -58,7 +58,7 @@ public function show(): ArtARTs36\GitHandler\Data\Remotes;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->remotes()->show();
+(new LocalGitFactory())->factory(__DIR__)->remotes()->show();
 ```
 
 ---
@@ -81,7 +81,7 @@ public function remove(string $shortName): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->remotes()->remove('shortName-test');
+(new LocalGitFactory())->factory(__DIR__)->remotes()->remove('shortName-test');
 ```
 
 ---
@@ -98,7 +98,7 @@ public function hasAnyRemoteUrl(string $url): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->remotes()->hasAnyRemoteUrl('url-test');
+(new LocalGitFactory())->factory(__DIR__)->remotes()->hasAnyRemoteUrl('url-test');
 ```
 
 ---

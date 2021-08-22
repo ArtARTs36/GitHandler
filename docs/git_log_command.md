@@ -35,7 +35,7 @@ public function getAll(): ArtARTs36\GitHandler\Data\LogCollection;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->logs()->getAll();
+(new LocalGitFactory())->factory(__DIR__)->logs()->getAll();
 ```
 
 ---

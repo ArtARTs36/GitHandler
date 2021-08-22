@@ -35,7 +35,7 @@ public function create(string $path): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->archives()->create('/path/to/file');
+(new LocalGitFactory())->factory(__DIR__)->archives()->create('/path/to/file');
 ```
 
 ---
@@ -52,7 +52,7 @@ public function packRefs(string $path): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->archives()->packRefs('/path/to/file');
+(new LocalGitFactory())->factory(__DIR__)->archives()->packRefs('/path/to/file');
 ```
 
 ---
@@ -69,7 +69,7 @@ public function unpackRefs(string $path): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->archives()->unpackRefs('/path/to/file');
+(new LocalGitFactory())->factory(__DIR__)->archives()->unpackRefs('/path/to/file');
 ```
 
 ---

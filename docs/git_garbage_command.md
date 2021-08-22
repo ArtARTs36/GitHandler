@@ -37,7 +37,7 @@ public function collect(GarbageCollectMode $mode): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->garbage()->collect(GarbageCollectMode::from(GarbageCollectMode::AUTO));
+(new LocalGitFactory())->factory(__DIR__)->garbage()->collect(GarbageCollectMode::from(GarbageCollectMode::AUTO));
 ```
 
 ---
@@ -62,7 +62,7 @@ public function collectOnDate(GarbageCollectMode $mode, DateTimeInterface $date)
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->garbage()->collectOnDate(GarbageCollectMode::from(GarbageCollectMode::AUTO), 'date-test');
+(new LocalGitFactory())->factory(__DIR__)->garbage()->collectOnDate(GarbageCollectMode::from(GarbageCollectMode::AUTO), 'date-test');
 ```
 
 ---

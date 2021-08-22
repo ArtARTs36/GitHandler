@@ -35,7 +35,7 @@ public function status(bool $short): ArtARTs36\Str\Str;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->statuses()->status(true);
+(new LocalGitFactory())->factory(__DIR__)->statuses()->status(true);
 ```
 
 ---
@@ -52,7 +52,7 @@ public function hasChanges(): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->statuses()->hasChanges();
+(new LocalGitFactory())->factory(__DIR__)->statuses()->hasChanges();
 ```
 
 ---
@@ -69,7 +69,7 @@ public function getUntrackedFiles(): string[];
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->statuses()->getUntrackedFiles();
+(new LocalGitFactory())->factory(__DIR__)->statuses()->getUntrackedFiles();
 ```
 
 ---
@@ -86,7 +86,7 @@ public function getModifiedFiles(): string[];
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->statuses()->getModifiedFiles();
+(new LocalGitFactory())->factory(__DIR__)->statuses()->getModifiedFiles();
 ```
 
 ---
@@ -103,7 +103,7 @@ public function getAddedFiles(): string[];
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->statuses()->getAddedFiles();
+(new LocalGitFactory())->factory(__DIR__)->statuses()->getAddedFiles();
 ```
 
 ---

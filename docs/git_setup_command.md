@@ -35,7 +35,7 @@ public function init(): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->setup()->init();
+(new LocalGitFactory())->factory(__DIR__)->setup()->init();
 ```
 
 ---
@@ -52,7 +52,7 @@ public function isInit(): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->setup()->isInit();
+(new LocalGitFactory())->factory(__DIR__)->setup()->isInit();
 ```
 
 ---
@@ -77,7 +77,7 @@ public function clone(string $url, string $branch, string $folder): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->setup()->clone('url-test', 'master', 'folder-test');
+(new LocalGitFactory())->factory(__DIR__)->setup()->clone('url-test', 'master', 'folder-test');
 ```
 
 ---
@@ -94,7 +94,7 @@ public function delete(): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->setup()->delete();
+(new LocalGitFactory())->factory(__DIR__)->setup()->delete();
 ```
 
 ---
@@ -111,7 +111,7 @@ public function reinstall(string $branch): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->setup()->reinstall('master');
+(new LocalGitFactory())->factory(__DIR__)->setup()->reinstall('master');
 ```
 
 ---

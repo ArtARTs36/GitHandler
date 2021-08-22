@@ -39,7 +39,7 @@ public function push(bool $force, string $upStream): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->pushes()->push(true, 'upStream-test');
+(new LocalGitFactory())->factory(__DIR__)->pushes()->push(true, 'upStream-test');
 ```
 
 ---
@@ -62,7 +62,7 @@ public function pushOnAutoSetUpStream(bool $force): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->pushes()->pushOnAutoSetUpStream(true);
+(new LocalGitFactory())->factory(__DIR__)->pushes()->pushOnAutoSetUpStream(true);
 ```
 
 ---

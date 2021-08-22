@@ -35,7 +35,7 @@ public function grep(string $term): \FileMatch[];
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->greps()->grep('term-test');
+(new LocalGitFactory())->factory(__DIR__)->greps()->grep('term-test');
 ```
 
 ---

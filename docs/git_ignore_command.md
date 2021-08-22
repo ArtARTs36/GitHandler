@@ -29,7 +29,7 @@ public function files(): string[];
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->ignores()->files();
+(new LocalGitFactory())->factory(__DIR__)->ignores()->files();
 ```
 
 ---
@@ -46,7 +46,7 @@ public function add(string $path): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->ignores()->add('/path/to/file');
+(new LocalGitFactory())->factory(__DIR__)->ignores()->add('/path/to/file');
 ```
 
 ---
@@ -63,7 +63,7 @@ public function delete(string $path): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->ignores()->delete('/path/to/file');
+(new LocalGitFactory())->factory(__DIR__)->ignores()->delete('/path/to/file');
 ```
 
 ---
@@ -80,7 +80,7 @@ public function has(string $path): bool;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->ignores()->has('/path/to/file');
+(new LocalGitFactory())->factory(__DIR__)->ignores()->has('/path/to/file');
 ```
 
 ---
@@ -97,7 +97,7 @@ public function getPath(): string;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->ignores()->getPath();
+(new LocalGitFactory())->factory(__DIR__)->ignores()->getPath();
 ```
 
 ---
@@ -114,7 +114,7 @@ public function seeToRoot(): static;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->ignores()->seeToRoot();
+(new LocalGitFactory())->factory(__DIR__)->ignores()->seeToRoot();
 ```
 
 ---
@@ -131,7 +131,7 @@ public function seeToFolder(string $folder): static;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->ignores()->seeToFolder('folder-test');
+(new LocalGitFactory())->factory(__DIR__)->ignores()->seeToFolder('folder-test');
 ```
 
 ---

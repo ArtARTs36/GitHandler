@@ -37,7 +37,7 @@ public function merge(string $branch, string $message): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->merges()->merge('master', 'message-test');
+(new LocalGitFactory())->factory(__DIR__)->merges()->merge('master', 'message-test');
 ```
 
 ---
@@ -62,7 +62,7 @@ public function mergeSquash(string $branch, string $message): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->merges()->mergeSquash('master', 'message-test');
+(new LocalGitFactory())->factory(__DIR__)->merges()->mergeSquash('master', 'message-test');
 ```
 
 ---
@@ -85,7 +85,7 @@ public function abort(): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->merges()->abort();
+(new LocalGitFactory())->factory(__DIR__)->merges()->abort();
 ```
 
 ---
