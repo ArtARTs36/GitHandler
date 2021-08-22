@@ -10,6 +10,7 @@ use ArtARTs36\GitHandler\Exceptions\GitHandlerException;
 interface GitTransaction
 {
     /**
+     * Execute transaction
      * @param TransactionOperation|\Closure|callable
      * @throws \Throwable
      * @throws GitHandlerException

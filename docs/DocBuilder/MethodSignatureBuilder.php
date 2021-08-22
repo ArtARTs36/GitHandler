@@ -2,15 +2,22 @@
 
 namespace ArtARTs36\GitHandler\DocBuilder;
 
+use ArtARTs36\GitHandler\Enum\Enumerable;
 use phpDocumentor\Reflection\DocBlock;
 
 class MethodSignatureBuilder
 {
-    public static function build(\ReflectionMethod $method, DocBlock $docBlock): array
+    protected static $placeholders = [
+        'branch' => 'master',
+        'path' => '/path/to/file',
+    ];
+
+    public static function build(\ReflectionMethod $method, DocBlock $docBlock): MethodSignature
     {
         $suggests = [];
+        $exampleArgs = [];
 
-        $params = array_map(function (\ReflectionParameter $parameter) use (&$suggests, $docBlock) {
+        $params = array_map(function (\ReflectionParameter $parameter) use (&$suggests, $docBlock, &$exampleArgs) {
             if ($parameter->hasType()) {
                 $parts = explode("\\", $parameter->getType());
 
@@ -29,6 +36,18 @@ class MethodSignatureBuilder
                 }
             }
 
+            if (array_key_exists($parameter->name, static::$placeholders)) {
+                $exampleArgs[] = "'". static::$placeholders[$parameter->name] . "'";
+            } else {
+                if ($type === 'int') {
+                    $exampleArgs[] = 1;
+                } elseif ($parameter->hasType() && static::isEnum($parameter->getType())) {
+                    $exampleArgs[] = static::buildEnumArgument($parameter->getType(), $type);
+                } else {
+                    $exampleArgs[] = "'". $parameter->name ."-test'";
+                }
+            }
+
             return $type . ' $' . $parameter->name;
         }, $method->getParameters());
 
@@ -38,6 +57,19 @@ class MethodSignatureBuilder
             . '(' . $params . ')'
             . ': ' . $method->getReturnType() . ';';
 
-        return [$signature, $suggests];
+        return new MethodSignature($signature, $exampleArgs, $suggests);
+    }
+
+    protected static function buildEnumArgument(string $class, string $shortName): string
+    {
+        $constants = array_flip($class::cases());
+        $const = reset($constants);
+
+        return "$shortName::from(" . $shortName . '::' . $const . ")";
+    }
+
+    protected static function isEnum(string $class): bool
+    {
+        return class_exists($class) && array_key_exists(Enumerable::class, class_uses($class)) ?? false;
     }
 }

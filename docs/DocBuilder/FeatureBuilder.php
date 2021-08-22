@@ -22,28 +22,31 @@ class FeatureBuilder
 
         $gitCommands = $docBlock->getTagsByName('git-command');
 
-        [$signature, $suggests] = MethodSignatureBuilder::build($method, $docBlock);
+        $signature = MethodSignatureBuilder::build($method, $docBlock);
 
-        $suggests = $this->buildSuggests($suggests);
+        $suggests = $this->buildSuggests($signature->suggests);
 
         if (count($gitCommands) === 0) {
             return $this->stubs->load('page_command_feature_content.md')->render([
                 'featureName' => '* ' . $docBlock->getSummary(),
                 'factoryMethodName' => $factoryMethodName,
-                'featureMethodSignature' => $signature,
+                'featureMethodSignature' => $signature->signature,
                 'featureSuggestsClasses' => $suggests,
+                'featureMethodName' => $method->getShortName(),
+                'featureExampleArguments' => $signature->argsAsLine(),
             ]);
         }
 
         return $this->stubs->load('page_git_command_feature_content.md')->render([
             'featureName' => $docBlock->getSummary(),
-            'realGitCommands' => implode("\n", array_map(function (string $command) {
+            'realGitCommands' => implode("\n\n", array_map(function (string $command) {
                 return "`" . $command . "`";
             }, $gitCommands)),
             'factoryMethodName' => $factoryMethodName,
             'featureMethodName' => $method->getShortName(),
-            'featureMethodSignature' => $signature,
+            'featureMethodSignature' => $signature->signature,
             'featureSuggestsClasses' => $suggests,
+            'featureExampleArguments' => $signature->argsAsLine(),
         ]);
     }
 
