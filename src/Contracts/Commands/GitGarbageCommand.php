@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Contracts\Commands;
 use ArtARTs36\GitHandler\Enum\GarbageCollectMode;
 
 /**
- * Collect garbage
+ * Git Garbage Collector
  */
 interface GitGarbageCommand
 {

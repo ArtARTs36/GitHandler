@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Contracts\Commands;
 
 /**
- * Git paths (info-path, html-path, man-path, ...)
+ * Git Paths (info-path, html-path, man-path, ...)
  */
 interface GitPathCommand
 {

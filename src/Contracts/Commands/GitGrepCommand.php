@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Contracts\Commands;
 use ArtARTs36\GitHandler\Data\FileMatch;
 
 /**
- * Git grep
+ * Git Grep
  */
 interface GitGrepCommand
 {
