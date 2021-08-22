@@ -54,7 +54,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->hooks()->has(HookName::fro
 ```
 
 ---
-### * 
+### * Delete hook by name
 
 #### Method Signature:
 See classes: 
@@ -73,7 +73,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->hooks()->delete(HookName::
 ```
 
 ---
-### * 
+### * Get hook information by name
 
 #### Method Signature:
 See classes: 
@@ -92,7 +92,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->hooks()->get(HookName::fro
 ```
 
 ---
-### * 
+### * Get all hooks
 
 #### Method Signature:
 
