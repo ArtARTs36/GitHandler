@@ -24,7 +24,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitStatusCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
 
-interface GitHandler extends Versionable, HasRemotes
+interface GitHandler extends Versionable, HasRemotes, HasAttributes
 {
     /**
      * Git Help

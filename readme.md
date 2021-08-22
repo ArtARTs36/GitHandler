@@ -45,6 +45,7 @@ Tool for work with Git in PHP
 * [Collect garbage](docs/git_garbage_command.md)
 * [Git Merge](docs/git_merge_command.md)
 * [Git Remote (add, show, remove, ...)](docs/git_remote_command.md)
+* [Git Attributes](docs/git_attribute_command.md)
 * [Download](docs/downloader.md)
 
 ----
