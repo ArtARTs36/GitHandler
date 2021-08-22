@@ -30,3 +30,14 @@ Tool for work with Git in PHP
 
 ## Extensions
 * [artarts36/git-handler-remote](extensions/remote) - Work with git repository on remote server
+
+----
+
+## Development
+
+|  Command  | Description  |
+| ------------ | ------------ |
+| composer lint |  Check code on PSR  |
+| composer test  | Run tests  |
+| composer mutate-test  |  Run mutation testing |
+| php docs/DocBuilder/build.php  |  Build documentation |
