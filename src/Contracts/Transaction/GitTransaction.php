@@ -11,7 +11,7 @@ interface GitTransaction
 {
     /**
      * Execute transaction
-     * @param TransactionOperation|\Closure|callable
+     * @param TransactionOperation|\Closure|callable $callback
      * @throws \Throwable
      * @throws GitHandlerException
      * @return mixed

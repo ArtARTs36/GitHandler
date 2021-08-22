@@ -44,6 +44,9 @@ class MethodSignatureBuilder
                     $exampleArgs[] = static::buildEnumArgument($parameter->getType(), $type);
                 } elseif ($type === 'bool') {
                     $exampleArgs[] = 'true';
+                } elseif (($callableTmp = CallableTemplate::buildExampleArgument($parameter, $docBlock))
+                    && $callableTmp !== null) {
+                    $exampleArgs[] = $callableTmp;
                 } else {
                     $exampleArgs[] = "'". $parameter->name ."-test'";
                 }
