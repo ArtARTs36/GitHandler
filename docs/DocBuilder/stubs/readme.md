@@ -29,7 +29,7 @@ Tool for work with Git in PHP
 ----
 
 ## Extensions
-* [artarts36/git-handler-remote](extensions/remote) - Work with git repository on remote server
+* [artarts36/git-handler-remote](https://github.com/ArtARTs36/php-git-handler-remote) - Work with git repository on remote server
 
 ----
 
