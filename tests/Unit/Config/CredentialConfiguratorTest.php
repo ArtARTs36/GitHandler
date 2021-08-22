@@ -20,7 +20,21 @@ final class CredentialConfiguratorTest extends TestCase
             'helper' => $helper = 'test_helper',
         ]);
 
-        self::assertInstanceOf(Credential::class, $subject);
         self::assertEquals($helper, $subject->helper);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Config\Configurators\CredentialConfigurator::parse
+     */
+    public function testParseInstanceOf(): void
+    {
+        $configurator = new CredentialConfigurator();
+
+        /** @var Credential $subject */
+        $subject = $configurator->parse([
+            'helper' => 'test_helper',
+        ]);
+
+        self::assertInstanceOf(Credential::class, $subject);
     }
 }
