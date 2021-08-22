@@ -4,13 +4,16 @@ namespace ArtARTs36\GitHandler\DocBuilder;
 
 class Page
 {
-    public $name;
+    public $file;
 
     public $content;
 
-    public function __construct(string $name, string $content)
+    public $title;
+
+    public function __construct(string $file, string $content, string $title)
     {
-        $this->name = $name;
+        $this->file = $file;
         $this->content = $content;
+        $this->title = $title;
     }
 }

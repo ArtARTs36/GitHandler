@@ -26,12 +26,12 @@ class DocCommandPageBuilder
         $stub = $this->stubs->load('page_command.md');
 
         return new Page($this->buildPageName($reflector), $stub->render([
-            'title' => $this->docBlocks->create($reflector)->getSummary(),
+            'title' => $title = $this->docBlocks->create($reflector)->getSummary(),
             'factoryMethodName' => $factoryMethodName,
             'interfaceName' => $reflector->getName(),
             'interfaceFilePath' => $reflector->getFileName(),
             'featureList' => $this->buildFeatures($reflector->getMethods(), $factoryMethodName),
-        ]));
+        ]), $title);
     }
 
     protected function buildFeatures(array $methods, string $factoryMethodName): string

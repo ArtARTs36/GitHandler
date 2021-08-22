@@ -2,6 +2,7 @@
 
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\DocBuilder\DocBuilder;
+use ArtARTs36\GitHandler\DocBuilder\HomePageBuilder;
 use ArtARTs36\GitHandler\DocBuilder\StubLoader;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
 
@@ -29,8 +30,12 @@ $docBuilder = new DocBuilder(
     $stubLoader
 );
 
+$homePageBuilder = new HomePageBuilder($stubLoader);
+
 $pages = $docBuilder->build();
 
 foreach ($pages as $page) {
-    $fileSystem->createFile(__DIR__ . '/../' . $page->name, $page->content);
+    $fileSystem->createFile(__DIR__ . '/../' . $page->file, $page->content);
 }
+
+$fileSystem->createFile(__DIR__ . '/../../readme.md', $homePageBuilder->build($pages));

@@ -43,6 +43,8 @@ class MethodSignatureBuilder
                     $exampleArgs[] = 1;
                 } elseif ($parameter->hasType() && static::isEnum($parameter->getType())) {
                     $exampleArgs[] = static::buildEnumArgument($parameter->getType(), $type);
+                } elseif ($type === 'bool') {
+                    $exampleArgs[] = 'true';
                 } else {
                     $exampleArgs[] = "'". $parameter->name ."-test'";
                 }

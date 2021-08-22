@@ -23,7 +23,7 @@ Tool for work with Git in PHP
 
 ## Features
 
-{$commands}
+{$pages}
 * [Download](docs/downloader.md)
 
 ----
