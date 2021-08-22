@@ -101,7 +101,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
-### * 
+### * Switch folder to root (project dir)
 
 #### Method Signature:
 
@@ -118,7 +118,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
-### * 
+### * Switch folder
 
 #### Method Signature:
 

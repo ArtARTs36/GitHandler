@@ -8,11 +8,13 @@ namespace ArtARTs36\GitHandler\Contracts\Commands;
 interface FolderSwitchable
 {
     /**
+     * Switch folder to root (project dir)
      * @return $this
      */
     public function seeToRoot();
 
     /**
+     * Switch folder
      * @return $this
      */
     public function seeToFolder(string $folder);
