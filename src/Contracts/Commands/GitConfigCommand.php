@@ -23,6 +23,7 @@ interface GitConfigCommand
      * @git-command git config --list
      * @throws ConfigDataNotFound
      * @throws SubjectConfiguratorNotFound
+     * @exampleArguments user
      */
     public function getSubject(string $prefix): ConfigSubject;
 
@@ -30,6 +31,7 @@ interface GitConfigCommand
      * Set git config
      * @git-command git config $scope.$field=$value
      * @git-command git config $scope.$field=$value --replace-all
+     * @exampleArguments user name ArtARTs36
      */
     public function set(string $scope, string $field, string $value, bool $replaceAll = false): bool;
 }
