@@ -21,6 +21,12 @@ Tool for work with Git in PHP
 
 ----
 
-## Commands
+## Features
 
 {$commands}
+* [Download](docs/downloader.md)
+
+----
+
+## Extensions
+* [artarts36/git-handler-remote](extensions/remote) - Work with git repository on remote server

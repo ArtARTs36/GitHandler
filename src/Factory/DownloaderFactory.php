@@ -9,11 +9,13 @@ use ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
+use ArtARTs36\GitHandler\Support\LocalFileSystem;
+use ArtARTs36\GitHandler\Support\SimpleHttpClient;
 use Psr\Http\Client\ClientInterface;
 
 class DownloaderFactory
 {
-    public function factory(ClientInterface $client, FileSystem $files): OriginDownloader
+    public function factory(?FileSystem $files = null, ?ClientInterface $client = null): OriginDownloader
     {
         return new Downloader(
             OriginUrlSelector::make([
@@ -21,8 +23,8 @@ class DownloaderFactory
                 new GitlabOriginUrlBuilder(),
                 new BitbucketOriginUrlBuilder(),
             ]),
-            $client,
-            $files
+            $client ?? new SimpleHttpClient(),
+            $files ?? new LocalFileSystem()
         );
     }
 }
