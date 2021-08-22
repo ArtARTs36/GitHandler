@@ -10,4 +10,5 @@ phpunit.xml    export-ignore
 readme.md      export-ignore
 LICENSE        export-ignore
 extensions     export-ignore
+docs           export-ignore
 file.txt       export-ignore export-ignore
