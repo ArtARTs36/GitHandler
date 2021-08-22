@@ -1,7 +1,5 @@
 # Git Archive
 
----
-
 Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitArchiveCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitArchiveCommand.php)
 
 ---

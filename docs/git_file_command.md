@@ -1,7 +1,5 @@
 # Git Files
 
----
-
 Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitFileCommand.php)
 
 ---

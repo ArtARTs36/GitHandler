@@ -1,7 +1,5 @@
 # Git Hooks
 
----
-
 Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitHookCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitHookCommand.php)
 
 ---

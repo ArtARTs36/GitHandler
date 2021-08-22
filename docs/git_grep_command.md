@@ -1,7 +1,5 @@
 # Git grep
 
----
-
 Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitGrepCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitGrepCommand.php)
 
 ---

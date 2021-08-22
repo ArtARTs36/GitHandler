@@ -1,7 +1,5 @@
 # Git Init
 
----
-
 Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitSetupCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitSetupCommand.php)
 
 ---

@@ -1,7 +1,5 @@
 # {$title}
 
----
-
 Use the interface: [{$interfaceName}]({$interfaceFilePath})
 
 ---
