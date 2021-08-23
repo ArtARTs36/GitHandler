@@ -81,14 +81,14 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
         $this->reset($mode, 'HEAD~');
     }
 
-    public function rollback(array $files): void
+    public function rollback($files): void
     {
         $this
             ->builder
             ->make()
             ->addArgument('checkout')
             ->addArgument('HEAD')
-            ->addArguments($files)
+            ->addArguments((array) $files)
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) {
                     FileNotFound::handleIfSo($result->getError());
