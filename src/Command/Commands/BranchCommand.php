@@ -63,13 +63,13 @@ class BranchCommand extends AbstractCommand implements GitBranchCommand
             ->addArgument($branch)
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) use ($branch) {
-                    if (($already = $result->getError()->match("/fatal: A branch named '$branch' already exists/i"))
-                        && $already->isNotEmpty()) {
-                        throw new BranchAlreadyExists($branch);
+                    $already = $result->getError()->match("/fatal: A branch named '$branch' already exists/i");
+                    if ($already->isNotEmpty()) {
+                        throw new BranchAlreadyExists($already);
                     }
 
-                    if (($objectName = $result->getError()->match('/fatal: Not a valid object name: \'(.*)\'/i')) &&
-                        $objectName->isNotEmpty()) {
+                    $objectName = $result->getError()->match('/fatal: Not a valid object name: \'(.*)\'/i');
+                    if ($objectName->isNotEmpty()) {
                         throw new ObjectNameNotValid($objectName);
                     }
                 }
