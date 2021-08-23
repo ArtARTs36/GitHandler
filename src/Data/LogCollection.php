@@ -55,9 +55,9 @@ class LogCollection implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @return \ArrayIterator|iterable<Log>
+     * @return iterable<Log>
      */
-    public function getIterator(): \ArrayIterator
+    public function getIterator(): iterable
     {
         return new \ArrayIterator($this->logs);
     }

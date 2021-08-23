@@ -19,8 +19,8 @@ class FileNotFound extends GitHandlerException implements \ArtARTs36\FileSystem\
 
     public static function handleIfSo(Str $err): void
     {
-        if (($path = $err->match("/pathspec '(.*)' did not match any/i")) &&
-            $path->isNotEmpty()) {
+        $path = $err->match("/pathspec '(.*)' did not match any/i");
+        if ($path->isNotEmpty()) {
             throw new self($path);
         }
     }

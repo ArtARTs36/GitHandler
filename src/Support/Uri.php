@@ -8,6 +8,9 @@ use JetBrains\PhpStorm\ArrayShape;
 
 class Uri
 {
+    /**
+     * @param array<string, string> $parts
+     */
     public static function unParse(
         #[ArrayShape(['scheme' => 'string', 'host' => 'string', 'path' => 'string'])]
         array $parts

@@ -49,9 +49,8 @@ class MergeCommand extends AbstractCommand implements GitMergeCommand
             ->addArgument($branch)
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) {
-                    if (($failedBranch = $result->getError()
-                        ->match('#merge: (.*) - not something we can merge#i')) &&
-                        $failedBranch->isNotEmpty()) {
+                    $failedBranch = $result->getError()->match('#merge: (.*) - not something we can merge#i');
+                    if ($failedBranch->isNotEmpty()) {
                         throw new NotSomethingWeCanMerge($failedBranch);
                     }
                 }

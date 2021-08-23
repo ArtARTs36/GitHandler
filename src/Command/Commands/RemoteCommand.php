@@ -26,7 +26,9 @@ class RemoteCommand extends AbstractCommand implements GitRemoteCommand
 
     public function hasAnyRemoteUrl(string $url): bool
     {
-        return ($remotes = $this->show()) && ($remotes->fetch->equals($url) || $remotes->push->equals($url));
+        $remotes = $this->show();
+
+        return $remotes->fetch->equals($url) || $remotes->push->equals($url);
     }
 
     /**
@@ -42,8 +44,8 @@ class RemoteCommand extends AbstractCommand implements GitRemoteCommand
             ->addArgument($shortName)
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) {
-                    if (($notFound = $result->getError()->match("/No such remote: '(.*)'/i")) &&
-                        ! $notFound->isEmpty()) {
+                    $notFound = $result->getError()->match("/No such remote: '(.*)'/i");
+                    if ($notFound->isNotEmpty()) {
                         throw new RemoteNotFound($notFound);
                     }
                 }
@@ -66,8 +68,8 @@ class RemoteCommand extends AbstractCommand implements GitRemoteCommand
             ->addArgument($url)
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) {
-                    if (($already = $result->getError()->match('/remote (.*) already exists/i')) &&
-                        ! $already->isEmpty()) {
+                    $already = $result->getError()->match('/remote (.*) already exists/i');
+                    if ($already->isNotEmpty()) {
                         throw new RemoteAlreadyExists($already);
                     }
                 }
@@ -88,8 +90,8 @@ class RemoteCommand extends AbstractCommand implements GitRemoteCommand
             ->addOption('v')
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) {
-                    if (($failed = $result->getError()->match("/repository '(.*)' not found/i")) &&
-                        $failed->isNotEmpty()) {
+                    $failed = $result->getError()->match("/repository '(.*)' not found/i");
+                    if ($failed->isNotEmpty()) {
                         throw new RemoteRepositoryNotFound($failed);
                     }
                 }

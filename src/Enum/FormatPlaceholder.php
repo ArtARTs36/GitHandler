@@ -32,6 +32,7 @@ class FormatPlaceholder
 
     /**
      * @codeCoverageIgnore
+     * @param non-empty-list<string> $holders
      */
     public static function format(array $holders, string $separator = '|'): string
     {
