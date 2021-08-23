@@ -9,6 +9,7 @@ trait Enumerable
 
     /**
      * @codeCoverageIgnore
+     * @return array<string, string>
      */
     public static function cases(): array
     {
