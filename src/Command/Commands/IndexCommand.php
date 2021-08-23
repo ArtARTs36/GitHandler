@@ -48,7 +48,7 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
                 $command->addOption('force');
             })
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
-                function (CommandResult $result) use ($files) {
+                function (CommandResult $result) {
                     FileNotFound::handleIfSo($result->getError());
                 }
             ]))

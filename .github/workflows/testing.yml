@@ -33,6 +33,9 @@ jobs:
     - name: Lint
       run: composer lint
 
+    - name: Stat analyse
+      run: composer stat-analyse
+
     - name: Run Tests
       run: composer test
 
