@@ -38,6 +38,7 @@ Tool for work with Git in PHP
 * [Git Init](docs/git_setup_command.md)
 * [Git Log](docs/git_log_command.md)
 * [Git Merge](docs/git_merge_command.md)
+* [Git Paths (info-path, html-path, man-path, ...)](docs/git_path_command.md)
 * [Git Pull](docs/git_pull_command.md)
 * [Git Push](docs/git_push_command.md)
 * [Git Remote (add, show, remove, ...)](docs/git_remote_command.md)
@@ -45,7 +46,6 @@ Tool for work with Git in PHP
 * [Git Status](docs/git_status_command.md)
 * [Git Tags](docs/git_tag_command.md)
 * [Git Transactions](docs/git_transaction.md)
-* [Git paths (info-path, html-path, man-path, ...)](docs/git_path_command.md)
 * [Download](docs/downloader.md)
 
 ----
@@ -60,6 +60,7 @@ Tool for work with Git in PHP
 |  Command  | Description  |
 | ------------ | ------------ |
 | composer lint |  Check code on PSR  |
+| composer stat-analyse |  Run stat analyse  |
 | composer test  | Run tests  |
 | composer mutate-test  |  Run mutation testing |
 | php docs/DocBuilder/build.php  |  Build documentation |
