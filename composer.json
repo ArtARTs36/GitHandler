@@ -52,7 +52,7 @@
             "./vendor/infection/infection/bin/infection --threads=4 --no-progress --min-covered-msi=75 --coverage=tests/reports/logs/"
         ],
         "stat-analyse": [
-            "./vendor/bin/phpstan analyse -l 1 src"
+            "./vendor/bin/phpstan analyse -l 2 src"
         ]
     }
 }

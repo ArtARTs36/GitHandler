@@ -50,9 +50,9 @@ class ConfiguratorsDict implements \IteratorAggregate
     }
 
     /**
-     * @return \ArrayIterator|iterable<SubjectConfigurator>
+     * @return iterable<SubjectConfigurator>
      */
-    public function getIterator(): \ArrayIterator
+    public function getIterator(): iterable
     {
         return new \ArrayIterator($this->configurators);
     }

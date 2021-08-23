@@ -23,9 +23,9 @@ class SubjectsCollection implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @return \ArrayIterator|iterable<ConfigSubject>
+     * @return iterable<ConfigSubject>
      */
-    public function getIterator(): \ArrayIterator
+    public function getIterator(): iterable
     {
         return new \ArrayIterator($this->subjects);
     }
