@@ -21,7 +21,7 @@ class FileNotFound extends GitHandlerException implements \ArtARTs36\FileSystem\
     {
         if (($path = $err->match("/pathspec '(.*)' did not match any/i")) &&
             $path->isNotEmpty()) {
-            throw new static($path);
+            throw new self($path);
         }
     }
 

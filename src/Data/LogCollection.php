@@ -51,7 +51,7 @@ class LogCollection implements \IteratorAggregate, \Countable
             return null;
         }
 
-        return new static(array_values($logs));
+        return new self(array_values($logs));
     }
 
     /**

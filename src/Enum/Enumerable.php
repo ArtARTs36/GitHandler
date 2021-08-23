@@ -30,7 +30,7 @@ trait Enumerable
             throw new \InvalidArgumentException('Invalid Enum Value');
         }
 
-        $enum = new static();
+        $enum = new self();
         $enum->value = $value;
 
         return $enum;

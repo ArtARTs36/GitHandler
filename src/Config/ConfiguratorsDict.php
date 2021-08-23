@@ -29,7 +29,7 @@ class ConfiguratorsDict implements \IteratorAggregate
             $dict[$configurator->getPrefix()] = $configurator;
         }
 
-        return new static($dict);
+        return new self($dict);
     }
 
     /**

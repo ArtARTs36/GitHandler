@@ -26,7 +26,7 @@ class FileMatch
         #[ArrayShape(['file' => 'string', 'line' => 'string', 'content' => 'string'])]
         array $data
     ): self {
-        return new static($data['file'], $data['line'], $data['content']);
+        return new self($data['file'], $data['line'], $data['content']);
     }
 
     public function getReference(): string

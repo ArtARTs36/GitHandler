@@ -8,7 +8,7 @@ class PathAlreadyExists extends GitHandlerException
 {
     public $errorPath;
 
-    public function __construct(string $path)
+    final public function __construct(string $path)
     {
         $this->errorPath = $path;
 

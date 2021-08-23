@@ -23,7 +23,7 @@ class Remotes
 
     public static function createEmpty(): self
     {
-        return new static(new Str(''), new Str(''));
+        return new self(new Str(''), new Str(''));
     }
 
     public function isEmpty(): bool

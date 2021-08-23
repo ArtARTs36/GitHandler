@@ -20,7 +20,7 @@ class GitContext
 
     public static function make(string $rootDir, ?string $gitFolder = '.git'): self
     {
-        return new static($rootDir, $rootDir . DIRECTORY_SEPARATOR . $gitFolder);
+        return new self($rootDir, $rootDir . DIRECTORY_SEPARATOR . $gitFolder);
     }
 
     public function getRootDir(): string

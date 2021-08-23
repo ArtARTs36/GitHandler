@@ -33,7 +33,7 @@ class OriginUrlSelector
             }
         }
 
-        return new static($map);
+        return new self($map);
     }
 
     /**

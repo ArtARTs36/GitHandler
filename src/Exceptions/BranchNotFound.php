@@ -2,7 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-class BranchNotFound extends FileNotFound
+use ArtARTs36\Str\Str;
+
+class BranchNotFound extends GitHandlerException
 {
     public $errorBranch;
 
@@ -13,5 +15,13 @@ class BranchNotFound extends FileNotFound
         $message = "Git Branch '{$branch}' Not Found";
 
         parent::__construct($message);
+    }
+
+    public static function handleIfSo(Str $err): void
+    {
+        if (($path = $err->match("/pathspec '(.*)' did not match any/i")) &&
+            $path->isNotEmpty()) {
+            throw new self($path);
+        }
     }
 }

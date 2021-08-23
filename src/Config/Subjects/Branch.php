@@ -30,6 +30,6 @@ class Branch
         #[ArrayShape(['remote' => 'string', 'merge' => 'string'])]
         array $links
     ): self {
-        return new static($name, $links['remote'] ?? '', $links['merge'] ?? '');
+        return new self($name, $links['remote'] ?? '', $links['merge'] ?? '');
     }
 }
