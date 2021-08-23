@@ -89,6 +89,11 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
             ->addArgument('checkout')
             ->addArgument('HEAD')
             ->addArguments($files)
+            ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
+                function (CommandResult $result) {
+                    FileNotFound::handleIfSo($result->getError());
+                }
+            ]))
             ->executeOrFail($this->executor);
     }
 }

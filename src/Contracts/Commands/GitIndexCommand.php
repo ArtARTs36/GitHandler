@@ -37,7 +37,7 @@ interface GitIndexCommand
      */
     public function resetHead(ResetMode $mode): void;
 
-    /**
+    /**dd
      * Rollback files state
      * @git-command git checkout HEAD $files
      * @param array<string> $files
