@@ -80,4 +80,15 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
     {
         $this->reset($mode, 'HEAD~');
     }
+
+    public function rollback(array $files): void
+    {
+        $this
+            ->builder
+            ->make()
+            ->addArgument('checkout')
+            ->addArgument('HEAD')
+            ->addArguments($files)
+            ->executeOrFail($this->executor);
+    }
 }
