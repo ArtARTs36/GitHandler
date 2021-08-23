@@ -24,7 +24,6 @@ final class BranchCommandTest extends GitTestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::delete
-     * @covers \ArtARTs36\GitHandler\Exceptions\BranchNotFound::handleIfSo
      */
     public function testDeleteBranchOnBranchNotFound(): void
     {
@@ -70,6 +69,7 @@ final class BranchCommandTest extends GitTestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::checkout
+     * @covers \ArtARTs36\GitHandler\Exceptions\BranchNotFound::handleIfSo
      */
     public function testCheckoutOk(): void
     {
@@ -80,6 +80,7 @@ final class BranchCommandTest extends GitTestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::checkout
+     * @covers \ArtARTs36\GitHandler\Exceptions\BranchNotFound::handleIfSo
      */
     public function testCheckoutOnNotFoundBranch(): void
     {
