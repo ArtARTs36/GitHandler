@@ -15,6 +15,7 @@
     "testFramework":"phpunit",
     "mutators": {
         "@default": true,
-        "ProtectedVisibility": false
+        "ProtectedVisibility": false,
+        "UnwrapTrim": false
     }
 }

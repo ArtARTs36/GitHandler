@@ -75,6 +75,58 @@ final class IndexCommandTest extends GitTestCase
         $this->makeIndexCommand()->remove('f.txt', true);
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::checkout
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::buildPureCheckoutCommand
+     * @covers \ArtARTs36\GitHandler\Exceptions\FileNotFound::handleIfSo
+     */
+    public function testCheckoutOk(): void
+    {
+        $this->mockCommandExecutor->nextOk("Already on 'master'");
+
+        self::assertTrue($this->makeIndexCommand()->checkout('master', true));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::checkout
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::buildPureCheckoutCommand
+     * @covers \ArtARTs36\GitHandler\Exceptions\FileNotFound::handleIfSo
+     */
+    public function testCheckoutOnNotFoundBranch(): void
+    {
+        self::expectException(FileNotFound::class);
+
+        $this->mockCommandExecutor->nextFailed("pathspec 'random' did not match any");
+
+        $this->makeIndexCommand()->checkout('random');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::rollback
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::buildPureCheckoutCommand
+     * @covers \ArtARTs36\GitHandler\Exceptions\FileNotFound::handleIfSo
+     */
+    public function testRollbackOk(): void
+    {
+        $this->mockCommandExecutor->nextOk("Already on 'master'");
+
+        self::assertNull($this->makeIndexCommand()->rollback('master'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::rollback
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::buildPureCheckoutCommand
+     * @covers \ArtARTs36\GitHandler\Exceptions\FileNotFound::handleIfSo
+     */
+    public function testRollbackOnNotFoundBranch(): void
+    {
+        self::expectException(FileNotFound::class);
+
+        $this->mockCommandExecutor->nextFailed("pathspec 'random' did not match any");
+
+        $this->makeIndexCommand()->rollback('random');
+    }
+
     private function makeIndexCommand(): IndexCommand
     {
         return new IndexCommand($this->mockCommandBuilder, $this->mockCommandExecutor);

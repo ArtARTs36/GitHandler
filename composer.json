@@ -53,6 +53,9 @@
         ],
         "stat-analyse": [
             "./vendor/bin/phpstan analyse -l 5 src"
+        ],
+        "build-docs": [
+            "php docs/DocBuilder/build.php"
         ]
     }
 }

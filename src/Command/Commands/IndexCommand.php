@@ -9,7 +9,6 @@ use ArtARTs36\GitHandler\Exceptions\UnknownRevisionInWorkingTree;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\Result\CommandResult;
-use ArtARTs36\Str\Str;
 
 class IndexCommand extends AbstractCommand implements GitIndexCommand
 {
@@ -79,5 +78,37 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
     public function resetHead(ResetMode $mode): void
     {
         $this->reset($mode, 'HEAD~');
+    }
+
+    public function rollback($paths): void
+    {
+        $this
+            ->buildPureCheckoutCommand(array_merge(['HEAD'], (array) $paths), false)
+            ->executeOrFail($this->executor);
+    }
+
+    public function checkout($path, bool $merge = false): bool
+    {
+        return $this
+            ->buildPureCheckoutCommand((array) $path, $merge)
+            ->executeOrFail($this->executor)
+            ->isOk();
+    }
+
+    protected function buildPureCheckoutCommand(array $paths, bool $merge): ShellCommandInterface
+    {
+        return $this
+            ->builder
+            ->make()
+            ->addArgument('checkout')
+            ->addArguments($paths)
+            ->when($merge, function (ShellCommandInterface $command) {
+                $command->addOption('merge');
+            })
+            ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
+                function (CommandResult $result) {
+                    FileNotFound::handleIfSo($result->getError());
+                }
+            ]));
     }
 }
