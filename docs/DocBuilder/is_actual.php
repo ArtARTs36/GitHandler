@@ -8,13 +8,14 @@ $git = (new LocalGitFactory())->factory(__DIR__ . '/../../');
 
 // execute build
 
+$statusBeforeDocBuild = $git->statuses()->status(true);
+
 require_once 'build.php';
 
-if ($git->statuses()->status(true)->isNotEmpty()) {
-    echo "Documentation is not actually";
-    exit(1);
+if ($git->statuses()->status(true)->equals($statusBeforeDocBuild)) {
+    echo "OK\n";
+    exit(0);
 }
 
-echo "OK";
-
-exit(0);
+echo "Documentation is not actually\n";
+exit(1);
