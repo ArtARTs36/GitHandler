@@ -48,7 +48,7 @@ interface GitIndexCommand
     /**
      * Checkout to paths
      * @git-command git checkout $path
-     * @param string|array<string> $path
+     * @param string $path
      * @throws BranchNotFound
      */
     public function checkout(string $path, bool $merge = false): bool;
