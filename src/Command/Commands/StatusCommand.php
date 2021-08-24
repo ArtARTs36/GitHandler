@@ -19,7 +19,8 @@ class StatusCommand extends AbstractCommand implements GitStatusCommand
                 $command->addCutOption('s');
             })
             ->executeOrFail($this->executor)
-            ->getResult();
+            ->getResult()
+            ->trim();
     }
 
     public function hasChanges(): bool
