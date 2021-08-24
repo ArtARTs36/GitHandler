@@ -17,6 +17,7 @@ if ($git->statuses()->status(true)->equals($statusBeforeDocBuild)) {
     exit(0);
 }
 
+var_dump(file_get_contents(__DIR__ . '/../git_attribute_command.md'));
 var_dump('Current git status: '. $git->statuses()->status(true));
 
 echo "Documentation is not actually\n";
