@@ -6,9 +6,12 @@ class HomePageBuilder
 {
     protected $stubs;
 
-    public function __construct(StubLoader $stubs)
+    protected $devCommands;
+
+    public function __construct(StubLoader $stubs, DevelopmentCommandsTableBuilder $devCommands)
     {
         $this->stubs = $stubs;
+        $this->devCommands = $devCommands;
     }
 
     /**
@@ -20,6 +23,7 @@ class HomePageBuilder
             'pages' => implode("\n", array_map(function (Page $page) {
                 return '* '. Markdown::link($page->title, 'docs/'. $page->file);
             }, $pages)),
+            'dev-commands' => $this->devCommands->build(),
         ]);
     }
 }

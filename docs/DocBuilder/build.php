@@ -2,6 +2,7 @@
 
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\DocBuilder\ClassFinder;
+use ArtARTs36\GitHandler\DocBuilder\DevelopmentCommandsTableBuilder;
 use ArtARTs36\GitHandler\DocBuilder\DocBuilder;
 use ArtARTs36\GitHandler\DocBuilder\HomePageBuilder;
 use ArtARTs36\GitHandler\DocBuilder\Page;
@@ -24,7 +25,7 @@ function snake_case(string $input): string
 
 //
 
-ClassFinder::setProjectDir(__DIR__ . '/../..');
+ClassFinder::setProjectDir($projectDir = __DIR__ . '/../..');
 
 $fileSystem = new LocalFileSystem();
 $stubLoader = new StubLoader($fileSystem);
@@ -34,7 +35,7 @@ $docBuilder = new DocBuilder(
     $stubLoader
 );
 
-$homePageBuilder = new HomePageBuilder($stubLoader);
+$homePageBuilder = new HomePageBuilder($stubLoader, new DevelopmentCommandsTableBuilder($projectDir));
 
 $pages = $docBuilder->build();
 
