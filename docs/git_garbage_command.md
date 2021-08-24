@@ -1,6 +1,6 @@
 # Git Garbage Collector
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitGarbageCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitGarbageCommand.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitGarbageCommand](../src/Contracts/Commands/GitGarbageCommand.php)
 
 ---
 

@@ -1,6 +1,6 @@
 # Git Attributes
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitAttributeCommand.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand](../src/Contracts/Commands/GitAttributeCommand.php)
 
 ---
 

@@ -1,6 +1,6 @@
 # Git Tags
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitTagCommand.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand](../src/Contracts/Commands/GitTagCommand.php)
 
 ---
 

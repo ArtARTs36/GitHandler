@@ -1,6 +1,6 @@
 # Git Paths (info-path, html-path, man-path, ...)
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitPathCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitPathCommand.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitPathCommand](../src/Contracts/Commands/GitPathCommand.php)
 
 ---
 

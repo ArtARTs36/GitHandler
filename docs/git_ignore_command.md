@@ -1,6 +1,6 @@
 # Git Ignore Files (.gitignore)
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitIgnoreCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitIgnoreCommand.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitIgnoreCommand](../src/Contracts/Commands/GitIgnoreCommand.php)
 
 ---
 

@@ -6,11 +6,11 @@ use ArtARTs36\Str\Str;
 
 class DevelopmentCommandsTableBuilder
 {
-    protected $projectDir;
+    protected $project;
 
-    public function __construct(string $projectDir)
+    public function __construct(Project $projectDir)
     {
-        $this->projectDir = $projectDir;
+        $this->project = $projectDir;
     }
 
     public function build(): string
@@ -46,7 +46,7 @@ class DevelopmentCommandsTableBuilder
 
     protected function getScripts(): array
     {
-        $composer = file_get_contents($this->projectDir . DIRECTORY_SEPARATOR . 'composer.json');
+        $composer = file_get_contents($this->project->getRootDir() . DIRECTORY_SEPARATOR . 'composer.json');
         $composer = json_decode($composer, true);
 
         return $composer['scripts'];

@@ -10,10 +10,10 @@ class DocBuilder
 
     protected $stubs;
 
-    public function __construct(\ReflectionClass $reflector, StubLoader $stubs)
+    public function __construct(\ReflectionClass $reflector, StubLoader $stubs, DocCommandPageBuilder $pages)
     {
         $this->reflector = $reflector;
-        $this->pages = new DocCommandPageBuilder($stubs);
+        $this->pages = $pages;
         $this->stubs = $stubs;
     }
 
