@@ -29,7 +29,7 @@ public function add(string $pattern, array $attributes): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->attributes()->add('pattern-test', 'attributes-test');
+(new LocalGitFactory())->factory(__DIR__)->attributes()->add('pattern-test', ['export-ignore']);
 ```
 
 ---

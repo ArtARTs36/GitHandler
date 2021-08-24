@@ -10,6 +10,7 @@ class MethodSignatureBuilder
     protected static $placeholders = [
         'branch' => 'master',
         'path' => '/path/to/file',
+        'attributes' => "['export-ignore']",
     ];
 
     public static function build(\ReflectionMethod $method, DocBlock $docBlock): MethodSignature
@@ -52,7 +53,11 @@ class MethodSignatureBuilder
 
             if ($needFindExamplesArgs) {
                 if (array_key_exists($parameter->name, static::$placeholders)) {
-                    $exampleArgs[] = "'" . static::$placeholders[$parameter->name] . "'";
+                    if ($type === 'array') {
+                        $exampleArgs[] = static::$placeholders[$parameter->name];
+                    } else {
+                        $exampleArgs[] = "'" . static::$placeholders[$parameter->name] . "'";
+                    }
                 } else {
                     if ($type === 'int') {
                         $exampleArgs[] = 1;
