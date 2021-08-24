@@ -41,4 +41,4 @@ Tool for work with Git in PHP
 | composer stat-analyse |  Run stat analyse  |
 | composer test  | Run tests  |
 | composer mutate-test  |  Run mutation testing |
-| php docs/DocBuilder/build.php  |  Build documentation |
+| composer build-docs  |  Build documentation |
