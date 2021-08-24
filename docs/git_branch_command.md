@@ -16,29 +16,6 @@ $command = (new LocalGitFactory())->factory(__DIR__)->branches();
 
 ## Features:
 
-### * Checkout to branch
-
-#### Method Signature:
-
-
-
-```php
-public function checkout(string $branch, bool $merge): bool;
-```
-
-#### Equals Git Command:
-
-`git checkout {$branch}`
-
-#### Example:
-
-```php
-use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
-
-(new LocalGitFactory())->factory(__DIR__)->branches()->checkout('master', true);
-```
-
----
 ### * Delete Branch
 
 #### Method Signature:

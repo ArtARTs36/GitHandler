@@ -116,3 +116,49 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
+### * Rollback files state
+
+#### Method Signature:
+
+
+
+```php
+public function rollback(string|string[] $paths): void;
+```
+
+#### Equals Git Command:
+
+`git checkout HEAD $paths`
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->index()->rollback('paths-test');
+```
+
+---
+### * Checkout to paths
+
+#### Method Signature:
+
+
+
+```php
+public function checkout(string $path, bool $merge): bool;
+```
+
+#### Equals Git Command:
+
+`git checkout $path`
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->index()->checkout('/path/to/file', true);
+```
+
+---
