@@ -62,7 +62,7 @@
             "echo 'Build documentation'",
             "php docs/DocBuilder/build.php"
         ],
-        "check-actual-docs": [
+        "check-docs-actual": [
             "echo 'Check Documentation is actually'",
             "php docs/DocBuilder/is_actual.php"
         ]

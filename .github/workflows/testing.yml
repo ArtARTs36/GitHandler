@@ -30,6 +30,9 @@ jobs:
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Check Documentation is actually
+      run: composer check-docs-actual
+
     - name: Lint
       run: composer lint
 
