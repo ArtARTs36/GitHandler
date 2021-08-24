@@ -17,5 +17,7 @@ if ($git->statuses()->status(true)->equals($statusBeforeDocBuild)) {
     exit(0);
 }
 
+dd($statusBeforeDocBuild->__toString());
+
 echo "Documentation is not actually\n";
 exit(1);
