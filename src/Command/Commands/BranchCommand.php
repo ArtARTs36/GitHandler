@@ -15,25 +15,6 @@ use ArtARTs36\Str\Str;
 
 class BranchCommand extends AbstractCommand implements GitBranchCommand
 {
-    public function checkout(string $branch, bool $merge = false): bool
-    {
-        return $this
-            ->builder
-            ->make()
-            ->addArgument('checkout')
-            ->addArgument($branch)
-            ->when($merge, function (ShellCommandInterface $command) {
-                $command->addOption('merge');
-            })
-            ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
-                function (CommandResult $result) {
-                    BranchNotFound::handleIfSo($result->getError());
-                }
-            ]))
-            ->executeOrFail($this->executor)
-            ->isOk();
-    }
-
     public function delete(string $branch): bool
     {
         return $this

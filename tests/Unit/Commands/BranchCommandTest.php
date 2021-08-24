@@ -68,30 +68,6 @@ final class BranchCommandTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::checkout
-     * @covers \ArtARTs36\GitHandler\Exceptions\BranchNotFound::handleIfSo
-     */
-    public function testCheckoutOk(): void
-    {
-        $this->mockCommandExecutor->nextOk("Already on 'master'");
-
-        self::assertTrue($this->makeBranchCommand()->checkout('master', true));
-    }
-
-    /**
-     * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::checkout
-     * @covers \ArtARTs36\GitHandler\Exceptions\BranchNotFound::handleIfSo
-     */
-    public function testCheckoutOnNotFoundBranch(): void
-    {
-        self::expectException(BranchNotFound::class);
-
-        $this->mockCommandExecutor->nextFailed("pathspec 'random' did not match any");
-
-        $this->makeBranchCommand()->checkout('random');
-    }
-
-    /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\BranchCommand::create
      */
     public function testNewBranchOk(): void

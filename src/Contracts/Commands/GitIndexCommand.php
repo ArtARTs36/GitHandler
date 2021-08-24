@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Contracts\Commands;
 
 use ArtARTs36\GitHandler\Enum\ResetMode;
+use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
 
 /**
  * Git Index: (git add, git reset, git rm, ...)
@@ -39,8 +40,16 @@ interface GitIndexCommand
 
     /**
      * Rollback files state
-     * @git-command git checkout HEAD $files
-     * @param string|array<string> $files
+     * @git-command git checkout HEAD $paths
+     * @param string|array<string> $paths
      */
-    public function rollback($files): void;
+    public function rollback($paths): void;
+
+    /**
+     * Checkout to paths
+     * @git-command git checkout $path
+     * @param string|array<string> $path
+     * @throws BranchNotFound
+     */
+    public function checkout(string $path, bool $merge = false): bool;
 }

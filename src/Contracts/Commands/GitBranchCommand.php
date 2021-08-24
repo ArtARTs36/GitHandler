@@ -13,13 +13,6 @@ use ArtARTs36\Str\Str;
 interface GitBranchCommand
 {
     /**
-     * Checkout to branch
-     * @git-command git checkout {$branch}
-     * @throws BranchNotFound
-     */
-    public function checkout(string $branch, bool $merge = false): bool;
-
-    /**
      * Delete Branch
      * @git-command git branch -d {$branch}
      * @throws BranchNotFound
