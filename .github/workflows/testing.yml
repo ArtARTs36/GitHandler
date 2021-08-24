@@ -28,7 +28,7 @@ jobs:
 
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer install --prefer-dist --no-progress --no-suggest && composer dump-autoload -o
 
     - name: Check Documentation is actually
       run: composer check-docs-actual
