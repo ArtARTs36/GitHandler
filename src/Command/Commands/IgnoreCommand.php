@@ -44,10 +44,10 @@ class IgnoreCommand implements GitIgnoreCommand
     {
         $gitIgnore = $this->getPath();
 
-        $content = $this->fileSystem->exists($gitIgnore) ? $this->fileSystem->getFileContent($gitIgnore) : '';
+        $content = $this->isFileExists() ? $this->fileSystem->getFileContent($gitIgnore) : '';
         $content = new Str($content);
 
-        if (! $content->isEmpty()) {
+        if ($content->isNotEmpty()) {
             $content = $content->append("\n");
         }
 
