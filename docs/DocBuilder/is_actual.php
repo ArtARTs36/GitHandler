@@ -12,10 +12,6 @@ $statusBeforeDocBuild = $git->statuses()->status(true);
 
 require_once 'build.php';
 
-$file = $git->statuses()->getModifiedFiles()[0];
-
-print_r(file_get_contents($file));
-
 if ($git->statuses()->status(true)->equals($statusBeforeDocBuild)) {
     echo "OK\n";
     exit(0);
