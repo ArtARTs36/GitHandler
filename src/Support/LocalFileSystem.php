@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Support;
 
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+use ArtARTs36\Str\Str;
 
 class LocalFileSystem implements FileSystem
 {
@@ -116,8 +117,6 @@ class LocalFileSystem implements FileSystem
 
     public function getChmod(string $path): int
     {
-        $chmod = substr(sprintf('%o', fileperms($path)), -4);
-
-        return $chmod[0] === '0' ? mb_strcut($chmod, 1) : $chmod;
+        return Str::make(sprintf('%o', fileperms($path)))->cut(null, -4)->toInteger();
     }
 }
