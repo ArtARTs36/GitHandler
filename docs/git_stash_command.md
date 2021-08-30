@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->stashes();
 
 
 ```php
-public function stash(string $message): bool;
+public function stash(?string $message): bool;
 ```
 
 #### Equals Git Command:

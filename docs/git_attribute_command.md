@@ -38,7 +38,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 #### Method Signature:
 
 ```php
-public function find(string $pattern): ArtARTs36\GitHandler\Data\GitAttributes;
+public function find(string $pattern): ?ArtARTs36\GitHandler\Data\GitAttributes;
 ```
 
 #### Example:

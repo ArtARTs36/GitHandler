@@ -63,7 +63,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function clone(string $url, string $branch, string $folder): bool;
+public function clone(string $url, ?string $branch, ?string $folder): bool;
 ```
 
 #### Equals Git Command:
@@ -103,7 +103,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 #### Method Signature:
 
 ```php
-public function reinstall(string $branch): void;
+public function reinstall(?string $branch): void;
 ```
 
 #### Example:

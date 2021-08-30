@@ -21,7 +21,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->files();
 #### Method Signature:
 
 ```php
-public function createFile(string $name, string $content, string $folder): string;
+public function createFile(string $name, string $content, ?string $folder): string;
 ```
 
 #### Example:

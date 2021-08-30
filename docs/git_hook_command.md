@@ -114,7 +114,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 #### Method Signature:
 
 ```php
-public function getHookPath(string $name): string;
+public function getHookPath(?string $name): string;
 ```
 
 #### Example:

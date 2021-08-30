@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->logs();
 
 
 ```php
-public function getAll(): ArtARTs36\GitHandler\Data\LogCollection;
+public function getAll(): ?ArtARTs36\GitHandler\Data\LogCollection;
 ```
 
 #### Equals Git Command:

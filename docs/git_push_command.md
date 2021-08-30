@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->pushes();
 
 
 ```php
-public function push(bool $force, string $upStream): bool;
+public function push(bool $force, ?string $upStream): bool;
 ```
 
 #### Equals Git Command:
