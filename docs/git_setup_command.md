@@ -1,6 +1,6 @@
 # Git Init
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitSetupCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitSetupCommand.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitSetupCommand](../src/Contracts/Commands/GitSetupCommand.php)
 
 ---
 
@@ -63,7 +63,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function clone(string $url, string $branch, string $folder): bool;
+public function clone(string $url, ?string $branch, ?string $folder): bool;
 ```
 
 #### Equals Git Command:
@@ -103,7 +103,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 #### Method Signature:
 
 ```php
-public function reinstall(string $branch): void;
+public function reinstall(?string $branch): void;
 ```
 
 #### Example:

@@ -42,20 +42,29 @@
     },
     "scripts": {
         "lint": [
+            "echo 'Check code on PSR'",
             "./vendor/bin/phpcs --standard=PSR2 src/",
             "./vendor/bin/phpcs --standard=PSR2 tests/"
         ],
+        "stat-analyse": [
+            "echo 'Run stat analyse'",
+            "./vendor/bin/phpstan analyse -l 5 src"
+        ],
         "test": [
+            "echo 'Run tests'",
             "XDEBUG_MODE=coverage ./vendor/bin/phpunit -v --coverage-text --configuration phpunit.xml --coverage-clover=tests/reports/logs/clover.xml --coverage-xml=tests/reports/logs/coverage-xml --log-junit=tests/reports/logs/junit.xml"
         ],
         "mutate-test": [
+            "echo 'Run mutation testing'",
             "./vendor/infection/infection/bin/infection --threads=4 --no-progress --min-covered-msi=75 --coverage=tests/reports/logs/"
         ],
-        "stat-analyse": [
-            "./vendor/bin/phpstan analyse -l 5 src"
-        ],
         "build-docs": [
+            "echo 'Build documentation'",
             "php docs/DocBuilder/build.php"
+        ],
+        "check-docs-actual": [
+            "echo 'Check Documentation is actually'",
+            "php docs/DocBuilder/is_actual.php"
         ]
     }
 }

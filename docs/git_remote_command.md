@@ -1,6 +1,6 @@
 # Git Remote (add, show, remove, ...)
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitRemoteCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitRemoteCommand.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitRemoteCommand](../src/Contracts/Commands/GitRemoteCommand.php)
 
 ---
 

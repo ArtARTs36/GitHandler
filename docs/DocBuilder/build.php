@@ -2,9 +2,12 @@
 
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\DocBuilder\ClassFinder;
+use ArtARTs36\GitHandler\DocBuilder\DevelopmentCommandsTableBuilder;
 use ArtARTs36\GitHandler\DocBuilder\DocBuilder;
+use ArtARTs36\GitHandler\DocBuilder\DocCommandPageBuilder;
 use ArtARTs36\GitHandler\DocBuilder\HomePageBuilder;
 use ArtARTs36\GitHandler\DocBuilder\Page;
+use ArtARTs36\GitHandler\DocBuilder\Project;
 use ArtARTs36\GitHandler\DocBuilder\StubLoader;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
 
@@ -24,17 +27,20 @@ function snake_case(string $input): string
 
 //
 
-ClassFinder::setProjectDir(__DIR__ . '/../..');
+$project = new Project(realpath(__DIR__ . '/../..'));
+
+ClassFinder::setProjectDir($project->getRootDir());
 
 $fileSystem = new LocalFileSystem();
 $stubLoader = new StubLoader($fileSystem);
 
 $docBuilder = new DocBuilder(
     $rootReflector = new \ReflectionClass(GitHandler::class),
-    $stubLoader
+    $stubLoader,
+    new DocCommandPageBuilder($stubLoader, $project)
 );
 
-$homePageBuilder = new HomePageBuilder($stubLoader);
+$homePageBuilder = new HomePageBuilder($stubLoader, new DevelopmentCommandsTableBuilder($project));
 
 $pages = $docBuilder->build();
 

@@ -10,15 +10,18 @@ class DocCommandPageBuilder
 
     protected $docBlocks;
 
+    protected $project;
+
     protected $features;
 
-    public function __construct(StubLoader $stubs, FeatureBuilder $features = null)
+    public function __construct(StubLoader $stubs, Project $project, FeatureBuilder $features = null)
     {
         $this->stubs = $stubs;
         $this->docBlocks = DocBlockFactory::createInstance([
             'git-command' => GitCommandDocTag::class,
             'exampleArguments' => ExampleArgumentsDocTag::class,
         ]);
+        $this->project = $project;
         $this->features = $features ?? new FeatureBuilder($stubs, $this->docBlocks);
     }
 
@@ -30,7 +33,7 @@ class DocCommandPageBuilder
             'title' => $title = $this->docBlocks->create($reflector)->getSummary(),
             'factoryMethodName' => $factoryMethodName,
             'interfaceName' => $reflector->getName(),
-            'interfaceFilePath' => $reflector->getFileName(),
+            'interfaceFilePath' => '..'. $this->project->relativePathToFile($reflector->getFileName()),
             'featureList' => $this->buildFeatures($reflector->getMethods(), $factoryMethodName),
         ]), $title);
     }

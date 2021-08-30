@@ -1,6 +1,6 @@
 # Git Files
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitFileCommand.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand](../src/Contracts/Commands/GitFileCommand.php)
 
 ---
 
@@ -21,7 +21,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->files();
 #### Method Signature:
 
 ```php
-public function createFile(string $name, string $content, string $folder): string;
+public function createFile(string $name, string $content, ?string $folder): string;
 ```
 
 #### Example:

@@ -1,6 +1,6 @@
 # Git Transactions
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Transaction/GitTransaction.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction](../src/Contracts/Transaction/GitTransaction.php)
 
 ---
 

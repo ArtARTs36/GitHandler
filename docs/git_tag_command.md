@@ -1,6 +1,6 @@
 # Git Tags
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitTagCommand.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand](../src/Contracts/Commands/GitTagCommand.php)
 
 ---
 
@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->tags();
 
 
 ```php
-public function getAll(string $pattern): string[];
+public function getAll(?string $pattern): string[];
 ```
 
 #### Equals Git Command:
@@ -48,7 +48,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function add(string $tag, string $message): bool;
+public function add(string $tag, ?string $message): bool;
 ```
 
 #### Equals Git Command:

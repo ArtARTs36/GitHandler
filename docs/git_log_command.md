@@ -1,6 +1,6 @@
 # Git Log
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitLogCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitLogCommand.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitLogCommand](../src/Contracts/Commands/GitLogCommand.php)
 
 ---
 
@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->logs();
 
 
 ```php
-public function getAll(): ArtARTs36\GitHandler\Data\LogCollection;
+public function getAll(): ?ArtARTs36\GitHandler\Data\LogCollection;
 ```
 
 #### Equals Git Command:

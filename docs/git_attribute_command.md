@@ -1,6 +1,6 @@
 # Git Attributes
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitAttributeCommand.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand](../src/Contracts/Commands/GitAttributeCommand.php)
 
 ---
 
@@ -29,7 +29,7 @@ public function add(string $pattern, array $attributes): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->attributes()->add('pattern-test', 'attributes-test');
+(new LocalGitFactory())->factory(__DIR__)->attributes()->add('pattern-test', ['export-ignore']);
 ```
 
 ---
@@ -38,7 +38,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 #### Method Signature:
 
 ```php
-public function find(string $pattern): ArtARTs36\GitHandler\Data\GitAttributes;
+public function find(string $pattern): ?ArtARTs36\GitHandler\Data\GitAttributes;
 ```
 
 #### Example:

@@ -1,6 +1,6 @@
 # Git Push
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitPushCommand](/Users/artem/PhpstormProjects/artarts36/libraries/git/src/Contracts/Commands/GitPushCommand.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitPushCommand](../src/Contracts/Commands/GitPushCommand.php)
 
 ---
 
@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->pushes();
 
 
 ```php
-public function push(bool $force, string $upStream): bool;
+public function push(bool $force, ?string $upStream): bool;
 ```
 
 #### Equals Git Command:
