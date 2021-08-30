@@ -59,9 +59,9 @@ Tool for work with Git in PHP
 
 |  Command  | Description  |
 | ------------ | ------------ |
-|  composer lint    |    Check code on PSR
-|  composer stat-analyse    |    Run stat analyse
-|  composer test    |    Run tests
-|  composer mutate-test    |    Run mutation testing
-|  composer build-docs    |    Build documentation
-|  composer check-docs-actual    |    Check Documentation is actually
+|  composer lint                  |    Check code on PSR
+|  composer stat-analyse          |    Run stat analyse
+|  composer test                  |    Run tests
+|  composer mutate-test           |    Run mutation testing
+|  composer build-docs            |    Build documentation
+|  composer check-docs-actual     |    Check Documentation is actually

@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\DocBuilder;
 
 use ArtARTs36\Str\Str;
+use ArtARTs36\Str\Tab;
 
 class DevelopmentCommandsTableBuilder
 {
@@ -17,8 +18,12 @@ class DevelopmentCommandsTableBuilder
     {
         $view = '';
 
-        foreach ($this->buildMap() as $command => $description) {
-            $view .= "|  ". $command . '    |    ' . $description . "\n";
+        $commands = $this->buildMap();
+        $commandNames = Tab::addSpaces(array_keys($commands));
+        $commandDescriptions = array_values($commands);
+
+        foreach ($commandDescriptions as $index => $description) {
+            $view .= "|  ". $commandNames[$index] . '    |    ' . $description . "\n";
         }
 
         return rtrim($view);

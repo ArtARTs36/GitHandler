@@ -25,6 +25,8 @@ function snake_case(string $input): string
     return implode('_', $ret);
 }
 
+$start = microtime(true);
+
 //
 
 $project = new Project(realpath(__DIR__ . '/../..'));
@@ -53,3 +55,5 @@ foreach ($pages as $page) {
 }
 
 $fileSystem->createFile(__DIR__ . '/../../readme.md', $homePageBuilder->build($pages));
+
+echo "Generation Time: ". (microtime(true) - $start);

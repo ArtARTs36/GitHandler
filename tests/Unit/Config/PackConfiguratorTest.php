@@ -21,7 +21,85 @@ final class PackConfiguratorTest extends TestCase
                     'sizeLimit' => '',
                     'window' => 0,
                 ]
-            ]
+            ],
+            [
+                [
+                    'windowmemory' => '1024GB',
+                ],
+                [
+                    'windowMemory' => '1024GB',
+                    'packSizeLimit' => '',
+                    'threads' => 0,
+                    'deltaCacheSize' => '',
+                    'sizeLimit' => '',
+                    'window' => 0,
+                ],
+            ],
+            [
+                [
+                    'packsizelimit' => '1024GB',
+                ],
+                [
+                    'windowMemory' => '',
+                    'packSizeLimit' => '1024GB',
+                    'threads' => 0,
+                    'deltaCacheSize' => '',
+                    'sizeLimit' => '',
+                    'window' => 0,
+                ],
+            ],
+            [
+                [
+                    'threads' => '1024',
+                ],
+                [
+                    'windowMemory' => '',
+                    'packSizeLimit' => '',
+                    'threads' => 1024,
+                    'deltaCacheSize' => '',
+                    'sizeLimit' => '',
+                    'window' => 0,
+                ],
+            ],
+            [
+                [
+                    'deltacachesize' => '1024GB',
+                ],
+                [
+                    'windowMemory' => '',
+                    'packSizeLimit' => '',
+                    'threads' => 0,
+                    'deltaCacheSize' => '1024GB',
+                    'sizeLimit' => '',
+                    'window' => 0,
+                ],
+            ],
+            [
+                [
+                    'sizelimit' => '1024GB',
+                ],
+                [
+                    'windowMemory' => '',
+                    'packSizeLimit' => '',
+                    'threads' => 0,
+                    'deltaCacheSize' => '',
+                    'sizeLimit' => '1024GB',
+                    'window' => 0,
+                ],
+            ],
+            [
+                [
+                    'window' => 5,
+                ],
+                [
+                    'windowMemory' => '',
+                    'packSizeLimit' => '',
+                    'threads' => 0,
+                    'deltaCacheSize' => '',
+                    'sizeLimit' => '',
+                    'window' => 5,
+                ],
+            ],
         ];
     }
 
