@@ -113,4 +113,11 @@ class LocalFileSystem implements FileSystem
     {
         return sys_get_temp_dir();
     }
+
+    public function getChmod(string $path): int
+    {
+        $chmod = substr(sprintf('%o', fileperms($path)), -4);
+
+        return $chmod[0] === '0' ? mb_strcut($chmod, 1) : $chmod;
+    }
 }

@@ -179,6 +179,7 @@ final class LocalFileSystemTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::createDir
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getChmod
      */
     public function testCreateDir(): void
     {
@@ -188,7 +189,7 @@ final class LocalFileSystemTest extends TestCase
 
         $system->createDir($path);
 
-        self::assertFileExists($path);
+        self::assertEquals(755, $system->getChmod($path));
 
         $system->removeDir($path);
     }
