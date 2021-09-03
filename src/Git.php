@@ -273,6 +273,6 @@ class Git implements GitHandler
 
     public function submodules(): GitSubmoduleCommand
     {
-        return new SubmoduleCommand($this->commandBuilder, $this->executor);
+        return new SubmoduleCommand($this->context, $this->fileSystem, $this->commandBuilder, $this->executor);
     }
 }
