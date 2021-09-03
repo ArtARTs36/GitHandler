@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Command\Commands\ArchiveCommand;
 use ArtARTs36\GitHandler\Command\Commands\AttributeCommand;
 use ArtARTs36\GitHandler\Command\Commands\GarbageCommand;
 use ArtARTs36\GitHandler\Command\Commands\MergeCommand;
+use ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand;
@@ -32,6 +33,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitPushCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitRemoteCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitStashCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitStatusCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitSubmoduleCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand;
 use ArtARTs36\GitHandler\Command\Commands\GrepCommand;
 use ArtARTs36\GitHandler\Command\Commands\HelpCommand;
@@ -267,5 +269,10 @@ class Git implements GitHandler
     public function attributes(): GitAttributeCommand
     {
         return new AttributeCommand($this->fileSystem, $this->context);
+    }
+
+    public function submodules(): GitSubmoduleCommand
+    {
+        return new SubmoduleCommand($this->commandBuilder, $this->executor);
     }
 }

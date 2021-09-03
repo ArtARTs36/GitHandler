@@ -22,9 +22,10 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitPushCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitStashCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitStatusCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\HasSubmodules;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
 
-interface GitHandler extends Versionable, HasRemotes, HasAttributes
+interface GitHandler extends Versionable, HasRemotes, HasAttributes, HasSubmodules
 {
     /**
      * Git Help
