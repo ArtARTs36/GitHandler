@@ -39,18 +39,16 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
     public function remove($files, bool $force = false): void
     {
         $this
-            ->builder
-            ->make()
-            ->addArgument('rm')
+            ->buildRemoveCommand($force)
+            ->executeOrFail($this->executor);
+    }
+
+    public function removeCached($files, bool $force = false): void
+    {
+        $this
+            ->buildRemoveCommand($force)
+            ->addOption('cached')
             ->addArguments((array) $files)
-            ->when($force, function (ShellCommandInterface $command) {
-                $command->addOption('force');
-            })
-            ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
-                function (CommandResult $result) {
-                    FileNotFound::handleIfSo($result->getError());
-                }
-            ]))
             ->executeOrFail($this->executor);
     }
 
@@ -104,6 +102,22 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
             ->addArguments($paths)
             ->when($merge, function (ShellCommandInterface $command) {
                 $command->addOption('merge');
+            })
+            ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
+                function (CommandResult $result) {
+                    FileNotFound::handleIfSo($result->getError());
+                }
+            ]));
+    }
+
+    protected function buildRemoveCommand(bool $force): ShellCommandInterface
+    {
+        return $this
+            ->builder
+            ->make()
+            ->addArgument('rm')
+            ->when($force, function (ShellCommandInterface $command) {
+                $command->addOption('force');
             })
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) {
