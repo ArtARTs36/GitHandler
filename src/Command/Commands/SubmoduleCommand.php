@@ -7,6 +7,7 @@ use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Contracts\Commands\GitIndexCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitSubmoduleCommand;
 use ArtARTs36\GitHandler\Data\GitContext;
+use ArtARTs36\GitHandler\Exceptions\SubmoduleNotFound;
 use ArtARTs36\GitHandler\Files\SubmodulesFile;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 
@@ -59,7 +60,7 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
         $submodule = $map[$name] ?? null;
 
         if ($submodule === null) {
-            throw new \LogicException();
+            throw new SubmoduleNotFound($submodule);
         }
 
         $this->index->removeCached($dir = $this->context->getRootDir() . DIRECTORY_SEPARATOR . $submodule->path, true);
