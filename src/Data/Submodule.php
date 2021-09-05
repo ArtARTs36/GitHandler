@@ -25,4 +25,9 @@ class Submodule
     ): self {
         return new self($array['name'], $array['path'], $array['url']);
     }
+
+    public function equals(self $other): bool
+    {
+        return $this->name === $other->name;
+    }
 }
