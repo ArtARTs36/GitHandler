@@ -73,7 +73,17 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
 
     public function exists(string $name): bool
     {
-        return $this->doExists($name, $this->getAll());
+        return $this->isFileExists() && $this->doExists($name, $this->getAll());
+    }
+
+    public function getPath(): string
+    {
+        return $this->context->getRootDir() . DIRECTORY_SEPARATOR . '.gitmodules';
+    }
+
+    protected function isFileExists(): bool
+    {
+        return $this->fileSystem->exists($this->getPath());
     }
 
     protected function saveFromMap(array $map): bool
@@ -84,10 +94,5 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
     protected function doExists(string $name, array $modules): bool
     {
         return array_key_exists($name, $modules);
-    }
-
-    public function getPath(): string
-    {
-        return $this->context->getRootDir() . DIRECTORY_SEPARATOR . '.gitmodules';
     }
 }
