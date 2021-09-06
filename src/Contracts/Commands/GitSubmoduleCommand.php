@@ -32,6 +32,7 @@ interface GitSubmoduleCommand
     public function exists(string $name): bool;
 
     /**
+     * Sync git submodule
      * @git-command git submodule sync $name
      */
     public function sync(string $name): void;
