@@ -60,7 +60,7 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
         $submodule = $map[$name] ?? null;
 
         if ($submodule === null) {
-            throw new SubmoduleNotFound($submodule);
+            throw new SubmoduleNotFound($name);
         }
 
         $this->index->removeCached($dir = $this->context->getRootDir() . DIRECTORY_SEPARATOR . $submodule->path, true);
