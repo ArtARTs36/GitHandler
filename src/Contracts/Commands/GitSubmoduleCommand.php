@@ -3,6 +3,7 @@
 namespace ArtARTs36\GitHandler\Contracts\Commands;
 
 use ArtARTs36\GitHandler\Data\Submodule;
+use ArtARTs36\GitHandler\Exceptions\SubmoduleNotFound;
 
 /**
  * Git Submodule
@@ -23,6 +24,7 @@ interface GitSubmoduleCommand
 
     /**
      * Remove submodule
+     * @throws SubmoduleNotFound
      */
     public function remove(string $name): void;
 
