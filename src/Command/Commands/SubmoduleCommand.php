@@ -83,6 +83,17 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
         return $this->isFileExists() && $this->doExists($name, $this->getAll());
     }
 
+    public function sync(string $name): void
+    {
+        $this
+            ->builder
+            ->make()
+            ->addArgument('submodule')
+            ->addArgument('sync')
+            ->addArgument($name)
+            ->executeOrFail($this->executor);
+    }
+
     public function getPath(): string
     {
         return $this->context->getRootDir() . DIRECTORY_SEPARATOR . '.gitmodules';
