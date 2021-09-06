@@ -4,15 +4,19 @@ namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
+use ArtARTs36\GitHandler\Contracts\Commands\GitConfigCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitIndexCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitSubmoduleCommand;
 use ArtARTs36\GitHandler\Data\GitContext;
+use ArtARTs36\GitHandler\Enum\ConfigScope;
 use ArtARTs36\GitHandler\Exceptions\SubmoduleNotFound;
 use ArtARTs36\GitHandler\Files\SubmodulesFile;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 
 class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
 {
+    protected $config;
+
     protected $index;
 
     protected $context;
@@ -22,6 +26,7 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
     protected $fileSystem;
 
     public function __construct(
+        GitConfigCommand $config,
         GitIndexCommand $index,
         GitContext $context,
         FileSystem $fileSystem,
@@ -30,6 +35,7 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
     ) {
         parent::__construct($builder, $executor);
 
+        $this->config = $config;
         $this->index = $index;
         $this->context = $context;
         $this->fileSystem = $fileSystem;
@@ -65,6 +71,7 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
 
         $this->index->removeCached($dir = $this->context->getRootDir() . DIRECTORY_SEPARATOR . $submodule->path, true);
         $this->fileSystem->removeDir($dir);
+        $this->config->unset(ConfigScope::BRANCH, $name);
 
         unset($map[$name]);
 

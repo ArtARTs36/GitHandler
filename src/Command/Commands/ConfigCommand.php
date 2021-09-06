@@ -60,4 +60,15 @@ class ConfigCommand extends AbstractCommand implements GitConfigCommand
             ->executeOrFail($this->executor)
             ->getResult();
     }
+
+    public function unset(string $scope, string $field): void
+    {
+        $this
+            ->builder
+            ->make()
+            ->addArgument('config')
+            ->addOption('unset')
+            ->addArgument("$scope.$field")
+            ->executeOrFail($this->executor);
+    }
 }
