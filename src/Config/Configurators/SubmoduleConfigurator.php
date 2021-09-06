@@ -19,6 +19,7 @@ class SubmoduleConfigurator implements SubjectConfigurator
             $name = explode('.', array_key_first($part))[0];
 
             $modules[$name] = new ConfigSubmodule(
+                $name,
                 $part[$name . '.url'],
                 TypeCaster::boolean($part[$name . '.active'] ?? 'false'),
             );

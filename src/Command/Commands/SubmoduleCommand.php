@@ -4,10 +4,12 @@ namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
+use ArtARTs36\GitHandler\Config\Subjects\ConfigSubmoduleList;
 use ArtARTs36\GitHandler\Contracts\Commands\GitConfigCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitIndexCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitSubmoduleCommand;
 use ArtARTs36\GitHandler\Data\GitContext;
+use ArtARTs36\GitHandler\Data\Submodule;
 use ArtARTs36\GitHandler\Enum\ConfigScope;
 use ArtARTs36\GitHandler\Exceptions\SubmoduleNotFound;
 use ArtARTs36\GitHandler\Files\SubmodulesFile;
@@ -92,6 +94,19 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
             ->addArgument('sync')
             ->addArgument($name)
             ->executeOrFail($this->executor);
+    }
+
+    public function syncDefinesFromConfig(): void
+    {
+        /** @var ConfigSubmoduleList $config */
+        $config = $this->config->getSubject(ConfigScope::SUBMODULE);
+        $newMap = [];
+
+        foreach ($config as $name => $module) {
+            $newMap[$name] = new Submodule($name, $name, $module->url);
+        }
+
+        $this->saveFromMap($newMap);
     }
 
     public function getPath(): string
