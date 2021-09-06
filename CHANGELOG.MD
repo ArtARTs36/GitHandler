@@ -14,3 +14,5 @@
 * Config unset
 
 * Git Index :: removeCached
+
+* Config Submodule Subject

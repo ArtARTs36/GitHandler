@@ -8,6 +8,7 @@ use ArtARTs36\GitHandler\Command\Commands\GarbageCommand;
 use ArtARTs36\GitHandler\Command\Commands\MergeCommand;
 use ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
+use ArtARTs36\GitHandler\Config\Configurators\SubmoduleConfigurator;
 use ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitGarbageCommand;
@@ -200,6 +201,7 @@ class Git implements GitHandler
                     new PackConfigurator(),
                     new CredentialConfigurator(),
                     new BranchConfigurator(),
+                    new SubmoduleConfigurator(),
                 ])
             ),
             $this->commandBuilder,
