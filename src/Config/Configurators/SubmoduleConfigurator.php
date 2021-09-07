@@ -28,6 +28,9 @@ class SubmoduleConfigurator implements SubjectConfigurator
         return new ConfigSubmoduleList($modules);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getPrefix(): string
     {
         return 'submodule';

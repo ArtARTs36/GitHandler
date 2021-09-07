@@ -13,6 +13,9 @@ class CommitConfigurator implements SubjectConfigurator
         return new ConfigCommit($raw['template'] ?? '');
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getPrefix(): string
     {
         return 'commit';
