@@ -7,13 +7,18 @@ use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 use ArtARTs36\ShellCommand\Result\ResultCode;
 use ArtARTs36\Str\Str;
+use PHPUnit\Framework\Assert;
 
 class V2QueueCommandExecutor implements ShellCommandExecutor
 {
-    protected $results;
+    protected $results = [];
+
+    protected $attempts = 0;
 
     public function execute(ShellCommandInterface $command): CommandResult
     {
+        $this->attempts++;
+
         $creator = array_shift($this->results);
 
         return $creator($command);
@@ -56,5 +61,10 @@ class V2QueueCommandExecutor implements ShellCommandExecutor
         };
 
         return $this;
+    }
+
+    public function assertAttempts(int $expected): void
+    {
+        Assert::assertEquals($expected, $this->attempts);
     }
 }

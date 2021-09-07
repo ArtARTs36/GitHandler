@@ -31,4 +31,16 @@ final class HookTest extends TestCase
     {
         self::assertEquals($result, (new Hook($name, 'ss', new \DateTime()))->isSample());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Data\Hook::now
+     */
+    public function testNow(): void
+    {
+        $before = new \DateTime();
+
+        $hook = Hook::now('', '');
+
+        self::assertGreaterThan($before, $hook->lastUpdateDate);
+    }
 }
