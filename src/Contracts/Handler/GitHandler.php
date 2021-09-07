@@ -25,7 +25,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\HasSubmodules;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
 
-interface GitHandler extends Versionable, HasRemotes, HasAttributes, HasSubmodules
+interface GitHandler extends Versionable, HasRemotes, HasAttributes, HasSubmodules, HasWorkflow
 {
     /**
      * Git Help
