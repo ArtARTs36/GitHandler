@@ -16,7 +16,6 @@ interface GitWorkflow
 
     /**
      * Dump workflow
-     * @param DumpBuilding|callable $building
      */
     public function dumpWith(string $path, callable $building): void;
 

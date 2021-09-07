@@ -46,9 +46,7 @@ public function dumpWith(string $path, callable $building): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->workflow()->dumpWith('/path/to/file', function (DumpBuilding $building) {
-    $building->withHooks();
-});
+(new LocalGitFactory())->factory(__DIR__)->workflow()->dumpWith('/path/to/file', 'building-test');
 ```
 
 ---
