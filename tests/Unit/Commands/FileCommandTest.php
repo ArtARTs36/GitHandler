@@ -28,6 +28,21 @@ final class FileCommandTest extends GitTestCase
         self::assertTrue($this->mockFileSystem->exists($this->mockGitContext->getRootDir() . '/folder1/file.txt'));
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\FileCommand::getContent
+     */
+    public function testGetContent(): void
+    {
+        $command = $this->makeFileCommand();
+
+        $this->mockFileSystem->createFile(
+            $this->mockGitContext->getRootDir() . DIRECTORY_SEPARATOR . 'file.txt',
+            '123'
+        );
+
+        self::assertEquals('123', $command->getContent('file.txt'));
+    }
+
     private function makeFileCommand(): FileCommand
     {
         return new FileCommand($this->mockFileSystem, $this->mockGitContext);

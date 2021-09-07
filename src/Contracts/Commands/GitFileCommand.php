@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Commands;
 
+use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+
 /**
  * Git Files
  */
@@ -20,6 +22,7 @@ interface GitFileCommand
 
     /**
      * Get file content from git repository
+     * @throws FileNotFound
      */
     public function getContent(string $name): string;
 }
