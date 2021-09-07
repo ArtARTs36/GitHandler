@@ -12,4 +12,5 @@ class ConfigScope
     public const REMOTE = 'remote';
     public const CORE = 'core';
     public const PACK = 'pack';
+    public const COMMIT = 'commit';
 }
