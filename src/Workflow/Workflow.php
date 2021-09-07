@@ -14,11 +14,14 @@ class Workflow implements GitWorkflow
 
     protected $default;
 
+    protected $all;
+
     public function __construct(GitHandler $git, FileSystem $files)
     {
         $this->git = $git;
         $this->files = $files;
         $this->default = (new DumpBuilding())->defaults();
+        $this->all = (new DumpBuilding())->all();
     }
 
     public function dump(string $path): void
@@ -35,7 +38,7 @@ class Workflow implements GitWorkflow
     {
         $dumpMap = unserialize($this->files->getFileContent($path));
 
-        foreach ($this->default as $element) {
+        foreach ($this->all as $element) {
             $class = get_class($element);
 
             if (! array_key_exists($class, $dumpMap)) {

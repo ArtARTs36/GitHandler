@@ -5,21 +5,37 @@ namespace ArtARTs36\GitHandler\Workflow;
 use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\ConfigWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement;
+use ArtARTs36\GitHandler\Workflow\Elements\UntrackedFilesWorkflowElement;
 
 class DumpBuilding implements \IteratorAggregate
 {
     protected $elements = [];
 
-    public function withHooks(): self
+    public function all(): self
     {
-        $this->elements[] = new HookWorkflowElement();
+        $this->withHooks()->withConfig()->withUntrackedFiles();
 
         return $this;
     }
 
+    public function withHooks(): self
+    {
+        return $this->with(new HookWorkflowElement());
+    }
+
     public function withConfig(): self
     {
-        $this->elements[] = new ConfigWorkflowElement();
+        return $this->with(new ConfigWorkflowElement());
+    }
+
+    public function withUntrackedFiles(): self
+    {
+        return $this->with(new UntrackedFilesWorkflowElement());
+    }
+
+    public function with(WorkflowElement $element): self
+    {
+        $this->elements[] = $element;
 
         return $this;
     }

@@ -17,4 +17,6 @@ interface GitFileCommand
      * Create folder in git repository
      */
     public function createFolder(string $name): self;
+
+    public function getContent(string $name): string;
 }

@@ -44,4 +44,9 @@ class FileCommand implements GitFileCommand
 
         return $this;
     }
+
+    public function getContent(string $name): string
+    {
+        return $this->files->getFileContent($this->context->getRootDir() . DIRECTORY_SEPARATOR . $name);
+    }
 }
