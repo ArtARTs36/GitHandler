@@ -293,9 +293,6 @@ class Git implements GitHandler
 
     public function workflow(): GitWorkflow
     {
-        return new Workflow($this, $this->fileSystem, [
-            new HookWorkflowElement(),
-            new ConfigWorkflowElement(),
-        ]);
+        return new Workflow($this, $this->fileSystem);
     }
 }

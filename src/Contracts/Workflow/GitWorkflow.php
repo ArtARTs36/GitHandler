@@ -13,6 +13,11 @@ interface GitWorkflow
     public function dump(string $path): void;
 
     /**
+     * Dump workflow
+     */
+    public function dumpWith(string $path, callable $building): void;
+
+    /**
      * Restore workflow
      */
     public function restore(string $path): void;

@@ -5,7 +5,6 @@ namespace ArtARTs36\GitHandler\Workflow;
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflow;
-use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
 
 class Workflow implements GitWorkflow
 {
@@ -13,34 +12,30 @@ class Workflow implements GitWorkflow
 
     protected $files;
 
-    protected $elements;
+    protected $default;
 
-    /**
-     * @param list<WorkflowElement> $elements
-     */
-    public function __construct(GitHandler $git, FileSystem $files, array $elements)
+    public function __construct(GitHandler $git, FileSystem $files)
     {
         $this->git = $git;
         $this->files = $files;
-        $this->elements = $elements;
+        $this->default = (new DumpBuilding())->defaults();
     }
 
     public function dump(string $path): void
     {
-        $dumpMap = [];
+        $this->doDump($path, $this->default);
+    }
 
-        foreach ($this->elements as $element) {
-            $dumpMap[get_class($element)] = $element->dump($this->git);
-        }
-
-        $this->files->createFile($path, serialize($dumpMap));
+    public function dumpWith(string $path, callable $building): void
+    {
+        $this->doDump($path, (new DumpBuilding())->bind($building));
     }
 
     public function restore(string $path): void
     {
         $dumpMap = unserialize($this->files->getFileContent($path));
 
-        foreach ($this->elements as $element) {
+        foreach ($this->default as $element) {
             $class = get_class($element);
 
             if (! array_key_exists($class, $dumpMap)) {
@@ -49,5 +44,16 @@ class Workflow implements GitWorkflow
 
             $element->restore($this->git, $dumpMap[$class]);
         }
+    }
+
+    protected function doDump(string $path, DumpBuilding $building): void
+    {
+        $dumpMap = [];
+
+        foreach ($building as $element) {
+            $dumpMap[get_class($element)] = $element->dump($this->git);
+        }
+
+        $this->files->createFile($path, serialize($dumpMap));
     }
 }
