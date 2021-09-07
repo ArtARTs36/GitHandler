@@ -8,6 +8,7 @@ use ArtARTs36\GitHandler\Command\Commands\GarbageCommand;
 use ArtARTs36\GitHandler\Command\Commands\MergeCommand;
 use ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
+use ArtARTs36\GitHandler\Config\Configurators\CommitConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\SubmoduleConfigurator;
 use ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand;
@@ -65,6 +66,7 @@ use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\GitHandler\Support\Logger;
 use ArtARTs36\GitHandler\Support\TemporaryPathGenerator;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
+use ArtARTs36\GitHandler\Workflow\Elements\ConfigWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Workflow;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
@@ -205,6 +207,7 @@ class Git implements GitHandler
                     new CredentialConfigurator(),
                     new BranchConfigurator(),
                     new SubmoduleConfigurator(),
+                    new CommitConfigurator(),
                 ])
             ),
             $this->commandBuilder,
@@ -292,6 +295,7 @@ class Git implements GitHandler
     {
         return new Workflow($this, $this->fileSystem, [
             new HookWorkflowElement(),
+            new ConfigWorkflowElement(),
         ]);
     }
 }
