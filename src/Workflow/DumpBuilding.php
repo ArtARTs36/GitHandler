@@ -33,9 +33,9 @@ class DumpBuilding implements \IteratorAggregate
         return $this->with(new UntrackedFilesWorkflowElement());
     }
 
-    public function with(WorkflowElement ...$element): self
+    public function with(WorkflowElement $element, WorkflowElement ...$elements): self
     {
-        $this->elements = array_merge($this->elements, $element);
+        $this->elements = array_merge($this->elements, [$element], $elements);
 
         return $this;
     }
