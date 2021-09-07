@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Workflow;
 
+use ArtARTs36\GitHandler\Workflow\DumpBuilding;
+
 /**
  * Git Workflow (dump and restore git features)
  */
@@ -14,6 +16,7 @@ interface GitWorkflow
 
     /**
      * Dump workflow
+     * @param DumpBuilding|callable $building
      */
     public function dumpWith(string $path, callable $building): void;
 

@@ -10,6 +10,9 @@ class CallableTemplate
         'TransactionOperation' => 'function (GitHandler $git) {
     $git->merges()->merge(\'master\');
 }',
+        'DumpBuilding' => 'function (DumpBuilding $building) {
+    $building->withHooks();
+}',
     ];
 
     public static function buildExampleArgument(
