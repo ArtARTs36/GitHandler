@@ -6,6 +6,9 @@ use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
 
+/**
+ * @internal
+ */
 abstract class AbstractConfigWorkflowElement implements WorkflowElement
 {
     /**
