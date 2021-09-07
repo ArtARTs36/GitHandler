@@ -16,3 +16,5 @@
 * Git Index :: removeCached
 
 * Config Submodule Subject
+
+* Git Workflow (dump & restore hooks, config)
