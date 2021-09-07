@@ -39,5 +39,8 @@ interface GitSubmoduleCommand
      */
     public function sync(string $name): void;
 
+    /**
+     * Sync defines in .gitmodules from git config
+     */
     public function syncDefinesFromConfig(): void;
 }

@@ -44,8 +44,10 @@ Tool for work with Git in PHP
 * [Git Remote (add, show, remove, ...)](docs/git_remote_command.md)
 * [Git Stash](docs/git_stash_command.md)
 * [Git Status](docs/git_status_command.md)
+* [Git Submodule](docs/git_submodule_command.md)
 * [Git Tags](docs/git_tag_command.md)
 * [Git Transactions](docs/git_transaction.md)
+* [Git Workflow (dump and restore git features)](docs/git_workflow.md)
 * [Download](docs/downloader.md)
 
 ----
