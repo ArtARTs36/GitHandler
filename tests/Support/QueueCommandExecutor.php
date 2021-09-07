@@ -9,7 +9,7 @@ use ArtARTs36\ShellCommand\Result\ResultCode;
 use ArtARTs36\Str\Str;
 use PHPUnit\Framework\Assert;
 
-class V2QueueCommandExecutor implements ShellCommandExecutor
+class QueueCommandExecutor implements ShellCommandExecutor
 {
     protected $results = [];
 
