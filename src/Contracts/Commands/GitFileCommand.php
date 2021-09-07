@@ -18,5 +18,8 @@ interface GitFileCommand
      */
     public function createFolder(string $name): self;
 
+    /**
+     * Get file content from git repository
+     */
     public function getContent(string $name): string;
 }

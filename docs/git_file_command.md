@@ -50,3 +50,20 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
+### * Get file content from git repository
+
+#### Method Signature:
+
+```php
+public function getContent(string $name): string;
+```
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->files()->getContent('name-test');
+```
+
+---

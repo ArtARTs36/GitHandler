@@ -33,6 +33,23 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
+### * Dump workflow
+
+#### Method Signature:
+
+```php
+public function dumpWith(string $path, callable $building): void;
+```
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->workflow()->dumpWith('/path/to/file', 'building-test');
+```
+
+---
 ### * Restore workflow
 
 #### Method Signature:
