@@ -18,3 +18,5 @@
 * Config Submodule Subject
 
 * Git Workflow (dump & restore hooks, config)
+
+* GitFileCommand::getContent
