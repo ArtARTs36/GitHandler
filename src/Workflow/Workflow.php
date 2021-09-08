@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Workflow;
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflow;
+use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflowBuilding;
 
 class Workflow implements GitWorkflow
 {
@@ -14,7 +15,7 @@ class Workflow implements GitWorkflow
 
     protected $building;
 
-    public function __construct(GitHandler $git, FileSystem $files, WorkflowBuilding $building)
+    public function __construct(GitHandler $git, FileSystem $files, GitWorkflowBuilding $building)
     {
         $this->git = $git;
         $this->files = $files;
