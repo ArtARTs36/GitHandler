@@ -72,9 +72,6 @@ class WorkflowBuilding implements GitWorkflowBuilding
         return $elems;
     }
 
-    /**
-     * @param array<class-string<WorkflowElement>> $classes
-     */
     public function only(array $classes): self
     {
         $elements = $this->get($classes);

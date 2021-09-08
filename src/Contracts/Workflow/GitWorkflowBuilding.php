@@ -11,6 +11,7 @@ interface GitWorkflowBuilding extends \IteratorAggregate, ReplenishedWorkflowBui
     public function get(array $classes): array;
 
     /**
+     * @param array<class-string<WorkflowElement>> $classes
      * @return static
      */
     public function only(array $classes);
