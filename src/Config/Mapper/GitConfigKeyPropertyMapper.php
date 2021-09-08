@@ -11,17 +11,41 @@ class GitConfigKeyPropertyMapper
     /** @var array<class-string, array<\Attribute> */
     private static $cache = [];
 
-    public function __construct(AttributeLoader $loader)
+    final public function __construct(AttributeLoader $loader)
     {
         $this->attributes = $loader;
     }
 
-    public static function map($object): array
+    public static function make(): self
     {
-        return (new static(AttributeLoader::make()))->doMap(get_class($object));
+        return (new self(AttributeLoader::make()));
     }
 
-    public function doMap(string $class): array
+    public function map($object): array
+    {
+        return $this->doMap(is_object($object) ? get_class($object) : $object);
+    }
+
+    public function createObjectFromArray(string $class, array $data): object
+    {
+        $reflector = new \ReflectionClass($class);
+
+        $keyOnProperty = array_flip($this->doMap($class));
+
+        $args = [];
+
+        foreach ($data as $key => $value) {
+            if (! isset($keyOnProperty[$key])) {
+                continue;
+            }
+
+            $args[$keyOnProperty[$key]] = $value;
+        }
+
+        return $reflector->newInstanceArgs($args);
+    }
+
+    protected function doMap(string $class): array
     {
         if (! isset(static::$cache[$class])) {
             static::$cache[$class] = array_map('strval', $this->attributes->fromProperties($class));

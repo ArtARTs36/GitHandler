@@ -22,7 +22,7 @@ class AttributeLoader
 
     /**
      * @param class-string $class
-     * @return array<\Attribute>
+     * @return array<string, \Attribute>
      */
     public function fromProperties(string $class): array
     {
