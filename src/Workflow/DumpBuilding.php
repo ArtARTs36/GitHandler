@@ -11,6 +11,14 @@ class DumpBuilding implements \IteratorAggregate
 {
     protected $elements = [];
 
+    /**
+     * @param list<WorkflowElement> $elements
+     */
+    public function __construct(array $elements = [])
+    {
+        $this->elements = $elements;
+    }
+
     public function all(): self
     {
         $this->withHooks()->withConfig()->withUntrackedFiles();
@@ -45,18 +53,40 @@ class DumpBuilding implements \IteratorAggregate
         return $this->withConfig()->withHooks();
     }
 
-    public function bind(callable $callback): self
-    {
-        $callback($this);
-
-        return $this;
-    }
-
     /**
      * @return iterable<WorkflowElement>
      */
     public function getIterator(): iterable
     {
         return new \ArrayIterator($this->elements);
+    }
+
+    /**
+     * @param array<class-string<WorkflowElement>> $classes
+     * @return array<WorkflowElement>
+     */
+    public function get(array $classes): array
+    {
+        $elems = [];
+
+        foreach ($this->elements as $element) {
+            if (in_array($element->identity(), $classes) || in_array(get_class($element), $classes)) {
+                $elems[] = $element;
+            }
+        }
+
+        return $elems;
+    }
+
+    /**
+     * @param array<class-string<WorkflowElement>> $classes
+     */
+    public function only(array $classes): self
+    {
+        $elements = $this->get($classes);
+
+        assert(count($elements) > 0, new \LogicException('Not found workflow elements'));
+
+        return new self($elements);
     }
 }

@@ -7,8 +7,10 @@ use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
 use ArtARTs36\GitHandler\Data\Hook;
 use ArtARTs36\GitHandler\Enum\HookName;
 
-class HookWorkflowElement implements WorkflowElement
+class HookWorkflowElement extends AbstractWorkflowElement implements WorkflowElement
 {
+    public const IDENTITY = 'hooks';
+
     public function dump(GitHandler $git): array
     {
         return $git->hooks()->getAll();

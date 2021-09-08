@@ -9,4 +9,6 @@ interface WorkflowElement
     public function dump(GitHandler $git): array;
 
     public function restore(GitHandler $git, array $data): void;
+
+    public function identity(): string;
 }

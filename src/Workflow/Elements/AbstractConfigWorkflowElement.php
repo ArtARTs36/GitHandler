@@ -9,7 +9,7 @@ use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
 /**
  * @internal
  */
-abstract class AbstractConfigWorkflowElement implements WorkflowElement
+abstract class AbstractConfigWorkflowElement extends AbstractWorkflowElement implements WorkflowElement
 {
     /**
      * @param array<string, ConfigSubject> $data

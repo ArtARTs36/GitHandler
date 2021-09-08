@@ -11,10 +11,11 @@ use ArtARTs36\GitHandler\Workflow\Workflow;
 final class WorkflowTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::dumpWith
+     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::dump
      * @covers \ArtARTs36\GitHandler\Workflow\Workflow::doDump
+     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::building
      */
-    public function testDumpWith(): void
+    public function testDump(): void
     {
         $workflow = $this->makeWorkflow();
 
@@ -28,14 +29,22 @@ final class WorkflowTest extends GitTestCase
             {
                 //
             }
+
+            public function identity(): string
+            {
+                return 'test-element';
+            }
         };
 
-        $workflow->dumpWith('file.txt', function (DumpBuilding $building) use ($element) {
+        $workflow->building(function (DumpBuilding $building) use ($element) {
             $building->with($element);
         });
 
+        $workflow->dumpOnly('file.txt', ['test-element']);
+
         self::assertTrue($this->mockFileSystem->exists('file.txt'));
     }
+
     /**
      * @covers \ArtARTs36\GitHandler\Workflow\Workflow::restore
      */
@@ -55,11 +64,18 @@ final class WorkflowTest extends GitTestCase
             {
                 $this->restored = $data;
             }
+
+            public function identity(): string
+            {
+                return 'test-element';
+            }
         };
 
-        $workflow->dumpWith('file.txt', function (DumpBuilding $building) use ($element) {
+        $workflow->building(function (DumpBuilding $building) use ($element) {
             $building->with($element);
         });
+
+        $workflow->dumpOnly('file.txt', ['test-element']);
 
         $workflow->restore('file.txt');
 
@@ -68,6 +84,6 @@ final class WorkflowTest extends GitTestCase
 
     private function makeWorkflow(): Workflow
     {
-        return new Workflow($this->mockGitHandler, $this->mockFileSystem);
+        return new Workflow($this->mockGitHandler, $this->mockFileSystem, new DumpBuilding());
     }
 }

@@ -10,14 +10,21 @@ use ArtARTs36\GitHandler\Workflow\DumpBuilding;
 interface GitWorkflow
 {
     /**
+     * Setup for dump & restore building
+     * @return $this
+     */
+    public function building(callable $callback);
+
+    /**
      * Dump workflow
      */
     public function dump(string $path): void;
 
     /**
      * Dump workflow
+     * @param non-empty-list<class-string<WorkflowElement>|string> $elements
      */
-    public function dumpWith(string $path, callable $building): void;
+    public function dumpOnly(string $path, array $elements): void;
 
     /**
      * Restore workflow

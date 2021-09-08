@@ -5,8 +5,10 @@ namespace ArtARTs36\GitHandler\Workflow\Elements;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
 
-class UntrackedFilesWorkflowElement implements WorkflowElement
+class UntrackedFilesWorkflowElement extends AbstractWorkflowElement implements WorkflowElement
 {
+    public const IDENTITY = 'files.untracked';
+
     public function dump(GitHandler $git): array
     {
         $map = [];

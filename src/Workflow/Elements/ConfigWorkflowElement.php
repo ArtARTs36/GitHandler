@@ -7,6 +7,8 @@ use ArtARTs36\GitHandler\Enum\ConfigScope;
 
 class ConfigWorkflowElement extends AbstractConfigWorkflowElement
 {
+    public const IDENTITY = 'config';
+
     public function dump(GitHandler $git): array
     {
         return [

@@ -12,33 +12,37 @@ class Workflow implements GitWorkflow
 
     protected $files;
 
-    protected $default;
+    protected $building;
 
-    protected $all;
-
-    public function __construct(GitHandler $git, FileSystem $files)
+    public function __construct(GitHandler $git, FileSystem $files, DumpBuilding $building)
     {
         $this->git = $git;
         $this->files = $files;
-        $this->default = (new DumpBuilding())->defaults();
-        $this->all = (new DumpBuilding())->all();
+        $this->building = $building;
+    }
+
+    public function building(callable $callback): self
+    {
+        $callback($this->building);
+
+        return $this;
     }
 
     public function dump(string $path): void
     {
-        $this->doDump($path, $this->default);
+        $this->doDump($path, $this->building);
     }
 
-    public function dumpWith(string $path, callable $building): void
+    public function dumpOnly(string $path, array $elements): void
     {
-        $this->doDump($path, (new DumpBuilding())->bind($building));
+        $this->doDump($path, $this->building->only($elements));
     }
 
     public function restore(string $path): void
     {
         $dumpMap = unserialize($this->files->getFileContent($path));
 
-        foreach ($this->all as $element) {
+        foreach ($this->building as $element) {
             $class = get_class($element);
 
             if (! array_key_exists($class, $dumpMap)) {
