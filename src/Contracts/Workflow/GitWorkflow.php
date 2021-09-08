@@ -2,8 +2,6 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Workflow;
 
-use ArtARTs36\GitHandler\Workflow\DumpBuilding;
-
 /**
  * Git Workflow (dump and restore git features)
  */
