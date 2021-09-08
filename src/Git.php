@@ -66,7 +66,7 @@ use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\GitHandler\Support\Logger;
 use ArtARTs36\GitHandler\Support\TemporaryPathGenerator;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
-use ArtARTs36\GitHandler\Workflow\DumpBuilding;
+use ArtARTs36\GitHandler\Workflow\WorkflowBuilding;
 use ArtARTs36\GitHandler\Workflow\Elements\ConfigWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Workflow;
@@ -294,6 +294,6 @@ class Git implements GitHandler
 
     public function workflow(): GitWorkflow
     {
-        return new Workflow($this, $this->fileSystem, (new DumpBuilding())->defaults());
+        return new Workflow($this, $this->fileSystem, (new WorkflowBuilding())->defaults());
     }
 }

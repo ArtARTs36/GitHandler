@@ -14,7 +14,7 @@ class Workflow implements GitWorkflow
 
     protected $building;
 
-    public function __construct(GitHandler $git, FileSystem $files, DumpBuilding $building)
+    public function __construct(GitHandler $git, FileSystem $files, WorkflowBuilding $building)
     {
         $this->git = $git;
         $this->files = $files;
@@ -53,7 +53,7 @@ class Workflow implements GitWorkflow
         }
     }
 
-    protected function doDump(string $path, DumpBuilding $building): void
+    protected function doDump(string $path, WorkflowBuilding $building): void
     {
         $dumpMap = [];
 

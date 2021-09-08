@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Workflow;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
-use ArtARTs36\GitHandler\Workflow\DumpBuilding;
+use ArtARTs36\GitHandler\Workflow\WorkflowBuilding;
 use ArtARTs36\GitHandler\Workflow\Workflow;
 
 final class WorkflowTest extends GitTestCase
@@ -36,7 +36,7 @@ final class WorkflowTest extends GitTestCase
             }
         };
 
-        $workflow->building(function (DumpBuilding $building) use ($element) {
+        $workflow->building(function (WorkflowBuilding $building) use ($element) {
             $building->with($element);
         });
 
@@ -71,7 +71,7 @@ final class WorkflowTest extends GitTestCase
             }
         };
 
-        $workflow->building(function (DumpBuilding $building) use ($element) {
+        $workflow->building(function (WorkflowBuilding $building) use ($element) {
             $building->with($element);
         });
 
@@ -84,6 +84,6 @@ final class WorkflowTest extends GitTestCase
 
     private function makeWorkflow(): Workflow
     {
-        return new Workflow($this->mockGitHandler, $this->mockFileSystem, new DumpBuilding());
+        return new Workflow($this->mockGitHandler, $this->mockFileSystem, new WorkflowBuilding());
     }
 }

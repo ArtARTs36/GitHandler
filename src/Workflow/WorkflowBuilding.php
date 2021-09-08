@@ -8,7 +8,7 @@ use ArtARTs36\GitHandler\Workflow\Elements\ConfigWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\UntrackedFilesWorkflowElement;
 
-class DumpBuilding implements GitWorkflowBuilding
+class WorkflowBuilding implements GitWorkflowBuilding
 {
     protected $elements = [];
 
