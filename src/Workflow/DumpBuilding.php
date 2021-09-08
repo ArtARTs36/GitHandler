@@ -2,12 +2,13 @@
 
 namespace ArtARTs36\GitHandler\Workflow;
 
+use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflowBuilding;
 use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\ConfigWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\UntrackedFilesWorkflowElement;
 
-class DumpBuilding implements \IteratorAggregate
+class DumpBuilding implements GitWorkflowBuilding
 {
     protected $elements = [];
 
@@ -17,13 +18,6 @@ class DumpBuilding implements \IteratorAggregate
     public function __construct(array $elements = [])
     {
         $this->elements = $elements;
-    }
-
-    public function all(): self
-    {
-        $this->withHooks()->withConfig()->withUntrackedFiles();
-
-        return $this;
     }
 
     public function withHooks(): self
