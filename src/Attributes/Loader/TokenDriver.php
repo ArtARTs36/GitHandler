@@ -30,23 +30,25 @@ final class TokenDriver implements AttributeLoadDriver
         $attributes = [];
 
         foreach ($resolved as $item) {
-            if (isset($item['attribute_name'])) {
-                $classString = $requirements[$item['attribute_name']];
+            if (empty($item['attribute_name'])) {
+                continue;
+            }
 
-                if (! class_exists($classString)) {
-                    $classString = $requirements[$classString] ?? null;
+            $classString = $requirements[$item['attribute_name']];
 
-                    if ($classString === null || ! class_exists($classString)) {
-                        continue;
-                    }
-                }
+            if (! class_exists($classString)) {
+                $classString = $requirements[$classString] ?? null;
 
-                if (! class_implements($classString, self::FIND_INTERFACE)) {
+                if ($classString === null || ! class_exists($classString)) {
                     continue;
                 }
-
-                $attributes[$item['var']] = new $classString(...$this->extractArgs($item['attribute_args']));
             }
+
+            if (! class_implements($classString, self::FIND_INTERFACE)) {
+                continue;
+            }
+
+            $attributes[$item['var']] = new $classString(...$this->extractArgs($item['attribute_args']));
         }
 
         return $attributes;
