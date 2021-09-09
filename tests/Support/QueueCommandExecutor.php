@@ -21,6 +21,10 @@ class QueueCommandExecutor implements ShellCommandExecutor
 
         $creator = array_shift($this->results);
 
+        if ($creator === null) {
+            throw new \LogicException('Command not expected');
+        }
+
         return $creator($command);
     }
 
