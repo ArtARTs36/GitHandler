@@ -2,8 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Attributes;
 
+use ArtARTs36\GitHandler\Contracts\Attribute\GitAttribute;
+
 #[\Attribute]
-class ConfigKey
+class ConfigKey implements GitAttribute
 {
     public $key;
 
