@@ -28,6 +28,7 @@ final class SubmoduleConfiguratorTest extends TestCase
     /**
      * @dataProvider providerForTestParse
      * @covers \ArtARTs36\GitHandler\Config\Configurators\SubmoduleConfigurator::parse
+     * @covers \ArtARTs36\GitHandler\Config\Subjects\ConfigSubmodule::__construct
      */
     public function testParse(array $raw, string $key, array $expected): void
     {
