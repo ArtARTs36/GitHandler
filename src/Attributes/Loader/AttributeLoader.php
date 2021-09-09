@@ -4,7 +4,7 @@ namespace ArtARTs36\GitHandler\Attributes\Loader;
 
 use ArtARTs36\GitHandler\Contracts\Attribute\AttributeLoadDriver;
 
-class AttributeLoader
+final class AttributeLoader
 {
     private $driver;
 
@@ -17,7 +17,7 @@ class AttributeLoader
     {
         $driver = PHP_VERSION_ID < 80000 ? new TokenDriver() : new NativeDriver();
 
-        return new static($driver);
+        return new self($driver);
     }
 
     /**

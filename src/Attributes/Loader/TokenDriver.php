@@ -58,11 +58,16 @@ final class TokenDriver implements AttributeLoadDriver
             }
         }
 
-        if (! class_implements($classString, self::FIND_INTERFACE)) {
+        if (! $this->isImplementsAttributeInterface($classString)) {
             return null;
         }
 
         return $classString;
+    }
+
+    private function isImplementsAttributeInterface(string $that): bool
+    {
+        return in_array(self::FIND_INTERFACE, class_implements($that));
     }
 
     private function getRequirements(array $tokens): array

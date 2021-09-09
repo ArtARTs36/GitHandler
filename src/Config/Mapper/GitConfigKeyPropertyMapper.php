@@ -3,12 +3,13 @@
 namespace ArtARTs36\GitHandler\Config\Mapper;
 
 use ArtARTs36\GitHandler\Attributes\Loader\AttributeLoader;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 
 class GitConfigKeyPropertyMapper
 {
-    private $attributes;
+    protected $attributes;
 
-    /** @var array<class-string, array<\Attribute> */
+    /** @var array<class-string, array<string>> */
     private static $cache = [];
 
     final public function __construct(AttributeLoader $loader)
@@ -16,17 +17,30 @@ class GitConfigKeyPropertyMapper
         $this->attributes = $loader;
     }
 
+    /**
+     * Make self instance
+     */
     public static function make(): self
     {
         return (new self(AttributeLoader::make()));
     }
 
+    /**
+     * Map config keys on properties from object
+     * @param class-string<ConfigSubject>|ConfigSubject $object
+     * @return array<string, string>
+     */
     public function map($object): array
     {
         return $this->doMap(is_object($object) ? get_class($object) : $object);
     }
 
-    public function createObjectFromArray(string $class, array $data): object
+    /**
+     * @param class-string $class
+     * @param array<string, mixed> $data
+     * @throws \ReflectionException
+     */
+    public function createObjectFromArray(string $class, array $data):object
     {
         $reflector = new \ReflectionClass($class);
 
@@ -45,6 +59,10 @@ class GitConfigKeyPropertyMapper
         return $reflector->newInstanceArgs($args);
     }
 
+    /**
+     * @param class-string $class
+     * @return array<string>
+     */
     protected function doMap(string $class): array
     {
         if (! isset(static::$cache[$class])) {
