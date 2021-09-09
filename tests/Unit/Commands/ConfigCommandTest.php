@@ -9,6 +9,7 @@ use ArtARTs36\GitHandler\Config\Configurators\UserConfigurator;
 use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Config\Subjects\User;
+use ArtARTs36\GitHandler\Exceptions\ConfigSectionNotFound;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class ConfigCommandTest extends GitTestCase
@@ -16,6 +17,7 @@ final class ConfigCommandTest extends GitTestCase
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::getAll
      * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::executeConfigList
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::__construct
      */
     public function testGetConfigList(): void
     {
@@ -31,6 +33,7 @@ core.autocrlf=input
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::getSubject
      * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::executeConfigList
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::__construct
      */
     public function testGetConfigSubject(): void
     {
@@ -50,6 +53,7 @@ core.autocrlf=input
 
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::set
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::__construct
      */
     public function testSetConfig(): void
     {
@@ -58,7 +62,21 @@ core.autocrlf=input
         self::assertTrue($this->makeConfigCommand()->set('user', 'name', 'artem', true));
     }
 
-    protected function makeConfigCommand(): ConfigCommand
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::unset
+     */
+    public function testUnsetOnConfigSectionNotFound(): void
+    {
+        $command = $this->makeConfigCommand();
+
+        self::expectException(ConfigSectionNotFound::class);
+
+        $this->mockCommandExecutor->nextFailed('key does not contain a section: test');
+
+        $command->unset('test', 'a');
+    }
+
+    private function makeConfigCommand(): ConfigCommand
     {
         return new ConfigCommand(
             new RegexConfigResultParser(ConfiguratorsDict::make([
