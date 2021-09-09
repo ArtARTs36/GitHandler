@@ -5,6 +5,10 @@ namespace ArtARTs36\GitHandler\Attributes\Loader;
 use ArtARTs36\GitHandler\Contracts\Attribute\AttributeLoadDriver;
 use ArtARTs36\Str\Facade\Str;
 
+/**
+ * @internal
+ * Safety only self attributes
+ */
 class TokenDriver implements AttributeLoadDriver
 {
     private static $namespace = "\ArtARTs36\GitHandler\Attributes\\";
@@ -14,7 +18,7 @@ class TokenDriver implements AttributeLoadDriver
         $content = file_get_contents($class->getFileName());
         $tokens = token_get_all($content);
 
-        $resolved = $this->extractPairs($tokens);
+        $resolved = $this->extractVarAttributePairs($tokens);
 
         foreach ($resolved as &$item) {
             $item = array_merge($item, Str::globalMatch(
@@ -42,7 +46,7 @@ class TokenDriver implements AttributeLoadDriver
         return $attributes;
     }
 
-    private function extractPairs(array $tokens): array
+    private function extractVarAttributePairs(array $tokens): array
     {
         $resolved = [];
 

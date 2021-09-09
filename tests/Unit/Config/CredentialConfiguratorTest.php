@@ -10,6 +10,7 @@ final class CredentialConfiguratorTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Config\Configurators\CredentialConfigurator::parse
+     * @covers \ArtARTs36\GitHandler\Config\Subjects\Credential::__construct
      */
     public function testParse(): void
     {
@@ -25,6 +26,7 @@ final class CredentialConfiguratorTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Config\Configurators\CredentialConfigurator::parse
+     * @covers \ArtARTs36\GitHandler\Config\Subjects\Credential::__construct
      */
     public function testParseInstanceOf(): void
     {

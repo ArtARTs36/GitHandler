@@ -2,21 +2,28 @@
 
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
+use ArtARTs36\GitHandler\Attributes\ConfigKey;
 use JetBrains\PhpStorm\Immutable;
 
 #[Immutable]
 class Pack extends AbstractSubject
 {
+    #[ConfigKey('windowmemory')]
     public $windowMemory;
 
+    #[ConfigKey('packsizelimit')]
     public $packSizeLimit;
 
+    #[ConfigKey('threads')]
     public $threads;
 
+    #[ConfigKey('deltacachesize')]
     public $deltaCacheSize;
 
+    #[ConfigKey('sizelimit')]
     public $sizeLimit;
 
+    #[ConfigKey('window')]
     public $window;
 
     /**
