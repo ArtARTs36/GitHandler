@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Attribute;
 use ArtARTs36\GitHandler\Attributes\Loader\AttributeLoader;
 use ArtARTs36\GitHandler\Attributes\Loader\NativeDriver;
 use ArtARTs36\GitHandler\Attributes\Loader\TokenDriver;
+use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
 final class AttributeLoaderTest extends TestCase
@@ -29,5 +30,13 @@ final class AttributeLoaderTest extends TestCase
         $loader = AttributeLoader::make(80000);
 
         self::assertInstanceOf(NativeDriver::class, $this->getPropertyValueOfObject($loader, 'driver'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Attributes\Loader\AttributeLoader::fromProperties
+     */
+    public function testFromProperties(): void
+    {
+        self::assertEquals([], AttributeLoader::make()->fromProperties(ArrayFileSystem::class));
     }
 }
