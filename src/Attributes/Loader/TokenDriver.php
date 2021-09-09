@@ -34,17 +34,9 @@ final class TokenDriver implements AttributeLoadDriver
                 continue;
             }
 
-            $classString = $requirements[$item['attribute_name']];
+            $classString = $this->getClass($item['attribute_name'], $requirements);
 
-            if (! class_exists($classString)) {
-                $classString = $requirements[$classString] ?? null;
-
-                if ($classString === null || ! class_exists($classString)) {
-                    continue;
-                }
-            }
-
-            if (! class_implements($classString, self::FIND_INTERFACE)) {
+            if ($classString === null) {
                 continue;
             }
 
@@ -52,6 +44,25 @@ final class TokenDriver implements AttributeLoadDriver
         }
 
         return $attributes;
+    }
+
+    private function getClass(string $name, array $requirements): ?string
+    {
+        $classString = $name;
+
+        if (! class_exists($classString)) {
+            $classString = $requirements[$classString] ?? null;
+
+            if ($classString === null || ! class_exists($classString)) {
+                return null;
+            }
+        }
+
+        if (! class_implements($classString, self::FIND_INTERFACE)) {
+            return null;
+        }
+
+        return $classString;
     }
 
     private function getRequirements(array $tokens): array
