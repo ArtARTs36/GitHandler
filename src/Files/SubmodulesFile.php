@@ -24,17 +24,11 @@ class SubmodulesFile
     }
 
     /**
-     * @param array<string, Submodule> $map
+     * @param array<Submodule> $map
      */
     public function buildContent(array $map): string
     {
-        $content = '';
-
-        foreach ($map as $module) {
-            $content .= $this->buildSubmoduleContent($module);
-        }
-
-        return $content;
+        return implode('', array_map([$this, 'buildSubmoduleContent'], $map));
     }
 
     protected function buildSubmoduleContent(Submodule $submodule): string
