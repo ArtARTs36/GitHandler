@@ -10,13 +10,25 @@ use ArtARTs36\GitHandler\Workflow\Workflow;
 
 final class WorkflowTest extends GitTestCase
 {
+    public function providerForTestDump(): array
+    {
+        return [
+            [
+                'path/to/file',
+                function () {
+                },
+                [],
+            ],
+        ];
+    }
+
     /**
      * @covers \ArtARTs36\GitHandler\Workflow\Workflow::dumpOnly
      * @covers \ArtARTs36\GitHandler\Workflow\Workflow::doDump
      * @covers \ArtARTs36\GitHandler\Workflow\Workflow::building
      * @covers \ArtARTs36\GitHandler\Workflow\Workflow::__construct
      */
-    public function testDump(): void
+    public function testDumpOnly(): void
     {
         $workflow = $this->makeWorkflow();
 
@@ -44,6 +56,21 @@ final class WorkflowTest extends GitTestCase
         $workflow->dumpOnly('file.txt', ['test-element']);
 
         self::assertTrue($this->mockFileSystem->exists('file.txt'));
+    }
+
+    /**
+     * @dataProvider providerForTestDump
+     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::dump
+     */
+    public function testDump(string $path, callable $building, array $expected): void
+    {
+        $workflow = $this->makeWorkflow();
+
+        $workflow
+            ->building($building)
+            ->dump($path);
+
+        self::assertEquals($expected, unserialize($this->mockFileSystem->getFileContent($path)));
     }
 
     /**
