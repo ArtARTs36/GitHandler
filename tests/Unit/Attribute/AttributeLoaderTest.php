@@ -11,6 +11,7 @@ final class AttributeLoaderTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Attributes\Loader\AttributeLoader::make
+     * @covers \ArtARTs36\GitHandler\Attributes\Loader\AttributeLoader::__construct
      */
     public function testMakeOnPhp7(): void
     {
@@ -21,6 +22,7 @@ final class AttributeLoaderTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Attributes\Loader\AttributeLoader::make
+     * @covers \ArtARTs36\GitHandler\Attributes\Loader\AttributeLoader::__construct
      */
     public function testMakeOnPhp8(): void
     {
