@@ -2,43 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Workflow;
 
-use ArtARTs36\FileSystem\Contracts\FileSystem;
-use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflow;
-use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflowBuilding;
 
-class Workflow implements GitWorkflow
+class Workflow extends AbstractWorkflow implements GitWorkflow
 {
-    protected $git;
-
-    protected $files;
-
-    protected $building;
-
-    public function __construct(GitHandler $git, FileSystem $files, GitWorkflowBuilding $building)
-    {
-        $this->git = $git;
-        $this->files = $files;
-        $this->building = $building;
-    }
-
-    public function building(callable $callback): self
-    {
-        $callback($this->building);
-
-        return $this;
-    }
-
-    public function dump(string $path): void
-    {
-        $this->doDump($path, $this->building);
-    }
-
-    public function dumpOnly(string $path, array $elements): void
-    {
-        $this->doDump($path, $this->building->only($elements));
-    }
-
     public function restore(string $path): void
     {
         $dumpMap = unserialize($this->files->getFileContent($path));
