@@ -2,12 +2,11 @@
 
 namespace ArtARTs36\GitHandler\Attributes\Loader;
 
-use ArtARTs36\GitHandler\Contracts\Attribute\AttributeLoadDriver;
 use ArtARTs36\GitHandler\Contracts\Attribute\GitAttribute;
 
-class NativeDriver implements AttributeLoadDriver
+class NativeDriver extends AbstractAttributeLoadDriver
 {
-    public function fromProperties(\ReflectionClass $class): array
+    public function fromProperties(\ReflectionClass $class, ?array $only = null): array
     {
         /** @var array<string, GitAttribute> $attributes */
         $attributes = [];
@@ -15,7 +14,9 @@ class NativeDriver implements AttributeLoadDriver
         foreach ($class->getProperties() as $property) {
             // @phpstan-ignore-next-line
             foreach ($property->getAttributes() as $attribute) {
-                $attributes[] = $attribute->newInstance();
+                if ($this->isInputToFilterOnly($attribute->getName(), $only)) {
+                    $attributes[] = $attribute->newInstance();
+                }
             }
         }
 

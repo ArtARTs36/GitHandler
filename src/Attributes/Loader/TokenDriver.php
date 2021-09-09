@@ -2,15 +2,14 @@
 
 namespace ArtARTs36\GitHandler\Attributes\Loader;
 
-use ArtARTs36\GitHandler\Contracts\Attribute\AttributeLoadDriver;
 use ArtARTs36\GitHandler\Contracts\Attribute\GitAttribute;
 use ArtARTs36\Str\Facade\Str;
 
-final class TokenDriver implements AttributeLoadDriver
+final class TokenDriver extends AbstractAttributeLoadDriver
 {
     private const FIND_INTERFACE = GitAttribute::class;
 
-    public function fromProperties(\ReflectionClass $class): array
+    public function fromProperties(\ReflectionClass $class, ?array $only = null): array
     {
         $content = file_get_contents($class->getFileName());
         $tokens = token_get_all($content);
@@ -36,7 +35,7 @@ final class TokenDriver implements AttributeLoadDriver
 
             $classString = $this->getClass($item['attribute_name'], $requirements);
 
-            if ($classString === null) {
+            if ($classString === null || ! $this->isInputToFilterOnly($classString, $only)) {
                 continue;
             }
 
