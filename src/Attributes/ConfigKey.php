@@ -2,10 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Attributes;
 
-use ArtARTs36\GitHandler\Contracts\Attribute\GitAttribute;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigAttribute;
 
 #[\Attribute]
-class ConfigKey implements GitAttribute
+class ConfigKey implements ConfigAttribute
 {
     public $key;
 
@@ -14,7 +14,7 @@ class ConfigKey implements GitAttribute
         $this->key = $key;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->key;
     }

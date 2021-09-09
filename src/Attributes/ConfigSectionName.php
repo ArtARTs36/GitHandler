@@ -2,12 +2,12 @@
 
 namespace ArtARTs36\GitHandler\Attributes;
 
-use ArtARTs36\GitHandler\Contracts\Attribute\GitAttribute;
+use ArtARTs36\GitHandler\Contracts\Config\ConfigAttribute;
 
 #[\Attribute]
-class ConfigSectionName implements GitAttribute
+class ConfigSectionName implements ConfigAttribute
 {
-    public function __toString()
+    public function __toString(): string
     {
         return static::class;
     }
