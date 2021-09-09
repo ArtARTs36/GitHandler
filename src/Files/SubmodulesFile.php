@@ -9,6 +9,9 @@ class SubmodulesFile
 {
     private $regex = '#\[submodule "(?<name>.*)"\]\s*path = (?<path>.*)\n\s*url = (?<url>.*)\n?#';
 
+    /**
+     * @return array<string, Submodule>
+     */
     public function buildMap(string $content): array
     {
         $modules = [];
