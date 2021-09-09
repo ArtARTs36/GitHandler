@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Attributes;
 
 #[\Attribute]
-class GitConfigKey
+class ConfigKey
 {
     public $key;
 

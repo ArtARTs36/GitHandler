@@ -2,19 +2,19 @@
 
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
-use ArtARTs36\GitHandler\Attributes\GitConfigKey;
+use ArtARTs36\GitHandler\Attributes\ConfigKey;
 use JetBrains\PhpStorm\ArrayShape;
-use ArtARTs36\GitHandler\Attributes\SectionNameGitConfigKey;
+use ArtARTs36\GitHandler\Attributes\ConfigSectionName;
 
 class Branch extends AbstractSubject
 {
-    #[SectionNameGitConfigKey()]
+    #[ConfigSectionName()]
     public $name;
 
-    #[GitConfigKey('remote')]
+    #[ConfigKey('remote')]
     public $remote;
 
-    #[GitConfigKey('merge')]
+    #[ConfigKey('merge')]
     public $merge;
 
     /**

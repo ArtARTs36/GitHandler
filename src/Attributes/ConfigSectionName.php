@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Attributes;
 
 #[\Attribute]
-class SectionNameGitConfigKey
+class ConfigSectionName
 {
     public function __toString()
     {
