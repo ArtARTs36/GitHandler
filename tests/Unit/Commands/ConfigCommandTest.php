@@ -91,6 +91,18 @@ core.autocrlf=input
         $command->unset('test', 'a');
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::unset
+     */
+    public function testUnsetGood(): void
+    {
+        $command = $this->makeConfigCommand();
+
+        $this->mockCommandExecutor->nextOk();
+
+        self::assertNull($command->unset('test', 'field'));
+    }
+
     private function makeConfigCommand(): ConfigCommand
     {
         return new ConfigCommand(
