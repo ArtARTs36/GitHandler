@@ -10,6 +10,7 @@ use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\GitHandler\Config\Subjects\User;
 use ArtARTs36\GitHandler\Exceptions\ConfigSectionNotFound;
+use ArtARTs36\GitHandler\Exceptions\ConfigVariableNotFound;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class ConfigCommandTest extends GitTestCase
@@ -72,6 +73,20 @@ core.autocrlf=input
         self::expectException(ConfigSectionNotFound::class);
 
         $this->mockCommandExecutor->nextFailed('key does not contain a section: test');
+
+        $command->unset('test', 'a');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\ConfigCommand::unset
+     */
+    public function testUnsetVariableNotFound(): void
+    {
+        $command = $this->makeConfigCommand();
+
+        self::expectException(ConfigVariableNotFound::class);
+
+        $this->mockCommandExecutor->nextFailed('key does not contain variable name: test');
 
         $command->unset('test', 'a');
     }

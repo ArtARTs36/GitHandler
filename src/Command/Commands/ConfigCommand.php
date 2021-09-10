@@ -8,6 +8,7 @@ use ArtARTs36\GitHandler\Config\Subjects\SubjectsCollection;
 use ArtARTs36\GitHandler\Contracts\Config\ConfigResultParser;
 use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 use ArtARTs36\GitHandler\Exceptions\ConfigSectionNotFound;
+use ArtARTs36\GitHandler\Exceptions\ConfigVariableNotFound;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
@@ -71,10 +72,18 @@ class ConfigCommand extends AbstractCommand implements GitConfigCommand
             ->addArgument("$scope.$field")
             ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
                 function (CommandResult $result) {
-                    $section = $result->getError()->trim()->match('#key does not contain a section: (.*)#');
+                    $error = $result->getError()->trim();
+
+                    $section = $error->match('#key does not contain a section: (.*)#');
 
                     if ($section->isNotEmpty()) {
                         throw new ConfigSectionNotFound($section);
+                    }
+
+                    $variable = $error->match('#key does not contain variable name: (.*)#');
+
+                    if ($variable->isNotEmpty()) {
+                        throw new ConfigVariableNotFound($variable);
                     }
                 },
             ]))
