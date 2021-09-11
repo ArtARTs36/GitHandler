@@ -13,21 +13,19 @@ final class TokenDriver extends AbstractAttributeLoadDriver
     {
         $tokens = token_get_all(file_get_contents($class->getFileName()));
 
-        $resolved = $this->extractPairs($tokens);
+        $pairs = $this->extractPairs($tokens);
         $requirements = $this->getRequirements($tokens);
 
-        foreach ($resolved as &$item) {
-            $item = array_merge($item, Str::globalMatch(
-                $item['attribute_raw'],
+        foreach ($pairs as &$pair) {
+            $pair = array_merge($pair, Str::globalMatch(
+                $pair['attribute_raw'],
                 '#\#\[(?<attribute_name>.*)\((?<attribute_args>.*)\)\]#'
             )[0] ?? []);
         }
 
-        unset($item);
-
         $attributes = [];
 
-        foreach ($resolved as $item) {
+        foreach ($pairs as $item) {
             if (empty($item['attribute_name'])) {
                 continue;
             }
