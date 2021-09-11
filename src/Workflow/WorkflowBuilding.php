@@ -4,7 +4,7 @@ namespace ArtARTs36\GitHandler\Workflow;
 
 use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflowBuilding;
 use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
-use ArtARTs36\GitHandler\Workflow\Elements\ConfigWorkflowElement;
+use ArtARTs36\GitHandler\Workflow\Elements\ConfigCommitWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\UntrackedFilesWorkflowElement;
 
@@ -27,7 +27,7 @@ class WorkflowBuilding implements GitWorkflowBuilding
 
     public function withConfig(): self
     {
-        return $this->with(new ConfigWorkflowElement());
+        return $this->with(new ConfigCommitWorkflowElement());
     }
 
     public function withUntrackedFiles(): self

@@ -5,9 +5,9 @@ namespace ArtARTs36\GitHandler\Workflow\Elements;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Enum\ConfigSectionName;
 
-class ConfigWorkflowElement extends AbstractConfigWorkflowElement
+class ConfigCommitWorkflowElement extends AbstractConfigWorkflowElement
 {
-    public const IDENTITY = 'config';
+    public const IDENTITY = 'config.commit';
 
     public function dump(GitHandler $git): array
     {

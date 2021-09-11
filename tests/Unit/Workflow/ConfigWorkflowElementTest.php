@@ -3,12 +3,12 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Workflow;
 
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
-use ArtARTs36\GitHandler\Workflow\Elements\ConfigWorkflowElement;
+use ArtARTs36\GitHandler\Workflow\Elements\ConfigCommitWorkflowElement;
 
 final class ConfigWorkflowElementTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Workflow\Elements\ConfigWorkflowElement::dump
+     * @covers \ArtARTs36\GitHandler\Workflow\Elements\ConfigCommitWorkflowElement::dump
      */
     public function testDump(): void
     {
@@ -21,8 +21,8 @@ final class ConfigWorkflowElementTest extends GitTestCase
         self::assertEquals('path', $dump['commit']->templatePath);
     }
 
-    private function makeConfigWorkflowElement(): ConfigWorkflowElement
+    private function makeConfigWorkflowElement(): ConfigCommitWorkflowElement
     {
-        return new ConfigWorkflowElement();
+        return new ConfigCommitWorkflowElement();
     }
 }

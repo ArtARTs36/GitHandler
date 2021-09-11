@@ -67,7 +67,7 @@ use ArtARTs36\GitHandler\Support\Logger;
 use ArtARTs36\GitHandler\Support\TemporaryPathGenerator;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
 use ArtARTs36\GitHandler\Workflow\WorkflowBuilding;
-use ArtARTs36\GitHandler\Workflow\Elements\ConfigWorkflowElement;
+use ArtARTs36\GitHandler\Workflow\Elements\ConfigCommitWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Workflow;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
