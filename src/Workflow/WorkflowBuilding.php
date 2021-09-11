@@ -55,10 +55,6 @@ class WorkflowBuilding implements GitWorkflowBuilding
         return new \ArrayIterator($this->elements);
     }
 
-    /**
-     * @param array<class-string<WorkflowElement>> $classes
-     * @return array<WorkflowElement>
-     */
     public function get(array $classes): array
     {
         $elems = [];

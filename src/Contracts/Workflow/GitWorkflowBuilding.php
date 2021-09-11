@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Contracts\Workflow;
 interface GitWorkflowBuilding extends \IteratorAggregate, ReplenishedWorkflowBuilding
 {
     /**
-     * @param array<class-string<WorkflowElement>> $classes
+     * @param array<class-string<WorkflowElement>|string> $classes
      * @return array<WorkflowElement>
      */
     public function get(array $classes): array;
