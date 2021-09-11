@@ -127,5 +127,8 @@ interface GitHandler extends Versionable, HasRemotes, HasAttributes, HasSubmodul
      */
     public function garbage(): GitGarbageCommand;
 
+    /**
+     * Git Merges
+     */
     public function merges(): GitMergeCommand;
 }
