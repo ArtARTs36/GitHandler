@@ -20,6 +20,7 @@ class GitConfigKeyPropertyMapperTest extends TestCase
 
         $result = $mapper->createObjectFromArray(Car::class, [
             'self_color' => 'red',
+            'other_color' => 'black',
         ]);
 
         self::assertEquals([
