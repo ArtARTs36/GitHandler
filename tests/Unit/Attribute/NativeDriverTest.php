@@ -17,7 +17,7 @@ final class NativeDriverTest extends TestCase
                     public $key;
                 },
                 null,
-                [[TestAttribute::class, ['value' => 'test-key']]],
+                ['key' => [TestAttribute::class, ['value' => 'test-key']]],
             ],
         ];
     }

@@ -15,7 +15,7 @@ class NativeDriver extends AbstractAttributeLoadDriver
             // @phpstan-ignore-next-line
             foreach ($property->getAttributes() as $attribute) {
                 if ($this->isInputToFilterOnly($attribute->getName(), $only)) {
-                    $attributes[] = $attribute->newInstance();
+                    $attributes[$property->getName()] = $attribute->newInstance();
                 }
             }
         }

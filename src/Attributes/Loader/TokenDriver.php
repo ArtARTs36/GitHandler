@@ -11,8 +11,7 @@ final class TokenDriver extends AbstractAttributeLoadDriver
 
     public function fromProperties(\ReflectionClass $class, ?array $only = null): array
     {
-        $content = file_get_contents($class->getFileName());
-        $tokens = token_get_all($content);
+        $tokens = token_get_all(file_get_contents($class->getFileName()));
 
         $resolved = $this->extractPairs($tokens);
         $requirements = $this->getRequirements($tokens);
