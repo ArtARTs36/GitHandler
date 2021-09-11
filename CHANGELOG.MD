@@ -41,10 +41,10 @@
     * Remove submodule
     * Sync submodule
     
-* Enum [ConfigScope](./src/Enum/ConfigScope.php)
+* Enum [ConfigSectionName](./src/Enum/ConfigSectionName.php)
 
 * Config unset
-
+k
 * Git Index :: removeCached
 
 * Config Submodule Subject

@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Enum;
 
-class ConfigScope
+class ConfigSectionName
 {
     use Enumerable;
 

@@ -10,7 +10,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitIndexCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitSubmoduleCommand;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Submodule;
-use ArtARTs36\GitHandler\Enum\ConfigScope;
+use ArtARTs36\GitHandler\Enum\ConfigSectionName;
 use ArtARTs36\GitHandler\Exceptions\SubmoduleNotFound;
 use ArtARTs36\GitHandler\Files\SubmodulesFile;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
@@ -73,7 +73,7 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
 
         $this->index->removeCached($dir = $this->context->getRootDir() . DIRECTORY_SEPARATOR . $submodule->path, true);
         $this->fileSystem->removeDir($dir);
-        $this->config->unset(ConfigScope::BRANCH, $name);
+        $this->config->unset(ConfigSectionName::BRANCH, $name);
 
         unset($map[$name]);
 
@@ -99,7 +99,7 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
     public function syncDefinesFromConfig(): void
     {
         /** @var ConfigSubmoduleList $config */
-        $config = $this->config->getSubject(ConfigScope::SUBMODULE);
+        $config = $this->config->getSubject(ConfigSectionName::SUBMODULE);
         $newMap = [];
 
         foreach ($config as $name => $module) {

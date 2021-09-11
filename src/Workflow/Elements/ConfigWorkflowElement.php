@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Workflow\Elements;
 
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
-use ArtARTs36\GitHandler\Enum\ConfigScope;
+use ArtARTs36\GitHandler\Enum\ConfigSectionName;
 
 class ConfigWorkflowElement extends AbstractConfigWorkflowElement
 {
@@ -12,7 +12,7 @@ class ConfigWorkflowElement extends AbstractConfigWorkflowElement
     public function dump(GitHandler $git): array
     {
         return [
-            ConfigScope::COMMIT => $git->config()->getSubject(ConfigScope::COMMIT),
+            ConfigSectionName::COMMIT => $git->config()->getSubject(ConfigSectionName::COMMIT),
         ];
     }
 }
