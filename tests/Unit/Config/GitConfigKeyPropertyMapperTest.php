@@ -9,7 +9,10 @@ use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 class GitConfigKeyPropertyMapperTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Config\Mapper\GitConfigKeyPropertyMapper::map
+     * @covers \ArtARTs36\GitHandler\Config\Mapper\GitConfigKeyPropertyMapper::createObjectFromArray
+     * @covers \ArtARTs36\GitHandler\Config\Mapper\GitConfigKeyPropertyMapper::doMap
+     * @covers \ArtARTs36\GitHandler\Config\Mapper\GitConfigKeyPropertyMapper::make
+     * @covers \ArtARTs36\GitHandler\Config\Mapper\GitConfigKeyPropertyMapper::__construct
      */
     public function testCreateObjectFromArray(): void
     {
