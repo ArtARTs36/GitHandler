@@ -69,9 +69,10 @@ final class TokenDriver extends AbstractAttributeLoadDriver
     private function getRequirements(array $tokens): array
     {
         $requirements = [];
+        $named = [];
         $input = false;
 
-        foreach ($tokens as [$tokenId, $value, $other]) {
+        foreach ($tokens as $index => [$tokenId, $value, $other]) {
             if ($tokenId === 353) {
                 $input = true;
 
@@ -80,15 +81,13 @@ final class TokenDriver extends AbstractAttributeLoadDriver
                 continue;
             } elseif ($input && in_array($tokenId, [390, 319])) {
                 $requirements[array_key_last($requirements)] .= $value;
+
+                if ($tokens[$index + 1] === ';') {
+                    $named[$value] = $requirements[array_key_last($requirements)];
+                }
             } else {
                 $input = false;
             }
-        }
-
-        $named = [];
-
-        foreach ($requirements as $requirement) {
-            $named[\ArtARTs36\Str\Str::make($requirement)->explode('\\')->last()] = $requirement;
         }
 
         return $named;
