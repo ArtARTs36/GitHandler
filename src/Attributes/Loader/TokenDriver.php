@@ -68,8 +68,7 @@ final class TokenDriver extends AbstractAttributeLoadDriver
 
     private function getRequirements(array $tokens): array
     {
-        $requirements = [];
-        $named = [];
+        $requirements = $named = [];
         $input = false;
 
         foreach ($tokens as $index => [$tokenId, $value, $other]) {
@@ -96,21 +95,19 @@ final class TokenDriver extends AbstractAttributeLoadDriver
 
     private function extractPairs(array $tokens): array
     {
-        $resolved = [];
-
-        $pair = [];
+        $pairs = $pair = [];
 
         foreach ($tokens as [$tokenId, $value, $other]) {
             if ($tokenId === 377) {
                 $pair['attribute_raw'] = trim($value);
             } elseif (($tokenId === 320 && count($pair) === 1)) {
                 $pair['var'] = Str::delete($value, ['$']);
-                $resolved[] = $pair;
+                $pairs[] = $pair;
                 $pair = [];
             }
         }
 
-        return $resolved;
+        return $pairs;
     }
 
     private function extractArgs(string $raw): array
