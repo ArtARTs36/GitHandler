@@ -35,6 +35,7 @@ final class TokenDriverTest extends TestCase
      * @covers \ArtARTs36\GitHandler\Attributes\Loader\TokenDriver::extractPairs
      * @covers \ArtARTs36\GitHandler\Attributes\Loader\TokenDriver::extractArgs
      * @covers \ArtARTs36\GitHandler\Attributes\Loader\TokenDriver::isImplementsAttributeInterface
+     * @covers \ArtARTs36\GitHandler\Attributes\Loader\NativeDriver::isInputToFilterOnly
      */
     public function testFromProperties(string $class, ?array $only, array $expected): void
     {

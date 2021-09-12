@@ -25,6 +25,7 @@ final class NativeDriverTest extends TestCase
     /**
      * @dataProvider providerFromProperties
      * @covers \ArtARTs36\GitHandler\Attributes\Loader\NativeDriver::fromProperties
+     * @covers \ArtARTs36\GitHandler\Attributes\Loader\NativeDriver::isInputToFilterOnly
      */
     public function testFromProperties(object $object, ?array $only, array $expected): void
     {
