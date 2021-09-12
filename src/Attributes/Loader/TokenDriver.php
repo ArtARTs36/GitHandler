@@ -5,6 +5,9 @@ namespace ArtARTs36\GitHandler\Attributes\Loader;
 use ArtARTs36\GitHandler\Contracts\Attribute\GitAttribute;
 use ArtARTs36\Str\Facade\Str;
 
+/**
+ * @internal
+ */
 final class TokenDriver extends AbstractAttributeLoadDriver
 {
     private const FIND_INTERFACE = GitAttribute::class;
