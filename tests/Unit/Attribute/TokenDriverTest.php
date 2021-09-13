@@ -3,7 +3,6 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Attribute;
 
 use ArtARTs36\GitHandler\Attributes\Loader\TokenDriver;
-use ArtARTs36\GitHandler\Tests\Support\TestAttribute;
 use ArtARTs36\GitHandler\Tests\Support\TestGitAttribute;
 use ArtARTs36\GitHandler\Tests\Unit\Attribute\Prototypes\ClassHasGitAttribute;
 use ArtARTs36\GitHandler\Tests\Unit\Attribute\Prototypes\ClassHasOtherAttribute;
