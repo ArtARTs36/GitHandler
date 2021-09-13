@@ -56,6 +56,7 @@ final class IndexCommandTest extends GitTestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::remove
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::buildRemoveCommand
      */
     public function testRemoveOk(): void
     {
@@ -66,6 +67,7 @@ final class IndexCommandTest extends GitTestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::remove
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::buildRemoveCommand
      */
     public function testRemoveOnFileNotFound(): void
     {
@@ -73,6 +75,29 @@ final class IndexCommandTest extends GitTestCase
 
         $this->mockCommandExecutor->nextFailed("pathspec 'f.txt' did not match any");
         $this->makeIndexCommand()->remove('f.txt', true);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::removeCached
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::buildRemoveCommand
+     */
+    public function testRemoveCachedOk(): void
+    {
+        $this->mockCommandExecutor->nextOk();
+
+        self::assertNull($this->makeIndexCommand()->removeCached('file.txt'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::removeCached
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::buildRemoveCommand
+     */
+    public function testRemoveCachedOnFileNotFound(): void
+    {
+        self::expectException(FileNotFound::class);
+
+        $this->mockCommandExecutor->nextFailed("pathspec 'f.txt' did not match any");
+        $this->makeIndexCommand()->removeCached('f.txt', true);
     }
 
     /**
