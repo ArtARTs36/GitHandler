@@ -20,31 +20,11 @@ class WorkflowBuilding implements GitWorkflowBuilding
         $this->elements = $elements;
     }
 
-    public function withHooks(): self
-    {
-        return $this->with(new HookWorkflowElement());
-    }
-
-    public function withConfig(): self
-    {
-        return $this->with(new ConfigCommitWorkflowElement());
-    }
-
-    public function withUntrackedFiles(): self
-    {
-        return $this->with(new UntrackedFilesWorkflowElement());
-    }
-
     public function with(WorkflowElement $element, WorkflowElement ...$elements): self
     {
         $this->elements = array_merge($this->elements, [$element], $elements);
 
         return $this;
-    }
-
-    public function defaults(): self
-    {
-        return $this->withConfig()->withHooks();
     }
 
     /**
