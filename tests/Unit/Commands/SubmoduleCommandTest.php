@@ -10,6 +10,31 @@ use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class SubmoduleCommandTest extends GitTestCase
 {
+    public function providerForTestExists(): array
+    {
+        return [
+            [
+                null,
+                'random-name',
+                false,
+            ],
+            [
+                '[submodule "str"]
+	path = str
+	url = https://github.com/ArtARTs36/str',
+                'str',
+                true,
+            ],
+            [
+                '[submodule "str"]
+	path = str
+	url = https://github.com/ArtARTs36/str1',
+                'str',
+                true,
+            ],
+        ];
+    }
+
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand::add
      * @covers \ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand::__construct
@@ -59,6 +84,39 @@ final class SubmoduleCommandTest extends GitTestCase
 	url = $submodule->url');
 
         self::assertNull($command->remove('str'));
+    }
+
+    /**
+     * @dataProvider providerForTestExists
+     * @covers \ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand::exists
+     * @covers \ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand::isFileExists
+     * @covers \ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand::getPath
+     * @covers \ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand::doExists
+     */
+    public function testExists(?string $content, string $module, bool $expected): void
+    {
+        $command = $this->makeSubmoduleCommand();
+
+        $content !== null && $this->mockFileSystem->createFile($command->getPath(), $content);
+
+        self::assertEquals($expected, $command->exists($module));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand::syncDefinesFromConfig
+     * @covers \ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand::saveFromMap
+     */
+    public function testSyncDefinesFromConfig(): void
+    {
+        $command = $this->makeSubmoduleCommand();
+
+        $this->mockCommandExecutor->nextOk('submodule.str.url=github.com');
+
+        $command->syncDefinesFromConfig();
+
+        self::assertEquals('[submodule "str"]
+	path = str
+	url = github.com', $this->mockFileSystem->getFileContent($command->getPath()));
     }
 
     private function makeSubmoduleCommand(
