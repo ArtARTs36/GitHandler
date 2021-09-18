@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Workflow\Elements;
 
-use ArtARTs36\GitHandler\Config\Mapper\GitConfigKeyPropertyMapper;
+use ArtARTs36\GitHandler\Config\Mapper\ConfigKeyPropertyMapper;
 use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
@@ -14,9 +14,9 @@ abstract class AbstractConfigWorkflowElement extends AbstractWorkflowElement imp
 {
     protected $mapper;
 
-    public function __construct(?GitConfigKeyPropertyMapper $mapper = null)
+    public function __construct(?ConfigKeyPropertyMapper $mapper = null)
     {
-        $this->mapper = $mapper ?? GitConfigKeyPropertyMapper::make();
+        $this->mapper = $mapper ?? ConfigKeyPropertyMapper::make();
     }
 
     /**

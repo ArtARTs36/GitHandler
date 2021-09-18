@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Config\Mapper;
 use ArtARTs36\GitHandler\Attributes\Loader\AttributeLoader;
 use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 
-class GitConfigKeyPropertyMapper
+class ConfigKeyPropertyMapper
 {
     protected $attributes;
 
