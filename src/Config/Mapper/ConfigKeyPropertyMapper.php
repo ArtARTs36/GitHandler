@@ -26,12 +26,14 @@ class ConfigKeyPropertyMapper
     }
 
     /**
-     * @param class-string<ConfigSubject> $class
+     * @param class-string<ConfigSubject>|ConfigSubject $class
      * @return array<string, string>
      * @throws \ReflectionException
      */
-    public function map(string $class): array
+    public function map($class): array
     {
+        $class = is_string($class) ? $class : get_class($class);
+
         if (! isset(static::$cache[$class])) {
             static::$cache[$class] = array_map('strval', $this->attributes->fromProperties($class));
         }

@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Workflow;
 
+use ArtARTs36\GitHandler\Config\Subjects\ConfigCommit;
+use ArtARTs36\GitHandler\Enum\ConfigSectionName;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 use ArtARTs36\GitHandler\Workflow\Elements\ConfigCommitWorkflowElement;
 
@@ -20,6 +22,21 @@ final class ConfigWorkflowElementTest extends GitTestCase
         $dump = $element->dump($this->mockGitHandler);
 
         self::assertEquals('path', $dump['commit']->templatePath);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Workflow\Elements\ConfigCommitWorkflowElement::restore
+     * @covers \ArtARTs36\GitHandler\Workflow\Elements\ConfigCommitWorkflowElement::__construct
+     */
+    public function testRestore(): void
+    {
+        $element = $this->makeConfigWorkflowElement();
+
+        $this->mockCommandExecutor->nextOk();
+
+        self::assertNull($element->restore($this->mockGitHandler, [
+            ConfigSectionName::COMMIT => new ConfigCommit($path = '/var/commit.template'),
+        ]));
     }
 
     private function makeConfigWorkflowElement(): ConfigCommitWorkflowElement
