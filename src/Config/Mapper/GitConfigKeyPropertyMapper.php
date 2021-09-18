@@ -26,13 +26,17 @@ class GitConfigKeyPropertyMapper
     }
 
     /**
-     * Map config keys on properties from object
-     * @param class-string<ConfigSubject>|ConfigSubject $object
+     * @param class-string<ConfigSubject> $class
      * @return array<string, string>
+     * @throws \ReflectionException
      */
-    public function map($object): array
+    public function map(string $class): array
     {
-        return $this->doMap(is_object($object) ? get_class($object) : $object);
+        if (! isset(static::$cache[$class])) {
+            static::$cache[$class] = array_map('strval', $this->attributes->fromProperties($class));
+        }
+
+        return static::$cache[$class];
     }
 
     /**
@@ -44,7 +48,7 @@ class GitConfigKeyPropertyMapper
     {
         $reflector = new \ReflectionClass($class);
 
-        $keyOnProperty = array_flip($this->doMap($class));
+        $keyOnProperty = array_flip($this->map($class));
 
         $args = [];
 
@@ -57,18 +61,5 @@ class GitConfigKeyPropertyMapper
         }
 
         return $reflector->newInstanceArgs($args);
-    }
-
-    /**
-     * @param class-string $class
-     * @return array<string>
-     */
-    protected function doMap(string $class): array
-    {
-        if (! isset(static::$cache[$class])) {
-            static::$cache[$class] = array_map('strval', $this->attributes->fromProperties($class));
-        }
-
-        return static::$cache[$class];
     }
 }
