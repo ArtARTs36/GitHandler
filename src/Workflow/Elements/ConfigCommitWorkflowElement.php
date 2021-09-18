@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Workflow\Elements;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Enum\ConfigSectionName;
 
-class ConfigCommitWorkflowElement extends AbstractConfigWorkflowElement
+final class ConfigCommitWorkflowElement extends AbstractConfigWorkflowElement
 {
     public const IDENTITY = 'config.commit';
 

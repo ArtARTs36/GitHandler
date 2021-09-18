@@ -9,6 +9,7 @@ final class ConfigWorkflowElementTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Workflow\Elements\ConfigCommitWorkflowElement::dump
+     * @covers \ArtARTs36\GitHandler\Workflow\Elements\ConfigCommitWorkflowElement::__construct
      */
     public function testDump(): void
     {

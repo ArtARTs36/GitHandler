@@ -26,11 +26,11 @@ abstract class AbstractConfigWorkflowElement extends AbstractWorkflowElement imp
     {
         $config = $git->config();
 
-        foreach ($data as $scope => $subject) {
+        foreach ($data as $section => $subject) {
             $configMap = $this->mapper->map($subject);
 
             foreach ($subject->toArray() as $field => $value) {
-                $config->set($scope, $configMap[$field], $value);
+                $config->set($section, $configMap[$field], $value);
             }
         }
     }
