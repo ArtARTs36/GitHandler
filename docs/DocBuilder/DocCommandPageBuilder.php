@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\DocBuilder;
 
+use ArtARTs36\Str\Facade\Str;
 use phpDocumentor\Reflection\DocBlockFactory;
 
 class DocCommandPageBuilder
@@ -47,6 +48,6 @@ class DocCommandPageBuilder
 
     protected function buildPageName(\ReflectionClass $class): string
     {
-        return snake_case($class->getShortName()) . '.md';
+        return Str::toSnakeCase($class->getShortName()) . '.md';
     }
 }
