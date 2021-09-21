@@ -7,7 +7,7 @@ use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
 use ArtARTs36\GitHandler\Tests\Support\MockHasRemotes;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
-class GithubOriginUrlTest extends TestCase
+final class GithubOriginUrlTest extends TestCase
 {
     public function toCommitDataProvider(): array
     {
@@ -94,5 +94,21 @@ class GithubOriginUrlTest extends TestCase
         self::expectException(GivenInvalidUri::class);
 
         (new GithubOriginUrlBuilder())->toRepoFromUrl('h');
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toTagFromFetchUrl
+     */
+    public function testToTagFromFetchUrl(): void
+    {
+        self::assertEquals(
+            'https://github.com/ArtARTs36/GitHandler/releases/tag/1.0.0',
+            $this->makeGithubOriginUrl()->toTagFromFetchUrl('https://github.com/ArtARTs36/GitHandler', '1.0.0')
+        );
+    }
+
+    private function makeGithubOriginUrl(): GithubOriginUrlBuilder
+    {
+        return new GithubOriginUrlBuilder();
     }
 }
