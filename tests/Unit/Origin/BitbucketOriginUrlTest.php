@@ -94,7 +94,7 @@ class BitbucketOriginUrlTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder::toTagFromFetchUrl
+     * @covers \ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrlBuilder::toTagFromFetchUrl
      */
     public function testToTagFromFetchUrl(): void
     {

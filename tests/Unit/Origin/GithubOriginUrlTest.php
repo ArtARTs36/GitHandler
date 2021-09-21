@@ -97,7 +97,7 @@ final class GithubOriginUrlTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrl::toTagFromFetchUrl
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder::toTagFromFetchUrl
      */
     public function testToTagFromFetchUrl(): void
     {
