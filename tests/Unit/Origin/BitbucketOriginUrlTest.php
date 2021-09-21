@@ -92,4 +92,15 @@ class BitbucketOriginUrlTest extends TestCase
 
         (new BitbucketOriginUrlBuilder())->toRepoFromUrl($url);
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder::toTagFromFetchUrl
+     */
+    public function testToTagFromFetchUrl(): void
+    {
+        self::assertEquals(
+            'https://bitbucket.org/aukrainsky/a1/src/1.0.0',
+            (new BitbucketOriginUrlBuilder())->toTagFromFetchUrl('https://bitbucket.org/aukrainsky/a1', '1.0.0')
+        );
+    }
 }

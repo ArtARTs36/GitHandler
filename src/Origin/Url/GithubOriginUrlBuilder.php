@@ -30,6 +30,11 @@ class GithubOriginUrlBuilder extends AbstractOriginUrlBuilder implements OriginU
             ->append("/zip/refs/heads/$branch");
     }
 
+    public function toTagFromFetchUrl(string $fetchUrl, string $tag): string
+    {
+        return $this->toGitFolder($fetchUrl)->append('/releases/tag/')->append($tag);
+    }
+
     protected function buildArchiveDomain(string $host): string
     {
         return $this->archiveSubdomain . '.' . $host;
