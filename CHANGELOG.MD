@@ -74,7 +74,16 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.3.1)
 
-
+#### Added
+* [Contract "Initable"](https://github.com/ArtARTs36/GitHandler/blob/f0cdbe421e82304343609b20ba2cccbedb0694e2/src/Contracts/Initable.php)
+* [Contract "Logable"](https://github.com/ArtARTs36/GitHandler/blob/f0cdbe421e82304343609b20ba2cccbedb0694e2/src/Contracts/Logable.php)
+* [Data Object "Author"](https://github.com/ArtARTs36/GitHandler/blob/f0cdbe421e82304343609b20ba2cccbedb0694e2/src/Data/Author.php)
+* [Data Object "Log"](https://github.com/ArtARTs36/GitHandler/blob/f0cdbe421e82304343609b20ba2cccbedb0694e2/src/Data/Log.php)
+* [Log Collection](https://github.com/ArtARTs36/GitHandler/blob/f0cdbe421e82304343609b20ba2cccbedb0694e2/src/Data/LogCollection.php)
+* [Exception "Nothing to Commit"](https://github.com/ArtARTs36/GitHandler/blob/f0cdbe421e82304343609b20ba2cccbedb0694e2/src/Exceptions/NothingToCommit.php) - throws in "git commit"
+* [Exception "Repository Already Exists"](https://github.com/ArtARTs36/GitHandler/blob/f0cdbe421e82304343609b20ba2cccbedb0694e2/src/Exceptions/epositoryAlreadyExists.php) - throws in "git clone"
+* [Wrap: Git Commit](https://github.com/ArtARTs36/GitHandler/compare/0.3.0...0.3.1#diff-e6c1b6b7de0fe4a3e42ac15ab80c7b0758fc604d1ad24384c82c65a84c998a06R250)
+* [Wrap: Git Log](https://github.com/ArtARTs36/GitHandler/compare/0.3.0...0.3.1#diff-e6c1b6b7de0fe4a3e42ac15ab80c7b0758fc604d1ad24384c82c65a84c998a06R279)
 # fetch && commit amend
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.3.1...0.3.2)
