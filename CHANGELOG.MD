@@ -131,7 +131,15 @@ Read config available for subjects:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.6.0)
 
+### Added
+* [Contract "HasPaths"](https://github.com/ArtARTs36/GitHandler/blob/5113cfc1f28af67324a53645c34df2b876f32957/src/Contracts/HasPaths.php) for get git path(info, html, man)
+* [Contract "Stashable"](https://github.com/ArtARTs36/GitHandler/blob/5113cfc1f28af67324a53645c34df2b876f32957/src/Contracts/Stashable.php)
+* [Contract "Statusable"](https://github.com/ArtARTs36/GitHandler/blob/5113cfc1f28af67324a53645c34df2b876f32957/src/Contracts/Statusable.php)
+* [Contract "Versionable"](https://github.com/ArtARTs36/GitHandler/blob/5113cfc1f28af67324a53645c34df2b876f32957/src/Contracts/Versionable.php)
+* [Wrap git help](https://github.com/ArtARTs36/GitHandler/compare/0.5.0...0.6.0#diff-64458c015b326c5ca1410ef1e3f9daed5381710fbd5460108dc635db17f00995R51)
 
+### Changed
+* [ConfiguratorsDict implements IteratorAggregate](https://github.com/ArtARTs36/GitHandler/compare/0.5.0...0.6.0#diff-545b34f6064c6c8e256654e61247aae25617c9a115b885dc906bb87fd97ef311R8)
 # 0.7.0 :: use str wrapper in contracts
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.6.0...0.7.0)
@@ -139,9 +147,9 @@ Read config available for subjects:
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.7.0)
 
 ### Added
-[GitHandler::getUntrackedFiles](https://github.com/ArtARTs36/GitHandler/compare/0.6.0...0.7.0#diff-20d14f8d1c07cebbf713ca704c55b1c6e0de9b23dbd2db5a722ca9cd37275517R19)
-[GitHandler::getModifiedFiles](https://github.com/ArtARTs36/GitHandler/compare/0.6.0...0.7.0#diff-20d14f8d1c07cebbf713ca704c55b1c6e0de9b23dbd2db5a722ca9cd37275517R24)
-[GitHandler::getAddedFiles](https://github.com/ArtARTs36/GitHandler/compare/0.6.0...0.7.0#diff-20d14f8d1c07cebbf713ca704c55b1c6e0de9b23dbd2db5a722ca9cd37275517R29)
+* [GitHandler::getUntrackedFiles](https://github.com/ArtARTs36/GitHandler/compare/0.6.0...0.7.0#diff-20d14f8d1c07cebbf713ca704c55b1c6e0de9b23dbd2db5a722ca9cd37275517R19)
+* [GitHandler::getModifiedFiles](https://github.com/ArtARTs36/GitHandler/compare/0.6.0...0.7.0#diff-20d14f8d1c07cebbf713ca704c55b1c6e0de9b23dbd2db5a722ca9cd37275517R24)
+* [GitHandler::getAddedFiles](https://github.com/ArtARTs36/GitHandler/compare/0.6.0...0.7.0#diff-20d14f8d1c07cebbf713ca704c55b1c6e0de9b23dbd2db5a722ca9cd37275517R29)
 # 0.8.0 :: Repository downloader
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.7.0...0.8.0)
