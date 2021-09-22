@@ -125,7 +125,10 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.7.0)
 
-
+### Added
+[GitHandler::getUntrackedFiles](https://github.com/ArtARTs36/GitHandler/compare/0.6.0...0.7.0#diff-20d14f8d1c07cebbf713ca704c55b1c6e0de9b23dbd2db5a722ca9cd37275517R19)
+[GitHandler::getModifiedFiles](https://github.com/ArtARTs36/GitHandler/compare/0.6.0...0.7.0#diff-20d14f8d1c07cebbf713ca704c55b1c6e0de9b23dbd2db5a722ca9cd37275517R24)
+[GitHandler::getAddedFiles](https://github.com/ArtARTs36/GitHandler/compare/0.6.0...0.7.0#diff-20d14f8d1c07cebbf713ca704c55b1c6e0de9b23dbd2db5a722ca9cd37275517R29)
 # 0.8.0 :: Repository downloader
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.7.0...0.8.0)
