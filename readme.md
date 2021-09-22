@@ -65,3 +65,4 @@ Tool for work with Git in PHP
 |  composer mutate-test    |    Run mutation testing
 |  composer build-docs    |    Build documentation
 |  composer check-docs-actual    |    Check Documentation is actually
+|  composer build-changelog    |    Build CHANGELOG.MD

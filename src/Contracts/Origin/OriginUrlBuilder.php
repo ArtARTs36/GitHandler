@@ -43,4 +43,9 @@ interface OriginUrlBuilder
      * @throws GivenInvalidUri
      */
     public function toRepoFromUrl(string $url): Repo;
+
+    /**
+     * Build url to "tags/branches compare" page on remote hosting
+     */
+    public function toTagsCompareFromFetchUrl(string $fetchUrl, string $oneTag, string $twoTag): string;
 }

@@ -22,4 +22,9 @@ class BitbucketOriginUrlBuilder extends AbstractOriginUrlBuilder
     {
         return $this->toGitFolder($fetchUrl)->append('/src/')->append($tag);
     }
+
+    public function toTagsCompareFromFetchUrl(string $fetchUrl, string $oneTag, string $twoTag): string
+    {
+        return $this->toGitFolder($fetchUrl)->append("/branches/compare/$oneTag%0D$twoTag");
+    }
 }

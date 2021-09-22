@@ -65,6 +65,10 @@
         "check-docs-actual": [
             "echo 'Check Documentation is actually'",
             "php docs/DocBuilder/is_actual.php"
+        ],
+        "build-changelog": [
+            "echo 'Build CHANGELOG.MD'",
+            "php docs/DocBuilder/build_changelog.php"
         ]
     }
 }
