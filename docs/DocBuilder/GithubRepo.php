@@ -39,7 +39,7 @@ class GithubRepo
     public function getTags(): array
     {
         $query = json_encode(['query' => 'query ListTags {
-  repository(owner: "artarts36", name: "githandler") {
+  repository(owner: "'. $this->user .'", name: "'. $this->repo . '") {
     releases(first: 50, orderBy: {field: CREATED_AT, direction: ASC}) {
       edges {
         node {
