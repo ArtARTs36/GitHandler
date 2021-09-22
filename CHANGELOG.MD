@@ -198,6 +198,18 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.12.0)
 
+### Added
+* [Wrap: git switch <branch-name>](https://github.com/ArtARTs36/GitHandler/compare/0.11.2...0.12.0#diff-91525d39f3c6475f6653bfe723e3516e3e8a26daaeeff2c9b0869ca8b1a8d2daR25)
+* [Wrap: git branch --show-current](https://github.com/ArtARTs36/GitHandler/compare/0.11.2...0.12.0#diff-91525d39f3c6475f6653bfe723e3516e3e8a26daaeeff2c9b0869ca8b1a8d2daR30)
+* [Wrap: git stash list](https://github.com/ArtARTs36/GitHandler/compare/0.11.2...0.12.0#diff-d1ddccf832a79155c10ceeeef5ca2e13c2d124c707271eb7d7f151acde0b9be8R16)
+* [Wrap: git stash apply stash@{1}](https://github.com/ArtARTs36/GitHandler/compare/0.11.2...0.12.0#diff-d1ddccf832a79155c10ceeeef5ca2e13c2d124c707271eb7d7f151acde0b9be8R18)
+* [Git autoCommit](https://github.com/ArtARTs36/GitHandler/compare/0.11.2...0.12.0#diff-e6c1b6b7de0fe4a3e42ac15ab80c7b0758fc604d1ad24384c82c65a84c998a06R181) - (git add modified files & commit)
+* [GitHandler::addHook](https://github.com/ArtARTs36/GitHandler/compare/0.11.2...0.12.0#diff-4d3833c53107580846e4eb068bbb3e31853418f51a8bfa8d789761e2990a91fcR12)
+* [GitHandler::hasHook](https://github.com/ArtARTs36/GitHandler/compare/0.11.2...0.12.0#diff-4d3833c53107580846e4eb068bbb3e31853418f51a8bfa8d789761e2990a91fcR17)
+* [GitHandler::deleteHook](https://github.com/ArtARTs36/GitHandler/compare/0.11.2...0.12.0#diff-4d3833c53107580846e4eb068bbb3e31853418f51a8bfa8d789761e2990a91fcR23)
+* [GitHandler::getHook](https://github.com/ArtARTs36/GitHandler/compare/0.11.2...0.12.0#diff-4d3833c53107580846e4eb068bbb3e31853418f51a8bfa8d789761e2990a91fcR29)
+* [GitHandler::getHooks](https://github.com/ArtARTs36/GitHandler/compare/0.11.2...0.12.0#diff-4d3833c53107580846e4eb068bbb3e31853418f51a8bfa8d789761e2990a91fcR34)
+* [GitHandler::pushOnAutoSetUpStream](https://github.com/ArtARTs36/GitHandler/compare/0.11.2...0.12.0#diff-c87d57128b19420ea96c1f5238ed856224c1d8b75dbab288fc3de8da3caf90b5R18)
 
 # 0.12.1 :: fix Git::add at many files
 
