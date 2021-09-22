@@ -118,7 +118,13 @@ Read config available for subjects:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.5.0)
 
+### Changed
+* [Call file system through FileSystem Contract](https://github.com/ArtARTs36/GitHandler/blob/a5e1e60adc3981ca524fa095e1996e4bf724f920/src/Contracts/FileSystem.php)
+* [Add Exception "BranchHasNoUpstream"](https://github.com/ArtARTs36/GitHandler/blob/a5e1e60adc3981ca524fa095e1996e4bf724f920/src/Exceptions/BranchHasNoUpstream.php)
+* [All exceptions extends "GitHandlerException"](https://github.com/ArtARTs36/GitHandler/blob/a5e1e60adc3981ca524fa095e1996e4bf724f920/src/Exceptions/GitHandlerException.php)
 
+### Internal
+* Improved test coverage
 # 0.6.0 :: Has Paths and unstash
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.5.0...0.6.0)
