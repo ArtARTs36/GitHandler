@@ -202,7 +202,8 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.12.1)
 
-
+### Fixed
+* [GitHandler::add at many files](https://github.com/ArtARTs36/GitHandler/compare/0.12.0...0.12.1#diff-e6c1b6b7de0fe4a3e42ac15ab80c7b0758fc604d1ad24384c82c65a84c998a06R103)
 # 0.13.0 :: Add branch config && remove webmozart/assert
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.12.1...0.13.0)
