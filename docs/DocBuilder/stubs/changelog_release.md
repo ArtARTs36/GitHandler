@@ -1,7 +1,7 @@
 # {$releaseTitle}
 
-[View Changes]({$releaseCompareLink})
-
 [View on Github]({$releaseRemoteUrl})
+
+[View Changes]({$releaseCompareLink})
 
 {$releaseDescription}
