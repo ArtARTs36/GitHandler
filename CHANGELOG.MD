@@ -174,21 +174,37 @@ Read config available for subjects:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.9.0)
 
-
+### Added
+* [Wrap: "git remote remove"](https://github.com/ArtARTs36/GitHandler/compare/0.8.1...0.9.0#diff-c04818367c2a20af2d664a0c65ddaa19c80445c94f9b24428d3148ac7e094a2cR24)
+* [Exception "RemoteAlreadyExists"](https://github.com/ArtARTs36/GitHandler/blob/e29b3e2feb04e18ee01f07fdd0aee6d0ba568d95/src/Exceptions/RemoteAlreadyExists.php)
+* [Exception "RemoteNotFound"](https://github.com/ArtARTs36/GitHandler/blob/e29b3e2feb04e18ee01f07fdd0aee6d0ba568d95/src/Exceptions/RemoteNotFound.php)
 # 0.10.0 :: Docs And New Features
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.9.0...0.10.0)
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.10.0)
 
+### Added
+* [Contract "Checkoutable"](https://github.com/ArtARTs36/GitHandler/blob/070041e529f130e598a2b506decaf8d76626c836/src/Contracts/Checkoutable.php)
+* [Contract "Fetchable" with methods: "fetch", "fetchAll"](https://github.com/ArtARTs36/GitHandler/blob/070041e529f130e598a2b506decaf8d76626c836/src/Contracts/Fetchable.php)
+* [ConfigSubject::isEmpty](https://github.com/ArtARTs36/GitHandler/compare/0.9.0...0.10.0#diff-aa5e413674a52b8a684b08a8a41c6fd68d69cab7a7a02d50d5b944e2d9692c01R12)
+* [Interacts with .gitignore](https://github.com/ArtARTs36/GitHandler/compare/0.9.0...0.10.0#diff-47bb94f70c74ab3c39a6ef098941441f2235eba5436699ba25b530e0bf1b5b9eR9)
 
-# 0.10.1 :: throw BranchDoesNotHaveCommits
+### Changed
+* ["git add" supports force mode](https://github.com/ArtARTs36/GitHandler/compare/0.9.0...0.10.0#diff-766bd3c5123c64b832e2be880d2af016e59b0f3dd608abd0f896837cd1a8c8a5R10)
+* ["git push" supports force mode](https://github.com/ArtARTs36/GitHandler/compare/0.9.0...0.10.0#diff-c87d57128b19420ea96c1f5238ed856224c1d8b75dbab288fc3de8da3caf90b5R13)
+# 0.10.1 :: Interacts with git branches
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.10.0...0.10.1)
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.10.1)
 
-
+### Added
+* [Wrap "git branch -d"](https://github.com/ArtARTs36/GitHandler/compare/0.10.0...0.10.1#diff-91525d39f3c6475f6653bfe723e3516e3e8a26daaeeff2c9b0869ca8b1a8d2daR15)
+* [Wrap "git branch"](https://github.com/ArtARTs36/GitHandler/compare/0.10.0...0.10.1#diff-91525d39f3c6475f6653bfe723e3516e3e8a26daaeeff2c9b0869ca8b1a8d2daR17)
+* [Wrap "git branch -a"](https://github.com/ArtARTs36/GitHandler/compare/0.10.0...0.10.1#diff-91525d39f3c6475f6653bfe723e3516e3e8a26daaeeff2c9b0869ca8b1a8d2daR22)
+* [Exception "BranchAlreadyExists"](https://github.com/ArtARTs36/GitHandler/blob/a6fc1990b565f92efd00b25dc7af862565d48240/src/Exceptions/BranchAlreadyExists.php)
+* [Exception "BranchDoesNotHaveCommits"](https://github.com/ArtARTs36/GitHandler/blob/a6fc1990b565f92efd00b25dc7af862565d48240/src/Exceptions/BranchDoesNotHaveCommits.php)
 # 0.11.0 :: Git grep
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.10.1...0.11.0)
