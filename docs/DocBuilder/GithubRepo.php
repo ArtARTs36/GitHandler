@@ -47,6 +47,7 @@ class GithubRepo
           description
           name
           tagName
+          publishedAt
         }
       }
     }
@@ -64,7 +65,12 @@ class GithubRepo
         return array_map(function (array $item) {
             $item = $item['node'];
 
-            return new RemoteTag(Str::make($item['description']), $item['tagName'], $item['name']);
+            return new RemoteTag(
+                Str::make($item['description']),
+                $item['tagName'],
+                $item['name'],
+                new \DateTime($item['publishedAt'])
+            );
         }, $releases);
     }
 }

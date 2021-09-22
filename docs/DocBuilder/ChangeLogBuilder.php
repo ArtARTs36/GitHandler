@@ -45,6 +45,7 @@ class ChangeLogBuilder
                 'releaseTitle' => $tag->title,
                 'releaseVersion' => $tag->tag,
                 'releaseCompareLink' => $compareLink,
+                'releasePublishedAt' => $tag->publishedAt->format('Y-m-d H:i'),
                 'releaseDescription' => $tag->markdown->lines()->map(function (Str $str) {
                     if ($str->isNotEmpty() && $str->firstSymbol() === '#') {
                         $str = $str->prepend('##');

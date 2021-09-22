@@ -12,10 +12,13 @@ class RemoteTag
 
     public $title;
 
-    public function __construct(Str $markdown, string $tag, string $title)
+    public $publishedAt;
+
+    public function __construct(Str $markdown, string $tag, string $title, \DateTimeInterface $publishedAt)
     {
         $this->markdown = $markdown;
         $this->tag = $tag;
         $this->title = $title;
+        $this->publishedAt = $publishedAt;
     }
 }
