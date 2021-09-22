@@ -6,7 +6,7 @@
 
 ⏱️ Published: 2020-08-19 21:11
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.1.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.1.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/releases/tag/0.1.0)
 
@@ -21,7 +21,7 @@ Initial release with features:
 
 ⏱️ Published: 2020-08-19 22:11
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.1.0...0.2.0)
 
@@ -33,7 +33,7 @@ Initial release with features:
 
 ⏱️ Published: 2020-08-19 22:55
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.1)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.1)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.2.0...0.2.1)
 
@@ -44,7 +44,7 @@ Initial release with features:
 
 ⏱️ Published: 2020-08-20 22:21
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.2)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.2)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.2.1...0.2.2)
 
@@ -56,7 +56,7 @@ Initial release with features:
 
 ⏱️ Published: 2020-08-22 18:12
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.3)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.3)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.2.2...0.2.3)
 
@@ -67,7 +67,7 @@ Initial release with features:
 
 ⏱️ Published: 2021-03-27 18:00
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.3.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.3.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.2.3...0.3.0)
 
@@ -83,7 +83,7 @@ Initial release with features:
 
 ⏱️ Published: 2021-03-28 11:44
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.3.1)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.3.1)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.3.0...0.3.1)
 
@@ -101,7 +101,7 @@ Initial release with features:
 
 ⏱️ Published: 2021-03-28 12:13
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.3.2)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.3.2)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.3.1...0.3.2)
 
@@ -117,7 +117,7 @@ Initial release with features:
 
 ⏱️ Published: 2021-03-29 15:14
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.4.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.4.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.3.2...0.4.0)
 
@@ -133,7 +133,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-03-29 23:08
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.5.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.5.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.4.0...0.5.0)
 
@@ -148,7 +148,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-03-30 08:46
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.6.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.6.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.5.0...0.6.0)
 
@@ -165,7 +165,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-03-30 21:52
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.7.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.7.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.6.0...0.7.0)
 
@@ -177,7 +177,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-04-01 00:00
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.8.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.8.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.7.0...0.8.0)
 
@@ -189,7 +189,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-04-01 20:33
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.8.1)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.8.1)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.8.0...0.8.1)
 
@@ -199,7 +199,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-04-01 21:01
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.9.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.9.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.8.1...0.9.0)
 
@@ -211,7 +211,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-04-03 10:31
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.10.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.10.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.9.0...0.10.0)
 
@@ -228,7 +228,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-04-04 14:01
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.10.1)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.10.1)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.10.0...0.10.1)
 
@@ -242,7 +242,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-07-02 06:48
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.11.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.11.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.10.1...0.11.0)
 
@@ -256,7 +256,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-07-03 20:14
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.11.1)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.11.1)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.11.0...0.11.1)
 
@@ -267,7 +267,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-07-04 12:45
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.11.2)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.11.2)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.11.1...0.11.2)
 
@@ -276,7 +276,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-07-26 15:25
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.12.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.12.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.11.2...0.12.0)
 
@@ -297,7 +297,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-07-26 19:48
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.12.1)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.12.1)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.12.0...0.12.1)
 
@@ -307,7 +307,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-08-02 15:10
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.13.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.13.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.12.1...0.13.0)
 
@@ -316,7 +316,7 @@ Read config available for subjects:
 
 ⏱️ Published: 2021-08-24 00:24
 
-[View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.0.0)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.0.0)
 
 [↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.13.0...1.0.0)
 
