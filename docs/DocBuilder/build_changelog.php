@@ -14,6 +14,6 @@ $repo = new \ArtARTs36\GitHandler\DocBuilder\GithubRepo(
 
 $files = new \ArtARTs36\GitHandler\Support\LocalFileSystem();
 
-$builder = new ChangeLogBuilder($repo, new \ArtARTs36\GitHandler\DocBuilder\StubLoader($files));
+$builder = new ChangeLogBuilder($repo, new \ArtARTs36\GitHandler\DocBuilder\StubLoader($files), $files);
 
 $builder->build(__DIR__ . '/../../CHANGELOG.MD');

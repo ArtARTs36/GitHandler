@@ -2,16 +2,22 @@
 
 namespace ArtARTs36\GitHandler\DocBuilder;
 
+use ArtARTs36\FileSystem\Contracts\FileSystem;
+use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
+
 class ChangeLogBuilder
 {
     private $remote;
 
     private $stubs;
 
-    public function __construct(GithubRepo $remote, StubLoader $stubs)
+    private $files;
+
+    public function __construct(GithubRepo $remote, StubLoader $stubs, FileSystem $files)
     {
         $this->remote = $remote;
         $this->stubs = $stubs;
+        $this->files = $files;
     }
 
     public function build(string $path): void
@@ -20,11 +26,17 @@ class ChangeLogBuilder
 
         $content = '';
 
+        $urlBuilder = new GithubOriginUrlBuilder();
+
         foreach ($tags as $tag) {
             $content .= $this->stubs->load('changelog_release.md')->render([
                 'releaseTitle' => $tag->title,
                 'releaseVersion' => $tag->tag,
                 'releaseDescription' => $tag->markdown,
+                'releaseRemoteUrl' => $urlBuilder->toTagFromFetchUrl(
+                    'https://github.com/ArtARTs36/GitHandler',
+                    $tag->tag
+                ),
             ]);
         }
 
@@ -32,6 +44,6 @@ class ChangeLogBuilder
             'releases' => $content,
         ]);
 
-        file_put_contents($path, $content);
+        $this->files->createFile($path, $content);
     }
 }
