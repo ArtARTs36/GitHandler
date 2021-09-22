@@ -74,7 +74,7 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.3.1)
 
-#### Added
+## Added
 * [Contract "Initable"](https://github.com/ArtARTs36/GitHandler/blob/f0cdbe421e82304343609b20ba2cccbedb0694e2/src/Contracts/Initable.php)
 * [Contract "Logable"](https://github.com/ArtARTs36/GitHandler/blob/f0cdbe421e82304343609b20ba2cccbedb0694e2/src/Contracts/Logable.php)
 * [Data Object "Author"](https://github.com/ArtARTs36/GitHandler/blob/f0cdbe421e82304343609b20ba2cccbedb0694e2/src/Data/Author.php)
@@ -84,13 +84,20 @@ Initial release with features:
 * [Exception "Repository Already Exists"](https://github.com/ArtARTs36/GitHandler/blob/f0cdbe421e82304343609b20ba2cccbedb0694e2/src/Exceptions/epositoryAlreadyExists.php) - throws in "git clone"
 * [Wrap: Git Commit](https://github.com/ArtARTs36/GitHandler/compare/0.3.0...0.3.1#diff-e6c1b6b7de0fe4a3e42ac15ab80c7b0758fc604d1ad24384c82c65a84c998a06R250)
 * [Wrap: Git Log](https://github.com/ArtARTs36/GitHandler/compare/0.3.0...0.3.1#diff-e6c1b6b7de0fe4a3e42ac15ab80c7b0758fc604d1ad24384c82c65a84c998a06R279)
-# fetch && commit amend
+# 0.3.2 :: Fetch && commit amend
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.3.1...0.3.2)
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.3.2)
 
+## Added
+* [Wrap: Git Fetch](https://github.com/ArtARTs36/GitHandler/compare/0.3.1...0.3.2#diff-e6c1b6b7de0fe4a3e42ac15ab80c7b0758fc604d1ad24384c82c65a84c998a06R296)
 
+## Changed
+* [Git Commit supported amend mode](https://github.com/ArtARTs36/GitHandler/compare/0.3.1...0.3.2#diff-e6c1b6b7de0fe4a3e42ac15ab80c7b0758fc604d1ad24384c82c65a84c998a06R252)
+
+## Internal
+* [Create interface "LogParser" for read input git response](https://github.com/ArtARTs36/GitHandler/blob/7b10e5420bcf3e431a1a8dfb3a8f9a60fc4020e1/src/Contracts/LogParser.php)
 # Read && Save Config
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.3.2...0.4.0)
