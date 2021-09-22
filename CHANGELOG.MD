@@ -104,7 +104,14 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.4.0)
 
-
+### Added
+* [Factory for simple repositories](https://github.com/ArtARTs36/GitHandler/blob/429b6a57df086e5428bb80449a7a891c99ce73e2/src/GitSimpleFactory.php)
+* [Contract "Configurable"](https://github.com/ArtARTs36/GitHandler/blob/429b6a57df086e5428bb80449a7a891c99ce73e2/src/Contracts/Configurable.php)
+Read config available for subjects:
+* [Core](https://github.com/ArtARTs36/GitHandler/blob/429b6a57df086e5428bb80449a7a891c99ce73e2/src/Config/Subjects/Core.php)
+* [Credential](https://github.com/ArtARTs36/GitHandler/blob/429b6a57df086e5428bb80449a7a891c99ce73e2/src/Config/Subjects/Credential.php)
+* [Pack](https://github.com/ArtARTs36/GitHandler/blob/429b6a57df086e5428bb80449a7a891c99ce73e2/src/Config/Subjects/Pack.php)
+* [User](https://github.com/ArtARTs36/GitHandler/blob/429b6a57df086e5428bb80449a7a891c99ce73e2/src/Config/Subjects/User.php)
 # 0.5.0 :: Refactor File System
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.4.0...0.5.0)
