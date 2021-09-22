@@ -157,7 +157,7 @@ Read config available for subjects:
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.8.0)
 
 ### Added
-* [OriginUrl for make url to remote](https://github.com/ArtARTs36/GitHandler/compare/0.7.0...0.8.0#diff-cbbfa44686443e3be36b0aa795742b6b1c17c1384c0064857f897765952c8430R5)
+* [OriginUrl for make url to remote](https://github.com/ArtARTs36/GitHandler/compare/0.7.0...0.8.0#diff-cbbfa44686443e3be36b0aa795742b6b1c17c1384c0064857f897765952c8430R5) - implements: GitHub, GitLab
 * [Exception "OriginUrlNotFound"](https://github.com/ArtARTs36/GitHandler/compare/0.7.0...0.8.0#diff-f80ee1a5e85513f0ca2c6c6e1b838c4c20b510e8c7e7ec083f929a2fa2b521c1R5)
 * [RepositoryDownloader for download repository from origin](https://github.com/ArtARTs36/GitHandler/compare/0.7.0...0.8.0#diff-8ddf40a9f1da55517939c189839eea20ce83fd6cfe68a4f504719bbade9f2818R11)
 # 0.8.1 :: Support download from bitbucket.org
@@ -166,7 +166,8 @@ Read config available for subjects:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.8.1)
 
-
+### Added
+* Implements BitBucket for Contract "OriginUrl"
 # 0.9.0 :: HasRemotes :: remove remote
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.8.1...0.9.0)
