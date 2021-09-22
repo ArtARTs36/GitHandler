@@ -107,6 +107,20 @@ final class GithubOriginUrlTest extends TestCase
         );
     }
 
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder::toTagsCompareFromFetchUrl
+     */
+    public function testToTagsCompareFromFetchUrl(): void
+    {
+        self::assertEquals(
+            'https://github.com/ArtARTs36/GitHandler/compare/0.13.0...1.0.0',
+            $this
+                ->makeGithubOriginUrl()
+                ->toTagsCompareFromFetchUrl('https://github.com/ArtARTs36/GitHandler', '0.13.0', '1.0.0')
+        );
+    }
+
     private function makeGithubOriginUrl(): GithubOriginUrlBuilder
     {
         return new GithubOriginUrlBuilder();

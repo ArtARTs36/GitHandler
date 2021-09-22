@@ -29,10 +29,22 @@ class ChangeLogBuilder
 
         $urlBuilder = new GithubOriginUrlBuilder();
 
+        /** @var RemoteTag|null $prev */
+        $prev = null;
+
         foreach ($tags as $tag) {
+            $compareLink = $prev === null ?
+                $urlBuilder->toTagFromFetchUrl('https://github.com/ArtARTs36/GitHandler', $tag->tag)
+                : $urlBuilder->toTagsCompareFromFetchUrl(
+                    'https://github.com/ArtARTs36/GitHandler',
+                    $prev->tag,
+                    $tag->tag
+                );
+
             $content .= $this->stubs->load('changelog_release.md')->render([
                 'releaseTitle' => $tag->title,
                 'releaseVersion' => $tag->tag,
+                'releaseCompareLink' => $compareLink,
                 'releaseDescription' => $tag->markdown->lines()->map(function (Str $str) {
                     if ($str->isNotEmpty() && $str->firstSymbol() === '#') {
                         $str = $str->prepend('#');
@@ -45,6 +57,8 @@ class ChangeLogBuilder
                     $tag->tag
                 ),
             ]);
+
+            $prev = $tag;
         }
 
         $content = $this->stubs->load('changelog.md')->render([
