@@ -4,6 +4,6 @@
 
 [View on Github]({$releaseRemoteUrl})
 
-[View Changes]({$releaseCompareLink})
+[↔️ View Changes]({$releaseCompareLink})
 
 {$releaseDescription}
