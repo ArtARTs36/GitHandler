@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\DocBuilder;
 
+use ArtARTs36\Str\Str;
+
 class RemoteTag
 {
     public $markdown;
@@ -10,7 +12,7 @@ class RemoteTag
 
     public $title;
 
-    public function __construct(string $markdown, string $tag, string $title)
+    public function __construct(Str $markdown, string $tag, string $title)
     {
         $this->markdown = $markdown;
         $this->tag = $tag;

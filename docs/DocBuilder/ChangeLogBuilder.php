@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\DocBuilder;
 
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
+use ArtARTs36\Str\Str;
 
 class ChangeLogBuilder
 {
@@ -32,7 +33,13 @@ class ChangeLogBuilder
             $content .= $this->stubs->load('changelog_release.md')->render([
                 'releaseTitle' => $tag->title,
                 'releaseVersion' => $tag->tag,
-                'releaseDescription' => $tag->markdown,
+                'releaseDescription' => $tag->markdown->lines()->map(function (Str $str) {
+                    if ($str->isNotEmpty() && $str->firstSymbol() === '#') {
+                        $str = $str->prepend('#');
+                    }
+
+                    return $str;
+                })->implodeAsLines(),
                 'releaseRemoteUrl' => $urlBuilder->toTagFromFetchUrl(
                     'https://github.com/ArtARTs36/GitHandler',
                     $tag->tag

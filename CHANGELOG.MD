@@ -17,7 +17,7 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.0)
 
-### Added
+#### Added
 
 * [Git Stash](https://github.com/ArtARTs36/GitHandler/blob/b765c99cea137625a8b7a0de97d6df434cd8d480/src/Git.php#L153)
 * [Delete repository Action](https://github.com/ArtARTs36/GitHandler/blob/b765c99cea137625a8b7a0de97d6df434cd8d480/src/Action.php#L66)
@@ -25,14 +25,14 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.1)
 
-### Changed
+#### Changed
 
 * [Git clone support target folder](https://github.com/ArtARTs36/GitHandler/blob/200bd4af390018c89478411d23d15e6c2fd60a8e/src/Git.php#L133)
 # 0.2.2 :: Show remote
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.2)
 
-### Added
+#### Added
 
 * [Reinstall: Delete local repository and fetch from origin](https://github.com/ArtARTs36/GitHandler/blob/0.2.2/src/Action.php#L66)
 * [Show remote](https://github.com/ArtARTs36/GitHandler/blob/1cb415c78cf0693b4d6a7ebd098212abce57d1c7/src/Git.php#L204)
@@ -40,7 +40,7 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.3)
 
-### Fixed
+#### Fixed
 * [Fix FileSystem for non-existing paths](https://github.com/ArtARTs36/GitHandler/commit/36a5fb17fff70d3452d3ad8f6941181c72df715c)
 
 # 0.3.0 :: Add Contracts
@@ -48,7 +48,7 @@ Initial release with features:
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.3.0)
 
 
-### Added
+#### Added
 * [Add .gitattributes](https://github.com/ArtARTs36/GitHandler/commit/a4654767203f8bea56f09f38f95cda2a414c56d5)
 * Add Contracts: GitHandler, Taggable, Addable, HasRemotes, Pushable
 * [Wrap git remote add](https://github.com/ArtARTs36/GitHandler/compare/0.2.3...0.3.0#diff-e6c1b6b7de0fe4a3e42ac15ab80c7b0758fc604d1ad24384c82c65a84c998a06R202)
@@ -146,7 +146,7 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.0.0)
 
-# Features
+## Features
 * Manage git attributes
 * Merge Commands
 * Garbage Commands
@@ -157,12 +157,12 @@ Initial release with features:
 * Rollback command
 * Git Version - full information
 
-# Fixes
+## Fixes
 * Correct processing of command results 
 
-# Backward Incompatible Changes
+## Backward Incompatible Changes
 * This version is not backward compatible with 0.x
 * See new readme
 
-# Internal
+## Internal
 * Build documentation by php interfaces (starts with GitHandler)

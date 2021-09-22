@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\DocBuilder;
 
+use ArtARTs36\Str\Str;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Stream;
 use Psr\Http\Client\ClientInterface;
@@ -63,7 +64,7 @@ class GithubRepo
         return array_map(function (array $item) {
             $item = $item['node'];
 
-            return new RemoteTag($item['description'], $item['tagName'], $item['name']);
+            return new RemoteTag(Str::make($item['description']), $item['tagName'], $item['name']);
         }, $releases);
     }
 }
