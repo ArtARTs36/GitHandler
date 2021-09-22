@@ -40,7 +40,7 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.2)
 
-##### Added
+### Added
 
 * [Reinstall: Delete local repository and fetch from origin](https://github.com/ArtARTs36/GitHandler/blob/0.2.2/src/Action.php#L66)
 * [Show remote](https://github.com/ArtARTs36/GitHandler/blob/1cb415c78cf0693b4d6a7ebd098212abce57d1c7/src/Git.php#L204)
@@ -50,7 +50,7 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.3)
 
-##### Fixed
+### Fixed
 * [Fix FileSystem for non-existing paths](https://github.com/ArtARTs36/GitHandler/commit/36a5fb17fff70d3452d3ad8f6941181c72df715c)
 
 # 0.3.0 :: Add Contracts
@@ -59,8 +59,7 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.3.0)
 
-
-##### Added
+### Added
 * [Add .gitattributes](https://github.com/ArtARTs36/GitHandler/commit/a4654767203f8bea56f09f38f95cda2a414c56d5)
 * Add Contracts: GitHandler, Taggable, Addable, HasRemotes, Pushable
 * [Wrap git remote add](https://github.com/ArtARTs36/GitHandler/compare/0.2.3...0.3.0#diff-e6c1b6b7de0fe4a3e42ac15ab80c7b0758fc604d1ad24384c82c65a84c998a06R202)
@@ -273,7 +272,7 @@ Read config available for subjects:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.0.0)
 
-### Features
+### Added
 * Manage git attributes
 * Merge Commands
 * Garbage Commands
@@ -284,7 +283,7 @@ Read config available for subjects:
 * Rollback command
 * Git Version - full information
 
-### Fixes
+### Fixed
 * Correct processing of command results 
 
 ### Backward Incompatible Changes
