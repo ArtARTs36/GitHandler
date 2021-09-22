@@ -21,7 +21,7 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.0)
 
-##### Added
+### Added
 
 * [Git Stash](https://github.com/ArtARTs36/GitHandler/blob/b765c99cea137625a8b7a0de97d6df434cd8d480/src/Git.php#L153)
 * [Delete repository Action](https://github.com/ArtARTs36/GitHandler/blob/b765c99cea137625a8b7a0de97d6df434cd8d480/src/Action.php#L66)
@@ -31,7 +31,7 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.2.1)
 
-##### Changed
+### Changed
 
 * [Git clone support target folder](https://github.com/ArtARTs36/GitHandler/blob/200bd4af390018c89478411d23d15e6c2fd60a8e/src/Git.php#L133)
 # 0.2.2 :: Show remote
@@ -98,7 +98,7 @@ Initial release with features:
 
 ### Internal
 * [Create interface "LogParser" for read input git response](https://github.com/ArtARTs36/GitHandler/blob/7b10e5420bcf3e431a1a8dfb3a8f9a60fc4020e1/src/Contracts/LogParser.php)
-# Read && Save Config
+# 0.4.0 :: Read && Save Config
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.3.2...0.4.0)
 
@@ -167,15 +167,21 @@ Initial release with features:
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.11.0)
 
-* Git grep
-* Mutation Testing
-# 0.11.1 :: OriginUrl::toRepo
+### Added
+* [Wrap: Git Grep](https://github.com/ArtARTs36/GitHandler/compare/0.10.1...0.11.0#diff-1d57d7cd19da40c2859b6b100b353996b3de84ca8e6fcb39931d59332c46c906R7)
+
+### Internal
+* [Add Mutation Testing to Github Actions](https://github.com/ArtARTs36/GitHandler/blob/11c16c97b27bfb8e8142c6c31da715acdad2b003/infection.json.dist)
+* [Add LICENSE file](https://github.com/ArtARTs36/GitHandler/blob/11c16c97b27bfb8e8142c6c31da715acdad2b003/LICENSE)
+# 0.11.1 :: OriginUrl::toRepoFromUrl
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.11.0...0.11.1)
 
 [View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/0.11.1)
 
-
+### Added
+* [Data Object "Repo"](https://github.com/ArtARTs36/GitHandler/blob/044d40bc05a31508631ca21fda55a3207424b1eb/src/Data/Repo.php)
+* [Converter to "Repo"](https://github.com/ArtARTs36/GitHandler/compare/0.11.0...0.11.1#diff-cbbfa44686443e3be36b0aa795742b6b1c17c1384c0064857f897765952c8430R22)
 # 0.11.2 :: OriginUrlSelector::selectByUrl
 
 [View Changes](https://github.com/ArtARTs36/GitHandler/compare/0.11.1...0.11.2)
