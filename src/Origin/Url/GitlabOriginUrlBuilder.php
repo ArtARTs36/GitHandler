@@ -27,4 +27,9 @@ class GitlabOriginUrlBuilder extends AbstractOriginUrlBuilder implements OriginU
     {
         return $this->toGitFolder($fetchUrl)->append('/-/tags/'. $tag);
     }
+
+    public function toTagsCompareFromFetchUrl(string $fetchUrl, string $oneTag, string $twoTag): string
+    {
+        return $this->toGitFolder($fetchUrl)->append("-/compare/$oneTag...$twoTag");
+    }
 }
