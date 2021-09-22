@@ -47,7 +47,7 @@ class ChangeLogBuilder
                 'releaseCompareLink' => $compareLink,
                 'releaseDescription' => $tag->markdown->lines()->map(function (Str $str) {
                     if ($str->isNotEmpty() && $str->firstSymbol() === '#') {
-                        $str = $str->prepend('#');
+                        $str = $str->prepend('##');
                     }
 
                     return $str;
