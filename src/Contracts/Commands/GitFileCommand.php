@@ -25,4 +25,9 @@ interface GitFileCommand
      * @throws FileNotFound
      */
     public function getContent(string $name): string;
+
+    /**
+     * Create path to $name in this git repository
+     */
+    public function createPathTo(string $name): string;
 }
