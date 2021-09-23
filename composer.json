@@ -5,7 +5,7 @@
     "require": {
         "php": ">=7.3",
         "artarts36/shell-command": "^2.1.5",
-        "artarts36/str": "^2.0",
+        "artarts36/str": "^2.0.1",
         "artarts36/file-system-contracts": "0.2.0",
         "psr/http-client": "^1.0",
         "guzzlehttp/psr7": "^1.8"
@@ -65,6 +65,10 @@
         "check-docs-actual": [
             "echo 'Check Documentation is actually'",
             "php docs/DocBuilder/is_actual.php"
+        ],
+        "build-changelog": [
+            "echo 'Build CHANGELOG.MD'",
+            "php docs/DocBuilder/build_changelog.php"
         ]
     }
 }

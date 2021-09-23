@@ -69,7 +69,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function set(string $scope, string $field, string $value, bool $replaceAll): bool;
+public function set(string $scope, string $field, string $value, bool $replaceAll = false): bool;
 ```
 
 #### Equals Git Command:
@@ -84,6 +84,31 @@ public function set(string $scope, string $field, string $value, bool $replaceAl
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 (new LocalGitFactory())->factory(__DIR__)->config()->set('user', 'name', 'ArtARTs36');
+```
+
+---
+### * Unset git config
+
+#### Method Signature:
+
+
+
+```php
+public function unset(string $scope, string $field): void;
+```
+
+#### Equals Git Command:
+
+`git config --unset $scope.$field`
+
+`git config --unset $scope.$field`
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->config()->unset('user', 'name');
 ```
 
 ---

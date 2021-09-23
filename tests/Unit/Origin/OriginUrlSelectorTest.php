@@ -93,6 +93,16 @@ class OriginUrlSelectorTest extends TestCase
             {
                 return '';
             }
+
+            public function toTagFromFetchUrl(string $fetchUrl, string $tag): string
+            {
+                return '';
+            }
+
+            public function toTagsCompareFromFetchUrl(string $fetchUrl, string $oneTag, string $twoTag): string
+            {
+                return '';
+            }
         };
     }
 }

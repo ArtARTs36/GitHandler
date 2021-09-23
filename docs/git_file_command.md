@@ -21,7 +21,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->files();
 #### Method Signature:
 
 ```php
-public function createFile(string $name, string $content, ?string $folder): string;
+public function createFile(string $name, string $content, ?string $folder = null): string;
 ```
 
 #### Example:
@@ -47,6 +47,40 @@ public function createFolder(string $name): self;
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 (new LocalGitFactory())->factory(__DIR__)->files()->createFolder('name-test');
+```
+
+---
+### * Get file content from git repository
+
+#### Method Signature:
+
+```php
+public function getContent(string $name): string;
+```
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->files()->getContent('name-test');
+```
+
+---
+### * Create path to $name in this git repository
+
+#### Method Signature:
+
+```php
+public function createPathTo(string $name): string;
+```
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->files()->createPathTo('name-test');
 ```
 
 ---

@@ -22,4 +22,14 @@ class GitlabOriginUrlBuilder extends AbstractOriginUrlBuilder implements OriginU
 
         return $folder->append("/-/archive/$branch/$repoName-$branch.zip");
     }
+
+    public function toTagFromFetchUrl(string $fetchUrl, string $tag): string
+    {
+        return $this->toGitFolder($fetchUrl)->append('/-/tags/'. $tag);
+    }
+
+    public function toTagsCompareFromFetchUrl(string $fetchUrl, string $oneTag, string $twoTag): string
+    {
+        return $this->toGitFolder($fetchUrl)->append("-/compare/$oneTag...$twoTag");
+    }
 }

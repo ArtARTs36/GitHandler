@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->index();
 
 
 ```php
-public function add(string|string[] $file, bool $force): bool;
+public function add(string|string[] $file, bool $force = false): bool;
 ```
 
 #### Equals Git Command:
@@ -48,7 +48,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function remove(string|string[] $files, bool $force): void;
+public function remove(string|string[] $files, bool $force = false): void;
 ```
 
 #### Equals Git Command:
@@ -63,6 +63,31 @@ public function remove(string|string[] $files, bool $force): void;
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 (new LocalGitFactory())->factory(__DIR__)->index()->remove('files-test', true);
+```
+
+---
+### * Remove cached file/files from git index
+
+#### Method Signature:
+
+
+
+```php
+public function removeCached(string|string[] $files, bool $force = false): void;
+```
+
+#### Equals Git Command:
+
+`git rm --cached $file`
+
+`git rm --cached $file1 $file2 ...`
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->index()->removeCached('files-test', true);
 ```
 
 ---
@@ -146,7 +171,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function checkout(string $path, bool $merge): bool;
+public function checkout(string $path, bool $merge = false): bool;
 ```
 
 #### Equals Git Command:

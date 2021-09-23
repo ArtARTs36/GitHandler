@@ -40,8 +40,18 @@ class FileCommand implements GitFileCommand
 
     public function createFolder(string $name): GitFileCommand
     {
-        $this->files->createDir($this->context->getRootDir() . DIRECTORY_SEPARATOR . $name);
+        $this->files->createDir($this->createPathTo($name));
 
         return $this;
+    }
+
+    public function getContent(string $name): string
+    {
+        return $this->files->getFileContent($this->createPathTo($name));
+    }
+
+    public function createPathTo(string $name): string
+    {
+        return $this->context->getRootDir() . DIRECTORY_SEPARATOR . $name;
     }
 }

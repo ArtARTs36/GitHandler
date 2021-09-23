@@ -92,4 +92,31 @@ class BitbucketOriginUrlTest extends TestCase
 
         (new BitbucketOriginUrlBuilder())->toRepoFromUrl($url);
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrlBuilder::toTagFromFetchUrl
+     */
+    public function testToTagFromFetchUrl(): void
+    {
+        self::assertEquals(
+            'https://bitbucket.org/aukrainsky/a1/src/1.0.0',
+            (new BitbucketOriginUrlBuilder())->toTagFromFetchUrl('https://bitbucket.org/aukrainsky/a1', '1.0.0')
+        );
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrlBuilder::toTagsCompareFromFetchUrl
+     */
+    public function testToTagsCompareFromFetchUrl(): void
+    {
+        self::assertEquals(
+            'https://bitbucket.org/aukrainsky/a1/branches/compare/1.0.0%0D0.1.1',
+            (new BitbucketOriginUrlBuilder())
+                ->toTagsCompareFromFetchUrl(
+                    'https://bitbucket.org/aukrainsky/a1',
+                    '1.0.0',
+                    '0.1.1'
+                )
+        );
+    }
 }

@@ -23,8 +23,10 @@ use ArtARTs36\GitHandler\Command\Commands\PushCommand;
 use ArtARTs36\GitHandler\Command\Commands\RemoteCommand;
 use ArtARTs36\GitHandler\Command\Commands\StashCommand;
 use ArtARTs36\GitHandler\Command\Commands\StatusCommand;
+use ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand;
 use ArtARTs36\GitHandler\Command\Commands\TagCommand;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
+use ArtARTs36\GitHandler\Backup\Backup;
 
 class GitFactoryMethodsTest extends GitTestCase
 {
@@ -54,6 +56,8 @@ class GitFactoryMethodsTest extends GitTestCase
             ['garbage', GarbageCommand::class],
             ['merges', MergeCommand::class],
             ['attributes', AttributeCommand::class],
+            ['submodules', SubmoduleCommand::class],
+            ['backup', Backup::class],
         ];
     }
 
@@ -82,6 +86,8 @@ class GitFactoryMethodsTest extends GitTestCase
      * @covers \ArtARTs36\GitHandler\Git::garbage
      * @covers \ArtARTs36\GitHandler\Git::merges
      * @covers \ArtARTs36\GitHandler\Git::attributes
+     * @covers \ArtARTs36\GitHandler\Git::submodules
+     * @covers \ArtARTs36\GitHandler\Git::backup
      */
     public function testFactoryMethod(string $method, string $expectedClass): void
     {

@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->commits();
 
 
 ```php
-public function commit(string $message, bool $amend): bool;
+public function commit(string $message, bool $amend = false): bool;
 ```
 
 #### Equals Git Command:
@@ -48,7 +48,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function autoCommit(string $message, bool $amend): bool;
+public function autoCommit(string $message, bool $amend = false): bool;
 ```
 
 #### Equals Git Command:

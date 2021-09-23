@@ -23,4 +23,11 @@ interface GitPushCommand
      * @git-command git push --set-upstream origin {current-branch}
      */
     public function pushOnAutoSetUpStream(bool $force = false): bool;
+
+    /**
+     * Push all git tags
+     * @git-command git push --tags
+     * @return bool - have new tags been sent
+     */
+    public function pushAllTags(bool $force = false, ?string $upStream = null): bool;
 }

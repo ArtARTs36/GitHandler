@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->pushes();
 
 
 ```php
-public function push(bool $force, ?string $upStream): bool;
+public function push(bool $force = false, ?string $upStream = null): bool;
 ```
 
 #### Equals Git Command:
@@ -50,7 +50,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function pushOnAutoSetUpStream(bool $force): bool;
+public function pushOnAutoSetUpStream(bool $force = false): bool;
 ```
 
 #### Equals Git Command:
@@ -63,6 +63,29 @@ public function pushOnAutoSetUpStream(bool $force): bool;
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 (new LocalGitFactory())->factory(__DIR__)->pushes()->pushOnAutoSetUpStream(true);
+```
+
+---
+### * Push all git tags
+
+#### Method Signature:
+
+
+
+```php
+public function pushAllTags(bool $force = false, ?string $upStream = null): bool;
+```
+
+#### Equals Git Command:
+
+`git push --tags`
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->pushes()->pushAllTags(true, 'upStream-test');
 ```
 
 ---

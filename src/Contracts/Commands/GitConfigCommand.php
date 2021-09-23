@@ -34,4 +34,12 @@ interface GitConfigCommand
      * @exampleArguments user name ArtARTs36
      */
     public function set(string $scope, string $field, string $value, bool $replaceAll = false): bool;
+
+    /**
+     * Unset git config
+     * @git-command git config --unset $scope.$field
+     * @git-command git config --unset $scope.$field
+     * @exampleArguments user name
+     */
+    public function unset(string $scope, string $field): void;
 }

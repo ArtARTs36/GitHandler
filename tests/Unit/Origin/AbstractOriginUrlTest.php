@@ -38,6 +38,16 @@ class AbstractOriginUrlTest extends TestCase
             {
                 //
             }
+
+            public function toTagFromFetchUrl(string $fetchUrl, string $tag): string
+            {
+                // TODO: Implement toTagFromFetchUrl() method.
+            }
+
+            public function toTagsCompareFromFetchUrl(string $fetchUrl, string $oneTag, string $twoTag): string
+            {
+                return '';
+            }
         };
     }
 

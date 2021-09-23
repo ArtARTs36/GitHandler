@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\DocBuilder;
 
+use ArtARTs36\GitHandler\Support\TypeCaster;
 use ArtARTs36\Str\Facade\Str;
 use phpDocumentor\Reflection\DocBlock;
 
@@ -74,7 +75,14 @@ class MethodSignatureBuilder
                 }
             }
 
-            return $type . ' $' . $parameter->name;
+            $defaultValue = static::getDefaultValue($parameter, $type);
+            $defaultValue = strlen($defaultValue) > 0 ? (' = ' . $defaultValue) : '';
+
+            if ($parameter->allowsNull() && $parameter->hasType() && Str::firstSymbol($parameter->getType()) !== '?') {
+                $type = '?' . $type;
+            }
+
+            return $type . ' $' . $parameter->name . $defaultValue;
         }, $method->getParameters());
 
         return new MethodSignature(
@@ -84,6 +92,25 @@ class MethodSignatureBuilder
         );
     }
 
+    protected static function getDefaultValue(\ReflectionParameter $parameter, string $type): string
+    {
+        $value = $parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : '';
+
+        if (is_string($value) && strlen($value) === 0) {
+            return '';
+        }
+
+        if ($type === 'bool') {
+            return $value ? 'true' : 'false';
+        }
+
+        if ($value === null) {
+            return 'null';
+        }
+
+        return $value;
+    }
+
     protected static function buildSignature(\ReflectionMethod $method, array $params, DocBlock $docBlock): string
     {
         $params = implode(', ', $params);
@@ -91,7 +118,13 @@ class MethodSignatureBuilder
         if ($docBlock->hasTag('return')) {
             $returnType = (string) ($docBlock->getTagsByName('return')[0]->getType());
         } elseif ($method->hasReturnType()) {
-            $returnType = (string) $method->getReturnType();
+            $type = $method->getReturnType();
+
+            $returnType = (string) $type;
+
+            if ($type->allowsNull() && Str::firstSymbol($returnType) !== '?') {
+                $returnType = '?' . $returnType;
+            }
         } else {
             $returnType = 'mixed';
         }

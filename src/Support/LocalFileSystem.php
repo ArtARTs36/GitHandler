@@ -49,7 +49,11 @@ class LocalFileSystem implements FileSystem
      */
     public function getFromDirectory(string $path): array
     {
-        return glob($this->getAbsolutePath($path) . '/*');
+        $path = rtrim($path, DIRECTORY_SEPARATOR);
+
+        return array_values(array_map(function (string $file) use ($path) {
+            return $path . DIRECTORY_SEPARATOR . $file;
+        }, array_diff(scandir($this->getAbsolutePath($path)), ['.', '..'])));
     }
 
     public function downPath(string $path): string

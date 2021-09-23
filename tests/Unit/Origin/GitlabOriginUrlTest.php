@@ -84,4 +84,33 @@ class GitlabOriginUrlTest extends TestCase
 
         (new GitlabOriginUrlBuilder())->toRepoFromUrl('h');
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder::toTagFromFetchUrl
+     */
+    public function testToTagFromFetchUrl(): void
+    {
+        self::assertEquals(
+            'https://gitlab.com/author/repo/-/tags/1.0.0',
+            $this->makeGitlabOriginUrlBuilder()->toTagFromFetchUrl('https://gitlab.com/author/repo', '1.0.0')
+        );
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder::toTagsCompareFromFetchUrl
+     */
+    public function testToTagsCompareFromFetchUrl(): void
+    {
+        self::assertEquals(
+            'https://gitlab.com/author/repo/-/compare/1.0.0...0.1.1',
+            $this
+                ->makeGitlabOriginUrlBuilder()
+                ->toTagsCompareFromFetchUrl('https://gitlab.com/author/repo/', '1.0.0', '0.1.1')
+        );
+    }
+
+    private function makeGitlabOriginUrlBuilder(): GitlabOriginUrlBuilder
+    {
+        return new GitlabOriginUrlBuilder();
+    }
 }
