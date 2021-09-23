@@ -7,7 +7,7 @@ use ArtARTs36\GitHandler\Enum\ConfigSectionName;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 use ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement;
 
-final class ConfigWorkflowElementTest extends GitTestCase
+final class ConfigBackupElementTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement::dump
@@ -17,11 +17,11 @@ final class ConfigWorkflowElementTest extends GitTestCase
     {
         $element = $this->makeConfigWorkflowElement();
 
-        $this->mockCommandExecutor->nextOk('commit.template=path');
+        $this->mockGitHandler->files()->createFile('.git/config', 'a1=b2');
 
         $dump = $element->dump($this->mockGitHandler);
 
-        self::assertEquals('path', $dump['commit']->templatePath);
+        self::assertEquals('a1=b2', $dump['content']);
     }
 
     /**
@@ -34,9 +34,11 @@ final class ConfigWorkflowElementTest extends GitTestCase
 
         $this->mockCommandExecutor->nextOk();
 
-        self::assertNull($element->restore($this->mockGitHandler, [
-            ConfigSectionName::COMMIT => new ConfigCommit($path = '/var/commit.template'),
-        ]));
+        $element->restore($this->mockGitHandler, [
+            'content' => 'a1=b3',
+        ]);
+
+        self::assertEquals('a1=b3', $this->mockGitHandler->files()->getContent('.git/config'));
     }
 
     private function makeConfigWorkflowElement(): ConfigBackupElement

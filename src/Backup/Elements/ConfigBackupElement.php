@@ -10,6 +10,7 @@ final class ConfigBackupElement extends AbstractBackupElement
 {
     public const IDENTITY = 'config';
 
+    #[ArrayShape(['content' => 'string'])]
     public function dump(GitHandler $git): array
     {
         return [
