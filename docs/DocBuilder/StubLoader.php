@@ -23,7 +23,7 @@ class StubLoader
             return $this->stubs[$name];
         }
 
-        return $this->stubs[] = $this->doLoad($name);
+        return $this->stubs[$name] = $this->doLoad($name);
     }
 
     private function doLoad(string $name): Stub
