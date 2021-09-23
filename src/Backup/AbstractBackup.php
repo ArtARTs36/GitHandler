@@ -12,7 +12,7 @@ abstract class AbstractBackup implements GitBackup
     /**
      * Execute dump backup
      */
-    abstract protected function doDump(string $path, BackupBuilding $building): void;
+    abstract protected function doDump(string $path, GitBackupBuilding $building): void;
 
     /**
      * Execute restore backup
