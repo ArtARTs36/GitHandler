@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Data\Hook;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 use ArtARTs36\GitHandler\Backup\Elements\HookBackupElement;
 
-final class HookWorkflowElementTest extends GitTestCase
+final class HookBackupElementTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Backup\Elements\HookBackupElement::dump
