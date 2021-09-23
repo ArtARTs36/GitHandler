@@ -5,14 +5,19 @@ namespace ArtARTs36\GitHandler\Backup;
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Workflow\GitBackup;
-use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflowBuilding;
+use ArtARTs36\GitHandler\Contracts\Workflow\GitBackupBuilding;
 
 abstract class AbstractBackup implements GitBackup
 {
     /**
-     * Execute dump workflow
+     * Execute dump backup
      */
     abstract protected function doDump(string $path, BackupBuilding $building): void;
+
+    /**
+     * Execute restore backup
+     */
+    abstract protected function doRestore(string $path, GitBackupBuilding $building): void;
 
     protected $git;
 
@@ -20,7 +25,7 @@ abstract class AbstractBackup implements GitBackup
 
     protected $building;
 
-    public function __construct(GitHandler $git, FileSystem $files, GitWorkflowBuilding $building)
+    public function __construct(GitHandler $git, FileSystem $files, GitBackupBuilding $building)
     {
         $this->git = $git;
         $this->files = $files;
@@ -35,5 +40,15 @@ abstract class AbstractBackup implements GitBackup
     public function dumpOnly(string $path, array $elements): void
     {
         $this->doDump($path, $this->building->only($elements));
+    }
+
+    public function restore(string $path): void
+    {
+        $this->doRestore($path, $this->building);
+    }
+
+    public function restoreOnly(string $path, array $elements): void
+    {
+        $this->doRestore($path, $this->building->only($elements));
     }
 }

@@ -8,18 +8,24 @@ namespace ArtARTs36\GitHandler\Contracts\Workflow;
 interface GitBackup
 {
     /**
-     * Dump workflow
+     * Dump backup
      */
     public function dump(string $path): void;
 
     /**
-     * Dump workflow
+     * Dump backup
      * @param non-empty-list<class-string<BackupElement>|string> $elements
      */
     public function dumpOnly(string $path, array $elements): void;
 
     /**
-     * Restore workflow
+     * Restore backup
      */
     public function restore(string $path): void;
+
+    /**
+     * Restore backup
+     * @param non-empty-list<class-string<BackupElement>|string> $elements
+     */
+    public function restoreOnly(string $path, array $elements): void;
 }

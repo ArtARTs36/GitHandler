@@ -3,14 +3,15 @@
 namespace ArtARTs36\GitHandler\Backup;
 
 use ArtARTs36\GitHandler\Contracts\Workflow\GitBackup;
+use ArtARTs36\GitHandler\Contracts\Workflow\GitBackupBuilding;
 
 class Backup extends AbstractBackup implements GitBackup
 {
-    public function restore(string $path): void
+    public function doRestore(string $path, GitBackupBuilding $building): void
     {
         $dumpMap = unserialize($this->files->getFileContent($path));
 
-        foreach ($this->building as $element) {
+        foreach ($building as $element) {
             $class = get_class($element);
 
             if (! array_key_exists($class, $dumpMap)) {

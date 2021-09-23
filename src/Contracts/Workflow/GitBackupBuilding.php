@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Workflow;
 
-interface GitWorkflowBuilding extends \IteratorAggregate
+interface GitBackupBuilding extends \IteratorAggregate
 {
     /**
      * @param array<class-string<BackupElement>|string> $classes
