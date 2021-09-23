@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->statuses();
 
 
 ```php
-public function status(bool $short): ArtARTs36\Str\Str;
+public function status(bool $short = false): ArtARTs36\Str\Str;
 ```
 
 #### Equals Git Command:

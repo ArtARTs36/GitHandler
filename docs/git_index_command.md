@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->index();
 
 
 ```php
-public function add(string|string[] $file, bool $force): bool;
+public function add(string|string[] $file, bool $force = false): bool;
 ```
 
 #### Equals Git Command:
@@ -48,7 +48,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function remove(string|string[] $files, bool $force): void;
+public function remove(string|string[] $files, bool $force = false): void;
 ```
 
 #### Equals Git Command:
@@ -73,7 +73,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function removeCached(string|string[] $files, bool $force): void;
+public function removeCached(string|string[] $files, bool $force = false): void;
 ```
 
 #### Equals Git Command:
@@ -171,7 +171,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function checkout(string $path, bool $merge): bool;
+public function checkout(string $path, bool $merge = false): bool;
 ```
 
 #### Equals Git Command:

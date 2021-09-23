@@ -23,7 +23,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->merges();
 
 
 ```php
-public function merge(string $branch, ?string $message): void;
+public function merge(string $branch, ?string $message = null): void;
 ```
 
 #### Equals Git Command:
@@ -48,7 +48,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function mergeSquash(string $branch, ?string $message): void;
+public function mergeSquash(string $branch, ?string $message = null): void;
 ```
 
 #### Equals Git Command:

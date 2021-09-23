@@ -69,7 +69,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 
 ```php
-public function set(string $scope, string $field, string $value, bool $replaceAll): bool;
+public function set(string $scope, string $field, string $value, bool $replaceAll = false): bool;
 ```
 
 #### Equals Git Command:

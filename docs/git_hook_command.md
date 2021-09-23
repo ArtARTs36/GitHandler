@@ -97,7 +97,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 #### Method Signature:
 
 ```php
-public function getAll(bool $onlyWorked): array<string,\Hook>;
+public function getAll(bool $onlyWorked = true): array<string,\Hook>;
 ```
 
 #### Example:
@@ -114,7 +114,7 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 #### Method Signature:
 
 ```php
-public function getHookPath(?string $name): string;
+public function getHookPath(?string $name = null): string;
 ```
 
 #### Example:
