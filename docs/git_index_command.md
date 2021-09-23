@@ -66,6 +66,31 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
+### * Remove cached file/files from git index
+
+#### Method Signature:
+
+
+
+```php
+public function removeCached(string|string[] $files, bool $force): void;
+```
+
+#### Equals Git Command:
+
+`git rm --cached $file`
+
+`git rm --cached $file1 $file2 ...`
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->index()->removeCached('files-test', true);
+```
+
+---
 ### * Git Reset
 
 #### Method Signature:

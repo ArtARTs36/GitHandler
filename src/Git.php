@@ -6,7 +6,10 @@ use ArtARTs36\GitHandler\Command\Commands\ArchiveCommand;
 use ArtARTs36\GitHandler\Command\Commands\AttributeCommand;
 use ArtARTs36\GitHandler\Command\Commands\GarbageCommand;
 use ArtARTs36\GitHandler\Command\Commands\MergeCommand;
+use ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
+use ArtARTs36\GitHandler\Config\Configurators\CommitConfigurator;
+use ArtARTs36\GitHandler\Config\Configurators\SubmoduleConfigurator;
 use ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitGarbageCommand;
@@ -32,6 +35,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitPushCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitRemoteCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitStashCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitStatusCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitSubmoduleCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand;
 use ArtARTs36\GitHandler\Command\Commands\GrepCommand;
 use ArtARTs36\GitHandler\Command\Commands\HelpCommand;
@@ -56,11 +60,17 @@ use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
+use ArtARTs36\GitHandler\Contracts\Backup\GitBackup;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\GitHandler\Support\Logger;
 use ArtARTs36\GitHandler\Support\TemporaryPathGenerator;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
+use ArtARTs36\GitHandler\Backup\ArrayBackupElementDict;
+use ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement;
+use ArtARTs36\GitHandler\Backup\Elements\HookBackupElement;
+use ArtARTs36\GitHandler\Backup\Backup;
+use ArtARTs36\GitHandler\Backup\Elements\UntrackedFilesBackupElement;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\Str\Str;
 use ArtARTs36\GitHandler\Contracts\Commands\GitArchiveCommand;
@@ -198,6 +208,8 @@ class Git implements GitHandler
                     new PackConfigurator(),
                     new CredentialConfigurator(),
                     new BranchConfigurator(),
+                    new SubmoduleConfigurator(),
+                    new CommitConfigurator(),
                 ])
             ),
             $this->commandBuilder,
@@ -267,5 +279,26 @@ class Git implements GitHandler
     public function attributes(): GitAttributeCommand
     {
         return new AttributeCommand($this->fileSystem, $this->context);
+    }
+
+    public function submodules(): GitSubmoduleCommand
+    {
+        return new SubmoduleCommand(
+            $this->config(),
+            $this->index(),
+            $this->context,
+            $this->fileSystem,
+            $this->commandBuilder,
+            $this->executor
+        );
+    }
+
+    public function backup(): GitBackup
+    {
+        return new Backup($this, $this->fileSystem, (new ArrayBackupElementDict([
+            new ConfigBackupElement(),
+            new HookBackupElement(),
+            new UntrackedFilesBackupElement(),
+        ])));
     }
 }

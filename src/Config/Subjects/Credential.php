@@ -2,16 +2,15 @@
 
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
+use ArtARTs36\GitHandler\Attributes\ConfigKey;
 use JetBrains\PhpStorm\Immutable;
 
 #[Immutable]
 class Credential extends AbstractSubject
 {
+    #[ConfigKey('helper')]
     public $helper;
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function __construct(string $helper)
     {
         $this->helper = $helper;

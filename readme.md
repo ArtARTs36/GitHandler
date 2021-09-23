@@ -25,6 +25,7 @@ Tool for work with Git in PHP
 
 * [Git Archive](docs/git_archive_command.md)
 * [Git Attributes](docs/git_attribute_command.md)
+* [Git Backup (dump and restore git features)](docs/git_backup.md)
 * [Git Branches](docs/git_branch_command.md)
 * [Git Commits](docs/git_commit_command.md)
 * [Git Config (set, get list, ...)](docs/git_config_command.md)
@@ -44,6 +45,7 @@ Tool for work with Git in PHP
 * [Git Remote (add, show, remove, ...)](docs/git_remote_command.md)
 * [Git Stash](docs/git_stash_command.md)
 * [Git Status](docs/git_status_command.md)
+* [Git Submodule](docs/git_submodule_command.md)
 * [Git Tags](docs/git_tag_command.md)
 * [Git Transactions](docs/git_transaction.md)
 * [Download](docs/downloader.md)

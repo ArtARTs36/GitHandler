@@ -92,4 +92,13 @@ class ArrayFileSystem extends LocalFileSystem implements FileSystem
 
         return $find;
     }
+
+    public function firstFile(): array
+    {
+        if (count($this->files) === 0) {
+            return [];
+        }
+
+        return [key($this->files), reset($this->files)];
+    }
 }

@@ -21,6 +21,11 @@ class Hook
         $this->lastUpdateDate = $lastUpdateDate;
     }
 
+    public static function now(string $name, string $script): self
+    {
+        return new self($name, $script, new \DateTime());
+    }
+
     public function isSample(): bool
     {
         return pathinfo($this->name, PATHINFO_EXTENSION) === 'sample';

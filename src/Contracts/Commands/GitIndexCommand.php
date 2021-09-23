@@ -27,6 +27,14 @@ interface GitIndexCommand
     public function remove($files, bool $force = false): void;
 
     /**
+     * Remove cached file/files from git index
+     * @git-command git rm --cached $file
+     * @git-command git rm --cached $file1 $file2 ...
+     * @param string|array<string> $files
+     */
+    public function removeCached($files, bool $force = false): void;
+
+    /**
      * Git Reset
      * @git-command git reset --$mode $subject
      */
