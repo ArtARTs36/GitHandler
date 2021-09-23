@@ -3,9 +3,9 @@
 namespace ArtARTs36\GitHandler\Tests\Support;
 
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
-use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
+use ArtARTs36\GitHandler\Contracts\Workflow\BackupElement;
 
-class TestWorkflowElement implements WorkflowElement
+class TestBackupElement implements BackupElement
 {
     private $dumpResult;
 

@@ -3,9 +3,9 @@
 namespace ArtARTs36\GitHandler\Backup\Elements;
 
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
-use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
+use ArtARTs36\GitHandler\Contracts\Workflow\BackupElement;
 
-class UntrackedFilesWorkflowElement extends AbstractWorkflowElement implements WorkflowElement
+class UntrackedFilesBackupElement extends AbstractBackupElement implements BackupElement
 {
     public const IDENTITY = 'files.untracked';
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit\Workflow;
+namespace ArtARTs36\GitHandler\Tests\Unit\Backup;
 
 use ArtARTs36\GitHandler\Data\Hook;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
-use ArtARTs36\GitHandler\Backup\Elements\HookWorkflowElement;
+use ArtARTs36\GitHandler\Backup\Elements\HookBackupElement;
 
 final class HookWorkflowElementTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Backup\Elements\HookWorkflowElement::dump
+     * @covers \ArtARTs36\GitHandler\Backup\Elements\HookBackupElement::dump
      */
     public function testDump(): void
     {
@@ -19,7 +19,7 @@ final class HookWorkflowElementTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Backup\Elements\HookWorkflowElement::restore
+     * @covers \ArtARTs36\GitHandler\Backup\Elements\HookBackupElement::restore
      */
     public function testRestore(): void
     {
@@ -36,8 +36,8 @@ final class HookWorkflowElementTest extends GitTestCase
         $this->mockCommandExecutor->assertAttempts(3);
     }
 
-    private function makeHookWorkflowElement(): HookWorkflowElement
+    private function makeHookWorkflowElement(): HookBackupElement
     {
-        return new HookWorkflowElement();
+        return new HookBackupElement();
     }
 }

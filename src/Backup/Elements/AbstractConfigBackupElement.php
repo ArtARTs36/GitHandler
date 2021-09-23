@@ -5,12 +5,12 @@ namespace ArtARTs36\GitHandler\Backup\Elements;
 use ArtARTs36\GitHandler\Config\Mapper\ConfigKeyPropertyMapper;
 use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
-use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
+use ArtARTs36\GitHandler\Contracts\Workflow\BackupElement;
 
 /**
  * @internal
  */
-abstract class AbstractConfigWorkflowElement extends AbstractWorkflowElement implements WorkflowElement
+abstract class AbstractConfigBackupElement extends AbstractBackupElement implements BackupElement
 {
     protected $mapper;
 

@@ -14,7 +14,7 @@ interface GitBackup
 
     /**
      * Dump workflow
-     * @param non-empty-list<class-string<WorkflowElement>|string> $elements
+     * @param non-empty-list<class-string<BackupElement>|string> $elements
      */
     public function dumpOnly(string $path, array $elements): void;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit\Workflow;
+namespace ArtARTs36\GitHandler\Tests\Unit\Backup;
 
 use ArtARTs36\GitHandler\Config\Subjects\ConfigCommit;
 use ArtARTs36\GitHandler\Enum\ConfigSectionName;

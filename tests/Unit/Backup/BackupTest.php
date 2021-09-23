@@ -1,9 +1,9 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Tests\Unit\Workflow;
+namespace ArtARTs36\GitHandler\Tests\Unit\Backup;
 
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
-use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
+use ArtARTs36\GitHandler\Contracts\Workflow\BackupElement;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 use ArtARTs36\GitHandler\Backup\BackupBuilding;
 use ArtARTs36\GitHandler\Backup\Backup;
@@ -28,7 +28,7 @@ final class BackupTest extends GitTestCase
      */
     public function testDumpOnly(): void
     {
-        $element = new class implements WorkflowElement {
+        $element = new class implements BackupElement {
             public function dump(GitHandler $git): array
             {
                 return ['key' => 'value'];
@@ -73,7 +73,7 @@ final class BackupTest extends GitTestCase
      */
     public function testRestore(): void
     {
-        $element = new class implements WorkflowElement {
+        $element = new class implements BackupElement {
             public $restored;
 
             public function dump(GitHandler $git): array
@@ -92,7 +92,7 @@ final class BackupTest extends GitTestCase
             }
         };
 
-        $otherElement = new class implements WorkflowElement {
+        $otherElement = new class implements BackupElement {
             public function dump(GitHandler $git): array
             {
                 // TODO: Implement dump() method.
