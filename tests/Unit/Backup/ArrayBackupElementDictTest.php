@@ -43,4 +43,14 @@ final class ArrayBackupElementDictTest extends TestCase
 
         self::assertEquals($expected, (array) $dict->getIterator());
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Backup\ArrayBackupElementDict::only
+     */
+    public function testOnlyIsImmutable(): void
+    {
+        $dict = new ArrayBackupElementDict([new HookBackupElement()]);
+
+        self::assertNotEquals(spl_object_id($dict), spl_object_id($dict->only([HookBackupElement::IDENTITY])));
+    }
 }
