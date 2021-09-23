@@ -9,7 +9,7 @@ Use the interface: [ArtARTs36\GitHandler\Contracts\Backup\GitBackup](../src/Cont
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->backups();
+$command = (new LocalGitFactory())->factory(__DIR__)->backup();
 ```
 
 ---
@@ -29,7 +29,7 @@ public function dump(string $path): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->backups()->dump('/path/to/file');
+(new LocalGitFactory())->factory(__DIR__)->backup()->dump('/path/to/file');
 ```
 
 ---
@@ -46,7 +46,7 @@ public function dumpOnly(string $path, array $elements): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->backups()->dumpOnly('/path/to/file', 'elements-test');
+(new LocalGitFactory())->factory(__DIR__)->backup()->dumpOnly('/path/to/file', 'elements-test');
 ```
 
 ---
@@ -63,7 +63,7 @@ public function restore(string $path): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->backups()->restore('/path/to/file');
+(new LocalGitFactory())->factory(__DIR__)->backup()->restore('/path/to/file');
 ```
 
 ---
@@ -80,7 +80,7 @@ public function restoreOnly(string $path, array $elements): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->backups()->restoreOnly('/path/to/file', 'elements-test');
+(new LocalGitFactory())->factory(__DIR__)->backup()->restoreOnly('/path/to/file', 'elements-test');
 ```
 
 ---

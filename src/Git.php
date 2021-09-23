@@ -293,7 +293,7 @@ class Git implements GitHandler
         );
     }
 
-    public function backups(): GitBackup
+    public function backup(): GitBackup
     {
         return new Backup($this, $this->fileSystem, (new ArrayBackupElementDict([
             new ConfigBackupElement(),

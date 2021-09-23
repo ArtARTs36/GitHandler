@@ -57,7 +57,7 @@ class GitFactoryMethodsTest extends GitTestCase
             ['merges', MergeCommand::class],
             ['attributes', AttributeCommand::class],
             ['submodules', SubmoduleCommand::class],
-            ['backups', Backup::class],
+            ['backup', Backup::class],
         ];
     }
 
@@ -87,7 +87,7 @@ class GitFactoryMethodsTest extends GitTestCase
      * @covers \ArtARTs36\GitHandler\Git::merges
      * @covers \ArtARTs36\GitHandler\Git::attributes
      * @covers \ArtARTs36\GitHandler\Git::submodules
-     * @covers \ArtARTs36\GitHandler\Git::backups
+     * @covers \ArtARTs36\GitHandler\Git::backup
      */
     public function testFactoryMethod(string $method, string $expectedClass): void
     {
