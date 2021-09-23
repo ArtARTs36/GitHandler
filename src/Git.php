@@ -67,7 +67,7 @@ use ArtARTs36\GitHandler\Support\Logger;
 use ArtARTs36\GitHandler\Support\TemporaryPathGenerator;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
 use ArtARTs36\GitHandler\Backup\BackupBuilding;
-use ArtARTs36\GitHandler\Backup\Elements\ConfigCommitWorkflowElement;
+use ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement;
 use ArtARTs36\GitHandler\Backup\Elements\HookBackupElement;
 use ArtARTs36\GitHandler\Backup\Backup;
 use ArtARTs36\GitHandler\Backup\Elements\UntrackedFilesBackupElement;
@@ -296,7 +296,7 @@ class Git implements GitHandler
     public function backups(): GitBackup
     {
         return new Backup($this, $this->fileSystem, (new BackupBuilding([
-            new ConfigCommitWorkflowElement(),
+            new ConfigBackupElement(),
             new HookBackupElement(),
             new UntrackedFilesBackupElement(),
         ])));

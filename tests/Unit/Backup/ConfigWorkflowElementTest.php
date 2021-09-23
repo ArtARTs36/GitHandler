@@ -5,13 +5,13 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Backup;
 use ArtARTs36\GitHandler\Config\Subjects\ConfigCommit;
 use ArtARTs36\GitHandler\Enum\ConfigSectionName;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
-use ArtARTs36\GitHandler\Backup\Elements\ConfigCommitWorkflowElement;
+use ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement;
 
 final class ConfigWorkflowElementTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigCommitWorkflowElement::dump
-     * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigCommitWorkflowElement::__construct
+     * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement::dump
+     * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement::__construct
      */
     public function testDump(): void
     {
@@ -25,8 +25,8 @@ final class ConfigWorkflowElementTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigCommitWorkflowElement::restore
-     * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigCommitWorkflowElement::__construct
+     * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement::restore
+     * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement::__construct
      */
     public function testRestore(): void
     {
@@ -39,8 +39,8 @@ final class ConfigWorkflowElementTest extends GitTestCase
         ]));
     }
 
-    private function makeConfigWorkflowElement(): ConfigCommitWorkflowElement
+    private function makeConfigWorkflowElement(): ConfigBackupElement
     {
-        return new ConfigCommitWorkflowElement();
+        return new ConfigBackupElement();
     }
 }

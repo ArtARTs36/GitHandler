@@ -4,7 +4,7 @@ namespace ArtARTs36\GitHandler\Backup;
 
 use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflowBuilding;
 use ArtARTs36\GitHandler\Contracts\Workflow\BackupElement;
-use ArtARTs36\GitHandler\Backup\Elements\ConfigCommitWorkflowElement;
+use ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement;
 use ArtARTs36\GitHandler\Backup\Elements\HookBackupElement;
 use ArtARTs36\GitHandler\Backup\Elements\UntrackedFilesBackupElement;
 
