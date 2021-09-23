@@ -17,6 +17,6 @@ $repo = new GithubRepo(new Client(), 'api.github.com', $repoData, getenv('GITHUB
 
 $files = new LocalFileSystem();
 
-$builder = new ChangeLogBuilder($repo, new StubLoader($files), $files);
+$builder = new ChangeLogBuilder($urlBuilder, $repo, new StubLoader($files), $files);
 
 $builder->build(__DIR__ . '/../../CHANGELOG.MD');

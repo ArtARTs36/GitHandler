@@ -3,19 +3,23 @@
 namespace ArtARTs36\GitHandler\DocBuilder;
 
 use ArtARTs36\FileSystem\Contracts\FileSystem;
+use ArtARTs36\GitHandler\Contracts\Origin\OriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
 use ArtARTs36\Str\Str;
 
 class ChangeLogBuilder
 {
+    private $urlBuilder;
+
     private $remote;
 
     private $stubs;
 
     private $files;
 
-    public function __construct(GithubRepo $remote, StubLoader $stubs, FileSystem $files)
+    public function __construct(OriginUrlBuilder $urlBuilder, GithubRepo $remote, StubLoader $stubs, FileSystem $files)
     {
+        $this->urlBuilder = $urlBuilder;
         $this->remote = $remote;
         $this->stubs = $stubs;
         $this->files = $files;
@@ -27,15 +31,13 @@ class ChangeLogBuilder
 
         $content = '';
 
-        $urlBuilder = new GithubOriginUrlBuilder();
-
         /** @var RemoteTag|null $prev */
         $prev = null;
 
         foreach ($tags as $tag) {
             $compareLink = $prev === null ?
-                $urlBuilder->toTagFromFetchUrl('https://github.com/ArtARTs36/GitHandler', $tag->tag)
-                : $urlBuilder->toTagsCompareFromFetchUrl(
+                $this->urlBuilder->toTagFromFetchUrl('https://github.com/ArtARTs36/GitHandler', $tag->tag)
+                : $this->urlBuilder->toTagsCompareFromFetchUrl(
                     'https://github.com/ArtARTs36/GitHandler',
                     $prev->tag,
                     $tag->tag
