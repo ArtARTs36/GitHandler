@@ -2,8 +2,12 @@
 
 namespace ArtARTs36\GitHandler\Tests\Unit\Backup;
 
+use ArtARTs36\GitHandler\Backup\Elements\AbstractBackupElement;
+use ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement;
+use ArtARTs36\GitHandler\Backup\Elements\HookBackupElement;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Backup\BackupElement;
+use ArtARTs36\GitHandler\Tests\Support\IsCalledBackupElement;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 use ArtARTs36\GitHandler\Backup\ArrayBackupElementDict;
 use ArtARTs36\GitHandler\Backup\Backup;
@@ -45,7 +49,7 @@ final class BackupTest extends GitTestCase
             }
         };
 
-        $workflow = $this->makeWorkflow([$element]);
+        $workflow = $this->makeBackup([$element]);
 
         $workflow->dumpOnly('file.txt', ['test-element']);
 
@@ -58,7 +62,7 @@ final class BackupTest extends GitTestCase
      */
     public function testDump(string $path, array $elements, array $expected): void
     {
-        $workflow = $this->makeWorkflow($elements);
+        $workflow = $this->makeBackup($elements);
 
         $workflow->dump($path);
 
@@ -110,7 +114,7 @@ final class BackupTest extends GitTestCase
             }
         };
 
-        $workflow = $this->makeWorkflow([$element, $otherElement]);
+        $workflow = $this->makeBackup([$element, $otherElement]);
 
         $workflow->dumpOnly('file.txt', ['test-element']);
 
@@ -119,7 +123,28 @@ final class BackupTest extends GitTestCase
         self::assertEquals(['key' => 'value'], $element->restored);
     }
 
-    private function makeWorkflow(array $elements): Backup
+    /**
+     * @covers \ArtARTs36\GitHandler\Backup\Backup::restoreOnly
+     */
+    public function testRestoreOnly(): void
+    {
+        $backup = $this->makeBackup([
+            $other = new IsCalledBackupElement('other'),
+            $target = new IsCalledBackupElement('target'),
+        ]);
+
+        $this->mockFileSystem->createFile('path.txt', serialize([
+            IsCalledBackupElement::class => [
+                'content' => '123',
+            ],
+        ]));
+
+        $backup->restoreOnly('path.txt', ['target']);
+
+        self::assertEquals([false, true], [$other->isCalled, $target->isCalled]);
+    }
+
+    private function makeBackup(array $elements): Backup
     {
         return new Backup($this->mockGitHandler, $this->mockFileSystem, new ArrayBackupElementDict($elements));
     }
