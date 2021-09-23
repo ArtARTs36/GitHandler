@@ -67,3 +67,20 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
+### * Create path to $name in this git repository
+
+#### Method Signature:
+
+```php
+public function createPathTo(string $name): string;
+```
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->files()->createPathTo('name-test');
+```
+
+---

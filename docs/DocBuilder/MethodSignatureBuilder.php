@@ -74,6 +74,10 @@ class MethodSignatureBuilder
                 }
             }
 
+            if ($parameter->allowsNull() && Str::firstSymbol($parameter->name) !== '?' && $parameter->hasType()) {
+                $type = '?' . $type;
+            }
+
             return $type . ' $' . $parameter->name;
         }, $method->getParameters());
 
@@ -91,7 +95,13 @@ class MethodSignatureBuilder
         if ($docBlock->hasTag('return')) {
             $returnType = (string) ($docBlock->getTagsByName('return')[0]->getType());
         } elseif ($method->hasReturnType()) {
-            $returnType = (string) $method->getReturnType();
+            $type = $method->getReturnType();
+
+            $returnType = (string) $type;
+
+            if ($type->allowsNull() && Str::firstSymbol($returnType) !== '?') {
+                $returnType = '?' . $returnType;
+            }
         } else {
             $returnType = 'mixed';
         }
