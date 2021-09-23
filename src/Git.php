@@ -60,7 +60,7 @@ use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
-use ArtARTs36\GitHandler\Contracts\Workflow\GitBackup;
+use ArtARTs36\GitHandler\Contracts\Backup\GitBackup;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\GitHandler\Support\Logger;

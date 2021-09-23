@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Handler;
 
-use ArtARTs36\GitHandler\Contracts\Workflow\GitBackup;
+use ArtARTs36\GitHandler\Contracts\Backup\GitBackup;
 
 interface HasBackups
 {

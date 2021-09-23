@@ -2,8 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Backup;
 
-use ArtARTs36\GitHandler\Contracts\Workflow\GitBackup;
-use ArtARTs36\GitHandler\Contracts\Workflow\GitBackupBuilding;
+use ArtARTs36\GitHandler\Contracts\Backup\GitBackup;
+use ArtARTs36\GitHandler\Contracts\Backup\GitBackupBuilding;
 
 class Backup extends AbstractBackup implements GitBackup
 {

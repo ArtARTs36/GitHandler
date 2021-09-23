@@ -11,7 +11,6 @@ final class ConfigBackupElementTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement::dump
-     * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement::__construct
      */
     public function testDump(): void
     {
@@ -26,7 +25,6 @@ final class ConfigBackupElementTest extends GitTestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement::restore
-     * @covers \ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement::__construct
      */
     public function testRestore(): void
     {

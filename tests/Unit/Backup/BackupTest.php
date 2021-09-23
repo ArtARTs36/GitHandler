@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Unit\Backup;
 
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
-use ArtARTs36\GitHandler\Contracts\Workflow\BackupElement;
+use ArtARTs36\GitHandler\Contracts\Backup\BackupElement;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 use ArtARTs36\GitHandler\Backup\BackupBuilding;
 use ArtARTs36\GitHandler\Backup\Backup;

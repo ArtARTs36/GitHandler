@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Contracts\Workflow;
+namespace ArtARTs36\GitHandler\Contracts\Backup;
 
 /**
  * Git Backup (dump and restore git features)

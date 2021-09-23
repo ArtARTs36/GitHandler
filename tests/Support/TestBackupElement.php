@@ -3,7 +3,7 @@
 namespace ArtARTs36\GitHandler\Tests\Support;
 
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
-use ArtARTs36\GitHandler\Contracts\Workflow\BackupElement;
+use ArtARTs36\GitHandler\Contracts\Backup\BackupElement;
 
 class TestBackupElement implements BackupElement
 {
