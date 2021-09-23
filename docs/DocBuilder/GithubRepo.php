@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\DocBuilder;
 
+use ArtARTs36\GitHandler\Data\Repo;
 use ArtARTs36\Str\Str;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Stream;
@@ -13,23 +14,19 @@ class GithubRepo
 
     private $host;
 
-    private $user;
-
-    private $repo;
+    private $data;
 
     private $token;
 
     public function __construct(
         ClientInterface $client,
         string $host,
-        string $user,
-        string $repo,
+        Repo $data,
         string $token
     ) {
         $this->client = $client;
         $this->host = $host;
-        $this->user = $user;
-        $this->repo = $repo;
+        $this->data = $data;
         $this->token = $token;
     }
 
@@ -39,7 +36,7 @@ class GithubRepo
     public function getTags(): array
     {
         $query = json_encode(['query' => 'query ListTags {
-  repository(owner: "'. $this->user .'", name: "'. $this->repo . '") {
+  repository(owner: "'. $this->data->user .'", name: "'. $this->data->name . '") {
     releases(first: 50, orderBy: {field: CREATED_AT, direction: ASC}) {
       edges {
         node {
@@ -55,7 +52,7 @@ class GithubRepo
 }
 ']);
 
-        $request = (new Request('POST', 'https://api.github.com/graphql'))
+        $request = (new Request('POST', 'https://'. $this->host . '/graphql'))
             ->withBody(new Stream(fopen('data://text/plain,' . $query, 'r')))
             ->withHeader('Authorization', 'bearer ' . $this->token);
 
