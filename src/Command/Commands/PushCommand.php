@@ -32,22 +32,7 @@ class PushCommand extends AbstractCommand implements GitPushCommand
     public function push(bool $force = false, ?string $upStream = null): bool
     {
         return $this
-            ->builder
-            ->make()
-            ->addArgument('push')
-            ->when($force, function (ShellCommandInterface $command) {
-                $command->addOption('force');
-            })
-            ->when(! empty($upStream), function (ShellCommandInterface $command) use ($upStream) {
-                $command->addOption('set-upstream')->addArgument($upStream);
-            })
-            ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
-                function (CommandResult $result) {
-                    if ($result->getError()->contains($errPattern = BranchHasNoUpstream::patternStdError(), true)) {
-                        throw new BranchHasNoUpstream($result->getResult()->match('/'. $errPattern . '/i'));
-                    }
-                }
-            ]))
+            ->buildPushCommand($force, $upStream)
             ->executeOrFail($this->executor)
             ->getResult()
             ->containsAny([
@@ -66,5 +51,36 @@ class PushCommand extends AbstractCommand implements GitPushCommand
         }
 
         return $this->push($force, $upstream);
+    }
+
+    public function pushAllTags(bool $force = false, ?string $upStream = null): bool
+    {
+        return $this->pushWithOption('tags', $force, $upStream)->getError()->contains('[new tag]');
+    }
+
+    protected function pushWithOption(string $option, bool $force = false, ?string $upStream = null): CommandResult
+    {
+        return $this->buildPushCommand($force, $upStream)->addOption($option)->executeOrFail($this->executor);
+    }
+
+    protected function buildPushCommand(bool $force, ?string $upStream): ShellCommandInterface
+    {
+        return $this
+            ->builder
+            ->make()
+            ->addArgument('push')
+            ->when($force, function (ShellCommandInterface $command) {
+                $command->addOption('force');
+            })
+            ->when(! empty($upStream), function (ShellCommandInterface $command) use ($upStream) {
+                $command->addOption('set-upstream')->addArgument($upStream);
+            })
+            ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
+                function (CommandResult $result) {
+                    if ($result->getError()->contains($errPattern = BranchHasNoUpstream::patternStdError(), true)) {
+                        throw new BranchHasNoUpstream($result->getResult()->match('/'. $errPattern . '/i'));
+                    }
+                }
+            ]));
     }
 }

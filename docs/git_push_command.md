@@ -66,3 +66,26 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
+### * Push all git tags
+
+#### Method Signature:
+
+
+
+```php
+public function pushAllTags(bool $force, ?string $upStream): bool;
+```
+
+#### Equals Git Command:
+
+`git push --tags`
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->pushes()->pushAllTags(true, 'upStream-test');
+```
+
+---

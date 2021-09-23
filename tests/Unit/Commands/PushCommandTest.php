@@ -12,6 +12,7 @@ final class PushCommandTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::push
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::buildPushCommand
      */
     public function testPushBranchHasNoUpstreamBranch(): void
     {
@@ -27,6 +28,7 @@ To push the current branch and set the remote as upstream, use
 
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::push
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::buildPushCommand
      */
     public function testPushGood(): void
     {
@@ -37,6 +39,8 @@ To push the current branch and set the remote as upstream, use
 
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::pushOnAutoSetUpStream
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::push
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::buildPushCommand
      */
     public function testPushOnAutoSetUpStream(): void
     {
@@ -53,6 +57,33 @@ To push the current branch and set the remote as upstream, use
         $this->mockCommandExecutor->nextOk('HEAD')->nextOk('Everything up-to-date');
 
         self::assertTrue($this->makePushCommand()->pushOnAutoSetUpStream());
+    }
+
+    public function providerForTestPushAllTags(): array
+    {
+        return [
+            [
+                '[new tag]         0.1.3 -> 0.1.3', // result
+                true, // expected
+            ],
+            [
+                '',
+                false,
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider providerForTestPushAllTags
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::pushAllTags
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::buildPushCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::pushWithOption
+     */
+    public function testPushAllTags(string $stderr, bool $expected): void
+    {
+        $this->mockCommandExecutor->nextOk('', $stderr);
+
+        self::assertEquals($expected, $this->makePushCommand()->pushAllTags());
     }
 
     private function makePushCommand(): PushCommand

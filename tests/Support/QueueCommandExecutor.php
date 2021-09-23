@@ -52,14 +52,14 @@ class QueueCommandExecutor implements ShellCommandExecutor
         return $this;
     }
 
-    public function nextOk(string $result = ''): self
+    public function nextOk(string $result = '', string $error = ''): self
     {
-        $this->results[] = function (string $command) use ($result) {
+        $this->results[] = function (string $command) use ($result, $error) {
             return new CommandResult(
                 $command,
                 Str::make($result),
                 new \DateTime(),
-                Str::fromEmpty(),
+                Str::make($error),
                 ResultCode::OK
             );
         };
