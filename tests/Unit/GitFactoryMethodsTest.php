@@ -26,7 +26,7 @@ use ArtARTs36\GitHandler\Command\Commands\StatusCommand;
 use ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand;
 use ArtARTs36\GitHandler\Command\Commands\TagCommand;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
-use ArtARTs36\GitHandler\Workflow\Backup;
+use ArtARTs36\GitHandler\Backup\Backup;
 
 class GitFactoryMethodsTest extends GitTestCase
 {
@@ -57,7 +57,7 @@ class GitFactoryMethodsTest extends GitTestCase
             ['merges', MergeCommand::class],
             ['attributes', AttributeCommand::class],
             ['submodules', SubmoduleCommand::class],
-            ['workflow', Backup::class],
+            ['backups', Backup::class],
         ];
     }
 

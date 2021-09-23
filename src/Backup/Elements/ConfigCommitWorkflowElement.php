@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Workflow\Elements;
+namespace ArtARTs36\GitHandler\Backup\Elements;
 
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Enum\ConfigSectionName;

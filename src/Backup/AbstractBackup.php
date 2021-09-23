@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Workflow;
+namespace ArtARTs36\GitHandler\Backup;
 
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
@@ -25,13 +25,6 @@ abstract class AbstractBackup implements GitBackup
         $this->git = $git;
         $this->files = $files;
         $this->building = $building;
-    }
-
-    public function building(callable $callback): self
-    {
-        $callback($this->building);
-
-        return $this;
     }
 
     public function dump(string $path): void

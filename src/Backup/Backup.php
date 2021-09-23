@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\GitHandler\Workflow;
+namespace ArtARTs36\GitHandler\Backup;
 
 use ArtARTs36\GitHandler\Contracts\Workflow\GitBackup;
 

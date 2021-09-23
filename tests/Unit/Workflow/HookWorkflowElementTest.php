@@ -4,12 +4,12 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Workflow;
 
 use ArtARTs36\GitHandler\Data\Hook;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
-use ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement;
+use ArtARTs36\GitHandler\Backup\Elements\HookWorkflowElement;
 
 final class HookWorkflowElementTest extends GitTestCase
 {
     /**
-     * @covers \ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement::dump
+     * @covers \ArtARTs36\GitHandler\Backup\Elements\HookWorkflowElement::dump
      */
     public function testDump(): void
     {
@@ -19,7 +19,7 @@ final class HookWorkflowElementTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement::restore
+     * @covers \ArtARTs36\GitHandler\Backup\Elements\HookWorkflowElement::restore
      */
     public function testRestore(): void
     {
