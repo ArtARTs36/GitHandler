@@ -67,6 +67,7 @@ final class BackupTest extends GitTestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Backup\Backup::restore
+     * @covers \ArtARTs36\GitHandler\Backup\Backup::doRestore
      * @covers \ArtARTs36\GitHandler\Backup\Backup::dumpOnly
      * @covers \ArtARTs36\GitHandler\Backup\Backup::doDump
      * @covers \ArtARTs36\GitHandler\Backup\Backup::__construct

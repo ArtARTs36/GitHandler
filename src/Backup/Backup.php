@@ -11,14 +11,8 @@ class Backup extends AbstractBackup implements GitBackup
     {
         $dumpMap = unserialize($this->files->getFileContent($path));
 
-        foreach ($building as $element) {
-            $class = get_class($element);
-
-            if (! array_key_exists($class, $dumpMap)) {
-                continue;
-            }
-
-            $element->restore($this->git, $dumpMap[$class]);
+        foreach ($building->get(array_keys($dumpMap)) as $element) {
+            $element->restore($this->git, $dumpMap[get_class($element)]);
         }
     }
 
