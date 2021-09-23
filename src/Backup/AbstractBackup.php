@@ -5,19 +5,19 @@ namespace ArtARTs36\GitHandler\Backup;
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Backup\GitBackup;
-use ArtARTs36\GitHandler\Contracts\Backup\GitBackupBuilding;
+use ArtARTs36\GitHandler\Contracts\Backup\BackupElementDict;
 
 abstract class AbstractBackup implements GitBackup
 {
     /**
      * Execute dump backup
      */
-    abstract protected function doDump(string $path, GitBackupBuilding $building): void;
+    abstract protected function doDump(string $path, BackupElementDict $dict): void;
 
     /**
      * Execute restore backup
      */
-    abstract protected function doRestore(string $path, GitBackupBuilding $building): void;
+    abstract protected function doRestore(string $path, BackupElementDict $dict): void;
 
     protected $git;
 
@@ -25,7 +25,7 @@ abstract class AbstractBackup implements GitBackup
 
     protected $building;
 
-    public function __construct(GitHandler $git, FileSystem $files, GitBackupBuilding $building)
+    public function __construct(GitHandler $git, FileSystem $files, BackupElementDict $building)
     {
         $this->git = $git;
         $this->files = $files;

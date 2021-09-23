@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Backup;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Backup\BackupElement;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
-use ArtARTs36\GitHandler\Backup\BackupBuilding;
+use ArtARTs36\GitHandler\Backup\ArrayBackupElementDict;
 use ArtARTs36\GitHandler\Backup\Backup;
 
 final class BackupTest extends GitTestCase
@@ -121,6 +121,6 @@ final class BackupTest extends GitTestCase
 
     private function makeWorkflow(array $elements): Backup
     {
-        return new Backup($this->mockGitHandler, $this->mockFileSystem, new BackupBuilding($elements));
+        return new Backup($this->mockGitHandler, $this->mockFileSystem, new ArrayBackupElementDict($elements));
     }
 }

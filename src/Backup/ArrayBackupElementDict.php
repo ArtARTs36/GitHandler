@@ -2,13 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Backup;
 
-use ArtARTs36\GitHandler\Contracts\Backup\GitBackupBuilding;
+use ArtARTs36\GitHandler\Contracts\Backup\BackupElementDict;
 use ArtARTs36\GitHandler\Contracts\Backup\BackupElement;
-use ArtARTs36\GitHandler\Backup\Elements\ConfigBackupElement;
-use ArtARTs36\GitHandler\Backup\Elements\HookBackupElement;
-use ArtARTs36\GitHandler\Backup\Elements\UntrackedFilesBackupElement;
 
-class BackupBuilding implements GitBackupBuilding
+class ArrayBackupElementDict implements BackupElementDict
 {
     protected $elements = [];
 
