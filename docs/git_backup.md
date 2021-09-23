@@ -1,6 +1,6 @@
-# Git Workflow (dump and restore git features)
+# Git Backup (dump and restore git features)
 
-Use the interface: [ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflow](../src/Contracts/Workflow/GitWorkflow.php)
+Use the interface: [ArtARTs36\GitHandler\Contracts\Backup\GitBackup](../src/Contracts/Backup/GitBackup.php)
 
 ---
 
@@ -16,7 +16,7 @@ $command = (new LocalGitFactory())->factory(__DIR__)->backups();
 
 ## Features:
 
-### * Dump workflow
+### * Dump backup
 
 #### Method Signature:
 
@@ -33,12 +33,12 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
-### * Dump workflow
+### * Dump backup
 
 #### Method Signature:
 
 ```php
-public function dumpWith(string $path, callable $building): void;
+public function dumpOnly(string $path, array $elements): void;
 ```
 
 #### Example:
@@ -46,11 +46,11 @@ public function dumpWith(string $path, callable $building): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->backups()->dumpWith('/path/to/file', 'building-test');
+(new LocalGitFactory())->factory(__DIR__)->backups()->dumpOnly('/path/to/file', 'elements-test');
 ```
 
 ---
-### * Restore workflow
+### * Restore backup
 
 #### Method Signature:
 
@@ -64,6 +64,23 @@ public function restore(string $path): void;
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 (new LocalGitFactory())->factory(__DIR__)->backups()->restore('/path/to/file');
+```
+
+---
+### * Restore backup
+
+#### Method Signature:
+
+```php
+public function restoreOnly(string $path, array $elements): void;
+```
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->backups()->restoreOnly('/path/to/file', 'elements-test');
 ```
 
 ---
