@@ -3,16 +3,10 @@
 namespace ArtARTs36\GitHandler\Contracts\Workflow;
 
 /**
- * Git Workflow (dump and restore git features)
+ * Git Backup (dump and restore git features)
  */
-interface GitWorkflow
+interface GitBackup
 {
-    /**
-     * Setup for dump & restore building
-     * @return $this
-     */
-    public function building(callable $callback);
-
     /**
      * Dump workflow
      */

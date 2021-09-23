@@ -4,10 +4,10 @@ namespace ArtARTs36\GitHandler\Workflow;
 
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
-use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflow;
+use ArtARTs36\GitHandler\Contracts\Workflow\GitBackup;
 use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflowBuilding;
 
-abstract class AbstractWorkflow implements GitWorkflow
+abstract class AbstractBackup implements GitBackup
 {
     /**
      * Execute dump workflow

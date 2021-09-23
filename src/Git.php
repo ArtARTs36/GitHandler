@@ -60,7 +60,7 @@ use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
-use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflow;
+use ArtARTs36\GitHandler\Contracts\Workflow\GitBackup;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\GitHandler\Support\Logger;
@@ -69,7 +69,7 @@ use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
 use ArtARTs36\GitHandler\Workflow\WorkflowBuilding;
 use ArtARTs36\GitHandler\Workflow\Elements\ConfigCommitWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement;
-use ArtARTs36\GitHandler\Workflow\Workflow;
+use ArtARTs36\GitHandler\Workflow\Backup;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\Str\Str;
 use ArtARTs36\GitHandler\Contracts\Commands\GitArchiveCommand;
@@ -292,8 +292,8 @@ class Git implements GitHandler
         );
     }
 
-    public function workflow(): GitWorkflow
+    public function workflow(): GitBackup
     {
-        return new Workflow($this, $this->fileSystem, new WorkflowBuilding());
+        return new Backup($this, $this->fileSystem, new WorkflowBuilding());
     }
 }

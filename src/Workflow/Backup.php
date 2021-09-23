@@ -2,9 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Workflow;
 
-use ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflow;
+use ArtARTs36\GitHandler\Contracts\Workflow\GitBackup;
 
-class Workflow extends AbstractWorkflow implements GitWorkflow
+class Backup extends AbstractBackup implements GitBackup
 {
     public function restore(string $path): void
     {

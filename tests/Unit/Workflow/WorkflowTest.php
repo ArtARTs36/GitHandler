@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 use ArtARTs36\GitHandler\Workflow\WorkflowBuilding;
-use ArtARTs36\GitHandler\Workflow\Workflow;
+use ArtARTs36\GitHandler\Workflow\Backup;
 
 final class WorkflowTest extends GitTestCase
 {
@@ -23,10 +23,10 @@ final class WorkflowTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::dumpOnly
-     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::doDump
-     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::building
-     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::__construct
+     * @covers \ArtARTs36\GitHandler\Workflow\Backup::dumpOnly
+     * @covers \ArtARTs36\GitHandler\Workflow\Backup::doDump
+     * @covers \ArtARTs36\GitHandler\Workflow\Backup::building
+     * @covers \ArtARTs36\GitHandler\Workflow\Backup::__construct
      */
     public function testDumpOnly(): void
     {
@@ -60,7 +60,7 @@ final class WorkflowTest extends GitTestCase
 
     /**
      * @dataProvider providerForTestDump
-     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::dump
+     * @covers \ArtARTs36\GitHandler\Workflow\Backup::dump
      */
     public function testDump(string $path, callable $building, array $expected): void
     {
@@ -74,10 +74,10 @@ final class WorkflowTest extends GitTestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::restore
-     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::dumpOnly
-     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::doDump
-     * @covers \ArtARTs36\GitHandler\Workflow\Workflow::__construct
+     * @covers \ArtARTs36\GitHandler\Workflow\Backup::restore
+     * @covers \ArtARTs36\GitHandler\Workflow\Backup::dumpOnly
+     * @covers \ArtARTs36\GitHandler\Workflow\Backup::doDump
+     * @covers \ArtARTs36\GitHandler\Workflow\Backup::__construct
      */
     public function testRestore(): void
     {
@@ -136,8 +136,8 @@ final class WorkflowTest extends GitTestCase
         self::assertEquals(['key' => 'value'], $element->restored);
     }
 
-    private function makeWorkflow(): Workflow
+    private function makeWorkflow(): Backup
     {
-        return new Workflow($this->mockGitHandler, $this->mockFileSystem, new WorkflowBuilding());
+        return new Backup($this->mockGitHandler, $this->mockFileSystem, new WorkflowBuilding());
     }
 }
