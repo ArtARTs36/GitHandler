@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Backup;
 use ArtARTs36\GitHandler\Contracts\Backup\GitBackup;
 use ArtARTs36\GitHandler\Contracts\Backup\GitBackupBuilding;
 
-class Backup extends AbstractBackup implements GitBackup
+final class Backup extends AbstractBackup implements GitBackup
 {
     public function doRestore(string $path, GitBackupBuilding $building): void
     {
