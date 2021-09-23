@@ -66,10 +66,11 @@ use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\GitHandler\Support\Logger;
 use ArtARTs36\GitHandler\Support\TemporaryPathGenerator;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
-use ArtARTs36\GitHandler\Workflow\WorkflowBuilding;
+use ArtARTs36\GitHandler\Workflow\BackupBuilding;
 use ArtARTs36\GitHandler\Workflow\Elements\ConfigCommitWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement;
 use ArtARTs36\GitHandler\Workflow\Backup;
+use ArtARTs36\GitHandler\Workflow\Elements\UntrackedFilesWorkflowElement;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\Str\Str;
 use ArtARTs36\GitHandler\Contracts\Commands\GitArchiveCommand;
@@ -292,8 +293,12 @@ class Git implements GitHandler
         );
     }
 
-    public function workflow(): GitBackup
+    public function backups(): GitBackup
     {
-        return new Backup($this, $this->fileSystem, new WorkflowBuilding());
+        return new Backup($this, $this->fileSystem, (new BackupBuilding([
+            new ConfigCommitWorkflowElement(),
+            new HookWorkflowElement(),
+            new UntrackedFilesWorkflowElement(),
+        ])));
     }
 }

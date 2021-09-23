@@ -4,10 +4,10 @@ namespace ArtARTs36\GitHandler\Contracts\Handler;
 
 use ArtARTs36\GitHandler\Contracts\Workflow\GitBackup;
 
-interface HasWorkflow
+interface HasBackups
 {
     /**
-     * Get git workflow manager
+     * Get git backup manager
      */
-    public function workflow(): GitBackup;
+    public function backups(): GitBackup;
 }

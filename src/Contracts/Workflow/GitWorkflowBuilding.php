@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Workflow;
 
-interface GitWorkflowBuilding extends \IteratorAggregate, ReplenishedWorkflowBuilding
+interface GitWorkflowBuilding extends \IteratorAggregate
 {
     /**
      * @param array<class-string<WorkflowElement>|string> $classes

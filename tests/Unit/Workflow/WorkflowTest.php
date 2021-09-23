@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Workflow;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Workflow\WorkflowElement;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
-use ArtARTs36\GitHandler\Workflow\WorkflowBuilding;
+use ArtARTs36\GitHandler\Workflow\BackupBuilding;
 use ArtARTs36\GitHandler\Workflow\Backup;
 
 final class WorkflowTest extends GitTestCase
@@ -49,7 +49,7 @@ final class WorkflowTest extends GitTestCase
             }
         };
 
-        $workflow->building(function (WorkflowBuilding $building) use ($element) {
+        $workflow->building(function (BackupBuilding $building) use ($element) {
             $building->with($element);
         });
 
@@ -102,7 +102,7 @@ final class WorkflowTest extends GitTestCase
             }
         };
 
-        $workflow->building(function (WorkflowBuilding $building) use ($element) {
+        $workflow->building(function (BackupBuilding $building) use ($element) {
             $building->with($element);
         });
 
@@ -110,7 +110,7 @@ final class WorkflowTest extends GitTestCase
 
         // test array_key_exists
 
-        $workflow->building(function (WorkflowBuilding $building) {
+        $workflow->building(function (BackupBuilding $building) {
             $building->with(new class implements WorkflowElement {
                 public function dump(GitHandler $git): array
                 {
@@ -138,6 +138,6 @@ final class WorkflowTest extends GitTestCase
 
     private function makeWorkflow(): Backup
     {
-        return new Backup($this->mockGitHandler, $this->mockFileSystem, new WorkflowBuilding());
+        return new Backup($this->mockGitHandler, $this->mockFileSystem, new BackupBuilding());
     }
 }

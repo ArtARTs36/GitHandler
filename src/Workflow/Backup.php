@@ -21,7 +21,7 @@ class Backup extends AbstractBackup implements GitBackup
         }
     }
 
-    protected function doDump(string $path, WorkflowBuilding $building): void
+    protected function doDump(string $path, BackupBuilding $building): void
     {
         $dumpMap = [];
 

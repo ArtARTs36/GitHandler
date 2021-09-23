@@ -9,7 +9,7 @@ Use the interface: [ArtARTs36\GitHandler\Contracts\Workflow\GitWorkflow](../src/
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-$command = (new LocalGitFactory())->factory(__DIR__)->workflow();
+$command = (new LocalGitFactory())->factory(__DIR__)->backups();
 ```
 
 ---
@@ -29,7 +29,7 @@ public function dump(string $path): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->workflow()->dump('/path/to/file');
+(new LocalGitFactory())->factory(__DIR__)->backups()->dump('/path/to/file');
 ```
 
 ---
@@ -46,7 +46,7 @@ public function dumpWith(string $path, callable $building): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->workflow()->dumpWith('/path/to/file', 'building-test');
+(new LocalGitFactory())->factory(__DIR__)->backups()->dumpWith('/path/to/file', 'building-test');
 ```
 
 ---
@@ -63,7 +63,7 @@ public function restore(string $path): void;
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->workflow()->restore('/path/to/file');
+(new LocalGitFactory())->factory(__DIR__)->backups()->restore('/path/to/file');
 ```
 
 ---

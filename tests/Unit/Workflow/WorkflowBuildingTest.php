@@ -5,7 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Workflow;
 use ArtARTs36\GitHandler\Tests\Support\TestWorkflowElement;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 use ArtARTs36\GitHandler\Workflow\Elements\HookWorkflowElement;
-use ArtARTs36\GitHandler\Workflow\WorkflowBuilding;
+use ArtARTs36\GitHandler\Workflow\BackupBuilding;
 
 final class WorkflowBuildingTest extends TestCase
 {
@@ -27,12 +27,12 @@ final class WorkflowBuildingTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Workflow\WorkflowBuilding::with
-     * @covers \ArtARTs36\GitHandler\Workflow\WorkflowBuilding::__construct
+     * @covers \ArtARTs36\GitHandler\Workflow\BackupBuilding::with
+     * @covers \ArtARTs36\GitHandler\Workflow\BackupBuilding::__construct
      */
     public function testWith(): void
     {
-        $building = new WorkflowBuilding();
+        $building = new BackupBuilding();
         $element = new TestWorkflowElement();
 
         $building->with($element);
@@ -42,11 +42,11 @@ final class WorkflowBuildingTest extends TestCase
 
     /**
      * @dataProvider providerForTestGet
-     * @covers \ArtARTs36\GitHandler\Workflow\WorkflowBuilding::get
+     * @covers \ArtARTs36\GitHandler\Workflow\BackupBuilding::get
      */
     public function testGet(array $initial, array $searched, array $expected): void
     {
-        $building = new WorkflowBuilding($initial);
+        $building = new BackupBuilding($initial);
 
         self::assertEquals($expected, $building->get($searched));
     }
