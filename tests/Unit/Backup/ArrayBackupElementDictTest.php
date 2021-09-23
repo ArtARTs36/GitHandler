@@ -33,4 +33,14 @@ final class ArrayBackupElementDictTest extends TestCase
 
         self::assertEquals($expected, $dict->get($called));
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Backup\ArrayBackupElementDict::getIterator
+     */
+    public function testGetIterator(): void
+    {
+        $dict = new ArrayBackupElementDict($expected = [new HookBackupElement()]);
+
+        self::assertEquals($expected, (array) $dict->getIterator());
+    }
 }
