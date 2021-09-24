@@ -17,7 +17,6 @@ class LogCommand extends AbstractCommand implements GitLogCommand
 {
     protected $parser;
 
-    /** @codeCoverageIgnore */
     public function __construct(LogParser $parser, GitCommandBuilder $builder, ShellCommandExecutor $executor)
     {
         $this->parser = $parser;
