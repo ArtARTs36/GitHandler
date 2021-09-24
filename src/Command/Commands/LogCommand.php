@@ -6,9 +6,11 @@ use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Contracts\Commands\GitLogCommand;
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\LogCollection;
+use ArtARTs36\GitHandler\Enum\FormatPlaceholder;
 use ArtARTs36\GitHandler\Exceptions\BranchDoesNotHaveCommits;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
+use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 
 class LogCommand extends AbstractCommand implements GitLogCommand
@@ -25,7 +27,32 @@ class LogCommand extends AbstractCommand implements GitLogCommand
 
     public function getAll(): ?LogCollection
     {
-        return $this->parser->parse($this->builder->make()
+        return $this->executeAndParseLogCommand($this->buildLogCommand());
+    }
+
+    public function logForFile(string $filename): ?LogCollection
+    {
+        return $this->executeAndParseLogCommand($this->buildLogCommand()->addArgument($filename));
+    }
+
+    public function logForFileOnLines(string $filename, int $startLine, int $endLine): ?LogCollection
+    {
+        return $this->executeAndParseLogCommand(
+            $this
+                ->buildLogCommand()
+                ->addCutOption('L')
+                ->addArgument("$startLine,$endLine:$filename", false)
+        );
+    }
+
+    protected function executeAndParseLogCommand(ShellCommandInterface $command): ?LogCollection
+    {
+        return $this->parser->parse($command->executeOrFail($this->executor)->getResult());
+    }
+
+    protected function buildLogCommand(): ShellCommandInterface
+    {
+        return $this->builder->make()
             ->addArgument('log')
             ->addOption('oneline')
             ->addOption('decorate')
@@ -42,7 +69,6 @@ class LogCommand extends AbstractCommand implements GitLogCommand
                         throw new BranchDoesNotHaveCommits($branch);
                     }
                 }
-            ]))
-            ->executeOrFail($this->executor)->getResult());
+            ]));
     }
 }
