@@ -340,3 +340,33 @@ Read config available for subjects:
 
 ### Internal
 * Build documentation by php interfaces (starts with GitHandler)
+# 1.1.0 :: Submodule && Backup && ChangeLogBuilder
+
+⏱️ Published: 2021-09-23 22:07
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.0)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.0.0...1.1.0)
+
+### Added
+* PHP Attributes
+* * ConfigKey
+* * ConfigSectionName
+* [Git Backup] Implements git backup with dump/restore methods on elements:
+* * Config
+* * Hooks
+* * Untracked Files
+* [Wrap: git config unset]
+* [Git File Command] Add method "getContent"
+* [Git File Command] Add method "createPathTo"
+* [Wrap: git rm --cached]
+* [Wrap: git submodule] with:
+* * Add
+* * Get all
+* * Remove
+* * Check exists
+* * Sync
+* * Sync defines in .gitmodules from git config
+* [Config] read parameters:
+* * Submodule
+* * Commit

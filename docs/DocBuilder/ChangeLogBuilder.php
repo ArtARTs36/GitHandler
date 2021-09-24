@@ -55,7 +55,7 @@ class ChangeLogBuilder
 
                     return $str;
                 })->implodeAsLines(),
-                'releaseRemoteUrl' => $urlBuilder->toTagFromFetchUrl(
+                'releaseRemoteUrl' => $this->urlBuilder->toTagFromFetchUrl(
                     'https://github.com/ArtARTs36/GitHandler',
                     $tag->tag
                 ),
