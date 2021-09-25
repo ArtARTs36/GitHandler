@@ -2,7 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
-class AliasList extends AbstractSubject
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubjectList;
+
+class AliasList extends AbstractSubject implements ConfigSubjectList
 {
     public $aliases;
 
@@ -12,5 +14,13 @@ class AliasList extends AbstractSubject
     public function __construct(array $aliases)
     {
         $this->aliases = $aliases;
+    }
+
+    /**
+     * @return iterable<string, Alias>
+     */
+    public function getIterator(): iterable
+    {
+        return new \ArrayIterator($this->aliases);
     }
 }

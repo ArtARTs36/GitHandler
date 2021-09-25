@@ -2,7 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
-class ConfigSubmoduleList extends AbstractSubject implements \IteratorAggregate
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubjectList;
+
+class ConfigSubmoduleList extends AbstractSubject implements ConfigSubjectList
 {
     public $submodules;
 
