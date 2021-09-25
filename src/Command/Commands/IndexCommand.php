@@ -114,8 +114,7 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
                     }
                 }
             ]))
-            ->executeOrFail($this->executor)
-            ->getResult();
+            ->executeOrFail($this->executor);
     }
 
     protected function buildPureCheckoutCommand(array $paths, bool $merge): ShellCommandInterface
