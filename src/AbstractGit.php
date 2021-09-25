@@ -159,7 +159,7 @@ abstract class AbstractGit implements GitHandler
     public function setup(): GitSetupCommand
     {
         return new SetupCommand(
-            new RemoteCommand($this->commandBuilder, $this->executor),
+            $this->remotes(),
             $this->fileSystem,
             $this->context,
             $this->commandBuilder,
@@ -223,10 +223,7 @@ abstract class AbstractGit implements GitHandler
 
     public function ignores(): GitIgnoreCommand
     {
-        return new IgnoreCommand(
-            $this->context,
-            $this->fileSystem
-        );
+        return new IgnoreCommand($this->context, $this->fileSystem);
     }
 
     public function version(): Version
