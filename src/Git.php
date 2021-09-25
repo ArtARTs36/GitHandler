@@ -76,231 +76,28 @@ use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\Str\Str;
 use ArtARTs36\GitHandler\Contracts\Commands\GitArchiveCommand;
 
-class Git implements GitHandler
+class Git extends AbstractGit
 {
-    protected $commandBuilder;
-
-    protected $executor;
-
-    protected $fileSystem;
-
-    protected $context;
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function __construct(
-        GitCommandBuilder $builder,
-        ShellCommandExecutor $executor,
-        FileSystem $fileSystem,
-        GitContext $context
-    ) {
-        $this->commandBuilder = $builder;
-        $this->executor = $executor;
-        $this->fileSystem = $fileSystem;
-        $this->context = $context;
+    protected function createSubjectsConfigurators(): array
+    {
+        return [
+            new UserConfigurator(),
+            new CoreConfigurator(),
+            new PackConfigurator(),
+            new CredentialConfigurator(),
+            new BranchConfigurator(),
+            new SubmoduleConfigurator(),
+            new CommitConfigurator(),
+            new AliasConfigurator(),
+        ];
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
-    public function getContext(): GitContext
+    protected function createBackupElements(): array
     {
-        return $this->context;
-    }
-
-    public function helps(): GitHelpCommand
-    {
-        return new HelpCommand($this->commandBuilder, $this->executor);
-    }
-
-    public function paths(): GitPathCommand
-    {
-        return new PathCommand($this->commandBuilder, $this->executor);
-    }
-
-    public function tags(): GitTagCommand
-    {
-        return new TagCommand($this->commandBuilder, $this->executor);
-    }
-
-    public function hooks(): GitHookCommand
-    {
-        return new HookCommand(
-            $this->fileSystem,
-            $this->executor,
-            $this->context
-        );
-    }
-
-    public function archives(): GitArchiveCommand
-    {
-        return new ArchiveCommand(
-            $this->fileSystem,
-            $this->context,
-            $this->commandBuilder,
-            $this->executor
-        );
-    }
-
-    public function logs(): GitLogCommand
-    {
-        return new LogCommand(new Logger(), $this->commandBuilder, $this->executor);
-    }
-
-    public function greps(): GitGrepCommand
-    {
-        return new GrepCommand($this->commandBuilder, $this->executor);
-    }
-
-    public function setup(): GitSetupCommand
-    {
-        return new SetupCommand(
-            new RemoteCommand($this->commandBuilder, $this->executor),
-            $this->fileSystem,
-            $this->context,
-            $this->commandBuilder,
-            $this->executor
-        );
-    }
-
-    public function branches(): GitBranchCommand
-    {
-        return new BranchCommand($this->commandBuilder, $this->executor);
-    }
-
-    public function index(): GitIndexCommand
-    {
-        return new IndexCommand($this->commandBuilder, $this->executor);
-    }
-
-    public function pushes(): GitPushCommand
-    {
-        return new PushCommand($this->branches(), $this->commandBuilder, $this->executor);
-    }
-
-    public function statuses(): GitStatusCommand
-    {
-        return new StatusCommand($this->commandBuilder, $this->executor);
-    }
-
-    public function commits(): GitCommitCommand
-    {
-        return new CommitCommand(
-            $this->index(),
-            $this->statuses(),
-            $this->commandBuilder,
-            $this->executor
-        );
-    }
-
-    public function stashes(): GitStashCommand
-    {
-        return new StashCommand($this->commandBuilder, $this->executor);
-    }
-
-    public function config(): GitConfigCommand
-    {
-        return new ConfigCommand(
-            new RegexConfigResultParser(
-                ConfiguratorsDict::make([
-                    new UserConfigurator(),
-                    new CoreConfigurator(),
-                    new PackConfigurator(),
-                    new CredentialConfigurator(),
-                    new BranchConfigurator(),
-                    new SubmoduleConfigurator(),
-                    new CommitConfigurator(),
-                    new AliasConfigurator(),
-                ])
-            ),
-            $this->commandBuilder,
-            $this->executor,
-        );
-    }
-
-    public function remotes(): GitRemoteCommand
-    {
-        return new RemoteCommand(
-            $this->commandBuilder,
-            $this->executor,
-        );
-    }
-
-    public function ignores(): GitIgnoreCommand
-    {
-        return new IgnoreCommand(
-            $this->context,
-            $this->fileSystem
-        );
-    }
-
-    public function version(): Version
-    {
-        $result = $this
-            ->commandBuilder
-            ->make()
-            ->addOption('version')
-            ->executeOrFail($this->executor)
-            ->getResult()
-            ->trim();
-
-        return new Version($result, ...$result->match('/([0-9]+.[0-9]+.[0-9]+)/i')->sentences()->toIntegers());
-    }
-
-    public function pulls(): GitPullCommand
-    {
-        return new PullCommand($this->commandBuilder, $this->executor);
-    }
-
-    public function files(): GitFileCommand
-    {
-        return new FileCommand($this->fileSystem, $this->context);
-    }
-
-    public function transaction(): GitTransaction
-    {
-        return new ArchiveTransaction(
-            $this->context,
-            $this,
-            $this->fileSystem,
-            new TemporaryPathGenerator($this->fileSystem)
-        );
-    }
-
-    public function garbage(): GitGarbageCommand
-    {
-        return new GarbageCommand($this->commandBuilder, $this->executor);
-    }
-
-    public function merges(): GitMergeCommand
-    {
-        return new MergeCommand($this->commandBuilder, $this->executor);
-    }
-
-    public function attributes(): GitAttributeCommand
-    {
-        return new AttributeCommand($this->fileSystem, $this->context);
-    }
-
-    public function submodules(): GitSubmoduleCommand
-    {
-        return new SubmoduleCommand(
-            $this->config(),
-            $this->index(),
-            $this->context,
-            $this->fileSystem,
-            $this->commandBuilder,
-            $this->executor
-        );
-    }
-
-    public function backup(): GitBackup
-    {
-        return new Backup($this, $this->fileSystem, (new ArrayBackupElementDict([
+        return [
             new ConfigBackupElement(),
             new HookBackupElement(),
             new UntrackedFilesBackupElement(),
-        ])));
+        ];
     }
 }
