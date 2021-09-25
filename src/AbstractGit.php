@@ -60,7 +60,6 @@ use ArtARTs36\GitHandler\Contracts\Backup\GitBackup;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\GitHandler\Support\Logger;
-use ArtARTs36\GitHandler\Support\TemporaryPathGenerator;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
 use ArtARTs36\GitHandler\Backup\ArrayBackupElementDict;
 use ArtARTs36\GitHandler\Backup\Backup;
