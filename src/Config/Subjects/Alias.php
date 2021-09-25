@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
-class Alias
+class Alias extends AbstractSubject
 {
     public $name;
 
