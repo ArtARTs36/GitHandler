@@ -104,9 +104,6 @@ abstract class AbstractGit implements GitHandler
         $this->context = $context;
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function getContext(): GitContext
     {
         return $this->context;
