@@ -2,13 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Config;
 
-interface ConfigSubject
-{
-    /**
-     * @return array<string, string>
-     */
-    public function toArray(): array;
+use ArtARTs36\GitHandler\Contracts\Common\Arrayable;
 
+interface ConfigSubject extends Arrayable
+{
     public function isEmpty(): bool;
 
     public function name(): string;
