@@ -54,6 +54,7 @@ use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Config\SubjectConfigurator;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
+use ArtARTs36\GitHandler\Contracts\PathGenerator;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
 use ArtARTs36\GitHandler\Contracts\Backup\GitBackup;
 use ArtARTs36\GitHandler\Data\GitContext;
@@ -77,6 +78,8 @@ abstract class AbstractGit implements GitHandler
      * @return array<BackupElement>
      */
     abstract protected function createBackupElements(): array;
+
+    abstract protected function createPathGenerator(): PathGenerator;
 
     protected $commandBuilder;
 
@@ -251,12 +254,7 @@ abstract class AbstractGit implements GitHandler
 
     public function transaction(): GitTransaction
     {
-        return new ArchiveTransaction(
-            $this->context,
-            $this,
-            $this->fileSystem,
-            new TemporaryPathGenerator($this->fileSystem)
-        );
+        return new ArchiveTransaction($this->context, $this, $this->fileSystem, $this->createPathGenerator());
     }
 
     public function garbage(): GitGarbageCommand

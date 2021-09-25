@@ -60,6 +60,7 @@ use ArtARTs36\GitHandler\Config\ConfiguratorsDict;
 use ArtARTs36\GitHandler\Config\RegexConfigResultParser;
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
+use ArtARTs36\GitHandler\Contracts\PathGenerator;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
 use ArtARTs36\GitHandler\Contracts\Backup\GitBackup;
 use ArtARTs36\GitHandler\Data\GitContext;
@@ -99,5 +100,10 @@ class Git extends AbstractGit
             new HookBackupElement(),
             new UntrackedFilesBackupElement(),
         ];
+    }
+
+    protected function createPathGenerator(): PathGenerator
+    {
+        return new TemporaryPathGenerator($this->fileSystem);
     }
 }

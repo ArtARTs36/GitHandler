@@ -90,6 +90,7 @@ class GitFactoryMethodsTest extends GitTestCase
      * @covers \ArtARTs36\GitHandler\Git::backup
      * @covers \ArtARTs36\GitHandler\Git::createBackupElements
      * @covers \ArtARTs36\GitHandler\Git::createSubjectsConfigurators
+     * @covers \ArtARTs36\GitHandler\Git::createPathGenerator
      */
     public function testFactoryMethod(string $method, string $expectedClass): void
     {
