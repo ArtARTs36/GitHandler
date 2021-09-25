@@ -3,7 +3,9 @@
 namespace ArtARTs36\GitHandler\Contracts\Commands;
 
 use ArtARTs36\GitHandler\Enum\ResetMode;
+use ArtARTs36\GitHandler\Exceptions\BadRevision;
 use ArtARTs36\GitHandler\Exceptions\BranchNotFound;
+use ArtARTs36\GitHandler\Exceptions\PreviousCherryPickIsNowEmpty;
 
 /**
  * Git Index: (git add, git reset, git rm, ...)
@@ -60,4 +62,12 @@ interface GitIndexCommand
      * @throws BranchNotFound
      */
     public function checkout(string $path, bool $merge = false): bool;
+
+    /**
+     * Cherry pick
+     * @git-command git cherry-pick $commitSha
+     * @throws BadRevision
+     * @throws PreviousCherryPickIsNowEmpty
+     */
+    public function cherryPick(string $commitSha): void;
 }

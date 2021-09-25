@@ -4,7 +4,10 @@ namespace ArtARTs36\GitHandler\Command\Commands;
 
 use ArtARTs36\GitHandler\Contracts\Commands\GitIndexCommand;
 use ArtARTs36\GitHandler\Enum\ResetMode;
+use ArtARTs36\GitHandler\Exceptions\BadRevision;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
+use ArtARTs36\GitHandler\Exceptions\PreviousCherryPickIsNowEmpty;
 use ArtARTs36\GitHandler\Exceptions\UnknownRevisionInWorkingTree;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
@@ -91,6 +94,28 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
             ->buildPureCheckoutCommand((array) $path, $merge)
             ->executeOrFail($this->executor)
             ->isOk();
+    }
+
+    public function cherryPick(string $commitSha): void
+    {
+        $this
+            ->builder
+            ->make()
+            ->addArgument('cherry-pick')
+            ->addArgument($commitSha)
+            ->setExceptionTrigger(UserExceptionTrigger::fromCallbacks([
+                function (CommandResult $result) use ($commitSha) {
+                    if ($result->getError()->trim()->equals("fatal: bad revision '$commitSha'")) {
+                        throw new BadRevision($commitSha);
+                    }
+
+                    if ($result->getError()->startsWith('The previous cherry-pick is now empty')) {
+                        throw new PreviousCherryPickIsNowEmpty();
+                    }
+                }
+            ]))
+            ->executeOrFail($this->executor)
+            ->getResult();
     }
 
     protected function buildPureCheckoutCommand(array $paths, bool $merge): ShellCommandInterface
