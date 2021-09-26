@@ -187,3 +187,26 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
+### * Cherry pick
+
+#### Method Signature:
+
+
+
+```php
+public function cherryPick(string $commitSha): void;
+```
+
+#### Equals Git Command:
+
+`git cherry-pick $commitSha`
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->index()->cherryPick('commitSha-test');
+```
+
+---
