@@ -64,9 +64,6 @@ final class CachedGitFactoryMethodsTest extends GitTestCase
      * @covers \ArtARTs36\GitHandler\CachedGit::attributes
      * @covers \ArtARTs36\GitHandler\CachedGit::submodules
      * @covers \ArtARTs36\GitHandler\CachedGit::backup
-     * @covers \ArtARTs36\GitHandler\CachedGit::createBackupElements
-     * @covers \ArtARTs36\GitHandler\CachedGit::createSubjectsConfigurators
-     * @covers \ArtARTs36\GitHandler\CachedGit::createPathGenerator
      * @covers \ArtARTs36\GitHandler\CachedGit::cachedAndReturn
      * @covers \ArtARTs36\GitHandler\CachedGit::__construct
      */
