@@ -19,4 +19,16 @@ final class BranchListTest extends TestCase
 
         self::assertSame($branch, $list->get('test'));
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Config\Subjects\BranchList::getIterator
+     */
+    public function testGetIterator(): void
+    {
+        $list = new BranchList($expected = [
+            'test' => Branch::fromLinks('test', []),
+        ]);
+
+        self::assertEquals($expected, $list->getIterator()->getArrayCopy());
+    }
 }

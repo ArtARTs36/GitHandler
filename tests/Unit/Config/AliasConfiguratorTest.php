@@ -34,6 +34,7 @@ final class AliasConfiguratorTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Config\Configurators\AliasConfigurator::parse
+     * @covers \ArtARTs36\GitHandler\Config\Subjects\Alias::__construct
      * @dataProvider providerForTestParse
      */
     public function testParse(array $raw, array $expected): void
