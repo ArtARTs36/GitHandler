@@ -20,6 +20,9 @@ class AliasConfigurator implements SubjectConfigurator
         return new AliasList($aliases);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getPrefix(): string
     {
         return 'alias';
