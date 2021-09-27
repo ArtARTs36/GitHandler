@@ -66,6 +66,7 @@ final class CachedGitFactoryMethodsTest extends GitTestCase
      * @covers \ArtARTs36\GitHandler\CachedGit::backup
      * @covers \ArtARTs36\GitHandler\CachedGit::cachedAndReturn
      * @covers \ArtARTs36\GitHandler\CachedGit::__construct
+     * @covers \ArtARTs36\GitHandler\CachedGit::version
      */
     public function testFactoryMethod(string $method): void
     {
