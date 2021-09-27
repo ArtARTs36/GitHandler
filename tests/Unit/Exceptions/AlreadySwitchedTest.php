@@ -16,4 +16,11 @@ class AlreadySwitchedTest extends TestCase
 
         self::assertEquals('master', $exception->errorBranch);
     }
+
+    public function testGetMessage(): void
+    {
+        $exception = new AlreadySwitched('master');
+
+        self::assertEquals('Already on master', $exception->getMessage());
+    }
 }
