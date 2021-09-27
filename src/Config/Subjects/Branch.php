@@ -27,6 +27,9 @@ class Branch extends AbstractSubject
         $this->merge = $merge;
     }
 
+    /**
+     * @param array<string> $links
+     */
     public static function fromLinks(
         string $name,
         #[ArrayShape(['remote' => 'string', 'merge' => 'string'])]

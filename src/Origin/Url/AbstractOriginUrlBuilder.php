@@ -13,6 +13,9 @@ abstract class AbstractOriginUrlBuilder implements OriginUrlBuilder
 {
     protected $domains = [];
 
+    /**
+     * @param array<string> $domains
+     */
     public function __construct(array $domains = [])
     {
         $this->domains = array_merge($this->domains, $domains);

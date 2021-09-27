@@ -11,6 +11,7 @@ interface GitAttributeCommand extends FolderSwitchable
 {
     /**
      * Add git attribute
+     * @param array<string> $attributes
      */
     public function add(string $pattern, array $attributes): void;
 

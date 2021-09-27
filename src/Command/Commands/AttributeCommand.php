@@ -82,6 +82,9 @@ class AttributeCommand implements GitAttributeCommand
         return $this->folder . DIRECTORY_SEPARATOR . '.gitattributes';
     }
 
+    /**
+     * @param array<string, array<string>> $map
+     */
     protected function saveFromMap(array $map): bool
     {
         return $this->files->createFile(
