@@ -42,7 +42,9 @@ class ArrayBackupElementDict implements BackupElementDict
     {
         $elements = $this->get($classes);
 
-        assert(count($elements) > 0, new \LogicException('Not found workflow elements'));
+        if (count($elements) === 0) {
+            throw new \LogicException('Not found workflow elements');
+        }
 
         return new self($elements);
     }

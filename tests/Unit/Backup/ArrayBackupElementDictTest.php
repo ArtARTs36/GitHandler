@@ -53,4 +53,31 @@ final class ArrayBackupElementDictTest extends TestCase
 
         self::assertNotEquals(spl_object_id($dict), spl_object_id($dict->only([HookBackupElement::IDENTITY])));
     }
+
+    public function providerForTestOnly(): array
+    {
+        return [
+            [
+                [
+                    new HookBackupElement(),
+                ],
+                [
+                    'random-name-'. time(),
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Backup\ArrayBackupElementDict::only
+     * @dataProvider providerForTestOnly
+     */
+    public function testOnlyOnException(array $start, array $input): void
+    {
+        $dict = new ArrayBackupElementDict($start);
+
+        self::expectException(\LogicException::class);
+
+        $dict->only($input);
+    }
 }
