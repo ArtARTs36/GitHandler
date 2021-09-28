@@ -172,6 +172,9 @@ class CachedGit implements GitHandler
         return $this->cachedAndReturn(__FUNCTION__);
     }
 
+    /**
+     * @return mixed|object
+     */
     protected function cachedAndReturn(string $rootMethodName)
     {
         if (! array_key_exists($rootMethodName, $this->cache)) {

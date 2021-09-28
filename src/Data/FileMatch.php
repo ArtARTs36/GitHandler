@@ -22,6 +22,9 @@ class FileMatch
         $this->content = $content;
     }
 
+    /**
+     * @param array<string, string> $data
+     */
     public static function fromArray(
         #[ArrayShape(['file' => 'string', 'line' => 'string', 'content' => 'string'])]
         array $data

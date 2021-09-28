@@ -9,6 +9,7 @@ class GithubOriginUrlBuilder extends AbstractOriginUrlBuilder implements OriginU
 {
     protected $archiveSubdomain = 'codeload';
 
+    /** @var list<string> */
     protected $domains = [
         'github.com',
     ];

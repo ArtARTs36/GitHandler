@@ -24,13 +24,14 @@ class Version
         $this->patch = $patch;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->full;
     }
 
     /**
      * @param static|string $comparedVersion
+     * @return bool|int
      */
     public function compare($comparedVersion)
     {
