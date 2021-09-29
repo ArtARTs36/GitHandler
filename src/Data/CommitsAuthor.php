@@ -2,15 +2,18 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use ArtARTs36\GitHandler\Support\ToArray;
 use JetBrains\PhpStorm\ArrayShape;
 
-class CommitsAuthor
+class CommitsAuthor implements \IteratorAggregate, \Countable
 {
+    use ToArray;
+
     public $author;
 
     public $commits;
 
-    public function __construct(Author $author, int $commits)
+    public function __construct(Author $author, array $commits)
     {
         $this->author = $author;
         $this->commits = $commits;
@@ -20,9 +23,22 @@ class CommitsAuthor
      * @param array<string, Author|int> $data
      */
     public static function fromArray(
-        #[ArrayShape(['author' => Author::class, 'commits' => 'int'])]
+        #[ArrayShape(['author' => Author::class, 'commits' => 'array'])]
         array $data
     ): self {
         return new self($data['author'], $data['commits']);
+    }
+
+    public function count(): int
+    {
+        return count($this->commits);
+    }
+
+    /**
+     * @return iterable<Commit>
+     */
+    public function getIterator(): iterable
+    {
+        return new \ArrayIterator($this->commits);
     }
 }
