@@ -1,3 +1,4 @@
+
 # Git Log
 
 Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitLogCommand](../src/Contracts/Commands/GitLogCommand.php)
@@ -53,7 +54,15 @@ public function get(callable $callback): ?ArtARTs36\GitHandler\Data\LogCollectio
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
 (new LocalGitFactory())->factory(__DIR__)->logs()->get(function (LogQuery $query) {
-   $query->limit(10)->offset(3)->before(new \DateTime());        
+   $query
+        ->offset(3)
+        ->before(new \DateTime())
+        ->join(function (LogQuery $query) {
+            $query
+                ->offset(1)
+                ->limit(5)
+                ->after(new \DateTime('1 month ago'));
+        });   
 });
 ```
 

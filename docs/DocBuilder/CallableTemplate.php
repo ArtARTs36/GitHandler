@@ -11,8 +11,16 @@ class CallableTemplate
     $git->merges()->merge(\'master\');
 }',
         'LogQueryAction' => 'function (LogQuery $query) {
-   $query->limit(10)->offset(3)->before(new \DateTime());        
-}'
+   $query
+        ->offset(3)
+        ->before(new \DateTime())
+        ->join(function (LogQuery $query) {
+            $query
+                ->offset(1)
+                ->limit(5)
+                ->after(new \DateTime(\'1 month ago\'));
+        });   
+}',
     ];
 
     public static function buildExampleArgument(

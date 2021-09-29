@@ -45,6 +45,7 @@ interface LogQuery
     public function lines(string $filename, int $start, int $end);
 
     /**
+     * @param LogQueryAction|callable $build
      * @return $this
      */
     public function join(callable $build);
