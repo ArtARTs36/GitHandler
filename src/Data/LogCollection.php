@@ -74,4 +74,26 @@ class LogCollection implements \IteratorAggregate, \Countable
     {
         return $this->logs;
     }
+
+    /**
+     * @param array<string, string> $aliases - emails
+     * @return array<string, CommitsAuthor>
+     */
+    public function getAuthorsWithCommitsCount(array $aliases = []): array
+    {
+        $authors = [];
+
+        foreach ($this->logs as $log) {
+            $identity = $aliases[$log->author->email] ?? $log->author->email;
+
+            if (! array_key_exists($identity, $authors)) {
+                $authors[$identity]['author'] = $log->author;
+                $authors[$identity]['commits'] = 0;
+            }
+
+            $authors[$identity]['commits']++;
+        }
+
+        return array_map([CommitsAuthor::class, 'fromArray'], $authors);
+    }
 }
