@@ -39,49 +39,20 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
-### * Get git log for file
+### * Builds log on query
 
 #### Method Signature:
 
-
-
 ```php
-public function logForFile(string $filename): ?ArtARTs36\GitHandler\Data\LogCollection;
+public function get(callable $callback): ?ArtARTs36\GitHandler\Data\LogCollection;
 ```
-
-#### Equals Git Command:
-
-`git log $filename`
 
 #### Example:
 
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->logs()->logForFile('filename-test');
-```
-
----
-### * Get git log for file on lines
-
-#### Method Signature:
-
-
-
-```php
-public function logForFileOnLines(string $filename, int $startLine, int $endLine): ?ArtARTs36\GitHandler\Data\LogCollection;
-```
-
-#### Equals Git Command:
-
-`git log -L $startLine:$endLine $filename`
-
-#### Example:
-
-```php
-use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
-
-(new LocalGitFactory())->factory(__DIR__)->logs()->logForFileOnLines('filename-test', 1, 1);
+(new LocalGitFactory())->factory(__DIR__)->logs()->get('callback-test');
 ```
 
 ---
