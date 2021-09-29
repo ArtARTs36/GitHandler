@@ -1,4 +1,3 @@
-
 # Git Log
 
 Use the interface: [ArtARTs36\GitHandler\Contracts\Commands\GitLogCommand](../src/Contracts/Commands/GitLogCommand.php)
