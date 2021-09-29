@@ -10,6 +10,9 @@ class CallableTemplate
         'TransactionOperation' => 'function (GitHandler $git) {
     $git->merges()->merge(\'master\');
 }',
+        'LogQueryAction' => 'function (LogQuery $query) {
+   $query->limit(10)->offset(3)->before(new \DateTime());        
+}'
     ];
 
     public static function buildExampleArgument(

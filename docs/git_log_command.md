@@ -52,7 +52,9 @@ public function get(callable $callback): ?ArtARTs36\GitHandler\Data\LogCollectio
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->logs()->get('callback-test');
+(new LocalGitFactory())->factory(__DIR__)->logs()->get(function (LogQuery $query) {
+   $query->limit(10)->offset(3)->before(new \DateTime());        
+});
 ```
 
 ---
