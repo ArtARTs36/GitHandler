@@ -16,14 +16,7 @@ interface GitLogCommand
     public function getAll(): ?LogCollection;
 
     /**
-     * Get git log for file
-     * @git-command git log $filename
+     * Builds log on query
      */
-    public function logForFile(string $filename): ?LogCollection;
-
-    /**
-     * Get git log for file on lines
-     * @git-command git log -L $startLine:$endLine $filename
-     */
-    public function logForFileOnLines(string $filename, int $startLine, int $endLine): ?LogCollection;
+    public function get(callable $callback): ?LogCollection;
 }

@@ -8,6 +8,7 @@ use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\LogCollection;
 use ArtARTs36\GitHandler\Enum\FormatPlaceholder;
 use ArtARTs36\GitHandler\Exceptions\BranchDoesNotHaveCommits;
+use ArtARTs36\GitHandler\Support\LogBuilder;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
@@ -29,19 +30,11 @@ class LogCommand extends AbstractCommand implements GitLogCommand
         return $this->executeAndParseLogCommand($this->buildLogCommand());
     }
 
-    public function logForFile(string $filename): ?LogCollection
+    public function get(callable $callback): ?LogCollection
     {
-        return $this->executeAndParseLogCommand($this->buildLogCommand()->addArgument($filename));
-    }
+        $callback($builder = new LogBuilder());
 
-    public function logForFileOnLines(string $filename, int $startLine, int $endLine): ?LogCollection
-    {
-        return $this->executeAndParseLogCommand(
-            $this
-                ->buildLogCommand()
-                ->addCutOption('L')
-                ->addArgument("$startLine,$endLine:$filename", false)
-        );
+        return $this->executeAndParseLogCommand($builder->build($this->buildLogCommand()));
     }
 
     protected function executeAndParseLogCommand(ShellCommandInterface $command): ?LogCollection
