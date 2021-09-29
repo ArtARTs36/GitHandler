@@ -24,12 +24,12 @@ class LogBuilder implements LogQueryBuilder
 
     public function offset(int $offset): self
     {
-        return $this->setOptionValue('skip', $offset);
+        return $this->setOptionValue('skip', (string) $offset);
     }
 
     public function limit(int $limit): self
     {
-        return $this->setOptionValue('max-count', $limit);
+        return $this->setOptionValue('max-count', (string) $limit);
     }
 
     public function before(\DateTimeInterface $date): self
@@ -119,6 +119,9 @@ class LogBuilder implements LogQueryBuilder
         return $this;
     }
 
+    /**
+     * @param array<string|int> $line
+     */
     protected function wrapLine(ShellCommandInterface $command, array $line): ShellCommandInterface
     {
         return $command
