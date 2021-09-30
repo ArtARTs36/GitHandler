@@ -10,9 +10,6 @@ class LogBuilder implements LogQueryBuilder
     /** @var array<string> */
     protected $filenames = [];
 
-    /** @var array<array<string|int>> */
-    protected $lines = [];
-
     /** @var list<string> */
     protected $authors = [];
 
