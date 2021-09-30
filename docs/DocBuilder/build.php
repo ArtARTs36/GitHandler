@@ -9,10 +9,13 @@ use ArtARTs36\GitHandler\DocBuilder\HomePageBuilder;
 use ArtARTs36\GitHandler\DocBuilder\Page;
 use ArtARTs36\GitHandler\DocBuilder\Project;
 use ArtARTs36\GitHandler\DocBuilder\StubLoader;
+use ArtARTs36\GitHandler\DocBuilder\TopContributorsBuilder;
+use ArtARTs36\GitHandler\Factory\LocalGitFactory;
 use ArtARTs36\GitHandler\Support\LocalFileSystem;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
+$git = (new LocalGitFactory())->factory(__DIR__ . '/../../');
 $project = new Project(realpath(__DIR__ . '/../..'));
 
 ClassFinder::setProjectDir($project->getRootDir());
@@ -37,5 +40,7 @@ usort($pages, function (Page $one, Page $two) {
 foreach ($pages as $page) {
     $fileSystem->createFile(__DIR__ . '/../' . $page->file, $page->content);
 }
+
+$fileSystem->createFile(__DIR__ . '/../../CONTRIBUTORS.MD', (new TopContributorsBuilder($stubLoader))->build($git));
 
 $fileSystem->createFile(__DIR__ . '/../../readme.md', $homePageBuilder->build($pages));

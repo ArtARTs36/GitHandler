@@ -91,7 +91,7 @@ class LogCollection implements \IteratorAggregate, \Countable
                 $authors[$identity]['commits'] = [];
             }
 
-            $authors[$identity]['commits'] = $log->commit;
+            $authors[$identity]['commits'][] = $log->commit;
         }
 
         return array_map([CommitsAuthor::class, 'fromArray'], $authors);

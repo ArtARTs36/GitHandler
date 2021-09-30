@@ -13,6 +13,9 @@ class CommitsAuthor implements \IteratorAggregate, \Countable
 
     public $commits;
 
+    /**
+     * @param array<Commit> $commits
+     */
     public function __construct(Author $author, array $commits)
     {
         $this->author = $author;
