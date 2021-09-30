@@ -38,3 +38,9 @@ Tool for work with Git in PHP
 |  Command  | Description  |
 | ------------ | ------------ |
 {$dev-commands}
+
+Contributing
+------------
+
+GitHandler is an Open Source, community-driven project with thousands of
+[contributors](CONTRIBUTORS.MD).

@@ -68,3 +68,10 @@ Tool for work with Git in PHP
 |  composer build-docs    |    Build documentation
 |  composer check-docs-actual    |    Check Documentation is actually
 |  composer build-changelog    |    Build CHANGELOG.MD
+|  composer build-contributors    |    Build CONTRIBUTORS.MD
+
+Contributing
+------------
+
+GitHandler is an Open Source, community-driven project with thousands of
+[contributors](CONTRIBUTORS.MD).
