@@ -48,5 +48,5 @@ interface LogQuery
      * @param LogQueryAction|callable $build
      * @return $this
      */
-    public function join(callable $build);
+    public function union(callable $build);
 }

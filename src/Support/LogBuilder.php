@@ -17,7 +17,7 @@ class LogBuilder implements LogQueryBuilder
     protected $authors = [];
 
     /** @var array<callable|self> */
-    protected $join = [];
+    protected $unions = [];
 
     /** @var array<string, array<string>> */
     protected $optionValues = [];
@@ -70,9 +70,9 @@ class LogBuilder implements LogQueryBuilder
         return $this;
     }
 
-    public function join(callable $build): self
+    public function union(callable $build): self
     {
-        $this->join[] = [$build, new self()];
+        $this->unions[] = [$build, new self()];
 
         return $this;
     }
@@ -98,8 +98,8 @@ class LogBuilder implements LogQueryBuilder
                     $command->joinAnd($this->wrapLine($pureCommand, $line));
                 }
             })
-            ->when(count($this->join) > 0, function (ShellCommandInterface $command) use ($pureCommand) {
-                foreach ($this->join as [$callback, $builder]) {
+            ->when(count($this->unions) > 0, function (ShellCommandInterface $command) use ($pureCommand) {
+                foreach ($this->unions as [$callback, $builder]) {
                     $callback($builder);
 
                     $command->joinAnd($builder->build($pureCommand));
