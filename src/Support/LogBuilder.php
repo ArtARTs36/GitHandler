@@ -63,13 +63,6 @@ class LogBuilder implements LogQueryBuilder
         return $this;
     }
 
-    public function lines(string $filename, int $start, int $end): self
-    {
-        $this->lines[] = [$filename, $start, $end];
-
-        return $this;
-    }
-
     public function union(callable $build): self
     {
         $this->unions[] = [$build, new self()];
@@ -93,11 +86,6 @@ class LogBuilder implements LogQueryBuilder
                     }
                 }
             })
-            ->when(count($this->lines) > 0, function (ShellCommandInterface $command) use ($pureCommand) {
-                foreach ($this->lines as $line) {
-                    $command->joinAnd($this->wrapLine($pureCommand, $line));
-                }
-            })
             ->when(count($this->unions) > 0, function (ShellCommandInterface $command) use ($pureCommand) {
                 foreach ($this->unions as [$callback, $builder]) {
                     $callback($builder);
@@ -117,15 +105,5 @@ class LogBuilder implements LogQueryBuilder
         $this->optionValues[$option][0] = $value;
 
         return $this;
-    }
-
-    /**
-     * @param array<string|int> $line
-     */
-    protected function wrapLine(ShellCommandInterface $command, array $line): ShellCommandInterface
-    {
-        return $command
-            ->addCutOption('L')
-            ->addArgument($line[1] . ',' . $line[2] . ':' . $line[0], false);
     }
 }

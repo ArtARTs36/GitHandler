@@ -40,11 +40,6 @@ interface LogQuery
     public function grep(string $pattern);
 
     /**
-     * @return $this
-     */
-    public function lines(string $filename, int $start, int $end);
-
-    /**
      * @param LogQueryAction|callable $build
      * @return $this
      */
