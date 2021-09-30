@@ -7,6 +7,62 @@ use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 
 final class LogBuilderTest extends TestCase
 {
+    public function providerForTestSetOptionValue(): array
+    {
+        return [
+            [
+                'offset',
+                10,
+                [
+                    'skip' => [10],
+                ],
+            ],
+            [
+                'limit',
+                10,
+                [
+                    'max-count' => [10],
+                ],
+            ],
+            [
+                'before',
+                new \DateTime('2021-09-29 18:00:00'),
+                [
+                    'before' => ['2021-09-29 18:00:00'],
+                ],
+            ],
+            [
+                'after',
+                new \DateTime('2021-09-29 18:00:00'),
+                [
+                    'after' => ['2021-09-29 18:00:00'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider providerForTestSetOptionValue
+     * @covers \ArtARTs36\GitHandler\Support\LogBuilder::offset
+     * @covers \ArtARTs36\GitHandler\Support\LogBuilder::limit
+     * @covers \ArtARTs36\GitHandler\Support\LogBuilder::setOptionValue
+     * @covers \ArtARTs36\GitHandler\Support\LogBuilder::before
+     * @covers \ArtARTs36\GitHandler\Support\LogBuilder::after
+     * @covers \ArtARTs36\GitHandler\Support\LogBuilder::setOptionValueDate
+     */
+    public function testSetOptionValue(string $method, $value, array $expected)
+    {
+        $builder = $this->makeLogBuilder();
+
+        $this->callMethodFromObject($builder, $method, $value);
+
+        self::assertEquals(
+            $expected,
+            /** @see LogBuilder::$optionValues */
+            $this->getPropertyValueOfObject($builder, 'optionValues')
+        );
+    }
+
     /**
      * @covers \ArtARTs36\GitHandler\Support\LogBuilder::union
      */
