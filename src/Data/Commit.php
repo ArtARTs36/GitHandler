@@ -2,8 +2,13 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
-class Commit
+use ArtARTs36\GitHandler\Contracts\Common\Arrayable;
+use ArtARTs36\GitHandler\Support\ToArray;
+
+class Commit implements Arrayable
 {
+    use ToArray;
+
     public $hash;
 
     public function __construct(string $hash)

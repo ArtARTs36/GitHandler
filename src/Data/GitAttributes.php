@@ -2,10 +2,11 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use ArtARTs36\GitHandler\Contracts\Common\Arrayable;
 use ArtARTs36\GitHandler\Support\ToArray;
 use ArtARTs36\Str\Str;
 
-class GitAttributes
+class GitAttributes implements Arrayable
 {
     use ToArray;
 

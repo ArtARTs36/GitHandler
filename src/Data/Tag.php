@@ -2,9 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use ArtARTs36\GitHandler\Contracts\Common\Arrayable;
 use ArtARTs36\GitHandler\Support\ToArray;
 
-class Tag
+class Tag implements Arrayable
 {
     use ToArray;
 
