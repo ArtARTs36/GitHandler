@@ -23,7 +23,7 @@ class CommitsAuthor implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @param array<string, Author|int> $data
+     * @param array<string, Author|array<CommitsAuthor>> $data
      */
     public static function fromArray(
         #[ArrayShape(['author' => Author::class, 'commits' => 'array'])]
