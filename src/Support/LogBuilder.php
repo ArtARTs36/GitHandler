@@ -73,13 +73,13 @@ class LogBuilder implements LogQueryBuilder
 
         return $command
             ->when(count($this->authors) > 0, function (ShellCommandInterface $command) {
-                $command->addOptionWithValue('author', '"' . implode('|', $this->authors) . '"');
+                $command->addOptionWithValue('author', implode('|', $this->authors), true);
             })
             ->addArguments($this->filenames)
             ->when(count($this->optionValues) > 0, function (ShellCommandInterface $command) {
                 foreach ($this->optionValues as $option => $values) {
                     foreach ($values as $value) {
-                        $command->addOptionWithValue($option, $value);
+                        $command->addOptionWithValue($option, $value, true);
                     }
                 }
             })
@@ -94,7 +94,7 @@ class LogBuilder implements LogQueryBuilder
 
     protected function setOptionValueDate(string $option, \DateTimeInterface $date): self
     {
-        return $this->setOptionValue($option, '"'. $date->format('Y-m-d H:i:s') . '"');
+        return $this->setOptionValue($option, $date->format('Y-m-d H:i:s'));
     }
 
     protected function setOptionValue(string $option, string $value): self
