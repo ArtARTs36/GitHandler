@@ -31,7 +31,7 @@ class TopContributorsBuilder
             'aukrainskiy@phoenixit.ru' => 'temicska99@mail.ru',
         ]) as $author) {
             $content .= Markdown::line([
-                $author->author->name . ' (' . $author->author->email . ')',
+                $author->author->name,
                 count($author->commits)
             ]) . "\n";
         }
