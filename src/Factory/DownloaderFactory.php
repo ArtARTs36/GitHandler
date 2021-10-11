@@ -9,7 +9,7 @@ use ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder;
 use ArtARTs36\GitHandler\Origin\Url\OriginUrlSelector;
-use ArtARTs36\GitHandler\Support\LocalFileSystem;
+use ArtARTs36\FileSystem\Local\LocalFileSystem;
 use ArtARTs36\GitHandler\Support\SimpleHttpClient;
 use Psr\Http\Client\ClientInterface;
 

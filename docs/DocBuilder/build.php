@@ -9,8 +9,7 @@ use ArtARTs36\GitHandler\DocBuilder\HomePageBuilder;
 use ArtARTs36\GitHandler\DocBuilder\Page;
 use ArtARTs36\GitHandler\DocBuilder\Project;
 use ArtARTs36\GitHandler\DocBuilder\StubLoader;
-use ArtARTs36\GitHandler\DocBuilder\TopContributorsBuilder;
-use ArtARTs36\GitHandler\Support\LocalFileSystem;
+use ArtARTs36\FileSystem\Local\LocalFileSystem;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 

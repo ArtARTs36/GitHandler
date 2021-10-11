@@ -3,7 +3,7 @@
 use ArtARTs36\GitHandler\DocBuilder\StubLoader;
 use ArtARTs36\GitHandler\DocBuilder\TopContributorsBuilder;
 use ArtARTs36\GitHandler\Factory\LocalGitFactory;
-use ArtARTs36\GitHandler\Support\LocalFileSystem;
+use ArtARTs36\FileSystem\Local\LocalFileSystem;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
