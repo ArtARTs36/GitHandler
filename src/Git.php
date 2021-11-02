@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Config\Configurators\AliasConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\CommitConfigurator;
+use ArtARTs36\GitHandler\Config\Configurators\InstawebConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\SubmoduleConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\BranchConfigurator;
 use ArtARTs36\GitHandler\Config\Configurators\CoreConfigurator;
@@ -29,6 +30,7 @@ class Git extends AbstractGit
             new SubmoduleConfigurator(),
             new CommitConfigurator(),
             new AliasConfigurator(),
+            new InstawebConfigurator(),
         ];
     }
 
