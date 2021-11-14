@@ -370,3 +370,13 @@ Read config available for subjects:
 * [Config] read parameters:
 * * Submodule
 * * Commit
+# 1.1.1 :: Added "Build url to file page on remote hosting"
+
+⏱️ Published: 2021-11-14 09:39
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.1)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.0...1.1.1)
+
+### Added
+* OriginUrlBuilder::toFileFromFetchUrl - Build url to file page on remote hosting 
