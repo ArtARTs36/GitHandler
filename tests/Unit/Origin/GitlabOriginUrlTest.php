@@ -109,6 +109,24 @@ class GitlabOriginUrlTest extends TestCase
         );
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder::toFileFromFetchUrl
+     */
+    public function testToFileFromFetchUrl(): void
+    {
+        $builder = $this->makeGitlabOriginUrlBuilder();
+
+        self::assertEquals(
+            'https://gitlab.com/vendor/package/-/blob/dev/.env.example',
+            $builder
+                ->toFileFromFetchUrl(
+                    'https://gitlab.com/vendor/package',
+                    '.env.example',
+                    'dev'
+                )
+        );
+    }
+
     private function makeGitlabOriginUrlBuilder(): GitlabOriginUrlBuilder
     {
         return new GitlabOriginUrlBuilder();

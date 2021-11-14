@@ -121,6 +121,24 @@ final class GithubOriginUrlTest extends TestCase
         );
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder::toFileFromFetchUrl
+     */
+    public function testToFileFromFetchUrl(): void
+    {
+        $builder = $this->makeGithubOriginUrl();
+
+        self::assertEquals(
+            'https://github.com/ArtARTs36/GitHandler/blob/0.8.0/src/Support/LocalFileSystem.php',
+            $builder
+                ->toFileFromFetchUrl(
+                    'https://github.com/ArtARTs36/GitHandler',
+                    'src/Support/LocalFileSystem.php',
+                    '0.8.0'
+                )
+        );
+    }
+
     private function makeGithubOriginUrl(): GithubOriginUrlBuilder
     {
         return new GithubOriginUrlBuilder();
