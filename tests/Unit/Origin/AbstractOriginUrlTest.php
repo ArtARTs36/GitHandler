@@ -31,20 +31,25 @@ class AbstractOriginUrlTest extends TestCase
         return new class($domains) extends AbstractOriginUrlBuilder {
             public function toArchiveFromFetchUrl(string $fetchUrl, string $branch = 'master'): string
             {
-                //
+                return '';
             }
 
             public function toCommitFromFetchUrl(string $fetchUrl, string $hash): string
             {
-                //
+                return '';
             }
 
             public function toTagFromFetchUrl(string $fetchUrl, string $tag): string
             {
-                // TODO: Implement toTagFromFetchUrl() method.
+                return '';
             }
 
             public function toTagsCompareFromFetchUrl(string $fetchUrl, string $oneTag, string $twoTag): string
+            {
+                return '';
+            }
+
+            public function toFileFromFetchUrl(string $fetchUrl, string $filePath, string $branch): string
             {
                 return '';
             }
