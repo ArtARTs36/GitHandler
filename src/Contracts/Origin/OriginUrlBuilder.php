@@ -48,4 +48,9 @@ interface OriginUrlBuilder
      * Build url to "tags/branches compare" page on remote hosting
      */
     public function toTagsCompareFromFetchUrl(string $fetchUrl, string $oneTag, string $twoTag): string;
+
+    /**
+     * Build url to file page on remote hosting
+     */
+    public function toFileFromFetchUrl(string $fetchUrl, string $filePath, string $branch): string;
 }
