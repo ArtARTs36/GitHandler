@@ -372,7 +372,7 @@ Read config available for subjects:
 * * Commit
 # 1.1.1 :: Added "Build url to file page on remote hosting"
 
-⏱️ Published: 2021-11-14 09:39
+⏱️ Published: 2021-11-14 06:40
 
 [👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.1)
 
@@ -380,3 +380,13 @@ Read config available for subjects:
 
 ### Added
 * OriginUrlBuilder::toFileFromFetchUrl - Build url to file page on remote hosting 
+# 1.1.2 :: Update guzzlehttp/psr7 version
+
+⏱️ Published: 2021-11-15 13:24
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.2)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.1...1.1.2)
+
+### Dependencies
+* Update guzzlehttp/psr7 version
