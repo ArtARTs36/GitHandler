@@ -32,7 +32,7 @@ class MakingPush
         return $this;
     }
 
-    public function onHeadBranch(string $branch): self
+    public function onBranchHead(string $branch): self
     {
         return $this->onBranch('HEAD:' . $branch);
     }
