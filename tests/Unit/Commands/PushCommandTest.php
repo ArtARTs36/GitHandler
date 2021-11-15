@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Commands\BranchCommand;
 use ArtARTs36\GitHandler\Command\Commands\PushCommand;
+use ArtARTs36\GitHandler\Command\Commands\RemoteCommand;
 use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
@@ -91,7 +92,8 @@ To push the current branch and set the remote as upstream, use
         return new PushCommand(
             new BranchCommand($this->mockCommandBuilder, $this->mockCommandExecutor),
             $this->mockCommandBuilder,
-            $this->mockCommandExecutor
+            $this->mockCommandExecutor,
+            new RemoteCommand($this->mockCommandBuilder, $this->mockCommandExecutor)
         );
     }
 }
