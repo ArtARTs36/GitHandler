@@ -46,13 +46,13 @@ final class MakingPushTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Making\MakingPush::onUri
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::onRemote
      */
-    public function testOnUri(): void
+    public function testOnRemote(): void
     {
         $push = $this->createMakingPush();
 
-        $push->onUri(function (UriInterface $uri) {
+        $push->onRemote(function (UriInterface $uri) {
             return $uri->withHost('site.ru');
         });
 

@@ -7,20 +7,20 @@ use Psr\Http\Message\UriInterface;
 
 class MakingPush
 {
-    protected $uri;
+    protected $remote;
 
     protected $branch = null;
 
     protected $isForce = false;
 
-    public function __construct(UriInterface $uri)
+    public function __construct(UriInterface $remote)
     {
-        $this->uri = $uri;
+        $this->remote = $remote;
     }
 
-    public function onUri(callable $setup): self
+    public function onRemote(callable $setup): self
     {
-        $this->uri = $setup($this->uri);
+        $this->remote = $setup($this->remote);
 
         return $this;
     }
@@ -48,7 +48,7 @@ class MakingPush
     {
         return $command
             ->addArgument('push')
-            ->addArgument($this->uri->__toString())
+            ->addArgument($this->remote->__toString())
             ->when($this->branch !== null, function (ShellCommandInterface $command) {
                 $command->addArgument($this->branch);
             })
