@@ -7,6 +7,7 @@ use ArtARTs36\GitHandler\Command\Commands\PushCommand;
 use ArtARTs36\GitHandler\Command\Commands\RemoteCommand;
 use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
+use ArtARTs36\GitHandler\Making\MakingPush;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class PushCommandTest extends GitTestCase
@@ -85,6 +86,23 @@ To push the current branch and set the remote as upstream, use
         $this->mockCommandExecutor->nextOk('', $stderr);
 
         self::assertEquals($expected, $this->makePushCommand()->pushAllTags());
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::send
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::__construct
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::buildCommand
+     */
+    public function testSend(): void
+    {
+        $command = $this->makePushCommand();
+
+        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->nextOk();
+
+        self::assertNull($command->send(function (MakingPush $push) {
+            $push->force();
+        }));
     }
 
     private function makePushCommand(): PushCommand

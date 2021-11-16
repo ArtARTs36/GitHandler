@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Making;
 use ArtARTs36\GitHandler\Making\MakingPush;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 use GuzzleHttp\Psr7\Uri;
+use Psr\Http\Message\UriInterface;
 
 final class MakingPushTest extends TestCase
 {
@@ -42,6 +43,20 @@ final class MakingPushTest extends TestCase
         $push->onBranchHead('tested');
 
         self::assertEquals('HEAD:tested', $this->getPropertyValueOfObject($push, 'branch'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::onUri
+     */
+    public function testOnUri(): void
+    {
+        $push = $this->createMakingPush();
+
+        $push->onUri(function (UriInterface $uri) {
+            return $uri->withHost('site.ru');
+        });
+
+        self::assertEquals('site.ru', $this->getPropertyValueOfObject($push, 'uri')->getHost());
     }
 
     private function createMakingPush(): MakingPush
