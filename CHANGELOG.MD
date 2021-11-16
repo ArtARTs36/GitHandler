@@ -403,11 +403,21 @@ Read config available for subjects:
 * GitPushCommand::send, make push parameters in closure
 # 1.1.4 :: MakingPush::onCurrentBranchHead
 
-⏱️ Published: 2021-11-16 13:21
+⏱️ Published: 2021-11-16 10:22
 
-[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/)
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.4)
 
-[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.3...)
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.3...1.1.4)
 
 ### Added
 * Add MakingPush::onCurrentBranchHead
+# 1.1.5 :: MakingPush::onSetUpStream
+
+⏱️ Published: 2021-11-16 14:27
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.5)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.4...1.1.5)
+
+### Added
+* MakingPush::onSetUpStream
