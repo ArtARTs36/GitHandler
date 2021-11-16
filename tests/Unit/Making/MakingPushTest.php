@@ -56,7 +56,7 @@ final class MakingPushTest extends TestCase
             return $uri->withHost('site.ru');
         });
 
-        self::assertEquals('site.ru', $this->getPropertyValueOfObject($push, 'uri')->getHost());
+        self::assertEquals('site.ru', $this->getPropertyValueOfObject($push, 'remote')->getHost());
     }
 
     private function createMakingPush(): MakingPush
