@@ -392,7 +392,7 @@ Read config available for subjects:
 * Update guzzlehttp/psr7 version
 # 1.1.3 :: MakingPush
 
-⏱️ Published: 2021-11-16 10:19
+⏱️ Published: 2021-11-16 07:20
 
 [👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.3)
 
@@ -401,3 +401,13 @@ Read config available for subjects:
 ### Added
 
 * GitPushCommand::send, make push parameters in closure
+# 1.1.4 :: MakingPush::onCurrentBranchHead
+
+⏱️ Published: 2021-11-16 13:21
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.3...)
+
+### Added
+* Add MakingPush::onCurrentBranchHead
