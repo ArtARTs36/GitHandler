@@ -89,3 +89,33 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
+### * Push with making of callable
+
+#### Method Signature:
+
+
+
+```php
+public function send(callable $making): void;
+```
+
+#### Equals Git Command:
+
+`git push (opts and args from $making)`
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->pushes()->send(function (\ArtARTs36\GitHandler\Making\MakingPush $push) {
+        $push
+            ->onRemote(function (\Psr\Http\Message\UriInterface $uri) {
+                return $uri->withUserInfo('artarts36', 'ghp_my_github_token');
+            })
+            ->onBranchHead('dev')
+            ->force();
+    });
+```
+
+---

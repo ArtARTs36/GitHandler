@@ -175,7 +175,7 @@ class Git implements GitHandler
 
     public function pushes(): GitPushCommand
     {
-        return new PushCommand($this->branches(), $this->commandBuilder, $this->executor);
+        return new PushCommand($this->branches(), $this->commandBuilder, $this->executor, $this->remotes());
     }
 
     public function statuses(): GitStatusCommand

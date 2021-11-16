@@ -4,8 +4,10 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Commands\BranchCommand;
 use ArtARTs36\GitHandler\Command\Commands\PushCommand;
+use ArtARTs36\GitHandler\Command\Commands\RemoteCommand;
 use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
 use ArtARTs36\GitHandler\Exceptions\UnexpectedException;
+use ArtARTs36\GitHandler\Making\MakingPush;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
 final class PushCommandTest extends GitTestCase
@@ -13,6 +15,7 @@ final class PushCommandTest extends GitTestCase
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::push
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::buildPushCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::makeExceptionTrigger
      */
     public function testPushBranchHasNoUpstreamBranch(): void
     {
@@ -29,6 +32,7 @@ To push the current branch and set the remote as upstream, use
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::push
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::buildPushCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::makeExceptionTrigger
      */
     public function testPushGood(): void
     {
@@ -41,6 +45,7 @@ To push the current branch and set the remote as upstream, use
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::pushOnAutoSetUpStream
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::push
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::buildPushCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::makeExceptionTrigger
      */
     public function testPushOnAutoSetUpStream(): void
     {
@@ -78,6 +83,7 @@ To push the current branch and set the remote as upstream, use
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::pushAllTags
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::buildPushCommand
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::pushWithOption
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::makeExceptionTrigger
      */
     public function testPushAllTags(string $stderr, bool $expected): void
     {
@@ -86,12 +92,61 @@ To push the current branch and set the remote as upstream, use
         self::assertEquals($expected, $this->makePushCommand()->pushAllTags());
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::send
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::__construct
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::buildCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::makeExceptionTrigger
+     */
+    public function testSend(): void
+    {
+        $command = $this->makePushCommand();
+
+        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->nextOk();
+
+        $pushRef = null;
+
+        $command->send(function (MakingPush $push) use (&$pushRef) {
+            $push
+                ->onBranch('dev')
+                ->force();
+
+            $pushRef = $push;
+        });
+
+        self::assertEquals('dev', $this->getPropertyValueOfObject($pushRef, 'branch'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::send
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::__construct
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::buildCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::makeExceptionTrigger
+     */
+    public function testSendOnBranchHasNoUpstream(): void
+    {
+        $command = $this->makePushCommand();
+
+        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->nextFailed('The current branch (.*) has no upstream branch');
+
+        self::expectException(BranchHasNoUpstream::class);
+
+        $command->send(function (MakingPush $push) {
+            $push
+                ->onBranch('dev')
+                ->force();
+        });
+    }
+
     private function makePushCommand(): PushCommand
     {
         return new PushCommand(
             new BranchCommand($this->mockCommandBuilder, $this->mockCommandExecutor),
             $this->mockCommandBuilder,
-            $this->mockCommandExecutor
+            $this->mockCommandExecutor,
+            new RemoteCommand($this->mockCommandBuilder, $this->mockCommandExecutor)
         );
     }
 }
