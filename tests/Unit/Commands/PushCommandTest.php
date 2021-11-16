@@ -15,6 +15,7 @@ final class PushCommandTest extends GitTestCase
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::push
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::buildPushCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::makeExceptionTrigger
      */
     public function testPushBranchHasNoUpstreamBranch(): void
     {
@@ -31,6 +32,7 @@ To push the current branch and set the remote as upstream, use
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::push
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::buildPushCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::makeExceptionTrigger
      */
     public function testPushGood(): void
     {
@@ -43,6 +45,7 @@ To push the current branch and set the remote as upstream, use
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::pushOnAutoSetUpStream
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::push
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::buildPushCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::makeExceptionTrigger
      */
     public function testPushOnAutoSetUpStream(): void
     {
@@ -80,6 +83,7 @@ To push the current branch and set the remote as upstream, use
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::pushAllTags
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::buildPushCommand
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::pushWithOption
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::makeExceptionTrigger
      */
     public function testPushAllTags(string $stderr, bool $expected): void
     {
@@ -92,6 +96,7 @@ To push the current branch and set the remote as upstream, use
      * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::send
      * @covers \ArtARTs36\GitHandler\Making\MakingPush::__construct
      * @covers \ArtARTs36\GitHandler\Making\MakingPush::buildCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::makeExceptionTrigger
      */
     public function testSend(): void
     {
