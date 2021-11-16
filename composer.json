@@ -56,7 +56,7 @@
         ],
         "mutate-test": [
             "echo 'Run mutation testing'",
-            "./vendor/infection/infection/bin/infection --threads=4 --no-progress --min-covered-msi=75 --coverage=tests/reports/logs/"
+            "./vendor/infection/infection/bin/infection --threads=4 --no-progress --min-covered-msi=74.9 --coverage=tests/reports/logs/"
         ],
         "build-docs": [
             "echo 'Build documentation'",

@@ -71,6 +71,18 @@ final class MakingPushTest extends TestCase
         self::assertEquals('site.ru', $this->getPropertyValueOfObject($push, 'remote')->getHost());
     }
 
+    /**
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::onSetUpStream
+     */
+    public function onSetUpStream(): void
+    {
+        $push = $this->createMakingPush();
+
+        $push->onSetUpStream();
+
+        self::assertTrue($this->getPropertyValueOfObject($push, 'setUpStream'));
+    }
+
     private function createMakingPush(): MakingPush
     {
         return new MakingPush(new Uri());
