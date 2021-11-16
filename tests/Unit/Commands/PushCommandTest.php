@@ -101,7 +101,9 @@ To push the current branch and set the remote as upstream, use
         $this->mockCommandExecutor->nextOk();
 
         self::assertNull($command->send(function (MakingPush $push) {
-            $push->force();
+            $push
+                ->onBranch('dev')
+                ->force();
         }));
     }
 
