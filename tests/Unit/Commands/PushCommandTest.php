@@ -105,11 +105,39 @@ To push the current branch and set the remote as upstream, use
         $this->mockCommandExecutor->nextOk();
         $this->mockCommandExecutor->nextOk();
 
-        self::assertNull($command->send(function (MakingPush $push) {
+        $pushRef = null;
+
+        $command->send(function (MakingPush $push) use (&$pushRef) {
             $push
                 ->onBranch('dev')
                 ->force();
-        }));
+
+            $pushRef = $push;
+        });
+
+        self::assertEquals('dev', $this->getPropertyValueOfObject($pushRef, 'branch'));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::send
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::__construct
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::buildCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\PushCommand::makeExceptionTrigger
+     */
+    public function testSendOnBranchHasNoUpstream(): void
+    {
+        $command = $this->makePushCommand();
+
+        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->nextFailed('The current branch (.*) has no upstream branch');
+
+        self::expectException(BranchHasNoUpstream::class);
+
+        $command->send(function (MakingPush $push) {
+            $push
+                ->onBranch('dev')
+                ->force();
+        });
     }
 
     private function makePushCommand(): PushCommand
