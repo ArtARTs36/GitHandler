@@ -121,7 +121,7 @@ class BitbucketOriginUrlTest extends TestCase
     }
 
     /**
-     * @covers \ArtARTs36\GitHandler\Origin\Url\GitlabOriginUrlBuilder::toFileFromFetchUrl
+     * @covers \ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrlBuilder::toFileFromFetchUrl
      */
     public function testToFileFromFetchUrl(): void
     {
