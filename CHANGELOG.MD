@@ -382,7 +382,7 @@ Read config available for subjects:
 * OriginUrlBuilder::toFileFromFetchUrl - Build url to file page on remote hosting 
 # 1.1.2 :: Update guzzlehttp/psr7 version
 
-⏱️ Published: 2021-11-15 13:24
+⏱️ Published: 2021-11-15 10:27
 
 [👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.2)
 
@@ -390,3 +390,14 @@ Read config available for subjects:
 
 ### Dependencies
 * Update guzzlehttp/psr7 version
+# 1.1.3 :: MakingPush
+
+⏱️ Published: 2021-11-16 10:19
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.3)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.2...1.1.3)
+
+### Added
+
+* GitPushCommand::send, make push parameters in closure
