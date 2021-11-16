@@ -34,6 +34,18 @@ final class MakingPushTest extends TestCase
     }
 
     /**
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::onCurrentBranchHead
+     */
+    public function testOnCurrentBranchHead(): void
+    {
+        $push = $this->createMakingPush();
+
+        $push->onCurrentBranchHead();
+
+        self::assertEquals('HEAD', self::getPropertyValueOfObject($push, 'branch'));
+    }
+
+    /**
      * @covers \ArtARTs36\GitHandler\Making\MakingPush::onBranchHead
      */
     public function testOnBranchHead(): void

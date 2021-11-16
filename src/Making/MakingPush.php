@@ -44,6 +44,13 @@ class MakingPush
         return $this;
     }
 
+    public function onCurrentBranchHead(): self
+    {
+        $this->branch = 'HEAD';
+
+        return $this;
+    }
+
     public function buildCommand(ShellCommandInterface $command): ShellCommandInterface
     {
         return $command
