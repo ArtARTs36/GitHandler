@@ -13,6 +13,8 @@ class MakingPush
 
     protected $isForce = false;
 
+    protected $setUpStream = false;
+
     public function __construct(UriInterface $remote)
     {
         $this->remote = $remote;
@@ -46,7 +48,12 @@ class MakingPush
 
     public function onCurrentBranchHead(): self
     {
-        $this->branch = 'HEAD';
+        return $this->onBranch('HEAD');
+    }
+
+    public function onSetUpStream(): self
+    {
+        $this->setUpStream = true;
 
         return $this;
     }
@@ -56,6 +63,9 @@ class MakingPush
         return $command
             ->addArgument('push')
             ->addArgument($this->remote->__toString())
+            ->when($this->setUpStream === true, function (ShellCommandInterface $command) {
+                $command->addCutOption('u');
+            })
             ->when($this->branch !== null, function (ShellCommandInterface $command) {
                 $command->addArgument($this->branch);
             })
