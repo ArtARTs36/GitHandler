@@ -413,7 +413,7 @@ Read config available for subjects:
 * Add MakingPush::onCurrentBranchHead
 # 1.1.5 :: MakingPush::onSetUpStream
 
-⏱️ Published: 2021-11-16 14:27
+⏱️ Published: 2021-11-16 11:28
 
 [👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.5)
 
@@ -421,3 +421,16 @@ Read config available for subjects:
 
 ### Added
 * MakingPush::onSetUpStream
+# 1.1.6 :: Fix FileSystem::removeFile on linked files
+
+⏱️ Published: 2021-12-13 18:41
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.6)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.5...1.1.6)
+
+### Added
+* CommitCommand::commit with author
+
+### Fixed
+* Fix FileSystem::removeFile on linked files
