@@ -13,6 +13,7 @@ interface GitCommitCommand
      * Execute commit
      * @git-command git commit -m="{$message}"
      * @git-command git commit -m="{$message}" --amend
+     * @git-command git commit -m="{$message}" --author="$author"
      */
     public function commit(string $message, bool $amend = false, ?Author $author = null): bool;
 
