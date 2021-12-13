@@ -41,7 +41,7 @@ class CommitCommand extends AbstractCommand implements GitCommitCommand
             ->make()
             ->addArgument('commit')
             ->when($author !== null, function (ShellCommandInterface $command) use ($author) {
-                $command->addOption('author')->addArgument($author);
+                $command->addOptionWithValue('author', $author);
             })
             ->addCutOption('m')
             ->addArgument($message, true)
