@@ -20,11 +20,17 @@ class LocalFileSystem implements FileSystem
             throw new FileNotFound($path);
         }
 
-        return unlink($path);
+        return $this->doRemoveFile($path);
     }
 
     public function removeDir(string $path): bool
     {
+        if (is_link($path)) {
+            $this->removeDir(readlink($path));
+
+            return $this->doRemoveFile($path);
+        }
+
         if (! $this->exists($path)) {
             return true;
         }
@@ -76,7 +82,7 @@ class LocalFileSystem implements FileSystem
 
     public function exists(string $path): bool
     {
-        return file_exists($path);
+        return file_exists($path) || is_link($path);
     }
 
     public function createFile(string $path, string $content): bool
@@ -116,5 +122,10 @@ class LocalFileSystem implements FileSystem
     public function getTmpDir(): string
     {
         return sys_get_temp_dir();
+    }
+
+    protected function doRemoveFile(string $path): bool
+    {
+        return unlink($path);
     }
 }
