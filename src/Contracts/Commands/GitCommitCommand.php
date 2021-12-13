@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Commands;
 
+use ArtARTs36\GitHandler\Data\Author;
+
 /**
  * Git Commits
  */
@@ -12,7 +14,7 @@ interface GitCommitCommand
      * @git-command git commit -m="{$message}"
      * @git-command git commit -m="{$message}" --amend
      */
-    public function commit(string $message, bool $amend = false): bool;
+    public function commit(string $message, bool $amend = false, ?Author $author = null): bool;
 
     /**
      * @git-command git add (untracked files) && git commit -m $message
