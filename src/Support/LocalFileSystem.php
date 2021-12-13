@@ -16,7 +16,7 @@ class LocalFileSystem implements FileSystem
 
     public function removeFile(string $path): bool
     {
-        if ($this->exists($path)) {
+        if (! $this->exists($path)) {
             throw new FileNotFound($path);
         }
 
