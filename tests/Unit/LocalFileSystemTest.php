@@ -65,6 +65,10 @@ final class LocalFileSystemTest extends TestCase
                 'random-file',
                 false,
             ],
+            [
+                __DIR__ . '/../Mocks/files/local_file_system_test/exists/on_link/link-dir/1.txt',
+                true,
+            ],
         ];
     }
 
