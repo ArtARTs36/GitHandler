@@ -21,7 +21,7 @@ final class GrepCommandTest extends GitTestCase
      */
     public function testGrepEmpty(string $result, string $term): void
     {
-        $greps = new GrepCommand($this->mockCommandBuilder, $this->mockCommandExecutor->nextOk($result));
+        $greps = new GrepCommand($this->mockCommandBuilder, $this->mockCommandExecutor->addSuccess($result));
 
         self::assertEmpty($greps->grep($term));
     }
@@ -31,7 +31,7 @@ final class GrepCommandTest extends GitTestCase
      */
     public function testGrepFound(): void
     {
-        $git = new GrepCommand($this->mockCommandBuilder, $this->mockCommandExecutor->nextOk(
+        $git = new GrepCommand($this->mockCommandBuilder, $this->mockCommandExecutor->addSuccess(
             "tests/Unit/Data/AuthorTest.php:24:        self::assertFalse();\n".
             "tests/Unit/Data/AuthorTest1.php:24:        self::assertFalse();\n"
         ));

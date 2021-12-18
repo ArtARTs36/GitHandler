@@ -14,7 +14,7 @@ final class HelpCommandTest extends GitTestCase
     {
         $help = new HelpCommand(
             $this->mockCommandBuilder,
-            $this->mockCommandExecutor->nextOk('help information')
+            $this->mockCommandExecutor->addSuccess('help information')
         );
 
         self::assertEquals('help information', $help->get());

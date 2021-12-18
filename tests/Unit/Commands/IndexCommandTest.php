@@ -15,7 +15,7 @@ final class IndexCommandTest extends GitTestCase
      */
     public function testAddOk(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertTrue($this->makeIndexCommand()->add('README.MD', true));
     }
@@ -27,7 +27,7 @@ final class IndexCommandTest extends GitTestCase
     {
         self::expectException(FileNotFound::class);
 
-        $this->mockCommandExecutor->nextFailed("pathspec 'random.file' did not match any files");
+        $this->mockCommandExecutor->addFail("pathspec 'random.file' did not match any files");
 
         $this->makeIndexCommand()->add('random.file');
     }
@@ -39,7 +39,7 @@ final class IndexCommandTest extends GitTestCase
     {
         self::expectException(UnknownRevisionInWorkingTree::class);
 
-        $this->mockCommandExecutor->nextFailed('unknown revision or path not in the working tree');
+        $this->mockCommandExecutor->addFail('unknown revision or path not in the working tree');
 
         $this->makeIndexCommand()->reset(ResetMode::from(ResetMode::SOFT), 'file.txt');
     }
@@ -49,7 +49,7 @@ final class IndexCommandTest extends GitTestCase
      */
     public function testReset(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeIndexCommand()->reset(ResetMode::from(ResetMode::SOFT), 'file.txt'));
     }
@@ -60,7 +60,7 @@ final class IndexCommandTest extends GitTestCase
      */
     public function testRemoveOk(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeIndexCommand()->remove('file.txt'));
     }
@@ -73,7 +73,7 @@ final class IndexCommandTest extends GitTestCase
     {
         self::expectException(FileNotFound::class);
 
-        $this->mockCommandExecutor->nextFailed("pathspec 'f.txt' did not match any");
+        $this->mockCommandExecutor->addFail("pathspec 'f.txt' did not match any");
         $this->makeIndexCommand()->remove('f.txt', true);
     }
 
@@ -83,7 +83,7 @@ final class IndexCommandTest extends GitTestCase
      */
     public function testRemoveCachedOk(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeIndexCommand()->removeCached('file.txt'));
     }
@@ -96,7 +96,7 @@ final class IndexCommandTest extends GitTestCase
     {
         self::expectException(FileNotFound::class);
 
-        $this->mockCommandExecutor->nextFailed("pathspec 'f.txt' did not match any");
+        $this->mockCommandExecutor->addFail("pathspec 'f.txt' did not match any");
         $this->makeIndexCommand()->removeCached('f.txt', true);
     }
 
@@ -107,7 +107,7 @@ final class IndexCommandTest extends GitTestCase
      */
     public function testCheckoutOk(): void
     {
-        $this->mockCommandExecutor->nextOk("Already on 'master'");
+        $this->mockCommandExecutor->addSuccess("Already on 'master'");
 
         self::assertTrue($this->makeIndexCommand()->checkout('master', true));
     }
@@ -121,7 +121,7 @@ final class IndexCommandTest extends GitTestCase
     {
         self::expectException(FileNotFound::class);
 
-        $this->mockCommandExecutor->nextFailed("pathspec 'random' did not match any");
+        $this->mockCommandExecutor->addFail("pathspec 'random' did not match any");
 
         $this->makeIndexCommand()->checkout('random');
     }
@@ -133,7 +133,7 @@ final class IndexCommandTest extends GitTestCase
      */
     public function testRollbackOk(): void
     {
-        $this->mockCommandExecutor->nextOk("Already on 'master'");
+        $this->mockCommandExecutor->addSuccess("Already on 'master'");
 
         self::assertNull($this->makeIndexCommand()->rollback('master'));
     }
@@ -147,7 +147,7 @@ final class IndexCommandTest extends GitTestCase
     {
         self::expectException(FileNotFound::class);
 
-        $this->mockCommandExecutor->nextFailed("pathspec 'random' did not match any");
+        $this->mockCommandExecutor->addFail("pathspec 'random' did not match any");
 
         $this->makeIndexCommand()->rollback('random');
     }

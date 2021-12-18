@@ -13,7 +13,7 @@ final class FetchCommandTest extends GitTestCase
      */
     public function testFetchGood(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeFetchCommand()->fetch());
     }
@@ -24,7 +24,7 @@ final class FetchCommandTest extends GitTestCase
      */
     public function testFetchAllGood(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeFetchCommand()->fetchAll());
     }

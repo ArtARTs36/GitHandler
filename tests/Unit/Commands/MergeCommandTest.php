@@ -16,7 +16,7 @@ final class MergeCommandTest extends GitTestCase
     {
         $command = $this->makeMergeCommand();
 
-        $this->mockCommandExecutor->nextFailed('fatal: There is no merge to abort (MERGE_HEAD missing)');
+        $this->mockCommandExecutor->addFail('fatal: There is no merge to abort (MERGE_HEAD missing)');
 
         self::expectException(MergeHeadMissing::class);
 
@@ -28,7 +28,7 @@ final class MergeCommandTest extends GitTestCase
      */
     public function testAbortOk(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeMergeCommand()->abort());
     }
@@ -41,7 +41,7 @@ final class MergeCommandTest extends GitTestCase
     {
         $command = $this->makeMergeCommand();
 
-        $this->mockCommandExecutor->nextFailed('merge: branch1 - not something we can merge#');
+        $this->mockCommandExecutor->addFail('merge: branch1 - not something we can merge#');
 
         self::expectException(NotSomethingWeCanMerge::class);
 
@@ -56,7 +56,7 @@ final class MergeCommandTest extends GitTestCase
     {
         $command = $this->makeMergeCommand();
 
-        $this->mockCommandExecutor->nextFailed('merge: branch1 - not something we can merge#');
+        $this->mockCommandExecutor->addFail('merge: branch1 - not something we can merge#');
 
         self::expectException(NotSomethingWeCanMerge::class);
 
@@ -68,7 +68,7 @@ final class MergeCommandTest extends GitTestCase
      */
     public function testMergeOk(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeMergeCommand()->merge('branch1'));
     }
@@ -78,7 +78,7 @@ final class MergeCommandTest extends GitTestCase
      */
     public function testMergeSquashOk(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeMergeCommand()->mergeSquash('branch1'));
     }

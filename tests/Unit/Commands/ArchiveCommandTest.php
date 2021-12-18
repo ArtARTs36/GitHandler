@@ -13,7 +13,7 @@ final class ArchiveCommandTest extends GitTestCase
      */
     public function testCreateWithPathDir(): void
     {
-        $this->mockCommandExecutor->nextFailed('fatal: could not create archive file \'var.zip\': Is a directory');
+        $this->mockCommandExecutor->addFail('fatal: could not create archive file \'var.zip\': Is a directory');
 
         self::expectException(PathIsDirectoryNotCould::class);
 
@@ -25,7 +25,7 @@ final class ArchiveCommandTest extends GitTestCase
      */
     public function testCreateOk(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeArchiveCommand()->create('var.zip'));
     }
@@ -35,7 +35,7 @@ final class ArchiveCommandTest extends GitTestCase
      */
     public function testPackRefsOk(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeArchiveCommand()->packRefs('var.zip'));
     }
@@ -45,7 +45,7 @@ final class ArchiveCommandTest extends GitTestCase
      */
     public function testUnpackRefsOk(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeArchiveCommand()->unpackRefs('var.zip'));
     }

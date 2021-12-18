@@ -17,7 +17,7 @@ final class TagCommandTest extends GitTestCase
     {
         $tags = $this->makeTagCommand();
 
-        $this->mockCommandExecutor->nextOk('0.1.0
+        $this->mockCommandExecutor->addSuccess('0.1.0
 0.2.0
 0.2.1
 ');
@@ -35,7 +35,7 @@ final class TagCommandTest extends GitTestCase
      */
     public function testIsTagExistsOnFound(): void
     {
-        $this->mockCommandExecutor->nextOk('0.1.0');
+        $this->mockCommandExecutor->addSuccess('0.1.0');
 
         self::assertTrue($this->makeTagCommand()->exists('0.1.0'));
     }
@@ -46,7 +46,7 @@ final class TagCommandTest extends GitTestCase
      */
     public function testIsTagExistsOnNotFound(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertFalse($this->makeTagCommand()->exists('0.1.0'));
     }
@@ -58,7 +58,7 @@ final class TagCommandTest extends GitTestCase
     {
         self::expectException(TagAlreadyExists::class);
 
-        $this->mockCommandExecutor->nextOk('1.0.0');
+        $this->mockCommandExecutor->addSuccess('1.0.0');
 
         $this->makeTagCommand()->add('1.0.0');
     }
@@ -68,7 +68,7 @@ final class TagCommandTest extends GitTestCase
      */
     public function testAddTag(): void
     {
-        $this->mockCommandExecutor->nextOk()->nextOk();
+        $this->mockCommandExecutor->addSuccess()->addSuccess('');
 
         self::assertTrue($this->makeTagCommand()->add('0.1.0'));
     }
@@ -78,7 +78,7 @@ final class TagCommandTest extends GitTestCase
      */
     public function testGetTagFound(): void
     {
-        $this->mockCommandExecutor->nextOk(
+        $this->mockCommandExecutor->addSuccess(
             'ArtARTs36|temicska99@mail.ru|Mon, 26 Jul 2021 22:47:34 +0300|'.
             '3e60b7250a3fdaebd50edca9bbe8a1aea7f40410|fix Git::add at many files'
         );
@@ -105,7 +105,7 @@ final class TagCommandTest extends GitTestCase
      */
     public function testGetTagOnUnexpectedExceptionWithNull(): void
     {
-        $this->mockCommandExecutor->nextOk('invalid structure answer');
+        $this->mockCommandExecutor->addSuccess('invalid structure answer');
 
         self::expectException(UnexpectedException::class);
 
@@ -121,7 +121,7 @@ final class TagCommandTest extends GitTestCase
 
         $this
             ->mockCommandExecutor
-            ->nextFailed("ambiguous argument '111': unknown revision or path not in the working tree");
+            ->addFail("ambiguous argument '111': unknown revision or path not in the working tree");
 
         $git = $this->makeTagCommand();
 
