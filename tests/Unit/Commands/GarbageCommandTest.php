@@ -34,7 +34,7 @@ final class GarbageCommandTest extends GitTestCase
     {
         $command = $this->makeGarbageCommand();
 
-        $this->mockCommandExecutor->nextOk($commandResult);
+        $this->mockCommandExecutor->addSuccess($commandResult);
 
         self::assertEquals($expected, $command->collect(GarbageCollectMode::from($mode)));
     }
@@ -49,7 +49,7 @@ final class GarbageCommandTest extends GitTestCase
     {
         $command = $this->makeGarbageCommand();
 
-        $this->mockCommandExecutor->nextOk($commandResult);
+        $this->mockCommandExecutor->addSuccess($commandResult);
 
         self::assertEquals($expected, $command->collectOnDate(GarbageCollectMode::from($mode), new \DateTime()));
     }

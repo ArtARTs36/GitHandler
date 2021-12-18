@@ -15,7 +15,7 @@ final class PathCommandTest extends GitTestCase
     {
         $paths = new PathCommand(
             $this->mockCommandBuilder,
-            $this->mockCommandExecutor->nextOk('/Applications/Xcode.app/Contents/Developer/usr/share/doc/git-doc')
+            $this->mockCommandExecutor->addSuccess('/Applications/Xcode.app/Contents/Developer/usr/share/doc/git-doc')
         );
 
         self::assertEquals('/Applications/Xcode.app/Contents/Developer/usr/share/doc/git-doc', $paths->html());
@@ -29,7 +29,7 @@ final class PathCommandTest extends GitTestCase
     {
         $paths = new PathCommand(
             $this->mockCommandBuilder,
-            $this->mockCommandExecutor->nextOk('/Applications/Xcode.app/Contents/Developer/usr/share/man
+            $this->mockCommandExecutor->addSuccess('/Applications/Xcode.app/Contents/Developer/usr/share/man
 ')
         );
 
@@ -44,7 +44,7 @@ final class PathCommandTest extends GitTestCase
     {
         $paths = new PathCommand(
             $this->mockCommandBuilder,
-            $this->mockCommandExecutor->nextOk('/Applications/Xcode.app/Contents/Developer/usr/share/info')
+            $this->mockCommandExecutor->addSuccess('/Applications/Xcode.app/Contents/Developer/usr/share/info')
         );
 
         self::assertEquals('/Applications/Xcode.app/Contents/Developer/usr/share/info', $paths->info());

@@ -28,7 +28,7 @@ final class PullCommandTest extends GitTestCase
      */
     public function testPullOk(string $commandResult, bool $expectedState): void
     {
-        $this->mockCommandExecutor->nextOk($commandResult);
+        $this->mockCommandExecutor->addSuccess($commandResult);
 
         self::assertEquals($expectedState, $this->makePullCommand()->pull());
     }
@@ -40,7 +40,7 @@ final class PullCommandTest extends GitTestCase
      */
     public function testPullBranchOk(string $commandResult, bool $expectedState): void
     {
-        $this->mockCommandExecutor->nextOk($commandResult);
+        $this->mockCommandExecutor->addSuccess($commandResult);
 
         self::assertEquals($expectedState, $this->makePullCommand()->pullBranch('master'));
     }
