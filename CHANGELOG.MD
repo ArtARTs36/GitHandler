@@ -434,3 +434,19 @@ Read config available for subjects:
 
 ### Fixed
 * Fix FileSystem::removeFile on linked files
+# 1.1.7 :: Remove "QueueCommandExecutor"
+
+⏱️ Published: 2021-12-18 12:07
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.7)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.6...1.1.7)
+
+### Dependency
+* Update **artarts36/shell-command** to **^2.1.13**
+
+### Internal
+* Remove **QueueCommandExecutor**
+
+### Fixed
+* Fixed potential bug in **StatusCommand::getGroupsByStatusResult** on invalid result string
