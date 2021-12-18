@@ -20,7 +20,7 @@ final class ArchiveTransactionTest extends GitTestCase
 
         $this
             ->mockCommandExecutor
-            ->nextAttemptsOk(4);
+            ->addSuccesses(4);
 
         self::expectException(\LogicException::class);
 
@@ -39,7 +39,7 @@ final class ArchiveTransactionTest extends GitTestCase
         $this->mockPathGenerator->setArchivePath('archive.zip');
         $this->mockFileSystem->createFile('archive.zip', '');
 
-        $this->mockCommandExecutor->nextAttemptsOk(3);
+        $this->mockCommandExecutor->addSuccesses(3);
 
         self::assertEquals('transaction-attempt-ok', $transaction->attempt(function () {
             return 'transaction-attempt-ok';

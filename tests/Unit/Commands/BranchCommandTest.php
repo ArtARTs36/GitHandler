@@ -17,7 +17,7 @@ final class BranchCommandTest extends GitTestCase
      */
     public function testDeleteOk(): void
     {
-        $this->mockCommandExecutor->nextOk('Deleted branch config (was a48b10d).');
+        $this->mockCommandExecutor->addSuccess('Deleted branch config (was a48b10d).');
 
         self::assertTrue($this->makeBranchCommand()->delete('config'));
     }
@@ -29,7 +29,7 @@ final class BranchCommandTest extends GitTestCase
     {
         self::expectException(BranchNotFound::class);
 
-        $this->mockCommandExecutor->nextFailed("error: branch 'test' not found");
+        $this->mockCommandExecutor->addFail("error: branch 'test' not found");
 
         $this->makeBranchCommand()->delete('test');
     }
@@ -41,7 +41,7 @@ final class BranchCommandTest extends GitTestCase
     {
         self::expectException(ObjectNameNotValid::class);
 
-        $this->mockCommandExecutor->nextFailed('fatal: Not a valid object name: \'1234\'');
+        $this->mockCommandExecutor->addFail('fatal: Not a valid object name: \'1234\'');
 
         $this->makeBranchCommand()->create('master');
     }
@@ -51,7 +51,7 @@ final class BranchCommandTest extends GitTestCase
      */
     public function testGetAll(): void
     {
-        $this->mockCommandExecutor->nextOk("  eee
+        $this->mockCommandExecutor->addSuccess("  eee
 * master
   repository-downloader
   remotes/origin/HEAD -> origin/master
@@ -72,7 +72,7 @@ final class BranchCommandTest extends GitTestCase
      */
     public function testNewBranchOk(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeBranchCommand()->create('master'));
     }
@@ -82,7 +82,7 @@ final class BranchCommandTest extends GitTestCase
      */
     public function testNewBranchOnAlreadyExists(): void
     {
-        $this->mockCommandExecutor->nextFailed("fatal: A branch named 'test' already exists");
+        $this->mockCommandExecutor->addFail("fatal: A branch named 'test' already exists");
 
         self::expectException(BranchAlreadyExists::class);
 
@@ -94,7 +94,7 @@ final class BranchCommandTest extends GitTestCase
      */
     public function testGetCurrentBranch(): void
     {
-        $this->mockCommandExecutor->nextOk('dev ');
+        $this->mockCommandExecutor->addSuccess('dev ');
 
         self::assertEquals('dev', $this->makeBranchCommand()->current());
     }
@@ -104,7 +104,7 @@ final class BranchCommandTest extends GitTestCase
      */
     public function testSwitchBranchOnGood(): void
     {
-        $this->mockCommandExecutor->nextOk('Switched to branch \'master\'');
+        $this->mockCommandExecutor->addSuccess('Switched to branch \'master\'');
 
         self::assertTrue($this->makeBranchCommand()->switch('master'));
     }
@@ -116,7 +116,7 @@ final class BranchCommandTest extends GitTestCase
     {
         self::expectException(ReferenceInvalid::class);
 
-        $this->mockCommandExecutor->nextFailed('fatal: invalid reference: master');
+        $this->mockCommandExecutor->addFail('fatal: invalid reference: master');
 
         $this->makeBranchCommand()->switch('master');
     }
@@ -128,7 +128,7 @@ final class BranchCommandTest extends GitTestCase
     {
         self::expectException(AlreadySwitched::class);
 
-        $this->mockCommandExecutor->nextFailed('Already on \'master\'');
+        $this->mockCommandExecutor->addFail('Already on \'master\'');
 
         $this->makeBranchCommand()->switch('master');
     }

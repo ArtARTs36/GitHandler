@@ -41,7 +41,7 @@ final class SubmoduleCommandTest extends GitTestCase
      */
     public function testAddOk(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeSubmoduleCommand()->add('http://github.com/artarts36/str'));
     }
@@ -51,7 +51,7 @@ final class SubmoduleCommandTest extends GitTestCase
      */
     public function testSync(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeSubmoduleCommand()->sync('str'));
     }
@@ -77,7 +77,7 @@ final class SubmoduleCommandTest extends GitTestCase
     {
         $command = $this->makeSubmoduleCommand();
 
-        $this->mockCommandExecutor->nextAttemptsOk(2);
+        $this->mockCommandExecutor->addSuccesses(2);
 
         $this->mockFileSystem->createFile($command->getPath(), '[submodule "str"]
 	path = $submodule->path
@@ -110,7 +110,7 @@ final class SubmoduleCommandTest extends GitTestCase
     {
         $command = $this->makeSubmoduleCommand();
 
-        $this->mockCommandExecutor->nextOk('submodule.str.url=github.com');
+        $this->mockCommandExecutor->addSuccess('submodule.str.url=github.com');
 
         $command->syncDefinesFromConfig();
 

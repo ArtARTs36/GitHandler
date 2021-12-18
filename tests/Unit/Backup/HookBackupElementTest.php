@@ -23,7 +23,7 @@ final class HookBackupElementTest extends GitTestCase
      */
     public function testRestore(): void
     {
-        $this->mockCommandExecutor->nextAttemptsOk(3);
+        $this->mockCommandExecutor->addSuccesses(3);
 
         $element = $this->makeHookWorkflowElement();
 

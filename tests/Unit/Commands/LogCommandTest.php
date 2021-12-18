@@ -14,7 +14,7 @@ final class LogCommandTest extends GitTestCase
      */
     public function testLogOnBranchDoesNotHaveCommits(): void
     {
-        $this->mockCommandExecutor->nextFailed('fatal: your current branch \'master\' does not have any commits yet');
+        $this->mockCommandExecutor->addFail('fatal: your current branch \'master\' does not have any commits yet');
 
         $git = new LogCommand(new Logger(), $this->mockCommandBuilder, $this->mockCommandExecutor);
 

@@ -96,7 +96,7 @@ final class HookCommandTest extends GitTestCase
      */
     public function testAddHookGood(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         $hooks = $this->makeHookCommand();
 

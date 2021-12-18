@@ -19,7 +19,7 @@ final class RemoteCommandTest extends GitTestCase
         self::expectException(RemoteRepositoryNotFound::class);
         self::expectExceptionMessage('Remote Repository https://github.com/ArtARTs36/test/ not found');
 
-        $this->mockCommandExecutor->nextFailed("remote: Repository not found.
+        $this->mockCommandExecutor->addFail("remote: Repository not found.
 fatal: repository 'https://github.com/ArtARTs36/test/' not found
 ");
 
@@ -32,7 +32,7 @@ fatal: repository 'https://github.com/ArtARTs36/test/' not found
      */
     public function testShowRemote(): void
     {
-        $this->mockCommandExecutor->nextOk('origin  https://github.com/ArtARTs36/GitHandler.git (fetch)
+        $this->mockCommandExecutor->addSuccess('origin  https://github.com/ArtARTs36/GitHandler.git (fetch)
 origin  https://github.com/ArtARTs36/GitHandler.git (push)
 ');
 
@@ -49,7 +49,7 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
      */
     public function testAddRemoteAlreadyExists(): void
     {
-        $this->mockCommandExecutor->nextFailed('remote master already exists');
+        $this->mockCommandExecutor->addFail('remote master already exists');
 
         self::expectException(RemoteAlreadyExists::class);
 
@@ -61,7 +61,7 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
      */
     public function testAddRemoteOnGood(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertTrue($this->makeRemoteCommand()->add('m', 'https://site.ru'));
     }
@@ -71,7 +71,7 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
      */
     public function testRemoveRemote(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertTrue($this->makeRemoteCommand()->remove('origin'));
     }
@@ -83,7 +83,7 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
     {
         self::expectException(RemoteNotFound::class);
 
-        $this->mockCommandExecutor->nextFailed('No such remote: \'origin\'');
+        $this->mockCommandExecutor->addFail('No such remote: \'origin\'');
 
         $this->makeRemoteCommand()->remove('origin');
     }
@@ -93,7 +93,7 @@ origin  https://github.com/ArtARTs36/GitHandler.git (push)
      */
     public function testHasAnyRemoteUrl(): void
     {
-        $this->mockCommandExecutor->nextOk("origin https://site.ru (push)");
+        $this->mockCommandExecutor->addSuccess("origin https://site.ru (push)");
 
         self::assertTrue($this->makeRemoteCommand()->hasAnyRemoteUrl('https://site.ru'));
     }

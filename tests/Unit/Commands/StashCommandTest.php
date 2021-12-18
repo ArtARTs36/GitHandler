@@ -33,7 +33,7 @@ final class StashCommandTest extends GitTestCase
      */
     public function testStash(string $commandResult, bool $state): void
     {
-        $this->mockCommandExecutor->nextOk($commandResult);
+        $this->mockCommandExecutor->addSuccess($commandResult);
 
         self::assertEquals($state, $this->makeStashCommand()->stash('message'));
     }
@@ -58,7 +58,7 @@ final class StashCommandTest extends GitTestCase
      */
     public function testUnStash(string $commandResult, bool $state): void
     {
-        $this->mockCommandExecutor->nextOk($commandResult);
+        $this->mockCommandExecutor->addSuccess($commandResult);
 
         self::assertEquals($state, $this->makeStashCommand()->pop());
     }
@@ -68,7 +68,7 @@ final class StashCommandTest extends GitTestCase
      */
     public function testGetStashList(): void
     {
-        $this->mockCommandExecutor->nextOk('stash@{7}|WIP on 2.x: a561440 up artarts36/str');
+        $this->mockCommandExecutor->addSuccess('stash@{7}|WIP on 2.x: a561440 up artarts36/str');
 
         $result = $this->makeStashCommand()->getList();
 
@@ -84,7 +84,7 @@ final class StashCommandTest extends GitTestCase
      */
     public function testApplyStashGood(): void
     {
-        $this->mockCommandExecutor->nextOk('Changes not staged for commit');
+        $this->mockCommandExecutor->addSuccess('Changes not staged for commit');
 
         self::assertTrue($this->makeStashCommand()->apply(1));
     }
@@ -94,7 +94,7 @@ final class StashCommandTest extends GitTestCase
      */
     public function testApplyStashOnDoesNotExists(): void
     {
-        $this->mockCommandExecutor->nextFailed("fatal: Log for 'stash' only has 5 entries");
+        $this->mockCommandExecutor->addFail("fatal: Log for 'stash' only has 5 entries");
 
         self::expectException(StashDoesNotExists::class);
 

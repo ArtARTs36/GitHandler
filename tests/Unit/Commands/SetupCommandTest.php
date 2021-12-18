@@ -29,7 +29,7 @@ final class SetupCommandTest extends GitTestCase
      */
     public function testInit(string $commandResult, bool $return, bool $dirExists): void
     {
-        $this->mockCommandExecutor->nextOk($commandResult);
+        $this->mockCommandExecutor->addSuccess($commandResult);
         $initCommand = $this->makeSetupCommand();
 
         //
@@ -45,7 +45,7 @@ final class SetupCommandTest extends GitTestCase
     {
         self::expectException(RepositoryAlreadyExists::class);
 
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
         $this->mockFileSystem->createDir($this->mockGitContext->getGitDir());
 
         $this->makeSetupCommand()->init();
@@ -86,7 +86,7 @@ final class SetupCommandTest extends GitTestCase
 
         //
 
-        $this->mockCommandExecutor->nextOk("Cloning into '{$folder}' ...");
+        $this->mockCommandExecutor->addSuccess("Cloning into '{$folder}' ...");
 
         self::assertTrue($this->makeSetupCommand()->clone($url));
     }
@@ -102,7 +102,7 @@ final class SetupCommandTest extends GitTestCase
 
         self::expectException(PathAlreadyExists::class);
 
-        $this->mockCommandExecutor->nextFailed("fatal: destination path '{$folder}' already exists " .
+        $this->mockCommandExecutor->addFail("fatal: destination path '{$folder}' already exists " .
             "and is not an empty directory.");
 
         $this->makeSetupCommand()->clone($url, 'master');
@@ -127,7 +127,7 @@ final class SetupCommandTest extends GitTestCase
     {
         $command = $this->makeSetupCommand();
 
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::expectException(RemoteNotFilled::class);
 
@@ -140,7 +140,7 @@ final class SetupCommandTest extends GitTestCase
     public function testReinstallOk(): void
     {
         $command = $this->makeSetupCommand();
-        $this->mockCommandExecutor->nextOk('origin https://github.com(fetch)')->nextOk();
+        $this->mockCommandExecutor->addSuccess('origin https://github.com(fetch)')->addSuccess();
 
         self::assertNull($command->reinstall('master'));
     }

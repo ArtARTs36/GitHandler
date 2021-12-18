@@ -14,7 +14,7 @@ final class UntrackedFilesBackupElementTest extends GitTestCase
     {
         $element = new UntrackedFilesBackupElement();
 
-        $this->mockCommandExecutor->nextOk("?? .DS_Store");
+        $this->mockCommandExecutor->addSuccess("?? .DS_Store");
         $this->mockGitHandler->files()->createFile('.DS_Store', 'ds_store_content');
 
         self::assertEquals(['.DS_Store' => 'ds_store_content'], $element->dump($this->mockGitHandler));

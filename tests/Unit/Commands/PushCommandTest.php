@@ -19,7 +19,7 @@ final class PushCommandTest extends GitTestCase
      */
     public function testPushBranchHasNoUpstreamBranch(): void
     {
-        $this->mockCommandExecutor->nextFailed("fatal: The current branch push-testing has no upstream branch.
+        $this->mockCommandExecutor->addFail("fatal: The current branch push-testing has no upstream branch.
 To push the current branch and set the remote as upstream, use
 
     git push --set-upstream origin push-testing
@@ -36,7 +36,7 @@ To push the current branch and set the remote as upstream, use
      */
     public function testPushGood(): void
     {
-        $this->mockCommandExecutor->nextOk('Everything up-to-date');
+        $this->mockCommandExecutor->addSuccess('Everything up-to-date');
 
         self::assertTrue($this->makePushCommand()->push(true, 'push-testing'));
     }
@@ -49,7 +49,7 @@ To push the current branch and set the remote as upstream, use
      */
     public function testPushOnAutoSetUpStream(): void
     {
-        $this->mockCommandExecutor->nextOk('dev')->nextOk('Everything up-to-date');
+        $this->mockCommandExecutor->addSuccess('dev')->addSuccess('Everything up-to-date');
 
         self::assertTrue($this->makePushCommand()->pushOnAutoSetUpStream());
     }
@@ -59,7 +59,7 @@ To push the current branch and set the remote as upstream, use
      */
     public function testPushOnAutoSetUpStreamWithInvalidCurrentBranch(): void
     {
-        $this->mockCommandExecutor->nextOk('HEAD')->nextOk('Everything up-to-date');
+        $this->mockCommandExecutor->addSuccess('HEAD')->addSuccess('Everything up-to-date');
 
         self::assertTrue($this->makePushCommand()->pushOnAutoSetUpStream());
     }
@@ -87,7 +87,7 @@ To push the current branch and set the remote as upstream, use
      */
     public function testPushAllTags(string $stderr, bool $expected): void
     {
-        $this->mockCommandExecutor->nextOk('', $stderr);
+        $this->mockCommandExecutor->addSuccess('', $stderr);
 
         self::assertEquals($expected, $this->makePushCommand()->pushAllTags());
     }
@@ -102,8 +102,8 @@ To push the current branch and set the remote as upstream, use
     {
         $command = $this->makePushCommand();
 
-        $this->mockCommandExecutor->nextOk();
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
+        $this->mockCommandExecutor->addSuccess();
 
         $pushRef = null;
 
@@ -128,8 +128,8 @@ To push the current branch and set the remote as upstream, use
     {
         $command = $this->makePushCommand();
 
-        $this->mockCommandExecutor->nextOk();
-        $this->mockCommandExecutor->nextFailed('The current branch (.*) has no upstream branch');
+        $this->mockCommandExecutor->addSuccess();
+        $this->mockCommandExecutor->addFail('The current branch (.*) has no upstream branch');
 
         self::expectException(BranchHasNoUpstream::class);
 

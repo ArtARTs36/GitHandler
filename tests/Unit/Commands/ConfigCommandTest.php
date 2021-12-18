@@ -22,7 +22,7 @@ final class ConfigCommandTest extends GitTestCase
      */
     public function testGetConfigList(): void
     {
-        $this->mockCommandExecutor->nextOk("credential.helper=osxkeychain
+        $this->mockCommandExecutor->addSuccess("credential.helper=osxkeychain
 user.name=artem
 user.email=artem@artem.ru
 core.autocrlf=input
@@ -38,7 +38,7 @@ core.autocrlf=input
      */
     public function testGetConfigSubject(): void
     {
-        $this->mockCommandExecutor->nextOk("credential.helper=osxkeychain
+        $this->mockCommandExecutor->addSuccess("credential.helper=osxkeychain
 user.name=artem
 user.email=artem@artem.ru
 core.autocrlf=input
@@ -58,7 +58,7 @@ core.autocrlf=input
      */
     public function testSetConfig(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertTrue($this->makeConfigCommand()->set('user', 'name', 'artem', true));
     }
@@ -72,7 +72,7 @@ core.autocrlf=input
 
         self::expectException(ConfigSectionNotFound::class);
 
-        $this->mockCommandExecutor->nextFailed('key does not contain a section: test');
+        $this->mockCommandExecutor->addFail('key does not contain a section: test');
 
         $command->unset('test', 'a');
     }
@@ -86,7 +86,7 @@ core.autocrlf=input
 
         self::expectException(ConfigVariableNotFound::class);
 
-        $this->mockCommandExecutor->nextFailed('key does not contain variable name: test');
+        $this->mockCommandExecutor->addFail('key does not contain variable name: test');
 
         $command->unset('test', 'a');
     }
@@ -98,7 +98,7 @@ core.autocrlf=input
     {
         $command = $this->makeConfigCommand();
 
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($command->unset('test', 'field'));
     }
