@@ -18,6 +18,15 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         return $getter->call($object);
     }
 
+    protected function setPropertyValue($object, string $property, $value): void
+    {
+        $setter = function () use ($property, $value) {
+            $this->$property = $value;
+        };
+
+        $setter->call($object);
+    }
+
     protected function callMethodFromObject($object, string $method, ...$args)
     {
         $caller = function () use ($method, $args) {

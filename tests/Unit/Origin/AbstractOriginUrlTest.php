@@ -89,8 +89,21 @@ class AbstractOriginUrlTest extends TestCase
      */
     public function testConstruct(): void
     {
-        $url = $this->mock([123]);
+        $url = $this->mock(['site.ru']);
 
-        self::assertEqualsPropertyValueOfObject($url, 'domains', [123]);
+        self::assertEqualsPropertyValueOfObject($url, 'domains', ['site.ru']);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder::__construct
+     */
+    public function testConstructOnMerge(): void
+    {
+        $url = $this->mock([]);
+
+        $this->setPropertyValue($url, 'domains', ['site1.ru']);
+        $url->__construct(['site2.ru']);
+
+        self::assertEqualsPropertyValueOfObject($url, 'domains', ['site1.ru', 'site2.ru']);
     }
 }
