@@ -25,12 +25,6 @@ class LocalFileSystem implements FileSystem
 
     public function removeDir(string $path): bool
     {
-        if (is_link($path)) {
-            $this->removeDir(readlink($path));
-
-            return $this->doRemoveFile($path);
-        }
-
         if (! $this->exists($path)) {
             return true;
         }
@@ -82,7 +76,7 @@ class LocalFileSystem implements FileSystem
 
     public function exists(string $path): bool
     {
-        return file_exists($path) || is_link($path);
+        return file_exists($path);
     }
 
     public function createFile(string $path, string $content): bool
