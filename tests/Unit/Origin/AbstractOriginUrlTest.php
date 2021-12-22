@@ -6,7 +6,7 @@ use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
 use ArtARTs36\Str\Str;
 
-class AbstractOriginUrlTest extends TestCase
+final class AbstractOriginUrlTest extends TestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder::getAvailableDomains
