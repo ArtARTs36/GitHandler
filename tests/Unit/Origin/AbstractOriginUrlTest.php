@@ -4,6 +4,7 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Origin;
 
 use ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
+use ArtARTs36\Str\Str;
 
 class AbstractOriginUrlTest extends TestCase
 {
@@ -56,18 +57,40 @@ class AbstractOriginUrlTest extends TestCase
         };
     }
 
+    public function providerForTestToGitFolder(): array
+    {
+        return [
+            [
+                'http://domain.ru/branch.git',
+                'http://domain.ru/branch',
+            ],
+            [
+                Str::make('http://domain.ru/branch.git'),
+                'http://domain.ru/branch',
+            ],
+        ];
+    }
+
     /**
+     * @dataProvider providerForTestToGitFolder
      * @covers \ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder::toGitFolder
      */
-    public function testToGitFolder(): void
+    public function testToGitFolder($fetchUrl, string $expected): void
     {
         $url = $this->mock();
 
         //
 
-        self::assertEquals(
-            'http://domain.ru/branch',
-            $this->callMethodFromObject($url, 'toGitFolder', 'http://domain.ru/branch.git')
-        );
+        self::assertEquals($expected, $this->callMethodFromObject($url, 'toGitFolder', $fetchUrl));
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder::__construct
+     */
+    public function testConstruct(): void
+    {
+        $url = $this->mock([123]);
+
+        self::assertEqualsPropertyValueOfObject($url, 'domains', [123]);
     }
 }
