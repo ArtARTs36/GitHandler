@@ -450,3 +450,13 @@ Read config available for subjects:
 
 ### Fixed
 * Fixed potential bug in **StatusCommand::getGroupsByStatusResult** on invalid result string
+# 1.1.8 ::  Fix FileSystem::removeDir
+
+⏱️ Published: 2021-12-22 16:51
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.8)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.7...1.1.8)
+
+### Fixed
+*  Fix FileSystem::removeDir on links
