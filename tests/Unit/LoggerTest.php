@@ -37,6 +37,17 @@ final class LoggerTest extends TestCase
         );
 
         self::assertNotNull($result);
+        self::assertEquals([
+            'commit' => [
+                'hash' => '7d0aca97318037b6cbccc7d7169079b9dcfe6d49',
+            ],
+            'date' => '2021-04-01 23:28:08',
+            'author' => [
+                'name' => 'ArtARTs36',
+                'email' => 'temicska99@mail.ru',
+            ],
+            'message' => 'update readme.md',
+        ], $result->first()->toArray());
         self::assertTrue($this->callMethodFromObject($logger, 'hasAuthor', 'ArtARTs36'));
     }
 
