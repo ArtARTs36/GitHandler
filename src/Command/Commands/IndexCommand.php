@@ -93,6 +93,9 @@ class IndexCommand extends AbstractCommand implements GitIndexCommand
             ->isOk();
     }
 
+    /**
+     * @param array<string> $paths
+     */
     protected function buildPureCheckoutCommand(array $paths, bool $merge): ShellCommandInterface
     {
         return $this

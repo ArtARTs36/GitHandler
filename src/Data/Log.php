@@ -27,4 +27,17 @@ class Log
     {
         return $this->date->format('Y-m-d') === $date->format('Y-m-d');
     }
+
+    /**
+     * @return array<string, string|array>
+     */
+    public function toArray(): array
+    {
+        return [
+            'commit' => $this->commit->toArray(),
+            'date' => $this->date->format('Y-m-d H:i:s'),
+            'author' => $this->author->toArray(),
+            'message' => $this->message,
+        ];
+    }
 }

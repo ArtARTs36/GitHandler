@@ -5,6 +5,9 @@ namespace ArtARTs36\GitHandler\Config;
 use ArtARTs36\GitHandler\Contracts\Config\SubjectConfigurator;
 use ArtARTs36\GitHandler\Exceptions\SubjectConfiguratorNotFound;
 
+/**
+ * @template-implements \IteratorAggregate<string, SubjectConfigurator>
+ */
 class ConfiguratorsDict implements \IteratorAggregate
 {
     protected $configurators;

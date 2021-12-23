@@ -85,6 +85,7 @@ final class LocalFileSystemTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getFileContent
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::raiseFileNotFoundIfNotExists
      */
     public function testGetFileContentOnNotFound(): void
     {
@@ -99,6 +100,7 @@ final class LocalFileSystemTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::getFileContent
+     * @covers \ArtARTs36\GitHandler\Support\LocalFileSystem::raiseFileNotFoundIfNotExists
      */
     public function testGetFileContentOnGood(): void
     {

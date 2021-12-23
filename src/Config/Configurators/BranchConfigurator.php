@@ -39,6 +39,9 @@ class BranchConfigurator implements SubjectConfigurator
         return 'branch';
     }
 
+    /**
+     * @param array<string> $parts
+     */
     protected function buildBranchName(array $parts): string
     {
         return Str::fromArray(array_slice($parts, 0, -1), '.')

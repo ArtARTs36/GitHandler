@@ -119,11 +119,17 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
         return $this->fileSystem->exists($this->getPath());
     }
 
+    /**
+     * @param array<Submodule> $map
+     */
     protected function saveFromMap(array $map): bool
     {
         return $this->fileSystem->createFile($this->getPath(), $this->file->buildContent($map));
     }
 
+    /**
+     * @param array<string, Submodule> $modules
+     */
     protected function doExists(string $name, array $modules): bool
     {
         return array_key_exists($name, $modules);

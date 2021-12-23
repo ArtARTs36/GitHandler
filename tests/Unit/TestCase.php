@@ -4,6 +4,11 @@ namespace ArtARTs36\GitHandler\Tests\Unit;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
+    protected function assertEqualsPropertyValueOfObject($object, string $property, $expected): void
+    {
+        self::assertEquals($expected, $this->getPropertyValueOfObject($object, $property));
+    }
+
     protected function getPropertyValueOfObject($object, string $property)
     {
         $getter = function () use ($property) {
@@ -11,6 +16,15 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         };
 
         return $getter->call($object);
+    }
+
+    protected function setPropertyValue($object, string $property, $value): void
+    {
+        $setter = function () use ($property, $value) {
+            $this->$property = $value;
+        };
+
+        $setter->call($object);
     }
 
     protected function callMethodFromObject($object, string $method, ...$args)

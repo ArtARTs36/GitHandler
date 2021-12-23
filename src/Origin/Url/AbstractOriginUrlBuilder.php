@@ -13,6 +13,9 @@ abstract class AbstractOriginUrlBuilder implements OriginUrlBuilder
 {
     protected $domains = [];
 
+    /**
+     * @param array<string> $domains
+     */
     public function __construct(array $domains = [])
     {
         $this->domains = array_merge($this->domains, $domains);
@@ -54,7 +57,7 @@ abstract class AbstractOriginUrlBuilder implements OriginUrlBuilder
      */
     protected function toGitFolder($fetchUrl): Str
     {
-        if (! $fetchUrl instanceof Str) {
+        if (is_string($fetchUrl)) {
             $fetchUrl = Str::make($fetchUrl);
         }
 

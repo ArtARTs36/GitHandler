@@ -4,6 +4,9 @@ namespace ArtARTs36\GitHandler\Data;
 
 use JetBrains\PhpStorm\Immutable;
 
+/**
+ * @template-implements \IteratorAggregate<int, Log>
+ */
 #[Immutable]
 class LogCollection implements \IteratorAggregate, \Countable
 {
@@ -17,11 +20,17 @@ class LogCollection implements \IteratorAggregate, \Countable
         $this->logs = $logs;
     }
 
+    /**
+     * Get first Log from collection.
+     */
     public function first(): Log
     {
         return $this->logs[array_key_first($this->logs)];
     }
 
+    /**
+     * Get last Log from collection.
+     */
     public function last(): Log
     {
         $logs = $this->logs;
@@ -62,6 +71,9 @@ class LogCollection implements \IteratorAggregate, \Countable
         return new \ArrayIterator($this->logs);
     }
 
+    /**
+     * Get count of logs.
+     */
     public function count(): int
     {
         return count($this->logs);

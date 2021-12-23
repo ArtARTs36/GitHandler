@@ -2,11 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Exceptions;
 
-use Throwable;
-
 final class TagAlreadyExists extends GitHandlerException
 {
-    public function __construct($tag)
+    public function __construct(string $tag)
     {
         $message = "Tag \"{$tag}\" already exists!";
 

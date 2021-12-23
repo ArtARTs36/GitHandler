@@ -31,6 +31,7 @@ class Version
 
     /**
      * @param static|string $comparedVersion
+     * @return bool|int
      */
     public function compare($comparedVersion)
     {
