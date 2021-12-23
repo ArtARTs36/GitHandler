@@ -4,6 +4,9 @@ namespace ArtARTs36\GitHandler\Data;
 
 use JetBrains\PhpStorm\Immutable;
 
+/**
+ * @template-implements \IteratorAggregate<int, Log>
+ */
 #[Immutable]
 class LogCollection implements \IteratorAggregate, \Countable
 {

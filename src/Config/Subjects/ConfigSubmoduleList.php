@@ -2,6 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
+/**
+ * @template-implements \IteratorAggregate<string, ConfigSubmodule>
+ */
 class ConfigSubmoduleList extends AbstractSubject implements \IteratorAggregate
 {
     public $submodules;

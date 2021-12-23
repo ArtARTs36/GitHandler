@@ -49,6 +49,9 @@ class StatusCommand extends AbstractCommand implements GitStatusCommand
         return $this->getGroupsByStatusResult($this->status(true)->trim())[StatusResult::GROUP_ADDED] ?? [];
     }
 
+    /**
+     * @return array<string, array<string>>
+     */
     protected function getGroupsByStatusResult(Str $result): array
     {
         $groups = [];

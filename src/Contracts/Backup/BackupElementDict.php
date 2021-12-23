@@ -2,6 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Backup;
 
+/**
+ * @extends \IteratorAggregate<string, BackupElement>
+ */
 interface BackupElementDict extends \IteratorAggregate
 {
     /**
