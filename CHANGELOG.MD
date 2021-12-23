@@ -460,3 +460,17 @@ Read config available for subjects:
 
 ### Fixed
 *  Fix FileSystem::removeDir on links
+# 1.1.9 :: Move FileSystem's implementation
+
+⏱️ Published: 2021-12-23 12:22
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.9)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.8...1.1.9)
+
+### Added
+* Add PHPDoc comments for generics
+* Add some tests
+
+### Changed
+* Moved FileSystem's implementation from LocalFileSystem to package "artarts36/local-file-system" with saved compatibility
