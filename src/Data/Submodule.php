@@ -22,6 +22,9 @@ class Submodule
         $this->url = $url;
     }
 
+    /**
+     * @param array<string, string> $array
+     */
     public static function fromArray(
         #[ArrayShape(['name' => 'string', 'path' => 'string', 'url' => 'string'])]
         array $array

@@ -28,6 +28,9 @@ class Log
         return $this->date->format('Y-m-d') === $date->format('Y-m-d');
     }
 
+    /**
+     * @return array<string, string|array>
+     */
     public function toArray(): array
     {
         return [

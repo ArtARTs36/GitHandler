@@ -6,5 +6,8 @@ use ArtARTs36\GitHandler\Making\MakingPush;
 
 interface PushSetup
 {
+    /**
+     * @return void
+     */
     public function __invoke(MakingPush $push);
 }

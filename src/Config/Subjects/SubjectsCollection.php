@@ -38,6 +38,9 @@ class SubjectsCollection implements \IteratorAggregate, \Countable
         return $this->subjects;
     }
 
+    /**
+     * @return array<string, array<string, string>>
+     */
     public function toArray(): array
     {
         $array = [];
