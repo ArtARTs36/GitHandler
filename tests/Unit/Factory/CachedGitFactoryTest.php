@@ -10,8 +10,8 @@ use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Factory\CachedGitFactory;
 use ArtARTs36\GitHandler\Git;
 use ArtARTs36\GitHandler\Tests\Support\ArrayFileSystem;
-use ArtARTs36\GitHandler\Tests\Support\QueueCommandExecutor;
 use ArtARTs36\GitHandler\Tests\Unit\TestCase;
+use ArtARTs36\ShellCommand\Executors\TestExecutor;
 use ArtARTs36\ShellCommand\ShellCommander;
 
 final class CachedGitFactoryTest extends TestCase
@@ -40,13 +40,16 @@ final class CachedGitFactoryTest extends TestCase
     }
 }
 
+/**
+ * @codingStandardsIgnoreStart
+ */
 class TestGitFactory implements GitHandlerFactory
 {
     public function factory(string $dir, string $bin = 'git'): GitHandler
     {
         return new TestGitHandler(
             new GitCommandBuilder(new ShellCommander(), $bin, $dir),
-            new QueueCommandExecutor(),
+            new TestExecutor(),
             new ArrayFileSystem(),
             GitContext::make($dir)
         );

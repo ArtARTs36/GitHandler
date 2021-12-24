@@ -178,7 +178,7 @@ final class IndexCommandTest extends GitTestCase
     {
         $command = $this->makeIndexCommand();
 
-        $this->mockCommandExecutor->nextFailed($result);
+        $this->mockCommandExecutor->addFail($result);
 
         self::expectException($exceptionClass);
 
@@ -190,7 +190,7 @@ final class IndexCommandTest extends GitTestCase
      */
     public function testCherryPickOk(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertNull($this->makeIndexCommand()->cherryPick('123'));
     }
