@@ -10,7 +10,6 @@ phpunit.xml         export-ignore
 readme.md           export-ignore
 LICENSE             export-ignore
 docs                export-ignore
-file.txt            export-ignore
 infection.json.dist export-ignore
 CHANGELOG.MD        export-ignore
 CONTRIBUTORS.MD     export-ignore
