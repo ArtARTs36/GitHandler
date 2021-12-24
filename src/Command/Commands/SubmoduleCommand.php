@@ -128,7 +128,7 @@ class SubmoduleCommand extends AbstractCommand implements GitSubmoduleCommand
     }
 
     /**
-     * @param array<Submodule> $modules
+     * @param array<string, Submodule> $modules
      */
     protected function doExists(string $name, array $modules): bool
     {

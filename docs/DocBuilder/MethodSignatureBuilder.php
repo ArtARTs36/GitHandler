@@ -14,6 +14,8 @@ class MethodSignatureBuilder
         'attributes' => "['export-ignore']",
     ];
 
+    protected static $nsPrefixes = ['ArtARTs36\\GitHandler\\', '?ArtARTs36\\GitHandler\\'];
+
     public static function build(\ReflectionMethod $method, DocBlock $docBlock): MethodSignature
     {
         $suggests = [];
@@ -37,8 +39,8 @@ class MethodSignatureBuilder
             if ($parameter->hasType()) {
                 $parts = explode("\\", $parameter->getType());
 
-                if (Str::contains($parameter->getType(), 'ArtARTs36\\GitHandler\\')) {
-                    $suggests[] = $parameter->getType();
+                if (Str::containsAny($parameter->getType()->getName(), self::$nsPrefixes)) {
+                    $suggests[] = $parameter->getType()->getName();
                 }
 
                 $type = end($parts);

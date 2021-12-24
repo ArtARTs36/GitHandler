@@ -119,4 +119,22 @@ class BitbucketOriginUrlTest extends TestCase
                 )
         );
     }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Origin\Url\BitbucketOriginUrlBuilder::toFileFromFetchUrl
+     */
+    public function testToFileFromFetchUrl(): void
+    {
+        $builder = new BitbucketOriginUrlBuilder();
+
+        self::assertEquals(
+            'https://bitbucket.org/aukrainsky/a1/src/master/.gitignore',
+            $builder
+                ->toFileFromFetchUrl(
+                    'https://bitbucket.org/aukrainsky/a1',
+                    '.gitignore',
+                    'master'
+                )
+        );
+    }
 }

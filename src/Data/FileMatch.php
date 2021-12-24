@@ -27,7 +27,7 @@ class FileMatch implements Arrayable
      * @param array<string, string|int> $data
      */
     public static function fromArray(
-        #[ArrayShape(['file' => 'string', 'line' => 'string', 'content' => 'string'])]
+        #[ArrayShape(['file' => 'string', 'line' => 'int', 'content' => 'string'])]
         array $data
     ): self {
         return new self($data['file'], $data['line'], $data['content']);

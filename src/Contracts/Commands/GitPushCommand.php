@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Commands;
 
+use ArtARTs36\GitHandler\Contracts\PushSetup;
 use ArtARTs36\GitHandler\Exceptions\BranchHasNoUpstream;
 
 /**
@@ -30,4 +31,11 @@ interface GitPushCommand
      * @return bool - have new tags been sent
      */
     public function pushAllTags(bool $force = false, ?string $upStream = null): bool;
+
+    /**
+     * Push with making of callable
+     * @git-command git push (opts and args from $making)
+     * @param PushSetup|callable $making
+     */
+    public function send(callable $making): void;
 }

@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Contracts\Commands\GitIndexCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitCommitCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitStatusCommand;
+use ArtARTs36\GitHandler\Data\Author;
 use ArtARTs36\GitHandler\Exceptions\NothingToCommit;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
@@ -33,12 +34,15 @@ class CommitCommand extends AbstractCommand implements GitCommitCommand
         parent::__construct($builder, $executor);
     }
 
-    public function commit(string $message, bool $amend = false): bool
+    public function commit(string $message, bool $amend = false, ?Author $author = null): bool
     {
         return $this
             ->builder
             ->make()
             ->addArgument('commit')
+            ->when($author !== null, function (ShellCommandInterface $command) use ($author) {
+                $command->addOptionWithValue('author', $author);
+            })
             ->addCutOption('m')
             ->addArgument($message, true)
             ->when($amend === true, function (ShellCommandInterface $command) {

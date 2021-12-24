@@ -17,7 +17,7 @@ final class GitTest extends GitTestCase
      */
     public function testVersion(): void
     {
-        $this->mockCommandExecutor->nextOk('git version 2.24.3 (Apple Git-128)');
+        $this->mockCommandExecutor->addSuccess('git version 2.24.3 (Apple Git-128)');
 
         self::assertEquals([
             'full'  => 'git version 2.24.3 (Apple Git-128)',

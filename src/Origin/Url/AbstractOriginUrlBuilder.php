@@ -58,7 +58,7 @@ abstract class AbstractOriginUrlBuilder implements OriginUrlBuilder
      */
     protected function toGitFolder($fetchUrl): Str
     {
-        if (! $fetchUrl instanceof Str) {
+        if (is_string($fetchUrl)) {
             $fetchUrl = Str::make($fetchUrl);
         }
 

@@ -20,10 +20,12 @@ $command = (new LocalGitFactory())->factory(__DIR__)->commits();
 
 #### Method Signature:
 
+See classes: 
 
+* [ArtARTs36\GitHandler\Data\Author](/src/Data/Author.php)
 
 ```php
-public function commit(string $message, bool $amend = false): bool;
+public function commit(string $message, bool $amend = false, Author $author = null): bool;
 ```
 
 #### Equals Git Command:
@@ -32,12 +34,14 @@ public function commit(string $message, bool $amend = false): bool;
 
 `git commit -m="{$message}" --amend`
 
+`git commit -m="{$message}" --author="$author"`
+
 #### Example:
 
 ```php
 use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 
-(new LocalGitFactory())->factory(__DIR__)->commits()->commit('message-test', true);
+(new LocalGitFactory())->factory(__DIR__)->commits()->commit('message-test', true, 'author-test');
 ```
 
 ---

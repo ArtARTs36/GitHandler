@@ -10,6 +10,14 @@ class CallableTemplate
         'TransactionOperation' => 'function (GitHandler $git) {
     $git->merges()->merge(\'master\');
 }',
+        'PushSetup'            => 'function (\ArtARTs36\GitHandler\Making\MakingPush $push) {
+        $push
+            ->onRemote(function (\Psr\Http\Message\UriInterface $uri) {
+                return $uri->withUserInfo(\'artarts36\', \'ghp_my_github_token\');
+            })
+            ->onBranchHead(\'dev\')
+            ->force();
+    }',
         'LogQueryAction' => 'function (LogQuery $query) {
    $query
         ->offset(3)

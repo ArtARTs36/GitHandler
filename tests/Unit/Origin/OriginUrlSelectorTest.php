@@ -103,6 +103,11 @@ class OriginUrlSelectorTest extends TestCase
             {
                 return '';
             }
+
+            public function toFileFromFetchUrl(string $fetchUrl, string $filePath, string $branch): string
+            {
+                return '';
+            }
         };
     }
 }

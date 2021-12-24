@@ -15,11 +15,11 @@ class Uri
         #[ArrayShape(['scheme' => 'string', 'host' => 'string', 'path' => 'string'])]
         array $parts
     ): string {
-        return implode('/', [
-            $parts['scheme'] . ':/',
-            $parts['host'],
+        return implode('/', array_filter([
+            array_key_exists('scheme', $parts) ? $parts['scheme'] . ':/' : null,
+            ($parts['host'] ?? ''),
             $parts['path'],
-        ]);
+        ]));
     }
 
     public static function host(string $uri): string

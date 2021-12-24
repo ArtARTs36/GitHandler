@@ -28,7 +28,7 @@ class Branch extends AbstractSubject
     }
 
     /**
-     * @param array<string> $links
+     * @param array<string, string> $links
      */
     public static function fromLinks(
         string $name,

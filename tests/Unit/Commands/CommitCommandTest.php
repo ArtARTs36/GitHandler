@@ -17,7 +17,7 @@ final class CommitCommandTest extends GitTestCase
     {
         self::expectException(NothingToCommit::class);
 
-        $this->mockCommandExecutor->nextFailed('nothing to commit');
+        $this->mockCommandExecutor->addFail('nothing to commit');
 
         $this->makeCommitCommand()->commit('');
     }
@@ -27,7 +27,7 @@ final class CommitCommandTest extends GitTestCase
      */
     public function testCommitOnFileChanged(): void
     {
-        $this->mockCommandExecutor->nextOk('file changed');
+        $this->mockCommandExecutor->addSuccess('file changed');
 
         self::assertTrue($this->makeCommitCommand()->commit('', true));
     }

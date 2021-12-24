@@ -14,7 +14,7 @@ final class StatusCommandTest extends GitTestCase
      */
     public function testGetUntrackedFiles(): void
     {
-        $this->mockCommandExecutor->nextOk(' M src/Contracts/Statusable.php
+        $this->mockCommandExecutor->addSuccess(' M src/Contracts/Statusable.php
  M src/Operations/StatusOperations.php
 AM tests/Unit/StatusOperationsTest.php
 ?? .DS_Store
@@ -63,7 +63,7 @@ AM tests/Unit/StatusOperationsTest.php
      */
     public function testGetAddedFilesOnEmpty(): void
     {
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         self::assertEquals([], $this->makeStatusCommand()->getAddedFiles());
     }
@@ -73,7 +73,7 @@ AM tests/Unit/StatusOperationsTest.php
      */
     public function testGetAddedFiles(): void
     {
-        $this->mockCommandExecutor->nextOk(StatusResult::GROUP_MODIFIED . " value\n"
+        $this->mockCommandExecutor->addSuccess(StatusResult::GROUP_MODIFIED . " value\n"
             . StatusResult::GROUP_ADDED . " valueAdded1\n"
             . StatusResult::GROUP_ADDED . " valueAdded2");
 
@@ -110,7 +110,7 @@ AM tests/Unit/StatusOperationsTest.php
      */
     public function testGetModifiedFiles(string $commandResult, array $files): void
     {
-        $this->mockCommandExecutor->nextOk($commandResult);
+        $this->mockCommandExecutor->addSuccess($commandResult);
 
         self::assertEquals($files, $this->makeStatusCommand()->getModifiedFiles());
     }
@@ -139,7 +139,7 @@ AM tests/Unit/StatusOperationsTest.php
      */
     public function testHasChanges(string $commandResult, bool $state): void
     {
-        $this->mockCommandExecutor->nextOk($commandResult);
+        $this->mockCommandExecutor->addSuccess($commandResult);
 
         self::assertEquals($state, $this->makeStatusCommand()->hasChanges());
     }
@@ -166,7 +166,7 @@ AM tests/Unit/StatusOperationsTest.php
      */
     public function testStatus(string $commandResult, string $return, bool $short): void
     {
-        $this->mockCommandExecutor->nextOk($commandResult);
+        $this->mockCommandExecutor->addSuccess($commandResult);
 
         self::assertEquals($return, $this->makeStatusCommand()->status($short));
     }

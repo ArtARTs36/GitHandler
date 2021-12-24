@@ -63,6 +63,10 @@ class StatusCommand extends AbstractCommand implements GitStatusCommand
         foreach ($result->lines() as $line) {
             [$group, $file] = $line->trim()->explode(' ');
 
+            if ($group === null || $file === null) {
+                continue;
+            }
+
             $groups[$group->__toString()][] = $file->__toString();
         }
 

@@ -4,6 +4,9 @@ namespace ArtARTs36\GitHandler\Config\Subjects;
 
 use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 
+/**
+ * @template-implements \IteratorAggregate<int, ConfigSubject>
+ */
 class SubjectsCollection implements \IteratorAggregate, \Countable
 {
     protected $subjects;
@@ -39,7 +42,7 @@ class SubjectsCollection implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @return array<string, array<string, string>|ConfigSubject>
+     * @return array<string, array<string, string>>
      */
     public function toArray(): array
     {

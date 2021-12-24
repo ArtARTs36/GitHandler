@@ -370,3 +370,107 @@ Read config available for subjects:
 * [Config] read parameters:
 * * Submodule
 * * Commit
+# 1.1.1 :: Added "Build url to file page on remote hosting"
+
+⏱️ Published: 2021-11-14 06:40
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.1)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.0...1.1.1)
+
+### Added
+* OriginUrlBuilder::toFileFromFetchUrl - Build url to file page on remote hosting 
+# 1.1.2 :: Update guzzlehttp/psr7 version
+
+⏱️ Published: 2021-11-15 10:27
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.2)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.1...1.1.2)
+
+### Dependencies
+* Update guzzlehttp/psr7 version
+# 1.1.3 :: MakingPush
+
+⏱️ Published: 2021-11-16 07:20
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.3)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.2...1.1.3)
+
+### Added
+
+* GitPushCommand::send, make push parameters in closure
+# 1.1.4 :: MakingPush::onCurrentBranchHead
+
+⏱️ Published: 2021-11-16 10:22
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.4)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.3...1.1.4)
+
+### Added
+* Add MakingPush::onCurrentBranchHead
+# 1.1.5 :: MakingPush::onSetUpStream
+
+⏱️ Published: 2021-11-16 11:28
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.5)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.4...1.1.5)
+
+### Added
+* MakingPush::onSetUpStream
+# 1.1.6 :: Fix FileSystem::removeFile on linked files
+
+⏱️ Published: 2021-12-13 18:41
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.6)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.5...1.1.6)
+
+### Added
+* CommitCommand::commit with author
+
+### Fixed
+* Fix FileSystem::removeFile on linked files
+# 1.1.7 :: Remove "QueueCommandExecutor"
+
+⏱️ Published: 2021-12-18 12:07
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.7)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.6...1.1.7)
+
+### Dependency
+* Update **artarts36/shell-command** to **^2.1.13**
+
+### Internal
+* Remove **QueueCommandExecutor**
+
+### Fixed
+* Fixed potential bug in **StatusCommand::getGroupsByStatusResult** on invalid result string
+# 1.1.8 ::  Fix FileSystem::removeDir
+
+⏱️ Published: 2021-12-22 16:51
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.8)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.7...1.1.8)
+
+### Fixed
+*  Fix FileSystem::removeDir on links
+# 1.1.9 :: Move FileSystem's implementation
+
+⏱️ Published: 2021-12-23 12:22
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.9)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.8...1.1.9)
+
+### Added
+* Add PHPDoc comments for generics
+* Add some tests
+
+### Changed
+* Moved FileSystem's implementation from LocalFileSystem to package "artarts36/local-file-system" with saved compatibility

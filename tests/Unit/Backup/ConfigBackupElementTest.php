@@ -30,7 +30,7 @@ final class ConfigBackupElementTest extends GitTestCase
     {
         $element = $this->makeConfigWorkflowElement();
 
-        $this->mockCommandExecutor->nextOk();
+        $this->mockCommandExecutor->addSuccess();
 
         $element->restore($this->mockGitHandler, [
             'content' => 'a1=b3',
