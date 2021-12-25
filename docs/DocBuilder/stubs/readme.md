@@ -38,3 +38,7 @@ Tool for work with Git in PHP
 |  Command  | Description  |
 | ------------ | ------------ |
 {$dev-commands}
+
+## Count of code
+
+{$code-counts}
