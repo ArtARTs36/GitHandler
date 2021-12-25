@@ -73,7 +73,7 @@ Tool for work with Git in PHP
 Contributing
 ------------
 
-GitHandler is an Open Source, community-driven project with thousands of
+GitHandler is an Open Source, community-driven project with some of
 [contributors](CONTRIBUTORS.MD).
 
 ## Count of code
