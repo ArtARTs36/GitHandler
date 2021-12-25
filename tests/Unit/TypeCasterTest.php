@@ -23,4 +23,33 @@ final class TypeCasterTest extends TestCase
     {
         self::assertEquals($expected, TypeCaster::boolean($raw));
     }
+
+    public function providerForTestInteger(): array
+    {
+        return [
+            [
+                [
+                    'key1' => '2',
+                ],
+                'key1',
+                2,
+            ],
+            [
+                [
+                    'key1' => '2',
+                ],
+                'key2',
+                0,
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider providerForTestInteger
+     * @covers \ArtARTs36\GitHandler\Support\TypeCaster::integer
+     */
+    public function testInteger(array $raw, string $key, int $expected): void
+    {
+        self::assertEquals($expected, TypeCaster::integer($raw, $key));
+    }
 }

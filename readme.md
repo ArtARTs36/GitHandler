@@ -81,5 +81,5 @@ GitHandler is an Open Source, community-driven project with some of
 |  Type  |  Files' count  |  Code lines' count  |  
 |  ------------  |  ------------  |  ------------  |  
 |  Source  |  201  |  7463  |  
-|  Tests  |  126  |  7525  |  
+|  Tests  |  126  |  7554  |  
 
