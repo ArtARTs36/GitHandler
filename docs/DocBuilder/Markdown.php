@@ -9,11 +9,6 @@ class Markdown
         return "[$title]($path)";
     }
 
-    public static function line(array $rows): string
-    {
-        return '|  ' . implode('  |  ', $rows) . '  |  ';
-    }
-
     public static function tag(string $text): string
     {
         return "`$text`";

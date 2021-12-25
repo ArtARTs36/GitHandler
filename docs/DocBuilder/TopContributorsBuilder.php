@@ -30,7 +30,7 @@ class TopContributorsBuilder
         foreach ($git->logs()->getAll()->getAuthorsWithCommits([
             'aukrainskiy@phoenixit.ru' => 'temicska99@mail.ru',
         ]) as $author) {
-            $content .= Markdown::line([
+            $content .= Markdown::tableLine([
                 $author->author->name,
                 count($author->commits)
             ]) . "\n";
