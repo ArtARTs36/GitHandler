@@ -68,3 +68,11 @@ Tool for work with Git in PHP
 |  composer build-docs    |    Build documentation
 |  composer check-docs-actual    |    Check Documentation is actually
 |  composer build-changelog    |    Build CHANGELOG.MD
+
+## Count of code
+
+|  Type  | Files' count  | Lines' count |
+| ------------ | ------------ | ------------ |
+|  Source  |  183  |  6680  |  
+|  Tests  |  118  |  7012  |  
+

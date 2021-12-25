@@ -8,4 +8,14 @@ class Markdown
     {
         return "[$title]($path)";
     }
+
+    public static function tag(string $text): string
+    {
+        return "`$text`";
+    }
+
+    public static function tableLine(array $items): string
+    {
+        return '|  ' . implode('  |  ', $items) . '  |  ';
+    }
 }
