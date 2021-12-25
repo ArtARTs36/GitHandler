@@ -23,7 +23,11 @@ class CodeCountsBuilder
 
     public function build(): string
     {
-        $content = '';
+        $content = Markdown::tableHeader([
+            'Type',
+            'Files\' count',
+            'Code lines\' count',
+        ]) . "\n";
 
         foreach ($this->paths as $type => $path) {
             $statistic = $this->statist->calculate($path);

@@ -18,7 +18,10 @@ class DevelopmentCommandsTableBuilder
         $view = '';
 
         foreach ($this->buildMap() as $command => $description) {
-            $view .= "|  ". $command . '    |    ' . $description . "\n";
+            $view .= Markdown::tableLine([
+                $command,
+                $description
+            ]) . "\n";
         }
 
         return rtrim($view);

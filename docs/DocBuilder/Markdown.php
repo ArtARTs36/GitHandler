@@ -18,4 +18,10 @@ class Markdown
     {
         return '|  ' . implode('  |  ', $items) . '  |  ';
     }
+
+    public static function tableHeader(array $rows): string
+    {
+        return '|  ' . implode('  |  ', $rows) . '  |  ' . "\n" .
+            '|  ' . implode('  |  ', array_fill(0, count($rows), '------------')) . '  |  ';
+    }
 }

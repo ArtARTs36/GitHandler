@@ -41,6 +41,4 @@ Tool for work with Git in PHP
 
 ## Count of code
 
-|  Type  | Files' count  | Lines' count |
-| ------------ | ------------ | ------------ |
 {$code-counts}

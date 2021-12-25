@@ -61,18 +61,18 @@ Tool for work with Git in PHP
 
 |  Command  | Description  |
 | ------------ | ------------ |
-|  composer lint    |    Check code on PSR
-|  composer stat-analyse    |    Run stat analyse
-|  composer test    |    Run tests
-|  composer mutate-test    |    Run mutation testing
-|  composer build-docs    |    Build documentation
-|  composer check-docs-actual    |    Check Documentation is actually
-|  composer build-changelog    |    Build CHANGELOG.MD
+|  composer lint  |  Check code on PSR  |  
+|  composer stat-analyse  |  Run stat analyse  |  
+|  composer test  |  Run tests  |  
+|  composer mutate-test  |  Run mutation testing  |  
+|  composer build-docs  |  Build documentation  |  
+|  composer check-docs-actual  |  Check Documentation is actually  |  
+|  composer build-changelog  |  Build CHANGELOG.MD  |
 
 ## Count of code
 
-|  Type  | Files' count  | Lines' count |
-| ------------ | ------------ | ------------ |
+|  Type  |  Files' count  |  Code lines' count  |  
+|  ------------  |  ------------  |  ------------  |  
 |  Source  |  183  |  6680  |  
 |  Tests  |  118  |  7012  |  
 
