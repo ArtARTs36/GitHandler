@@ -24,7 +24,7 @@ class ConfiguratorsDict implements \IteratorAggregate
     /**
      * @param list<SubjectConfigurator> $configurators
      */
-    public static function make(array $configurators): self
+    public static function make(iterable $configurators): self
     {
         $dict = [];
 

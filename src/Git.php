@@ -19,7 +19,7 @@ use ArtARTs36\GitHandler\Backup\Elements\UntrackedFilesBackupElement;
 
 class Git extends AbstractGit
 {
-    protected function createSubjectsConfigurators(): array
+    protected function createSubjectsConfigurators(): iterable
     {
         return [
             new UserConfigurator(),

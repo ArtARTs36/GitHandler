@@ -69,9 +69,9 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitArchiveCommand;
 abstract class AbstractGit implements GitHandler
 {
     /**
-     * @return array<SubjectConfigurator>
+     * @return iterable<SubjectConfigurator>
      */
-    abstract protected function createSubjectsConfigurators(): array;
+    abstract protected function createSubjectsConfigurators(): iterable;
 
     /**
      * @return array<BackupElement>
