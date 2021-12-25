@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitArchiveCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitBranchCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitCommitCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitConfigCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitFetchCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitGarbageCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitGrepCommand;
@@ -131,4 +132,9 @@ interface GitHandler extends Versionable, HasRemotes, HasAttributes, HasSubmodul
      * Git Merges
      */
     public function merges(): GitMergeCommand;
+
+    /**
+     * Git fetches
+     */
+    public function fetches(): GitFetchCommand;
 }

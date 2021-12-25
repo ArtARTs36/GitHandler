@@ -4,12 +4,14 @@ namespace ArtARTs36\GitHandler;
 
 use ArtARTs36\GitHandler\Command\Commands\ArchiveCommand;
 use ArtARTs36\GitHandler\Command\Commands\AttributeCommand;
+use ArtARTs36\GitHandler\Command\Commands\FetchCommand;
 use ArtARTs36\GitHandler\Command\Commands\GarbageCommand;
 use ArtARTs36\GitHandler\Command\Commands\MergeCommand;
 use ArtARTs36\GitHandler\Command\Commands\SubmoduleCommand;
 use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Contracts\Backup\BackupElement;
 use ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitFetchCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitGarbageCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitMergeCommand;
@@ -280,5 +282,10 @@ abstract class AbstractGit implements GitHandler
     public function backup(): GitBackup
     {
         return new Backup($this, $this->fileSystem, (new ArrayBackupElementDict($this->createBackupElements())));
+    }
+
+    public function fetches(): GitFetchCommand
+    {
+        return new FetchCommand($this->commandBuilder, $this->executor);
     }
 }

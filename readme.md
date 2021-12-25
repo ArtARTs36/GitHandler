@@ -48,6 +48,7 @@ Tool for work with Git in PHP
 * [Git Submodule](docs/git_submodule_command.md)
 * [Git Tags](docs/git_tag_command.md)
 * [Git Transactions](docs/git_transaction.md)
+* [Git fetch (git fetch, git fetch --all, ...)](docs/git_fetch_command.md)
 * [Download](docs/downloader.md)
 
 ----
@@ -80,6 +81,6 @@ GitHandler is an Open Source, community-driven project with some of
 
 |  Type  |  Files' count  |  Code lines' count  |  
 |  ------------  |  ------------  |  ------------  |  
-|  Source  |  201  |  7463  |  
-|  Tests  |  126  |  7554  |  
+|  Source  |  201  |  7482  |  
+|  Tests  |  126  |  7559  |  
 

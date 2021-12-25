@@ -8,6 +8,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitAttributeCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitBranchCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitCommitCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitConfigCommand;
+use ArtARTs36\GitHandler\Contracts\Commands\GitFetchCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitFileCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitGarbageCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitGrepCommand;
@@ -168,6 +169,11 @@ class CachedGit implements GitHandler
     }
 
     public function submodules(): GitSubmoduleCommand
+    {
+        return $this->cachedAndReturn(__FUNCTION__);
+    }
+
+    public function fetches(): GitFetchCommand
     {
         return $this->cachedAndReturn(__FUNCTION__);
     }
