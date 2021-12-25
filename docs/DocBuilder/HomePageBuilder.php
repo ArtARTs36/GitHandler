@@ -8,10 +8,16 @@ class HomePageBuilder
 
     protected $devCommands;
 
-    public function __construct(StubLoader $stubs, DevelopmentCommandsTableBuilder $devCommands)
-    {
+    private $codeCounts;
+
+    public function __construct(
+        StubLoader $stubs,
+        DevelopmentCommandsTableBuilder $devCommands,
+        CodeCountsBuilder $codeCounts
+    ) {
         $this->stubs = $stubs;
         $this->devCommands = $devCommands;
+        $this->codeCounts = $codeCounts;
     }
 
     /**
@@ -24,6 +30,7 @@ class HomePageBuilder
                 return '* '. Markdown::link($page->title, 'docs/'. $page->file);
             }, $pages)),
             'dev-commands' => $this->devCommands->build(),
+            'code-counts' => $this->codeCounts->build(),
         ]);
     }
 }

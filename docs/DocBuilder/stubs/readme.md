@@ -44,3 +44,7 @@ Contributing
 
 GitHandler is an Open Source, community-driven project with thousands of
 [contributors](CONTRIBUTORS.MD).
+
+## Count of code
+
+{$code-counts}

@@ -42,7 +42,7 @@ class FeatureBuilder
         return $this->stubs->load('page_git_command_feature_content.md')->render([
             'featureName' => $docBlock->getSummary(),
             'realGitCommands' => implode("\n\n", array_map(function (string $command) {
-                return "`" . $command . "`";
+                return Markdown::tag($command);
             }, $gitCommands)),
             'factoryMethodName' => $factoryMethodName,
             'featureMethodName' => $method->getShortName(),

@@ -2,9 +2,11 @@
 
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\DocBuilder\ClassFinder;
+use ArtARTs36\GitHandler\DocBuilder\CodeCountsBuilder;
 use ArtARTs36\GitHandler\DocBuilder\DevelopmentCommandsTableBuilder;
 use ArtARTs36\GitHandler\DocBuilder\DocBuilder;
 use ArtARTs36\GitHandler\DocBuilder\DocCommandPageBuilder;
+use ArtARTs36\GitHandler\DocBuilder\FolderStatist;
 use ArtARTs36\GitHandler\DocBuilder\HomePageBuilder;
 use ArtARTs36\GitHandler\DocBuilder\Page;
 use ArtARTs36\GitHandler\DocBuilder\Project;
@@ -26,7 +28,14 @@ $docBuilder = new DocBuilder(
     new DocCommandPageBuilder($stubLoader, $project)
 );
 
-$homePageBuilder = new HomePageBuilder($stubLoader, new DevelopmentCommandsTableBuilder($project));
+$homePageBuilder = new HomePageBuilder(
+    $stubLoader,
+    new DevelopmentCommandsTableBuilder($project),
+    new CodeCountsBuilder(new FolderStatist($fileSystem), [
+        'Source' => __DIR__ . '/../../src',
+        'Tests' => __DIR__ . '/../../tests',
+    ]),
+);
 
 $pages = $docBuilder->build();
 
