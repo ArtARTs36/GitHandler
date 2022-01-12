@@ -61,6 +61,8 @@ use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
 use ArtARTs36\GitHandler\Contracts\Backup\GitBackup;
+use ArtARTs36\GitHandler\Data\Author\CacheableHydrator;
+use ArtARTs36\GitHandler\Data\Author\Hydrator;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Version;
 use ArtARTs36\GitHandler\Support\Logger;
@@ -144,7 +146,11 @@ class Git implements GitHandler
 
     public function logs(): GitLogCommand
     {
-        return new LogCommand(new Logger(), $this->commandBuilder, $this->executor);
+        return new LogCommand(
+            new Logger(new CacheableHydrator(new Hydrator())),
+            $this->commandBuilder,
+            $this->executor
+        );
     }
 
     public function greps(): GitGrepCommand

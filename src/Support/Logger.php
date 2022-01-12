@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Support;
 
+use ArtARTs36\GitHandler\Contracts\AuthorHydrator;
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\Author;
 use ArtARTs36\GitHandler\Data\Commit;
@@ -13,8 +14,12 @@ class Logger implements LogParser
 {
     protected $regex = '/\|log-entry\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|/m';
 
-    /** @var array<string, Author> $authors */
-    protected $authors = [];
+    protected $authorHydrator;
+
+    public function __construct(AuthorHydrator $authorHydrator)
+    {
+        $this->authorHydrator = $authorHydrator;
+    }
 
     public function parse(Str $raw): ?LogCollection
     {
@@ -24,7 +29,7 @@ class Logger implements LogParser
             $logs[] = new Log(
                 new Commit(trim($match[1])),
                 new \DateTime($match[2]),
-                $this->getOrCreateAuthor($match[3], $match[4]),
+                $this->createAuthor($match),
                 trim($match[5])
             );
         }
@@ -36,17 +41,11 @@ class Logger implements LogParser
         return new LogCollection($logs);
     }
 
-    protected function hasAuthor(string $name): bool
+    protected function createAuthor(array $raw): Author
     {
-        return array_key_exists($name, $this->authors);
-    }
-
-    protected function getOrCreateAuthor(string $name, string $email): Author
-    {
-        if (! $this->hasAuthor($name)) {
-            $this->authors[$name] = new Author($name, $email);
-        }
-
-        return $this->authors[$name];
+        return $this->authorHydrator->hydrate([
+            'name' => $raw[3],
+            'email' => $raw[4],
+        ]);
     }
 }
