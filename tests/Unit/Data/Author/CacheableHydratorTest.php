@@ -28,6 +28,7 @@ final class CacheableHydratorTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Data\Author\CacheableHydrator::hydrate
+     * @covers \ArtARTs36\GitHandler\Data\Author\CacheableHydrator::__construct
      * @dataProvider providerForTestHydrate
      */
     public function testHydrate(array $raws): void

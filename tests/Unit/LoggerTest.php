@@ -18,6 +18,8 @@ final class LoggerTest extends TestCase
 
     /**
      * @covers \ArtARTs36\GitHandler\Support\Logger::parse
+     * @covers \ArtARTs36\GitHandler\Support\Logger::createAuthor
+     * @covers \ArtARTs36\GitHandler\Support\Logger::__construct
      */
     public function testParse(): void
     {
