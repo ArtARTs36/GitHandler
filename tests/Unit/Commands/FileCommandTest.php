@@ -29,6 +29,18 @@ final class FileCommandTest extends GitTestCase
     }
 
     /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\FileCommand::createFolder
+     */
+    public function testCreateFolder(): void
+    {
+        $fileCommand = $this->makeFileCommand();
+
+        $fileCommand->createFolder('my-folder');
+
+        self::assertTrue($this->mockFileSystem->exists($fileCommand->createPathTo('my-folder')));
+    }
+
+    /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\FileCommand::getContent
      */
     public function testGetContent(): void
