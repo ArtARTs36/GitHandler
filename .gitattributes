@@ -12,4 +12,3 @@ LICENSE             export-ignore
 docs                export-ignore
 infection.json.dist export-ignore
 CHANGELOG.MD        export-ignore
-CONTRIBUTORS.MD     export-ignore
