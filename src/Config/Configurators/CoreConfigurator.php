@@ -14,7 +14,7 @@ class CoreConfigurator implements SubjectConfigurator
         return new Core(
             $raw['autocrlf'] ?? '',
             TypeCaster::boolean($raw['ignorecase'] ?? ''),
-            $raw['repositoryformatversion'] ?? 0,
+            TypeCaster::integer($raw, 'repositoryformatversion'),
             TypeCaster::boolean($raw['bare'] ?? ''),
             TypeCaster::boolean($raw['logallrefupdates'] ?? ''),
             TypeCaster::boolean($raw['precomposeunicode'] ?? ''),
