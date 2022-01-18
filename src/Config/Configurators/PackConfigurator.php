@@ -5,6 +5,7 @@ namespace ArtARTs36\GitHandler\Config\Configurators;
 use ArtARTs36\GitHandler\Config\Subjects\Pack;
 use ArtARTs36\GitHandler\Contracts\Config\ConfigSubject;
 use ArtARTs36\GitHandler\Contracts\Config\SubjectConfigurator;
+use ArtARTs36\GitHandler\Support\TypeCaster;
 
 class PackConfigurator implements SubjectConfigurator
 {
@@ -13,10 +14,10 @@ class PackConfigurator implements SubjectConfigurator
         return new Pack(
             $raw['windowmemory'] ?? '',
             $raw['packsizelimit'] ?? '',
-            $raw['threads'] ?? 0,
+            TypeCaster::integer($raw, 'threads'),
             $raw['deltacachesize'] ?? '',
             $raw['sizelimit'] ?? '',
-            $raw['window'] ?? 0
+            TypeCaster::integer($raw, 'window')
         );
     }
 

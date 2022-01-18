@@ -12,9 +12,6 @@ class TemporaryPathGenerator implements PathGenerator
 
     private static $counter = 0;
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function __construct(FileSystem $files)
     {
         $this->files = $files;

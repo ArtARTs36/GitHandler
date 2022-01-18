@@ -10,6 +10,7 @@ final class TemporaryPathGeneratorTest extends GitTestCase
     /**
      * @covers \ArtARTs36\GitHandler\Support\TemporaryPathGenerator::toArchive
      * @covers \ArtARTs36\GitHandler\Support\TemporaryPathGenerator::buildArchiveName
+     * @covers \ArtARTs36\GitHandler\Support\TemporaryPathGenerator::__construct
      */
     public function testToArchiveNotRepeats(): void
     {
