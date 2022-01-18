@@ -4,7 +4,7 @@ use ArtARTs36\GitHandler\DocBuilder\ChangeLogBuilder;
 use ArtARTs36\GitHandler\DocBuilder\GithubRepo;
 use ArtARTs36\GitHandler\DocBuilder\StubLoader;
 use ArtARTs36\GitHandler\Origin\Url\GithubOriginUrlBuilder;
-use ArtARTs36\GitHandler\Support\LocalFileSystem;
+use ArtARTs36\FileSystem\Local\LocalFileSystem;
 use GuzzleHttp\Client;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
