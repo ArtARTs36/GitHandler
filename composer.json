@@ -71,10 +71,6 @@
         "build-changelog": [
             "echo 'Build CHANGELOG.MD'",
             "php docs/DocBuilder/build_changelog.php"
-        ],
-        "build-contributors": [
-            "echo 'Build CONTRIBUTORS.MD'",
-            "php docs/DocBuilder/build_contributors.php"
         ]
     }
 }
