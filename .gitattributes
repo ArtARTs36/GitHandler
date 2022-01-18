@@ -1,5 +1,5 @@
 *                   text=auto
-               
+
 *.md                diff=markdown
 *.php               diff=php
 tests               export-ignore
