@@ -24,6 +24,7 @@ final class TypeCasterTest extends TestCase
         self::assertEquals($expected, TypeCaster::boolean($raw));
     }
 
+
     public function providerForTestInteger(): array
     {
         return [

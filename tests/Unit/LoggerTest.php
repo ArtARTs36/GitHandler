@@ -13,18 +13,17 @@ final class LoggerTest extends TestCase
      */
     public function testParseOnEmptyRaw(): void
     {
-        $logger = new Logger();
-
-        self::assertNull($logger->parse(new Str('')));
+        self::assertNull($this->makeLogger()->parse(new Str('')));
     }
 
     /**
      * @covers \ArtARTs36\GitHandler\Support\Logger::parse
-     * @covers \ArtARTs36\GitHandler\Support\Logger::hasAuthor
+     * @covers \ArtARTs36\GitHandler\Support\Logger::createAuthor
+     * @covers \ArtARTs36\GitHandler\Support\Logger::__construct
      */
     public function testParse(): void
     {
-        $logger = new Logger();
+        $logger = $this->makeLogger();
 
         //
 
@@ -48,32 +47,10 @@ final class LoggerTest extends TestCase
             ],
             'message' => 'update readme.md',
         ], $result->first()->toArray());
-        self::assertTrue($this->callMethodFromObject($logger, 'hasAuthor', 'ArtARTs36'));
     }
 
-    /**
-     * @covers \ArtARTs36\GitHandler\Support\Logger::getOrCreateAuthor
-     */
-    public function testGetOrCreateAuthor(): void
+    private function makeLogger(): Logger
     {
-        $logger = new Logger();
-
-        //
-
-        [$name, $email] = ['Dev', 'test@mail.ru'];
-
-        //
-
-        /** @var Author $author */
-        $author = $this->callMethodFromObject($logger, 'getOrCreateAuthor', $name, $email);
-
-        self::assertEquals($name, $author->name);
-        self::assertEquals($email, $author->email);
-
-        //
-
-        $authorTwo = $this->callMethodFromObject($logger, 'getOrCreateAuthor', $name, $email);
-
-        self::assertSame($author, $authorTwo);
+        return new Logger(new Author\Hydrator());
     }
 }

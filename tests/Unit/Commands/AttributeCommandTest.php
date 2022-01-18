@@ -104,6 +104,10 @@ phpunit.xml    export-ignore param1 param2
                 // .gitattributes has requested pattern and equals attribute
                 "my-pattern value\n", 'my-pattern', ['value'], "my-pattern value\n",
             ],
+            [
+                // .gitattributes has requested pattern
+                "my-pattern value\n", 'my-pattern', ['value2'], "my-pattern value value2\n",
+            ],
         ];
     }
 
