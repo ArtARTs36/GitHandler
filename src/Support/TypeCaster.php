@@ -8,4 +8,9 @@ class TypeCaster
     {
         return $raw === 'true';
     }
+
+    public static function string(array $raw, string $key): string
+    {
+        return array_key_exists($key, $raw) ? $raw[$key] : '';
+    }
 }
