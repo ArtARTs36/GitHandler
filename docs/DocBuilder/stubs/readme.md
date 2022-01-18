@@ -39,12 +39,6 @@ Tool for work with Git in PHP
 | ------------ | ------------ |
 {$dev-commands}
 
-Contributing
-------------
-
-GitHandler is an Open Source, community-driven project with some of
-[contributors](CONTRIBUTORS.MD).
-
 ## Count of code
 
 {$code-counts}

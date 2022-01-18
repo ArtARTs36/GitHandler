@@ -71,16 +71,10 @@ Tool for work with Git in PHP
 |  composer build-changelog  |  Build CHANGELOG.MD  |  
 |  composer build-contributors  |  Build CONTRIBUTORS.MD  |
 
-Contributing
-------------
-
-GitHandler is an Open Source, community-driven project with some of
-[contributors](CONTRIBUTORS.MD).
-
 ## Count of code
 
 |  Type  |  Files' count  |  Code lines' count  |  
 |  ------------  |  ------------  |  ------------  |  
-|  Source  |  201  |  7482  |  
-|  Tests  |  126  |  7559  |  
+|  Source  |  206  |  7603  |  
+|  Tests  |  129  |  7638  |  
 

@@ -1,4 +1,0 @@
-CONTRIBUTORS
-============
-
-{$topTable}
