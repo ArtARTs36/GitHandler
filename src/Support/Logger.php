@@ -41,6 +41,9 @@ class Logger implements LogParser
         return new LogCollection($logs);
     }
 
+    /**
+     * @param array<int, mixed> $raw
+     */
     protected function createAuthor(array $raw): Author
     {
         return $this->authorHydrator->hydrate([

@@ -9,6 +9,7 @@ interface AuthorHydrator
 {
     /**
      * Hydrate raw array to Author object.
+     * @param array<string, mixed> $raw
      */
     public function hydrate(
         #[ArrayShape(['name' => 'string', 'email' => 'string'])]
