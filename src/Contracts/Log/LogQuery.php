@@ -44,4 +44,9 @@ interface LogQuery
      * @return $this
      */
     public function union(callable $build);
+
+    /**
+     * @return $this
+     */
+    public function diff(string $src, string $dest);
 }

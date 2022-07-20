@@ -37,6 +37,23 @@ class LogCommand extends AbstractCommand implements GitLogCommand
         return $this->executeAndParseLogCommand($builder->build($this->buildLogCommand()));
     }
 
+    public function count(callable $callback): int
+    {
+        $callback($builder = new LogBuilder());
+
+        return $builder
+            ->build(
+                $this
+                    ->buildLogCommand()
+                    ->addPipe()
+                    ->addArgument('wc')
+                    ->addCutOption('l')
+            )
+            ->executeOrFail($this->executor)
+            ->getResult()
+            ->toInteger();
+    }
+
     protected function executeAndParseLogCommand(ShellCommandInterface $command): ?LogCollection
     {
         return $this->parser->parse($command->executeOrFail($this->executor)->getResult());

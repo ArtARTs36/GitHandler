@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Support;
 
+use ArtARTs36\GitHandler\Contracts\Log\LogQuery;
 use ArtARTs36\GitHandler\Contracts\Log\LogQueryBuilder;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 
@@ -19,8 +20,15 @@ class LogBuilder implements LogQueryBuilder
     /** @var array<string, array<string>> */
     protected $optionValues = [];
 
+    /** @var array<string> */
+    protected $diff = null;
+
     public function offset(int $offset): self
     {
+        if ($offset === 0) {
+            return $this;
+        }
+
         return $this->setOptionValue('skip', (string) $offset);
     }
 
@@ -67,6 +75,16 @@ class LogBuilder implements LogQueryBuilder
         return $this;
     }
 
+    /**
+     * @return $this
+     */
+    public function diff(string $src, string $dest)
+    {
+        $this->diff = [$src, $dest];
+
+        return $this;
+    }
+
     public function build(ShellCommandInterface $command): ShellCommandInterface
     {
         $pureCommand = clone $command;
@@ -76,6 +94,9 @@ class LogBuilder implements LogQueryBuilder
                 $command->addOptionWithValue('author', implode('|', $this->authors), true);
             })
             ->addArguments($this->filenames)
+            ->when($this->diff !== null, function (ShellCommandInterface $command) {
+                $command->addArgument($this->diff[0] . '..' . $this->diff[1], false);
+            })
             ->when(count($this->optionValues) > 0, function (ShellCommandInterface $command) {
                 foreach ($this->optionValues as $option => $values) {
                     foreach ($values as $value) {
