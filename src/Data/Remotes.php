@@ -2,12 +2,13 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use ArtARTs36\GitHandler\Contracts\Common\Arrayable;
 use ArtARTs36\GitHandler\Support\ToArray;
 use ArtARTs36\Str\Str;
 use JetBrains\PhpStorm\Immutable;
 
 #[Immutable]
-class Remotes
+class Remotes implements Arrayable
 {
     use ToArray;
 

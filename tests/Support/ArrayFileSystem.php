@@ -4,7 +4,7 @@ namespace ArtARTs36\GitHandler\Tests\Support;
 
 use ArtARTs36\FileSystem\Contracts\FileSystem;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
-use ArtARTs36\GitHandler\Support\LocalFileSystem;
+use ArtARTs36\FileSystem\Local\LocalFileSystem;
 use ArtARTs36\Str\Facade\Str;
 
 class ArrayFileSystem extends LocalFileSystem implements FileSystem

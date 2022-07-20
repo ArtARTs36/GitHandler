@@ -4,7 +4,9 @@ namespace ArtARTs36\GitHandler\Tests\Unit\Commands;
 
 use ArtARTs36\GitHandler\Command\Commands\IndexCommand;
 use ArtARTs36\GitHandler\Enum\ResetMode;
+use ArtARTs36\GitHandler\Exceptions\BadRevision;
 use ArtARTs36\GitHandler\Exceptions\FileNotFound;
+use ArtARTs36\GitHandler\Exceptions\PreviousCherryPickIsNowEmpty;
 use ArtARTs36\GitHandler\Exceptions\UnknownRevisionInWorkingTree;
 use ArtARTs36\GitHandler\Tests\Unit\GitTestCase;
 
@@ -150,6 +152,47 @@ final class IndexCommandTest extends GitTestCase
         $this->mockCommandExecutor->addFail("pathspec 'random' did not match any");
 
         $this->makeIndexCommand()->rollback('random');
+    }
+
+    public function providerForTestCherryPickOnException(): array
+    {
+        return [
+            [
+                '123',
+                "fatal: bad revision '123'",
+                BadRevision::class,
+            ],
+            [
+                '123',
+                'The previous cherry-pick is now empty',
+                PreviousCherryPickIsNowEmpty::class,
+            ],
+        ];
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::cherryPick
+     * @dataProvider providerForTestCherryPickOnException
+     */
+    public function testCherryPickOnException(string $commitSha, string $result, string $exceptionClass): void
+    {
+        $command = $this->makeIndexCommand();
+
+        $this->mockCommandExecutor->addFail($result);
+
+        self::expectException($exceptionClass);
+
+        $command->cherryPick($commitSha);
+    }
+
+    /**
+     * @covers \ArtARTs36\GitHandler\Command\Commands\IndexCommand::cherryPick
+     */
+    public function testCherryPickOk(): void
+    {
+        $this->mockCommandExecutor->addSuccess();
+
+        self::assertNull($this->makeIndexCommand()->cherryPick('123'));
     }
 
     private function makeIndexCommand(): IndexCommand

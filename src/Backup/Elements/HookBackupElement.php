@@ -11,6 +11,9 @@ class HookBackupElement extends AbstractBackupElement implements BackupElement
 {
     public const IDENTITY = 'hooks';
 
+    /**
+     * @return array<string, Hook>
+     */
     public function dump(GitHandler $git): array
     {
         return $git->hooks()->getAll();

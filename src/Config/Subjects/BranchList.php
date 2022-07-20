@@ -2,7 +2,9 @@
 
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
-class BranchList extends AbstractSubject
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubjectList;
+
+class BranchList extends AbstractSubject implements ConfigSubjectList
 {
     public $branches;
 
@@ -18,5 +20,13 @@ class BranchList extends AbstractSubject
     public function get(string $name): ?Branch
     {
         return $this->branches[$name] ?? null;
+    }
+
+    /**
+     * @return iterable<string, Branch>
+     */
+    public function getIterator(): iterable
+    {
+        return new \ArrayIterator($this->branches);
     }
 }

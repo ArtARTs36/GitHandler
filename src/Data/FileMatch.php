@@ -2,10 +2,11 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use ArtARTs36\GitHandler\Contracts\Common\Arrayable;
 use ArtARTs36\GitHandler\Support\ToArray;
 use JetBrains\PhpStorm\ArrayShape;
 
-class FileMatch
+class FileMatch implements Arrayable
 {
     use ToArray;
 

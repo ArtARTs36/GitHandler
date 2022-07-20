@@ -6,16 +6,18 @@ use ArtARTs36\GitHandler\Command\GitCommandBuilder;
 use ArtARTs36\GitHandler\Contracts\Commands\GitLogCommand;
 use ArtARTs36\GitHandler\Contracts\LogParser;
 use ArtARTs36\GitHandler\Data\LogCollection;
+use ArtARTs36\GitHandler\Enum\FormatPlaceholder;
 use ArtARTs36\GitHandler\Exceptions\BranchDoesNotHaveCommits;
+use ArtARTs36\GitHandler\Support\LogBuilder;
 use ArtARTs36\ShellCommand\Exceptions\UserExceptionTrigger;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandExecutor;
+use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\Result\CommandResult;
 
 class LogCommand extends AbstractCommand implements GitLogCommand
 {
     protected $parser;
 
-    /** @codeCoverageIgnore */
     public function __construct(LogParser $parser, GitCommandBuilder $builder, ShellCommandExecutor $executor)
     {
         $this->parser = $parser;
@@ -25,7 +27,41 @@ class LogCommand extends AbstractCommand implements GitLogCommand
 
     public function getAll(): ?LogCollection
     {
-        return $this->parser->parse($this->builder->make()
+        return $this->executeAndParseLogCommand($this->buildLogCommand());
+    }
+
+    public function get(callable $callback): ?LogCollection
+    {
+        $callback($builder = new LogBuilder());
+
+        return $this->executeAndParseLogCommand($builder->build($this->buildLogCommand()));
+    }
+
+    public function count(callable $callback): int
+    {
+        $callback($builder = new LogBuilder());
+
+        return $builder
+            ->build(
+                $this
+                    ->buildLogCommand()
+                    ->addPipe()
+                    ->addArgument('wc')
+                    ->addCutOption('l')
+            )
+            ->executeOrFail($this->executor)
+            ->getResult()
+            ->toInteger();
+    }
+
+    protected function executeAndParseLogCommand(ShellCommandInterface $command): ?LogCollection
+    {
+        return $this->parser->parse($command->executeOrFail($this->executor)->getResult());
+    }
+
+    protected function buildLogCommand(): ShellCommandInterface
+    {
+        return $this->builder->make()
             ->addArgument('log')
             ->addOption('oneline')
             ->addOption('decorate')
@@ -42,7 +78,6 @@ class LogCommand extends AbstractCommand implements GitLogCommand
                         throw new BranchDoesNotHaveCommits($branch);
                     }
                 }
-            ]))
-            ->executeOrFail($this->executor)->getResult());
+            ]));
     }
 }

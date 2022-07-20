@@ -48,6 +48,7 @@ Tool for work with Git in PHP
 * [Git Submodule](docs/git_submodule_command.md)
 * [Git Tags](docs/git_tag_command.md)
 * [Git Transactions](docs/git_transaction.md)
+* [Git fetch (git fetch, git fetch --all, ...)](docs/git_fetch_command.md)
 * [Download](docs/downloader.md)
 
 ----
@@ -73,6 +74,6 @@ Tool for work with Git in PHP
 
 |  Type  |  Files' count  |  Code lines' count  |  
 |  ------------  |  ------------  |  ------------  |  
-|  Source  |  188  |  6817  |  
-|  Tests  |  121  |  7150  |  
+|  Source  |  206  |  7674  |  
+|  Tests  |  129  |  7650  |  
 

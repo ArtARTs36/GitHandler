@@ -6,6 +6,7 @@ use ArtARTs36\GitHandler\Contracts\Origin\OriginUrlBuilder;
 
 class GitlabOriginUrlBuilder extends AbstractOriginUrlBuilder implements OriginUrlBuilder
 {
+    /** @var list<string> */
     protected $domains = [
         'gitlab.com',
     ];

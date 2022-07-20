@@ -11,6 +11,7 @@ use ArtARTs36\Str\Str;
 
 abstract class AbstractOriginUrlBuilder implements OriginUrlBuilder
 {
+    /** @var list<string> */
     protected $domains = [];
 
     /**

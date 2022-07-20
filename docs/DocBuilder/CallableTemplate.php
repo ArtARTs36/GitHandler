@@ -18,6 +18,17 @@ class CallableTemplate
             ->onBranchHead(\'dev\')
             ->force();
     }',
+        'LogQueryAction' => 'function (LogQuery $query) {
+   $query
+        ->offset(3)
+        ->before(new \DateTime())
+        ->join(function (LogQuery $query) {
+            $query
+                ->offset(1)
+                ->limit(5)
+                ->after(new \DateTime(\'1 month ago\'));
+        });   
+}',
     ];
 
     public static function buildExampleArgument(

@@ -2,6 +2,8 @@
 
 namespace ArtARTs36\GitHandler\Config\Subjects;
 
+use ArtARTs36\GitHandler\Contracts\Config\ConfigSubjectList;
+
 /**
  * @template-implements \IteratorAggregate<string, ConfigSubmodule>
  */

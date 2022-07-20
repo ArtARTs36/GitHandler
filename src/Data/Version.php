@@ -2,9 +2,10 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use ArtARTs36\GitHandler\Contracts\Common\Arrayable;
 use ArtARTs36\GitHandler\Support\ToArray;
 
-class Version
+class Version implements Arrayable
 {
     use ToArray;
 
@@ -24,7 +25,7 @@ class Version
         $this->patch = $patch;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->full;
     }

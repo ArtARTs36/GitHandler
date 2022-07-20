@@ -7,6 +7,7 @@ use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 
 class PullCommand extends AbstractCommand implements GitPullCommand
 {
+    /** @var array<string> */
     protected static $okResults = [
         'Already up to date',
         'Receiving objects',

@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\GitHandler\Contracts\Commands;
 
+use ArtARTs36\GitHandler\Contracts\Log\LogQueryAction;
 use ArtARTs36\GitHandler\Data\LogCollection;
 
 /**
@@ -14,4 +15,16 @@ interface GitLogCommand
      * @git-command git log
      */
     public function getAll(): ?LogCollection;
+
+    /**
+     * Builds log on query
+     * @param LogQueryAction|callable $callback
+     */
+    public function get(callable $callback): ?LogCollection;
+
+    /**
+     * Get count of logs.
+     * @param LogQueryAction|callable $callback
+     */
+    public function count(callable $callback): int;
 }

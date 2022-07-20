@@ -33,11 +33,13 @@ final class FileCommandTest extends GitTestCase
      */
     public function testCreateFolder(): void
     {
-        $fileCommand = $this->makeFileCommand();
+        $command = $this->makeFileCommand();
 
-        $fileCommand->createFolder('my-folder');
+        $command->createFolder('folder1');
 
-        self::assertTrue($this->mockFileSystem->exists($fileCommand->createPathTo('my-folder')));
+        self::assertTrue(
+            $this->mockFileSystem->exists($this->mockGitContext->getRootDir() . DIRECTORY_SEPARATOR . 'folder1')
+        );
     }
 
     /**

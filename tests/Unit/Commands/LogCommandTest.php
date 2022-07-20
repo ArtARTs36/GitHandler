@@ -12,6 +12,9 @@ final class LogCommandTest extends GitTestCase
 {
     /**
      * @covers \ArtARTs36\GitHandler\Command\Commands\LogCommand::getAll
+     * @covers \ArtARTs36\GitHandler\Command\Commands\LogCommand::__construct
+     * @covers \ArtARTs36\GitHandler\Command\Commands\LogCommand::buildLogCommand
+     * @covers \ArtARTs36\GitHandler\Command\Commands\LogCommand::executeAndParseLogCommand
      */
     public function testLogOnBranchDoesNotHaveCommits(): void
     {

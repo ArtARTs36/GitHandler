@@ -2,11 +2,15 @@
 
 namespace ArtARTs36\GitHandler\Data;
 
+use ArtARTs36\GitHandler\Contracts\Common\Arrayable;
+use ArtARTs36\GitHandler\Support\ToArray;
 use JetBrains\PhpStorm\Immutable;
 
 #[Immutable]
-class Log
+class Log implements Arrayable
 {
+    use ToArray;
+
     public $commit;
 
     public $author;

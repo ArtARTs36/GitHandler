@@ -26,9 +26,11 @@ final class ConfigSubmoduleListTest extends TestCase
      */
     public function testGetOnFound(): void
     {
-        $list = new ConfigSubmoduleList([]);
+        $list = new ConfigSubmoduleList(
+            ['test1' => $expected = new ConfigSubmodule('test1', 'https://', true)]
+        );
 
-        self::assertNull($list->get('rand'));
+        self::assertSame($expected, $list->get('test1'));
     }
 
     /**

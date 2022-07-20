@@ -7,6 +7,7 @@ use ArtARTs36\GitHandler\Command\Commands\AttributeCommand;
 use ArtARTs36\GitHandler\Command\Commands\BranchCommand;
 use ArtARTs36\GitHandler\Command\Commands\CommitCommand;
 use ArtARTs36\GitHandler\Command\Commands\ConfigCommand;
+use ArtARTs36\GitHandler\Command\Commands\FetchCommand;
 use ArtARTs36\GitHandler\Command\Commands\FileCommand;
 use ArtARTs36\GitHandler\Command\Commands\GarbageCommand;
 use ArtARTs36\GitHandler\Command\Commands\GrepCommand;
@@ -58,6 +59,7 @@ class GitFactoryMethodsTest extends GitTestCase
             ['attributes', AttributeCommand::class],
             ['submodules', SubmoduleCommand::class],
             ['backup', Backup::class],
+            ['fetches', FetchCommand::class],
         ];
     }
 
@@ -88,6 +90,10 @@ class GitFactoryMethodsTest extends GitTestCase
      * @covers \ArtARTs36\GitHandler\Git::attributes
      * @covers \ArtARTs36\GitHandler\Git::submodules
      * @covers \ArtARTs36\GitHandler\Git::backup
+     * @covers \ArtARTs36\GitHandler\Git::createBackupElements
+     * @covers \ArtARTs36\GitHandler\Git::createSubjectsConfigurators
+     * @covers \ArtARTs36\GitHandler\Git::createPathGenerator
+     * @covers \ArtARTs36\GitHandler\Git::fetches
      */
     public function testFactoryMethod(string $method, string $expectedClass): void
     {
