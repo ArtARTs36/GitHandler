@@ -22,5 +22,9 @@ interface GitLogCommand
      */
     public function get(callable $callback): ?LogCollection;
 
+    /**
+     * Get count of logs.
+     * @param LogQueryAction|callable $callback
+     */
     public function count(callable $callback): int;
 }

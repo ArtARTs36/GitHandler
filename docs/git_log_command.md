@@ -66,3 +66,30 @@ use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
 ```
 
 ---
+### * Get count of logs.
+
+#### Method Signature:
+
+```php
+public function count(callable $callback): int;
+```
+
+#### Example:
+
+```php
+use \ArtARTs36\GitHandler\Factory\LocalGitFactory;
+
+(new LocalGitFactory())->factory(__DIR__)->logs()->count(function (LogQuery $query) {
+   $query
+        ->offset(3)
+        ->before(new \DateTime())
+        ->join(function (LogQuery $query) {
+            $query
+                ->offset(1)
+                ->limit(5)
+                ->after(new \DateTime('1 month ago'));
+        });   
+});
+```
+
+---

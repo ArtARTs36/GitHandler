@@ -20,6 +20,14 @@ class FeatureBuilder
 
     public function build(\ReflectionMethod $method, string $factoryMethodName): string
     {
+        if ($method->getDocComment() === false) {
+            throw new \RuntimeException(sprintf(
+                'Method %s::%s without comment',
+                $method->getDeclaringClass()->getName(),
+                $method->getName(),
+            ));
+        }
+
         $docBlock = $this->docBlocks->create($method);
 
         $gitCommands = $docBlock->getTagsByName('git-command');
