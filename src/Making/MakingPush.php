@@ -15,6 +15,8 @@ class MakingPush
 
     protected $setUpStream = false;
 
+    protected $tags = false;
+
     public function __construct(UriInterface $remote)
     {
         $this->remote = $remote;
@@ -58,6 +60,13 @@ class MakingPush
         return $this;
     }
 
+    public function tags(): self
+    {
+        $this->tags = true;
+
+        return $this;
+    }
+
     public function buildCommand(ShellCommandInterface $command): ShellCommandInterface
     {
         return $command
@@ -71,6 +80,9 @@ class MakingPush
             })
             ->when($this->isForce, function (ShellCommandInterface $command) {
                 $command->addOption('force');
+            })
+            ->when($this->tags, function (ShellCommandInterface $command) {
+                $command->addOption('tags');
             });
     }
 }

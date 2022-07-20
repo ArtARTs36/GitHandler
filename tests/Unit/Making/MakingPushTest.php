@@ -72,6 +72,18 @@ final class MakingPushTest extends TestCase
     }
 
     /**
+     * @covers \ArtARTs36\GitHandler\Making\MakingPush::tags
+     */
+    public function testTags(): void
+    {
+        $push = $this->createMakingPush();
+
+        $push->tags();
+
+        self::assertTrue($this->getPropertyValueOfObject($push, 'tags'));
+    }
+
+    /**
      * @covers \ArtARTs36\GitHandler\Making\MakingPush::onSetUpStream
      */
     public function onSetUpStream(): void
