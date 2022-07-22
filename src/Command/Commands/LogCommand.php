@@ -42,13 +42,10 @@ class LogCommand extends AbstractCommand implements GitLogCommand
         $callback($builder = new LogBuilder());
 
         return $builder
-            ->build(
-                $this
-                    ->buildLogCommand()
-                    ->addPipe()
-                    ->addArgument('wc')
-                    ->addCutOption('l')
-            )
+            ->build($this->buildLogCommand())
+            ->addPipe()
+            ->addArgument('wc')
+            ->addCutOption('l')
             ->executeOrFail($this->executor)
             ->getResult()
             ->toInteger();

@@ -74,6 +74,6 @@ Tool for work with Git in PHP
 
 |  Type  |  Files' count  |  Code lines' count  |  
 |  ------------  |  ------------  |  ------------  |  
-|  Source  |  206  |  7674  |  
+|  Source  |  206  |  7671  |  
 |  Tests  |  129  |  7650  |  
 
