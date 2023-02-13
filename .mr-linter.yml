@@ -1,0 +1,13 @@
+rules:
+  "@mr-linter/has_any_labels_of":
+    labels:
+      - Feature
+      - Bug
+      - Docs
+      - Tests
+      - Optimization
+
+  "@mr-linter/description_not_empty": { }
+
+credentials:
+  github_actions: "env(TOKEN)"
