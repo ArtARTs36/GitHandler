@@ -10,4 +10,4 @@ rules:
   "@mr-linter/description_not_empty": { }
 
 credentials:
-  github_actions: "env(TOKEN)"
+  github_actions: "env(MR_LINTER_GITHUB_TOKEN)"
