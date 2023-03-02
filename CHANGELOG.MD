@@ -474,3 +474,73 @@ Read config available for subjects:
 
 ### Changed
 * Moved FileSystem's implementation from LocalFileSystem to package "artarts36/local-file-system" with saved compatibility
+# 1.1.10 :: Refactor Logger
+
+⏱️ Published: 2022-01-12 20:12
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.10)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.9...1.1.10)
+
+### Changed
+* Refactor Logger
+# 1.1.11 :: Added "DiffConfigurator"
+
+⏱️ Published: 2022-01-18 01:19
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.11)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.10...1.1.11)
+
+### Added
+* Added "DiffConfigurator"
+# 1.1.12 :: Added MakingPush::tags
+
+⏱️ Published: 2022-03-08 21:41
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.1.12)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.11...1.1.12)
+
+### Added
+* Added tags pushing
+# v1.2.0
+
+⏱️ Published: 2022-07-20 21:12
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.2.0)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.1.12...1.2.0)
+
+### Added
+[Log] Get git log for file
+[Log] Get git log for file on lines
+[Attribute] ConfigValue
+[Config] Read aliases
+[Config] Create contract "ConfigSubjectList"
+[Index] Wrap: git cherry-pick
+
+### Internal
+* Create base GitHandler class - AbstractGIt
+* Create contract "Arrayable"
+# v1.2.1
+
+⏱️ Published: 2022-07-22 01:10
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.2.1)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.2.0...1.2.1)
+
+### Fixed
+* Fix LogCommand::count
+# v1.3.0
+
+⏱️ Published: 2023-03-03 01:49
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.3.0)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.2.1...1.3.0)
+
+### Added
+* GitHandler::getContext to contract
+* GitHandler::urls
