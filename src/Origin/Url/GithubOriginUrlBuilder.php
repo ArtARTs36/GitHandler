@@ -7,6 +7,8 @@ use ArtARTs36\GitHandler\Support\Uri;
 
 class GithubOriginUrlBuilder extends AbstractOriginUrlBuilder implements OriginUrlBuilder
 {
+    public const NAME = 'github';
+
     protected $archiveSubdomain = 'codeload';
 
     /** @var list<string> */
