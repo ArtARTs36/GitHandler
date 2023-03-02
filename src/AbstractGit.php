@@ -64,6 +64,7 @@ use ArtARTs36\GitHandler\Data\Author\CacheableHydrator;
 use ArtARTs36\GitHandler\Data\Author\Hydrator;
 use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Version;
+use ArtARTs36\GitHandler\Origin\Url\GitUrl;
 use ArtARTs36\GitHandler\Support\Logger;
 use ArtARTs36\GitHandler\Transactions\ArchiveTransaction;
 use ArtARTs36\GitHandler\Backup\ArrayBackupElementDict;
