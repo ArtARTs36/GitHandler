@@ -29,6 +29,7 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitSubmoduleCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand;
 use ArtARTs36\GitHandler\Contracts\Handler\GitHandler;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
+use ArtARTs36\GitHandler\Data\GitContext;
 use ArtARTs36\GitHandler\Data\Version;
 
 class CachedGit implements GitHandler
@@ -174,6 +175,11 @@ class CachedGit implements GitHandler
     }
 
     public function fetches(): GitFetchCommand
+    {
+        return $this->cachedAndReturn(__FUNCTION__);
+    }
+
+    public function getContext(): GitContext
     {
         return $this->cachedAndReturn(__FUNCTION__);
     }

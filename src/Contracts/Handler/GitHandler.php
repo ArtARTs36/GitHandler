@@ -24,9 +24,10 @@ use ArtARTs36\GitHandler\Contracts\Commands\GitStashCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitStatusCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\GitTagCommand;
 use ArtARTs36\GitHandler\Contracts\Commands\HasSubmodules;
+use ArtARTs36\GitHandler\Contracts\HasContext;
 use ArtARTs36\GitHandler\Contracts\Transaction\GitTransaction;
 
-interface GitHandler extends Versionable, HasRemotes, HasAttributes, HasSubmodules, HasBackup
+interface GitHandler extends Versionable, HasRemotes, HasAttributes, HasSubmodules, HasBackup, HasContext
 {
     /**
      * Git Help
