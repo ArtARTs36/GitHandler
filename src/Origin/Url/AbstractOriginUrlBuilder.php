@@ -14,6 +14,9 @@ abstract class AbstractOriginUrlBuilder implements OriginUrlBuilder
     /** @var list<string> */
     protected $domains = [];
 
+    private const URL_REGEX = '/((git@|http(s)?:\/\/)(?<host>[\w\.@]+)(\/|:))(?<owner>([\w,\-,\_]+))\/' .
+    '(?<repo>([\w,\-,\_]+))(.git){0,1}((\/){0,1})/m';
+
     /**
      * @param array<string> $domains
      */
@@ -39,20 +42,21 @@ abstract class AbstractOriginUrlBuilder implements OriginUrlBuilder
 
     public function toRepoFromUrl(string $url): Repo
     {
-        $urlParts = parse_url($url);
-        $pathParts = array_filter(explode(DIRECTORY_SEPARATOR, $urlParts['path']));
+        $parsed = [];
 
-        if (count($pathParts) < 2) {
+        preg_match(self::URL_REGEX, $url, $parsed);
+
+        if (! isset($parsed['repo']) || ! isset($parsed['owner']) || ! isset($parsed['host'])) {
             throw new GivenInvalidUri($url);
         }
 
-        [$user, $name] = array_slice($pathParts, 0, 2);
+        $newUrl = Uri::unParse([
+            'scheme' => 'https',
+            'host' => $parsed['host'],
+            'path' => $parsed['owner'] . '/' . $parsed['repo'],
+        ]);
 
-        $cleanedName = \ArtARTs36\Str\Facade\Str::deleteWhenEnds($name, '.git');
-
-        return new Repo($cleanedName, $user, Uri::unParse(array_merge($urlParts, [
-            'path' => $user . '/' . $name,
-        ])));
+        return new Repo($parsed['repo'], $parsed['owner'], $newUrl);
     }
 
     /**

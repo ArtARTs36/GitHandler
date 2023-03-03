@@ -120,13 +120,44 @@ final class AbstractOriginUrlTest extends TestCase
         $url->toRepoFromUrl('1');
     }
 
+    public function providerForTestToRepoFromUrl(): array
+    {
+        return [
+            [
+                'https://github.com/ArtARTs36/GitHandler',
+                [
+                    'url' => 'https://github.com/ArtARTs36/GitHandler',
+                    'user' => 'ArtARTs36',
+                    'name' => 'GitHandler',
+                ],
+            ],
+            [
+                'git@github.com:ArtARTs36/GitHandler.git',
+                [
+                    'url' => 'https://github.com/ArtARTs36/GitHandler',
+                    'user' => 'ArtARTs36',
+                    'name' => 'GitHandler',
+                ],
+            ],
+            [
+                'https://gitlab.com/artem_ukrainsky/mr-linter-testing',
+                [
+                    'url' => 'https://gitlab.com/artem_ukrainsky/mr-linter-testing',
+                    'user' => 'artem_ukrainsky',
+                    'name' => 'mr-linter-testing',
+                ],
+            ]
+        ];
+    }
+
     /**
      * @covers \ArtARTs36\GitHandler\Origin\Url\AbstractOriginUrlBuilder::toRepoFromUrl
+     * @dataProvider providerForTestToRepoFromUrl
      */
-    public function testToRepoFromUrlOnTwoPathParts(): void
+    public function testToRepoFromUrl(string $url, array $expected): void
     {
-        $url = $this->mock();
+        $builder = $this->mock();
 
-        self::assertEquals('site.ru/site', $url->toRepoFromUrl('site.ru/site')->url);
+        self::assertEquals($expected, $builder->toRepoFromUrl($url)->toArray());
     }
 }
