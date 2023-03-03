@@ -48,7 +48,9 @@ abstract class AbstractOriginUrlBuilder implements OriginUrlBuilder
 
         [$user, $name] = array_slice($pathParts, 0, 2);
 
-        return new Repo($name, $user, Uri::unParse(array_merge($urlParts, [
+        $cleanedName = \ArtARTs36\Str\Facade\Str::deleteWhenEnds($name, '.git');
+
+        return new Repo($cleanedName, $user, Uri::unParse(array_merge($urlParts, [
             'path' => $user . '/' . $name,
         ])));
     }
