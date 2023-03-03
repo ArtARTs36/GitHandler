@@ -96,7 +96,7 @@ class PushCommand extends AbstractCommand implements GitPushCommand
                 $command->addOption('force');
             })
             ->when(! empty($upStream), function (ShellCommandInterface $command) use ($upStream) {
-                $command->addOption('set-upstream')->addArgument($upStream);
+                $command->addOption('set-upstream')->addArgument($upStream, false);
             })
             ->setExceptionTrigger($this->makeExceptionTrigger());
     }
