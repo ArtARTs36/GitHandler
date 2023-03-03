@@ -535,7 +535,7 @@ Read config available for subjects:
 * Fix LogCommand::count
 # v1.3.0
 
-⏱️ Published: 2023-03-03 01:49
+⏱️ Published: 2023-03-02 22:50
 
 [👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.3.0)
 
@@ -544,3 +544,13 @@ Read config available for subjects:
 ### Added
 * GitHandler::getContext to contract
 * GitHandler::urls
+# v1.3.1
+
+⏱️ Published: 2023-03-03 00:40
+
+[👀 View on Github](https://github.com/ArtARTs36/GitHandler/releases/tag/1.3.1)
+
+[↔️ View Changes](https://github.com/ArtARTs36/GitHandler/compare/1.3.0...1.3.1)
+
+### Fixed
+* Push command
